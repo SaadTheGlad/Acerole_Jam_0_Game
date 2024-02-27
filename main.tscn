@@ -4,3 +4,5 @@
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_v8bnt")
+
+[node name="LesGoBaby" type="CSGBox3D" parent="."]
