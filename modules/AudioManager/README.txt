@@ -1,0 +1,1 @@
+Make sure to set up a bus with Music, SFX and Reverb and set any music you want to the music bus
