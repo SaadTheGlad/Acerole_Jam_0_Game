@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dly6ancrakx1d"]
-
-[ext_resource type="Script" path="res://TestScript.cs" id="1_v8bnt"]
-
-[node name="Main" type="Node3D"]
-script = ExtResource("1_v8bnt")
-
-[node name="LesGoBaby" type="CSGBox3D" parent="."]
