@@ -1,6 +1,61 @@
-[gd_scene load_steps=2 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=10 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Test.cs" id="1_vgk4r"]
+[ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
+[ext_resource type="Texture2D" uid="uid://wbo7yx08rfpd" path="res://Images/UI/Main/BG/Sky.PNG" id="2_kjyi1"]
+[ext_resource type="Texture2D" uid="uid://vpbu0uxfwxlc" path="res://Images/UI/Main/Desk.PNG" id="3_rf5ro"]
+[ext_resource type="Texture2D" uid="uid://b7dv1iker83r1" path="res://Images/UI/Main/BG/Stars.PNG" id="3_vvaag"]
+[ext_resource type="Texture2D" uid="uid://bhvhrtw5kwanc" path="res://Images/UI/Main/Window/Frame.PNG" id="4_j4hjr"]
+[ext_resource type="Texture2D" uid="uid://bywk20ymwnqkw" path="res://Images/UI/Main/BG/Snow/Full Snow.PNG" id="4_uow0l"]
+[ext_resource type="Texture2D" uid="uid://48xteqc42tnf" path="res://Images/UI/Main/Window/White Glass.png" id="6_3eqmv"]
+[ext_resource type="Texture2D" uid="uid://b77027piryngm" path="res://Images/Hollow.png" id="9_io0yj"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_vgk4r")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="WorkingArea" type="Node2D" parent="."]
+
+[node name="BG" type="Node2D" parent="WorkingArea"]
+z_index = 6
+
+[node name="Sky" type="Sprite2D" parent="WorkingArea/BG"]
+position = Vector2(960, 540)
+texture = ExtResource("2_kjyi1")
+
+[node name="Stars" type="Sprite2D" parent="WorkingArea/BG"]
+position = Vector2(960, 540)
+texture = ExtResource("3_vvaag")
+
+[node name="FullSnow" type="Sprite2D" parent="WorkingArea/BG"]
+position = Vector2(972, 538)
+texture = ExtResource("4_uow0l")
+
+[node name="Window" type="Node2D" parent="WorkingArea"]
+z_index = 8
+
+[node name="Glass" type="Sprite2D" parent="WorkingArea/Window"]
+self_modulate = Color(1, 1, 1, 0.172549)
+position = Vector2(960, 540)
+texture = ExtResource("6_3eqmv")
+
+[node name="Frame" type="Sprite2D" parent="WorkingArea/Window"]
+position = Vector2(960, 538)
+texture = ExtResource("4_j4hjr")
+
+[node name="Wall" type="Sprite2D" parent="WorkingArea"]
+z_index = 9
+position = Vector2(960, 540)
+texture = ExtResource("2_4kdnl")
+
+[node name="Desk" type="Sprite2D" parent="WorkingArea"]
+z_index = 10
+position = Vector2(960, 540)
+texture = ExtResource("3_rf5ro")
+
+[node name="Hollow" type="Sprite2D" parent="."]
+z_index = 7
+position = Vector2(522, 351)
+scale = Vector2(0.345581, 0.345581)
+texture = ExtResource("9_io0yj")

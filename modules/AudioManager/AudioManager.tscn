@@ -4,3 +4,4 @@
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_tbsdu")
+sounds = Array[Object]([])
