@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=11 format=3 uid="uid://bburjqwqg71by"]
 
-[ext_resource type="Script" path="res://Test.cs" id="1_vgk4r"]
 [ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
 [ext_resource type="Texture2D" uid="uid://wbo7yx08rfpd" path="res://Images/UI/Main/BG/Sky.PNG" id="2_kjyi1"]
 [ext_resource type="Texture2D" uid="uid://vpbu0uxfwxlc" path="res://Images/UI/Main/Desk.PNG" id="3_rf5ro"]
@@ -8,10 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://bhvhrtw5kwanc" path="res://Images/UI/Main/Window/Frame.PNG" id="4_j4hjr"]
 [ext_resource type="Texture2D" uid="uid://bywk20ymwnqkw" path="res://Images/UI/Main/BG/Snow/Full Snow.PNG" id="4_uow0l"]
 [ext_resource type="Texture2D" uid="uid://48xteqc42tnf" path="res://Images/UI/Main/Window/White Glass.png" id="6_3eqmv"]
+[ext_resource type="Script" path="res://NPCController.cs" id="9_arduw"]
 [ext_resource type="Texture2D" uid="uid://b77027piryngm" path="res://Images/Hollow.png" id="9_io0yj"]
+[ext_resource type="Texture2D" uid="uid://cnx5r3bennc7u" path="res://icon.svg" id="10_w5o83"]
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_vgk4r")
+
+[node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("guy")]
+script = ExtResource("9_arduw")
+guy = NodePath("../Hollow")
+movementSpeed = 1.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -54,8 +59,25 @@ z_index = 10
 position = Vector2(960, 540)
 texture = ExtResource("3_rf5ro")
 
-[node name="Hollow" type="Sprite2D" parent="."]
-z_index = 7
-position = Vector2(522, 351)
+[node name="Hollow" type="Node2D" parent="."]
+position = Vector2(-337, 351)
 scale = Vector2(0.345581, 0.345581)
+
+[node name="Sprite" type="Sprite2D" parent="Hollow"]
+z_index = 7
+texture_filter = 2
+position = Vector2(-8.68103, -8.68103)
 texture = ExtResource("9_io0yj")
+
+[node name="Button" type="Button" parent="."]
+z_index = 9
+offset_left = 1442.0
+offset_top = 317.0
+offset_right = 1578.0
+offset_bottom = 453.0
+icon = ExtResource("10_w5o83")
+
+[node name="TestPoint" type="Node2D" parent="."]
+position = Vector2(585, 261)
+
+[connection signal="pressed" from="Button" to="NPCController" method="Ring"]
