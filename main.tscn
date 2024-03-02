@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=18 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
 [ext_resource type="Texture2D" uid="uid://wbo7yx08rfpd" path="res://Images/UI/Main/BG/Sky.PNG" id="2_kjyi1"]
+[ext_resource type="PackedScene" uid="uid://cfghkkaxcybkb" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueNPCSignal.tscn" id="2_sniyy"]
+[ext_resource type="PackedScene" uid="uid://dd2a8ofih5akl" path="res://modules/DialogueManagerPrerequisites/Balloons/noIconBalloon.tscn" id="3_jli1w"]
+[ext_resource type="PackedScene" uid="uid://bvuujxl634baj" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHandler.tscn" id="3_m45lx"]
 [ext_resource type="Texture2D" uid="uid://vpbu0uxfwxlc" path="res://Images/UI/Main/Desk.PNG" id="3_rf5ro"]
 [ext_resource type="Texture2D" uid="uid://b7dv1iker83r1" path="res://Images/UI/Main/BG/Stars.PNG" id="3_vvaag"]
 [ext_resource type="Texture2D" uid="uid://bhvhrtw5kwanc" path="res://Images/UI/Main/Window/Frame.PNG" id="4_j4hjr"]
@@ -11,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://b77027piryngm" path="res://Images/Hollow.png" id="9_io0yj"]
 [ext_resource type="Texture2D" uid="uid://cnx5r3bennc7u" path="res://icon.svg" id="10_w5o83"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="11_g7kqk"]
+[ext_resource type="PackedScene" uid="uid://yxo2fjmt3g1j" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHolder.tscn" id="13_13vh2"]
+[ext_resource type="Resource" uid="uid://501vfo16j2ea" path="res://Dialogue/Test/Test.dialogue" id="15_i1ce5"]
 
 [sub_resource type="Curve" id="Curve_itk1r"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -18,13 +23,26 @@ point_count = 2
 
 [node name="Main" type="Node2D"]
 
-[node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("guy")]
+[node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("guy", "npcSignal")]
 script = ExtResource("1_0cfmg")
 guy = NodePath("../Hollow")
 movementSpeed = 0.25
 curve = SubResource("Curve_itk1r")
+npcSignal = NodePath("../Player/DialogueNPCSignal")
+
+[node name="DialogueHandler" parent="." node_paths=PackedStringArray("encounteredNPCSignalHolder") instance=ExtResource("3_m45lx")]
+encounteredNPCSignalHolder = NodePath("../Player/DialogueNPCSignal")
+noIconBubble = ExtResource("3_jli1w")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("11_g7kqk")
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="DialogueNPCSignal" parent="Player" node_paths=PackedStringArray("npcController") instance=ExtResource("2_sniyy")]
+npcController = NodePath("../../NPCController")
 
 [node name="WorkingArea" type="Node2D" parent="."]
 
@@ -75,12 +93,25 @@ texture_filter = 4
 position = Vector2(-8.68103, 20.2557)
 texture = ExtResource("9_io0yj")
 
+[node name="DialogueHolder" parent="Hollow" instance=ExtResource("13_13vh2")]
+characterName = &"Schwarzeaugen"
+dialogue = ExtResource("15_i1ce5")
+
 [node name="Ring Button" type="Button" parent="."]
 z_index = 9
 offset_left = 1339.0
 offset_top = 317.0
 offset_right = 1475.0
 offset_bottom = 453.0
+icon = ExtResource("10_w5o83")
+
+[node name="Temp Talk Button" type="Button" parent="."]
+self_modulate = Color(1, 0, 1, 1)
+z_index = 9
+offset_left = 1421.0
+offset_top = 473.0
+offset_right = 1557.0
+offset_bottom = 609.0
 icon = ExtResource("10_w5o83")
 
 [node name="Admit Button" type="Button" parent="."]
@@ -92,11 +123,6 @@ offset_right = 1647.0
 offset_bottom = 453.0
 icon = ExtResource("10_w5o83")
 
-[node name="TestPoint" type="Node2D" parent="."]
-position = Vector2(585, 261)
-
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("11_g7kqk")
-
 [connection signal="pressed" from="Ring Button" to="NPCController" method="Ring"]
+[connection signal="pressed" from="Temp Talk Button" to="Player/DialogueNPCSignal" method="LookForNPCs"]
 [connection signal="pressed" from="Admit Button" to="NPCController" method="Admit"]

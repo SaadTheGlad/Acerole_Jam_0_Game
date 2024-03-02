@@ -2,11 +2,15 @@ using Godot;
 using System;
 using System.Security;
 
+[GlobalClass]
 public partial class NPCController : Node
 {
     [Export] private Node2D guy;
     [Export] private float movementSpeed = 10f;
     [Export] private Curve curve;
+
+    [Export] public DialogueNPCSignal npcSignal;
+    public Node2D currentGuy;
 
     private const float CENTEROFWINDOWX = 518f;
 
@@ -25,12 +29,19 @@ public partial class NPCController : Node
 
     public void Admit()
     {
-        if(hasReached)
+        if(hasReached && !npcSignal.isTalking)
         {
             AdmitGuy();
             hasReached = false;
         }
     }
+
+    public override void _Process(double delta)
+    {
+        GD.Print(npcSignal.isTalking);
+    }
+
+   
 
     async private void CheckGuy()
     {
@@ -51,6 +62,7 @@ public partial class NPCController : Node
             if (guy.GlobalPosition.IsEqualApprox(centerPos))
             {
                 hasReached = true;
+                currentGuy = guy;
                 break;
             }
 
@@ -60,6 +72,7 @@ public partial class NPCController : Node
     }
     async private void AdmitGuy()
     {
+        currentGuy = null;
 
         float current = 0f;
         float target = 1f;

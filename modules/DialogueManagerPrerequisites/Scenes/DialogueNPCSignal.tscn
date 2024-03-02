@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfghkkaxcybkb"]
+
+[ext_resource type="Script" path="res://modules/DialogueManagerPrerequisites/Scripts/DialogueNPCSignal.cs" id="1_wxv8d"]
+
+[node name="DialogueNPCSignal" type="Node"]
+script = ExtResource("1_wxv8d")
