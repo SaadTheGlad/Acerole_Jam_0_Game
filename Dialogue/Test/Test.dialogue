@@ -1,13 +1,11 @@
 ~ start
 
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => start
-- End the conversation => END
-Nathan: For more information see the online documentation.
-
+Herr Schwarzenaugen: Guten Tag. Ich heiße Herr Schwarzenaugen.
+Herr Schwarzenaugen: Ich würde gerne reingehen.
+- Nein
+	Herr Schwarzenaugen: Entschuldigung, ich kann nicht Sie lassen.
+	=> END
+- OK
+	Herr Schwarzenaugen: Kommen Sie rein. Herzlich Willkommen am Ende.
+	=> END
 => END
