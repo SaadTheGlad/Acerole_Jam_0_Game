@@ -25,7 +25,7 @@ point_count = 2
 
 [node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("guy", "npcSignal")]
 script = ExtResource("1_0cfmg")
-guy = NodePath("../Skeleton")
+guy = NodePath("../Male_Skeleton")
 movementSpeed = 0.25
 curve = SubResource("Curve_itk1r")
 npcSignal = NodePath("../Player/DialogueNPCSignal")
@@ -83,18 +83,18 @@ z_index = 10
 position = Vector2(960, 540)
 texture = ExtResource("3_rf5ro")
 
-[node name="Skeleton" type="Node2D" parent="."]
+[node name="Male_Skeleton" type="Node2D" parent="."]
 position = Vector2(-589, 351)
 scale = Vector2(0.345581, 0.345581)
 
-[node name="Sprite" type="Sprite2D" parent="Skeleton"]
+[node name="Sprite" type="Sprite2D" parent="Male_Skeleton"]
 z_index = 7
 texture_filter = 4
 position = Vector2(6.10352e-05, 975.169)
 scale = Vector2(1.70949, 1.70949)
 texture = ExtResource("13_wyi2r")
 
-[node name="DialogueHolder" parent="Skeleton" instance=ExtResource("13_13vh2")]
+[node name="DialogueHolder" parent="Male_Skeleton" instance=ExtResource("13_13vh2")]
 characterName = &"Schwarzeaugen"
 dialogue = ExtResource("15_i1ce5")
 
