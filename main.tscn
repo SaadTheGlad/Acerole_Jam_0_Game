@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=17 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://cnx5r3bennc7u" path="res://icon.svg" id="10_w5o83"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="11_g7kqk"]
 [ext_resource type="PackedScene" uid="uid://yxo2fjmt3g1j" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHolder.tscn" id="13_13vh2"]
-[ext_resource type="Texture2D" uid="uid://dr3djn5py1ro8" path="res://Images/Male_Test.png" id="13_wyi2r"]
 [ext_resource type="Resource" uid="uid://501vfo16j2ea" path="res://Dialogue/Test/Test.dialogue" id="15_i1ce5"]
 
 [sub_resource type="Curve" id="Curve_itk1r"]
@@ -86,13 +85,6 @@ texture = ExtResource("3_rf5ro")
 [node name="Male_Skeleton" type="Node2D" parent="."]
 position = Vector2(-589, 351)
 scale = Vector2(0.345581, 0.345581)
-
-[node name="Sprite" type="Sprite2D" parent="Male_Skeleton"]
-z_index = 7
-texture_filter = 4
-position = Vector2(6.10352e-05, 975.169)
-scale = Vector2(1.70949, 1.70949)
-texture = ExtResource("13_wyi2r")
 
 [node name="DialogueHolder" parent="Male_Skeleton" instance=ExtResource("13_13vh2")]
 characterName = &"Schwarzeaugen"
