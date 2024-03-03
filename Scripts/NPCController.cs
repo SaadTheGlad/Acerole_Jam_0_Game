@@ -38,7 +38,6 @@ public partial class NPCController : Node
 
     public override void _Process(double delta)
     {
-        GD.Print(npcSignal.isTalking);
     }
 
    

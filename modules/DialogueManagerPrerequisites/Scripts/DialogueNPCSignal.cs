@@ -12,7 +12,7 @@ public partial class DialogueNPCSignal : Node
 
     public override void _Process(double delta)
 	{
-
+        //Make this only work when you click on the person, no when they come in
         //if (Input.IsActionJustPressed("action"))
         //{
         //    LookForNPCs();

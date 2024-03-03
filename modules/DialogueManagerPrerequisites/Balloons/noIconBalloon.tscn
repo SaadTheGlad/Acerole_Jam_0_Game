@@ -147,6 +147,7 @@ response_template = NodePath("ResponseExample")
 texture_filter = 2
 layout_mode = 2
 shortcut = SubResource("Shortcut_p3spm")
+shortcut_in_tooltip = false
 text = "Response example"
 
 [node name="UiHelper" type="Sprite2D" parent="."]

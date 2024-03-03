@@ -11,21 +11,21 @@
 [ext_resource type="Texture2D" uid="uid://bhvhrtw5kwanc" path="res://Images/UI/Main/Window/Frame.PNG" id="4_j4hjr"]
 [ext_resource type="Texture2D" uid="uid://bywk20ymwnqkw" path="res://Images/UI/Main/BG/Snow/Full Snow.PNG" id="4_uow0l"]
 [ext_resource type="Texture2D" uid="uid://48xteqc42tnf" path="res://Images/UI/Main/Window/White Glass.png" id="6_3eqmv"]
-[ext_resource type="Texture2D" uid="uid://b77027piryngm" path="res://Images/Hollow.png" id="9_io0yj"]
 [ext_resource type="Texture2D" uid="uid://cnx5r3bennc7u" path="res://icon.svg" id="10_w5o83"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="11_g7kqk"]
 [ext_resource type="PackedScene" uid="uid://yxo2fjmt3g1j" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHolder.tscn" id="13_13vh2"]
+[ext_resource type="Texture2D" uid="uid://dr3djn5py1ro8" path="res://Images/Male_Test.png" id="13_wyi2r"]
 [ext_resource type="Resource" uid="uid://501vfo16j2ea" path="res://Dialogue/Test/Test.dialogue" id="15_i1ce5"]
 
 [sub_resource type="Curve" id="Curve_itk1r"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.00194848), 0.0, 0.0, 0, 0, Vector2(0.248434, 1), 0.243543, 0.0, 0, 0]
 point_count = 2
 
 [node name="Main" type="Node2D"]
 
 [node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("guy", "npcSignal")]
 script = ExtResource("1_0cfmg")
-guy = NodePath("../Hollow")
+guy = NodePath("../Skeleton")
 movementSpeed = 0.25
 curve = SubResource("Curve_itk1r")
 npcSignal = NodePath("../Player/DialogueNPCSignal")
@@ -83,17 +83,18 @@ z_index = 10
 position = Vector2(960, 540)
 texture = ExtResource("3_rf5ro")
 
-[node name="Hollow" type="Node2D" parent="."]
-position = Vector2(-337, 351)
+[node name="Skeleton" type="Node2D" parent="."]
+position = Vector2(-589, 351)
 scale = Vector2(0.345581, 0.345581)
 
-[node name="Sprite" type="Sprite2D" parent="Hollow"]
+[node name="Sprite" type="Sprite2D" parent="Skeleton"]
 z_index = 7
 texture_filter = 4
-position = Vector2(-8.68103, 20.2557)
-texture = ExtResource("9_io0yj")
+position = Vector2(6.10352e-05, 975.169)
+scale = Vector2(1.70949, 1.70949)
+texture = ExtResource("13_wyi2r")
 
-[node name="DialogueHolder" parent="Hollow" instance=ExtResource("13_13vh2")]
+[node name="DialogueHolder" parent="Skeleton" instance=ExtResource("13_13vh2")]
 characterName = &"Schwarzeaugen"
 dialogue = ExtResource("15_i1ce5")
 
