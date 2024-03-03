@@ -20,7 +20,7 @@ public partial class NPCController : Node
 
     public void Ring()
     {
-        if(canRing)
+        if(canRing && currentGuy != null)
         {
             CheckGuy();
             canRing = false;
@@ -36,11 +36,10 @@ public partial class NPCController : Node
         }
     }
 
-    public override void _Process(double delta)
+    public void XRay()
     {
-    }
 
-   
+    }
 
     async private void CheckGuy()
     {
@@ -88,6 +87,7 @@ public partial class NPCController : Node
 
             if (guy.GlobalPosition.IsEqualApprox(offScreenPos))
             {
+                currentGuy = null;
                 canRing = true;
                 break;
             }
