@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1lwo60pp5m84"]
+[gd_scene load_steps=5 format=3 uid="uid://c1lwo60pp5m84"]
 
 [ext_resource type="Script" path="res://modules/AudioManager/AudioManager.cs" id="1_tbsdu"]
+[ext_resource type="AudioStream" uid="uid://dae3wvhqalcd2" path="res://Audio/SFX/CreepyTypeWriter.wav" id="2_iavlr"]
+[ext_resource type="Script" path="res://modules/AudioManager/Sound.cs" id="3_srrfb"]
+
+[sub_resource type="Resource" id="Resource_75yct"]
+script = ExtResource("3_srrfb")
+name = "creepyTW"
+AudioStream = ExtResource("2_iavlr")
+volume = 0.0
+pitch = 1.0
+bus = 2
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_tbsdu")
-sounds = Array[Object]([])
+sounds = Array[Object]([SubResource("Resource_75yct")])

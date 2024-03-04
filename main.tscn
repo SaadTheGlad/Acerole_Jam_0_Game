@@ -1,6 +1,7 @@
-[gd_scene load_steps=86 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=29 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
+[ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
 [ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
 [ext_resource type="Texture2D" uid="uid://wbo7yx08rfpd" path="res://Images/UI/Main/BG/Sky.PNG" id="2_kjyi1"]
 [ext_resource type="PackedScene" uid="uid://cfghkkaxcybkb" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueNPCSignal.tscn" id="2_sniyy"]
@@ -15,85 +16,118 @@
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="11_g7kqk"]
 [ext_resource type="Texture2D" uid="uid://cdtmgahapx0kv" path="res://Images/UI/Main/BG/Wall.png" id="13_4jyuk"]
 [ext_resource type="PackedScene" uid="uid://yxo2fjmt3g1j" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHolder.tscn" id="13_13vh2"]
+[ext_resource type="PackedScene" uid="uid://cln1k7d7si5eo" path="res://Prefabs/XRayArea.tscn" id="15_88key"]
 [ext_resource type="Resource" uid="uid://501vfo16j2ea" path="res://Dialogue/Test/Test.dialogue" id="15_i1ce5"]
-[ext_resource type="Texture2D" uid="uid://dxgkl4uauaueg" path="res://Images/Bodies/Male/Organs_Male/Brain.PNG" id="16_iwt42"]
-[ext_resource type="Texture2D" uid="uid://5kd7bhtale7r" path="res://Images/Bodies/Male/Organs_Male/Gallbladder.PNG" id="17_5ufuf"]
-[ext_resource type="Texture2D" uid="uid://bh8o13wsmr3fk" path="res://Images/Bodies/Male/Organs_Male/Heart/Colour.PNG" id="18_d4osm"]
-[ext_resource type="Texture2D" uid="uid://dl4c6b1br0ik3" path="res://Images/Bodies/Male/Organs_Male/Heart/Ink.PNG" id="19_og1qn"]
-[ext_resource type="Texture2D" uid="uid://bhttxo65esuvk" path="res://Images/Bodies/Male/Organs_Male/Intestines/Large Intenstine.PNG" id="20_tukf1"]
-[ext_resource type="Texture2D" uid="uid://csax8wjuqe6vx" path="res://Images/Bodies/Male/Organs_Male/Intestines/Small Intenstine.PNG" id="21_422yx"]
-[ext_resource type="Texture2D" uid="uid://dk13fc6853jir" path="res://Images/Bodies/Male/Organs_Male/Kidneys/L_Kidney.PNG" id="22_hcemm"]
-[ext_resource type="Texture2D" uid="uid://bpia5x3sfhepb" path="res://Images/Bodies/Male/Organs_Male/Kidneys/R_Kidney.PNG" id="23_m6npn"]
-[ext_resource type="Texture2D" uid="uid://ds0e8fxjkxptb" path="res://Images/Bodies/Male/Organs_Male/Liver.PNG" id="24_ceqno"]
-[ext_resource type="Texture2D" uid="uid://cbjeaklhtm861" path="res://Images/Bodies/Male/Organs_Male/Lungs/L_Lungs.PNG" id="25_q18r4"]
-[ext_resource type="Texture2D" uid="uid://c6vpw0drkj61s" path="res://Images/Bodies/Male/Organs_Male/Lungs/R_Lungs.PNG" id="26_g5gvd"]
-[ext_resource type="Texture2D" uid="uid://c184uacdfyju2" path="res://Images/Bodies/Male/Organs_Male/Male Reproducitve/Bladder.PNG" id="27_ushru"]
-[ext_resource type="Texture2D" uid="uid://dwuc2twew1k0d" path="res://Images/Bodies/Male/Organs_Male/Male Reproducitve/Penis.PNG" id="28_eg6tx"]
-[ext_resource type="Texture2D" uid="uid://6atf1tvyuahu" path="res://Images/Bodies/Male/Organs_Male/Male Reproducitve/Testicles/L_Testicles.PNG" id="29_io7r5"]
-[ext_resource type="Texture2D" uid="uid://xgt1i0m3fjg7" path="res://Images/Bodies/Male/Organs_Male/Male Reproducitve/Testicles/R_Testicles.PNG" id="30_8yjp4"]
-[ext_resource type="Texture2D" uid="uid://uc83qc5e50o3" path="res://Images/Bodies/Male/Organs_Male/Pancreas.PNG" id="31_5wevq"]
-[ext_resource type="Texture2D" uid="uid://dh2w612bcdywe" path="res://Images/Bodies/Male/Organs_Male/Stomach.PNG" id="32_b3c54"]
-[ext_resource type="Texture2D" uid="uid://md2c5hcag88a" path="res://Images/Bodies/Male/Skeleton/-1_Backbone.PNG" id="33_miv1c"]
-[ext_resource type="Texture2D" uid="uid://bkc8eikno6q4m" path="res://Images/Bodies/Male/Skeleton/Backbone/0_Backbone.PNG" id="34_tjxxq"]
-[ext_resource type="Texture2D" uid="uid://dmbu22qjklar8" path="res://Images/Bodies/Male/Skeleton/Backbone/1_Backbone.PNG" id="35_b5wn1"]
-[ext_resource type="Texture2D" uid="uid://cks30txaibarf" path="res://Images/Bodies/Male/Skeleton/Backbone/2_Backbone.PNG" id="36_vnq86"]
-[ext_resource type="Texture2D" uid="uid://s8ditihomvg3" path="res://Images/Bodies/Male/Skeleton/Backbone/3_Backbone.PNG" id="37_w8m34"]
-[ext_resource type="Texture2D" uid="uid://orwvcckdkhit" path="res://Images/Bodies/Male/Skeleton/Backbone/4_Backbone.PNG" id="38_uedfv"]
-[ext_resource type="Texture2D" uid="uid://c7veud356soqi" path="res://Images/Bodies/Male/Skeleton/Backbone/5_Backbone.PNG" id="39_lprf2"]
-[ext_resource type="Texture2D" uid="uid://dgx6kq02rupp1" path="res://Images/Bodies/Male/Skeleton/Left/L_Collar.PNG" id="40_no2r1"]
-[ext_resource type="Texture2D" uid="uid://ciwhajp70v6aa" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/1_Toe.PNG" id="41_nl6rc"]
-[ext_resource type="Texture2D" uid="uid://dd3dqckeu4w3t" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/2_Toe.PNG" id="42_68peo"]
-[ext_resource type="Texture2D" uid="uid://bdfwib46tnuff" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/3_Toe.PNG" id="43_gjlps"]
-[ext_resource type="Texture2D" uid="uid://c7h7dhn6a0ysc" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/4_Toe.PNG" id="44_ppn3k"]
-[ext_resource type="Texture2D" uid="uid://cfjw4fjklqilm" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/5_Toe.PNG" id="45_qdkf6"]
-[ext_resource type="Texture2D" uid="uid://k7m88itnbxp" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/Base.PNG" id="46_fhv01"]
-[ext_resource type="Texture2D" uid="uid://5i61icvmbu11" path="res://Images/Bodies/Male/Skeleton/Left/L_ForeArm.PNG" id="47_t0t06"]
-[ext_resource type="Texture2D" uid="uid://bv7ux4w3gl2jp" path="res://Images/Bodies/Male/Skeleton/Left/L_Hand.PNG" id="48_okl1n"]
-[ext_resource type="Texture2D" uid="uid://c88rtkfnl5xn2" path="res://Images/Bodies/Male/Skeleton/Left/L_Knee.PNG" id="49_svrak"]
-[ext_resource type="Texture2D" uid="uid://djqwrckodnn7n" path="res://Images/Bodies/Male/Skeleton/Left/L_LowerLeg.PNG" id="50_sn1gv"]
-[ext_resource type="Texture2D" uid="uid://erjkgq1efsxn" path="res://Images/Bodies/Male/Skeleton/Left/L_Shoulder.PNG" id="51_pn2jc"]
-[ext_resource type="Texture2D" uid="uid://cb2cb8j5nun7n" path="res://Images/Bodies/Male/Skeleton/Left/L_UpperArm.PNG" id="52_7uldf"]
-[ext_resource type="Texture2D" uid="uid://dgvf4enh4eelk" path="res://Images/Bodies/Male/Skeleton/Left/L_UpperLeg.PNG" id="53_a4gme"]
-[ext_resource type="Texture2D" uid="uid://bu3vnuelgdhf1" path="res://Images/Bodies/Male/Skeleton/Neck.PNG" id="54_e03gn"]
-[ext_resource type="Texture2D" uid="uid://bkxerghjfc0so" path="res://Images/Bodies/Male/Skeleton/Pelvis.PNG" id="55_i1608"]
-[ext_resource type="Texture2D" uid="uid://ykh44v4x81gv" path="res://Images/Bodies/Male/Skeleton/Ribs/1_Rib.PNG" id="56_ty5rk"]
-[ext_resource type="Texture2D" uid="uid://c4takptlierul" path="res://Images/Bodies/Male/Skeleton/Ribs/2_Rib.PNG" id="57_4gvxq"]
-[ext_resource type="Texture2D" uid="uid://bjyc0p51fx3sr" path="res://Images/Bodies/Male/Skeleton/Ribs/3_Rib.PNG" id="58_5hrl1"]
-[ext_resource type="Texture2D" uid="uid://uakrpdcwvg0r" path="res://Images/Bodies/Male/Skeleton/Ribs/4_Rib.PNG" id="59_8dr1q"]
-[ext_resource type="Texture2D" uid="uid://cftkrk7uofdtv" path="res://Images/Bodies/Male/Skeleton/Ribs/5_Rib.PNG" id="60_fp8w6"]
-[ext_resource type="Texture2D" uid="uid://cxakayumnpb25" path="res://Images/Bodies/Male/Skeleton/Ribs/6_Rib.PNG" id="61_8slh5"]
-[ext_resource type="Texture2D" uid="uid://ci1xrne3eubxn" path="res://Images/Bodies/Male/Skeleton/Ribs/7_Rib.PNG" id="62_4ow0r"]
-[ext_resource type="Texture2D" uid="uid://djrqncf6eoesa" path="res://Images/Bodies/Male/Skeleton/Ribs/8_Rib.PNG" id="63_rfud2"]
-[ext_resource type="Texture2D" uid="uid://ccpt5ra0oym7m" path="res://Images/Bodies/Male/Skeleton/Ribs/9_Rib.PNG" id="64_5mdfi"]
-[ext_resource type="Texture2D" uid="uid://ctxjssuwk781b" path="res://Images/Bodies/Male/Skeleton/Ribs/10_Rib.PNG" id="65_jirft"]
-[ext_resource type="Texture2D" uid="uid://bpywjbeyw6sxj" path="res://Images/Bodies/Male/Skeleton/Ribs/11_Rib.PNG" id="66_yb6ng"]
-[ext_resource type="Texture2D" uid="uid://3tomydohgnhs" path="res://Images/Bodies/Male/Skeleton/Ribs/12_Rib.PNG" id="67_i5w8g"]
-[ext_resource type="Texture2D" uid="uid://cnr307olpq66y" path="res://Images/Bodies/Male/Skeleton/Ribs/Sternum.PNG" id="68_ly237"]
-[ext_resource type="Texture2D" uid="uid://dkgo6socewr4s" path="res://Images/Bodies/Male/Skeleton/Right/R_Collar.PNG" id="69_pynk7"]
-[ext_resource type="Texture2D" uid="uid://cnnyv75hq6we7" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/1_Toe.PNG" id="70_xq7sf"]
-[ext_resource type="Texture2D" uid="uid://c7k8wvfshl4fe" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/2_Toe.PNG" id="71_mbhkq"]
-[ext_resource type="Texture2D" uid="uid://36lrqb25fgsc" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/3_Toe.PNG" id="72_45okw"]
-[ext_resource type="Texture2D" uid="uid://pbta7shu25py" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/4_Toe.PNG" id="73_g1itm"]
-[ext_resource type="Texture2D" uid="uid://okmayd2wd6ef" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/5_Toe.PNG" id="74_d2a4q"]
-[ext_resource type="Texture2D" uid="uid://c82w5aotyrqev" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/Base.PNG" id="75_j7dcu"]
-[ext_resource type="Texture2D" uid="uid://cjeb15qhqvy6y" path="res://Images/Bodies/Male/Skeleton/Right/R_ForeArm.PNG" id="76_x7jam"]
-[ext_resource type="Texture2D" uid="uid://bcgiodcyaaqw" path="res://Images/Bodies/Male/Skeleton/Right/R_Hand.PNG" id="77_btakl"]
-[ext_resource type="Texture2D" uid="uid://5xyyj2syv6ge" path="res://Images/Bodies/Male/Skeleton/Right/R_Knee.PNG" id="78_582v4"]
-[ext_resource type="Texture2D" uid="uid://b3yntmq2ra4be" path="res://Images/Bodies/Male/Skeleton/Right/R_LowerLeg.PNG" id="79_t2oi6"]
-[ext_resource type="Texture2D" uid="uid://cm474rv6gftmt" path="res://Images/Bodies/Male/Skeleton/Right/R_Shoulder.PNG" id="80_m10wp"]
-[ext_resource type="Texture2D" uid="uid://cacnp22lywdoe" path="res://Images/Bodies/Male/Skeleton/Right/R_UpperArm.PNG" id="81_rknp7"]
-[ext_resource type="Texture2D" uid="uid://ir5nch43cr73" path="res://Images/Bodies/Male/Skeleton/Right/R_UpperLeg.PNG" id="82_f67cf"]
-[ext_resource type="Texture2D" uid="uid://df6jo1vr8ysgr" path="res://Images/Bodies/Male/Skeleton/Skull.PNG" id="83_qbvj2"]
+[ext_resource type="Texture2D" uid="uid://b77027piryngm" path="res://Images/Hollow.png" id="16_yj2nx"]
+[ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="86_vsxkr"]
+[ext_resource type="Texture2D" uid="uid://2i2unxj3453e" path="res://Images/UI/X-Ray Stuff/X-ray Helper.png" id="87_kyekx"]
 
 [sub_resource type="Curve" id="Curve_itk1r"]
-_data = [Vector2(0, 0.00194848), 0.0, 0.0, 0, 0, Vector2(0.248434, 1), 0.243543, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Animation" id="Animation_g18b4"]
+resource_name = "SlideIn"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1940, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wxh5w"]
+resource_name = "SlideOut"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1940, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ichax"]
+_data = {
+"SlideIn": SubResource("Animation_g18b4"),
+"SlideOut": SubResource("Animation_wxh5w")
+}
+
+[sub_resource type="Animation" id="Animation_cedn0"]
+resource_name = "LowerDown"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -319), Vector2(-1, 397)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../X-Ray Manager")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"PullUpScanScreen"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_or78j"]
+resource_name = "RiseUp"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, 397), Vector2(-1, -319)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwso4"]
+_data = {
+"LowerDown": SubResource("Animation_cedn0"),
+"RiseUp": SubResource("Animation_or78j")
+}
 
 [node name="Main" type="Node2D"]
 
+[node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "xRayArea", "skeleton")]
+script = ExtResource("1_k6ho4")
+helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
+scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
+xRayArea = NodePath("../Screen X-Ray/Main")
+skeleton = NodePath("../Screen X-Ray/Main/Male/Skeleton")
+
 [node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("guy", "npcSignal")]
 script = ExtResource("1_0cfmg")
-guy = NodePath("../Male")
+guy = NodePath("../PersonExample")
 movementSpeed = 0.25
 curve = SubResource("Curve_itk1r")
 npcSignal = NodePath("../Player/DialogueNPCSignal")
@@ -104,8 +138,6 @@ noIconBubble = ExtResource("3_jli1w")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("11_g7kqk")
-
-[node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Player" type="Node2D" parent="."]
 
@@ -156,422 +188,86 @@ z_index = 6
 position = Vector2(960, 540)
 texture = ExtResource("13_4jyuk")
 
-[node name="Male" type="Node2D" parent="."]
-z_index = 7
-position = Vector2(-528, 710)
-scale = Vector2(0.28402, 0.28402)
-
-[node name="DialogueHolder" parent="Male" instance=ExtResource("13_13vh2")]
-characterName = &"Schwarzeaugen"
-dialogue = ExtResource("15_i1ce5")
-
-[node name="Skeleton" type="Node2D" parent="Male"]
-position = Vector2(-405.115, -1064.87)
-
-[node name="Neck" type="Sprite2D" parent="Male/Skeleton"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("54_e03gn")
-
-[node name="Skull" type="Sprite2D" parent="Male/Skeleton"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("83_qbvj2")
-
-[node name="-1Backbone" type="Sprite2D" parent="Male/Skeleton"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("33_miv1c")
-
-[node name="Ribs" type="Node2D" parent="Male/Skeleton"]
-
-[node name="12Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("67_i5w8g")
-
-[node name="11Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("66_yb6ng")
-
-[node name="10Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("65_jirft")
-
-[node name="9Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("64_5mdfi")
-
-[node name="8Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("63_rfud2")
-
-[node name="7Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("62_4ow0r")
-
-[node name="6Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("61_8slh5")
-
-[node name="5Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("60_fp8w6")
-
-[node name="4Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("59_8dr1q")
-
-[node name="3Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("58_5hrl1")
-
-[node name="2Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("57_4gvxq")
-
-[node name="1Rib" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("56_ty5rk")
-
-[node name="Sternum" type="Sprite2D" parent="Male/Skeleton/Ribs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("68_ly237")
-
-[node name="Backbone" type="Node2D" parent="Male/Skeleton"]
-
-[node name="5Backbone" type="Sprite2D" parent="Male/Skeleton/Backbone"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("39_lprf2")
-
-[node name="4Backbone" type="Sprite2D" parent="Male/Skeleton/Backbone"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("38_uedfv")
-
-[node name="3Backbone" type="Sprite2D" parent="Male/Skeleton/Backbone"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("37_w8m34")
-
-[node name="2Backbone" type="Sprite2D" parent="Male/Skeleton/Backbone"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("36_vnq86")
-
-[node name="1Backbone" type="Sprite2D" parent="Male/Skeleton/Backbone"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("35_b5wn1")
-
-[node name="0Backbone" type="Sprite2D" parent="Male/Skeleton/Backbone"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("34_tjxxq")
-
-[node name="Pelvis" type="Sprite2D" parent="Male/Skeleton"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("55_i1608")
-
-[node name="Left" type="Node2D" parent="Male/Skeleton"]
-
-[node name="LShoulder" type="Sprite2D" parent="Male/Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("51_pn2jc")
-
-[node name="LCollar" type="Sprite2D" parent="Male/Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("40_no2r1")
-
-[node name="LHand" type="Sprite2D" parent="Male/Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("48_okl1n")
-
-[node name="LUpperArm" type="Sprite2D" parent="Male/Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("52_7uldf")
-
-[node name="LForeArm" type="Sprite2D" parent="Male/Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("47_t0t06")
-
-[node name="LLowerLeg" type="Sprite2D" parent="Male/Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("50_sn1gv")
-
-[node name="LUpperLeg" type="Sprite2D" parent="Male/Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("53_a4gme")
-
-[node name="LKnee" type="Sprite2D" parent="Male/Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("49_svrak")
-
-[node name="LFoot" type="Node2D" parent="Male/Skeleton/Left"]
-
-[node name="Base" type="Sprite2D" parent="Male/Skeleton/Left/LFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("46_fhv01")
-
-[node name="5Toe" type="Sprite2D" parent="Male/Skeleton/Left/LFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("45_qdkf6")
-
-[node name="4Toe" type="Sprite2D" parent="Male/Skeleton/Left/LFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("44_ppn3k")
-
-[node name="3Toe" type="Sprite2D" parent="Male/Skeleton/Left/LFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("43_gjlps")
-
-[node name="2Toe" type="Sprite2D" parent="Male/Skeleton/Left/LFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("42_68peo")
-
-[node name="1Toe" type="Sprite2D" parent="Male/Skeleton/Left/LFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("41_nl6rc")
-
-[node name="Right" type="Node2D" parent="Male/Skeleton"]
-
-[node name="RShoulder" type="Sprite2D" parent="Male/Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("80_m10wp")
-
-[node name="RCollar" type="Sprite2D" parent="Male/Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("69_pynk7")
-
-[node name="RHand" type="Sprite2D" parent="Male/Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("77_btakl")
-
-[node name="RUpperArm" type="Sprite2D" parent="Male/Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("81_rknp7")
-
-[node name="RForeArm" type="Sprite2D" parent="Male/Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("76_x7jam")
-
-[node name="RLowerLeg" type="Sprite2D" parent="Male/Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("79_t2oi6")
-
-[node name="RUpperLeg" type="Sprite2D" parent="Male/Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("82_f67cf")
-
-[node name="RKnee" type="Sprite2D" parent="Male/Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("78_582v4")
-
-[node name="RFoot" type="Node2D" parent="Male/Skeleton/Right"]
-
-[node name="Base2" type="Sprite2D" parent="Male/Skeleton/Right/RFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("75_j7dcu")
-
-[node name="5Toe2" type="Sprite2D" parent="Male/Skeleton/Right/RFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("74_d2a4q")
-
-[node name="4Toe2" type="Sprite2D" parent="Male/Skeleton/Right/RFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("73_g1itm")
-
-[node name="3Toe2" type="Sprite2D" parent="Male/Skeleton/Right/RFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("72_45okw")
-
-[node name="2Toe2" type="Sprite2D" parent="Male/Skeleton/Right/RFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("71_mbhkq")
-
-[node name="1Toe2" type="Sprite2D" parent="Male/Skeleton/Right/RFoot"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("70_xq7sf")
-
-[node name="Organs" type="Node2D" parent="Male"]
-modulate = Color(1, 1, 1, 0.462745)
-position = Vector2(-405.115, -1064.87)
-
-[node name="Heart" type="Node2D" parent="Male/Organs"]
-
-[node name="Colour" type="Sprite2D" parent="Male/Organs/Heart"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("18_d4osm")
-
-[node name="Ink" type="Sprite2D" parent="Male/Organs/Heart"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("19_og1qn")
-
-[node name="Kidneys" type="Node2D" parent="Male/Organs"]
-
-[node name="LKidney" type="Sprite2D" parent="Male/Organs/Kidneys"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("22_hcemm")
-
-[node name="RKidney" type="Sprite2D" parent="Male/Organs/Kidneys"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("23_m6npn")
-
-[node name="Pancreas" type="Sprite2D" parent="Male/Organs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("31_5wevq")
-
-[node name="Stomach" type="Sprite2D" parent="Male/Organs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("32_b3c54")
-
-[node name="Liver" type="Sprite2D" parent="Male/Organs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("24_ceqno")
-
-[node name="Lungs" type="Node2D" parent="Male/Organs"]
-
-[node name="LLungs" type="Sprite2D" parent="Male/Organs/Lungs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("25_q18r4")
-
-[node name="RLungs" type="Sprite2D" parent="Male/Organs/Lungs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("26_g5gvd")
-
-[node name="Gallbladder" type="Sprite2D" parent="Male/Organs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("17_5ufuf")
-
-[node name="Intenstines" type="Node2D" parent="Male/Organs"]
-
-[node name="SmallIntenstine" type="Sprite2D" parent="Male/Organs/Intenstines"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("21_422yx")
-
-[node name="LargeIntenstine" type="Sprite2D" parent="Male/Organs/Intenstines"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("20_tukf1")
-
-[node name="Brain" type="Sprite2D" parent="Male/Organs"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("16_iwt42")
-
-[node name="Male Reproductive" type="Node2D" parent="Male/Organs"]
-
-[node name="Penis" type="Sprite2D" parent="Male/Organs/Male Reproductive"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("28_eg6tx")
-
-[node name="Testicles" type="Node2D" parent="Male/Organs/Male Reproductive"]
-
-[node name="LTesticles" type="Sprite2D" parent="Male/Organs/Male Reproductive/Testicles"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("29_io7r5")
-
-[node name="RTesticles" type="Sprite2D" parent="Male/Organs/Male Reproductive/Testicles"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("30_8yjp4")
-
-[node name="Bladder" type="Sprite2D" parent="Male/Organs/Male Reproductive"]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("27_ushru")
-
-[node name="Ring Button" type="Button" parent="."]
-z_index = 9
-offset_left = 1339.0
-offset_top = 317.0
-offset_right = 1475.0
-offset_bottom = 453.0
-icon = ExtResource("10_w5o83")
-
-[node name="Temp Talk Button" type="Button" parent="."]
+[node name="ButtonsTemp" type="Node2D" parent="."]
+position = Vector2(1339, 317)
+
+[node name="Ring Button" parent="ButtonsTemp" instance=ExtResource("86_vsxkr")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 136.0
+offset_bottom = 136.0
+
+[node name="Temp Talk Button" type="Button" parent="ButtonsTemp"]
 self_modulate = Color(1, 0, 1, 1)
 z_index = 9
-offset_left = 1340.0
-offset_top = 473.0
-offset_right = 1476.0
-offset_bottom = 609.0
+offset_left = 1.0
+offset_top = 156.0
+offset_right = 137.0
+offset_bottom = 292.0
 icon = ExtResource("10_w5o83")
 
-[node name="Admit Button" type="Button" parent="."]
+[node name="Admit Button" type="Button" parent="ButtonsTemp"]
 self_modulate = Color(0.168627, 1, 0, 1)
 z_index = 9
-offset_left = 1511.0
-offset_top = 317.0
-offset_right = 1647.0
-offset_bottom = 453.0
+offset_left = 172.0
+offset_right = 308.0
+offset_bottom = 136.0
 icon = ExtResource("10_w5o83")
 
-[node name="X Ray Button" type="Button" parent="."]
+[node name="X Ray Button" type="Button" parent="ButtonsTemp"]
 self_modulate = Color(0.894118, 0, 0.133333, 1)
 z_index = 9
-offset_left = 1511.0
-offset_top = 473.0
-offset_right = 1647.0
-offset_bottom = 609.0
+offset_left = 172.0
+offset_top = 156.0
+offset_right = 308.0
+offset_bottom = 292.0
 icon = ExtResource("10_w5o83")
 
-[connection signal="pressed" from="Ring Button" to="NPCController" method="Ring"]
-[connection signal="pressed" from="Temp Talk Button" to="Player/DialogueNPCSignal" method="LookForNPCs"]
-[connection signal="pressed" from="Admit Button" to="NPCController" method="Admit"]
-[connection signal="pressed" from="X Ray Button" to="NPCController" method="XRay"]
+[node name="Screen X-Ray" type="Node2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Main" parent="Screen X-Ray" instance=ExtResource("15_88key")]
+position = Vector2(1940, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Screen X-Ray/Main"]
+libraries = {
+"": SubResource("AnimationLibrary_ichax")
+}
+
+[node name="PersonExample" type="Node2D" parent="."]
+z_index = 7
+position = Vector2(-236, 438)
+scale = Vector2(0.28402, 0.28402)
+
+[node name="Sprite2D" type="Sprite2D" parent="PersonExample"]
+texture = ExtResource("16_yj2nx")
+
+[node name="DialogueHolder" parent="PersonExample" instance=ExtResource("13_13vh2")]
+characterName = &"Schwarzeaugen"
+dialogue = ExtResource("15_i1ce5")
+sfxName = &"creepyTW"
+
+[node name="BG X-Ray" type="Node2D" parent="."]
+position = Vector2(522, -219)
+
+[node name="Main" type="Node2D" parent="BG X-Ray"]
+z_index = 6
+position = Vector2(-1, -319)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG X-Ray/Main"]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("87_kyekx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BG X-Ray/Main"]
+libraries = {
+"": SubResource("AnimationLibrary_vwso4")
+}
+
+[connection signal="pressed" from="ButtonsTemp/Ring Button" to="NPCController" method="Ring"]
+[connection signal="pressed" from="ButtonsTemp/Temp Talk Button" to="Player/DialogueNPCSignal" method="LookForNPCs"]
+[connection signal="pressed" from="ButtonsTemp/Admit Button" to="NPCController" method="Admit"]
+[connection signal="pressed" from="ButtonsTemp/X Ray Button" to="X-Ray Manager" method="StartScan"]
+[connection signal="pressed" from="Screen X-Ray/Main/Ring Button" to="X-Ray Manager" method="Scan"]
+
+[editable path="Screen X-Ray/Main"]
+[editable path="Screen X-Ray/Main/Male"]

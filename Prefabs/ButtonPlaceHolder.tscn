@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8sd7f6shkee6"]
+
+[ext_resource type="Texture2D" uid="uid://cnx5r3bennc7u" path="res://icon.svg" id="1_5wlqd"]
+
+[node name="Ring Button" type="Button"]
+z_index = 9
+offset_left = 1339.0
+offset_top = 317.0
+offset_right = 1475.0
+offset_bottom = 453.0
+icon = ExtResource("1_5wlqd")

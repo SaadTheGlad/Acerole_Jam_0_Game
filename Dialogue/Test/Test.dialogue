@@ -3,9 +3,7 @@
 Herr Schwarzenaugen: Guten Tag. Ich heiße Herr Schwarzenaugen.
 Herr Schwarzenaugen: Ich würde gerne reingehen.
 - Nein
-	Herr Schwarzenaugen: Entschuldigung, ich kann nicht Sie lassen.
 	=> END
 - OK
-	Herr Schwarzenaugen: Kommen Sie rein. Herzlich Willkommen am Ende.
 	=> END
 => END

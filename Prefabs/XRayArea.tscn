@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cln1k7d7si5eo"]
+
+[ext_resource type="Texture2D" uid="uid://r22m5j4s72ku" path="res://Images/UI/X-Ray Stuff/X-Ray Area/BG.PNG" id="1_opfmu"]
+[ext_resource type="PackedScene" uid="uid://hgqvxpswj3j8" path="res://Prefabs/MaleSkeleton.tscn" id="2_fgaik"]
+[ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="3_c23yt"]
+
+[node name="X-Ray Area" type="Node2D"]
+z_index = 11
+position = Vector2(2894, 540)
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -1013.0
+offset_top = -581.0
+offset_right = 994.0
+offset_bottom = 572.0
+
+[node name="Ring Button" parent="." instance=ExtResource("3_c23yt")]
+offset_left = 558.0
+offset_top = -70.0
+offset_right = 694.0
+offset_bottom = 66.0
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture = ExtResource("1_opfmu")
+
+[node name="Male" parent="." instance=ExtResource("2_fgaik")]
+visible = false
+position = Vector2(1, -134)
+scale = Vector2(0.18838, 0.18838)
+
+[node name="Organs" parent="Male" index="1"]
+visible = false
+
+[editable path="Male"]

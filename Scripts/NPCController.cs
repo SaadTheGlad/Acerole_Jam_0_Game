@@ -20,7 +20,7 @@ public partial class NPCController : Node
 
     public void Ring()
     {
-        if(canRing && currentGuy != null)
+        if(canRing)
         {
             CheckGuy();
             canRing = false;
@@ -34,11 +34,6 @@ public partial class NPCController : Node
             AdmitGuy();
             hasReached = false;
         }
-    }
-
-    public void XRay()
-    {
-
     }
 
     async private void CheckGuy()

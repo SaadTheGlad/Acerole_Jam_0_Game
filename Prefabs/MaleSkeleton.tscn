@@ -1,0 +1,446 @@
+[gd_scene load_steps=69 format=3 uid="uid://hgqvxpswj3j8"]
+
+[ext_resource type="Texture2D" uid="uid://bu3vnuelgdhf1" path="res://Images/Bodies/Male/Skeleton/Neck.PNG" id="3_6wnpm"]
+[ext_resource type="Texture2D" uid="uid://df6jo1vr8ysgr" path="res://Images/Bodies/Male/Skeleton/Skull.PNG" id="4_ce6he"]
+[ext_resource type="Texture2D" uid="uid://md2c5hcag88a" path="res://Images/Bodies/Male/Skeleton/-1_Backbone.PNG" id="5_woof2"]
+[ext_resource type="Texture2D" uid="uid://3tomydohgnhs" path="res://Images/Bodies/Male/Skeleton/Ribs/12_Rib.PNG" id="6_fmoev"]
+[ext_resource type="Texture2D" uid="uid://bpywjbeyw6sxj" path="res://Images/Bodies/Male/Skeleton/Ribs/11_Rib.PNG" id="7_b7fqy"]
+[ext_resource type="Texture2D" uid="uid://ctxjssuwk781b" path="res://Images/Bodies/Male/Skeleton/Ribs/10_Rib.PNG" id="8_tgo4i"]
+[ext_resource type="Texture2D" uid="uid://ccpt5ra0oym7m" path="res://Images/Bodies/Male/Skeleton/Ribs/9_Rib.PNG" id="9_unggg"]
+[ext_resource type="Texture2D" uid="uid://djrqncf6eoesa" path="res://Images/Bodies/Male/Skeleton/Ribs/8_Rib.PNG" id="10_x70wg"]
+[ext_resource type="Texture2D" uid="uid://ci1xrne3eubxn" path="res://Images/Bodies/Male/Skeleton/Ribs/7_Rib.PNG" id="11_pheax"]
+[ext_resource type="Texture2D" uid="uid://cxakayumnpb25" path="res://Images/Bodies/Male/Skeleton/Ribs/6_Rib.PNG" id="12_bbg7f"]
+[ext_resource type="Texture2D" uid="uid://cftkrk7uofdtv" path="res://Images/Bodies/Male/Skeleton/Ribs/5_Rib.PNG" id="13_fal4n"]
+[ext_resource type="Texture2D" uid="uid://uakrpdcwvg0r" path="res://Images/Bodies/Male/Skeleton/Ribs/4_Rib.PNG" id="14_2tg65"]
+[ext_resource type="Texture2D" uid="uid://bjyc0p51fx3sr" path="res://Images/Bodies/Male/Skeleton/Ribs/3_Rib.PNG" id="15_yfoni"]
+[ext_resource type="Texture2D" uid="uid://c4takptlierul" path="res://Images/Bodies/Male/Skeleton/Ribs/2_Rib.PNG" id="16_exuba"]
+[ext_resource type="Texture2D" uid="uid://ykh44v4x81gv" path="res://Images/Bodies/Male/Skeleton/Ribs/1_Rib.PNG" id="17_qkbgg"]
+[ext_resource type="Texture2D" uid="uid://cnr307olpq66y" path="res://Images/Bodies/Male/Skeleton/Ribs/Sternum.PNG" id="18_w3iuk"]
+[ext_resource type="Texture2D" uid="uid://c7veud356soqi" path="res://Images/Bodies/Male/Skeleton/Backbone/5_Backbone.PNG" id="19_ki7jm"]
+[ext_resource type="Texture2D" uid="uid://orwvcckdkhit" path="res://Images/Bodies/Male/Skeleton/Backbone/4_Backbone.PNG" id="20_10i6j"]
+[ext_resource type="Texture2D" uid="uid://s8ditihomvg3" path="res://Images/Bodies/Male/Skeleton/Backbone/3_Backbone.PNG" id="21_u1tvs"]
+[ext_resource type="Texture2D" uid="uid://cks30txaibarf" path="res://Images/Bodies/Male/Skeleton/Backbone/2_Backbone.PNG" id="22_30a4u"]
+[ext_resource type="Texture2D" uid="uid://dmbu22qjklar8" path="res://Images/Bodies/Male/Skeleton/Backbone/1_Backbone.PNG" id="23_euys3"]
+[ext_resource type="Texture2D" uid="uid://bkc8eikno6q4m" path="res://Images/Bodies/Male/Skeleton/Backbone/0_Backbone.PNG" id="24_d14hi"]
+[ext_resource type="Texture2D" uid="uid://bkxerghjfc0so" path="res://Images/Bodies/Male/Skeleton/Pelvis.PNG" id="25_s8jnj"]
+[ext_resource type="Texture2D" uid="uid://erjkgq1efsxn" path="res://Images/Bodies/Male/Skeleton/Left/L_Shoulder.PNG" id="26_gllsa"]
+[ext_resource type="Texture2D" uid="uid://dgx6kq02rupp1" path="res://Images/Bodies/Male/Skeleton/Left/L_Collar.PNG" id="27_0myut"]
+[ext_resource type="Texture2D" uid="uid://bv7ux4w3gl2jp" path="res://Images/Bodies/Male/Skeleton/Left/L_Hand.PNG" id="28_gyrst"]
+[ext_resource type="Texture2D" uid="uid://cb2cb8j5nun7n" path="res://Images/Bodies/Male/Skeleton/Left/L_UpperArm.PNG" id="29_vwidy"]
+[ext_resource type="Texture2D" uid="uid://5i61icvmbu11" path="res://Images/Bodies/Male/Skeleton/Left/L_ForeArm.PNG" id="30_n7w4h"]
+[ext_resource type="Texture2D" uid="uid://djqwrckodnn7n" path="res://Images/Bodies/Male/Skeleton/Left/L_LowerLeg.PNG" id="31_r52aj"]
+[ext_resource type="Texture2D" uid="uid://dgvf4enh4eelk" path="res://Images/Bodies/Male/Skeleton/Left/L_UpperLeg.PNG" id="32_g8l70"]
+[ext_resource type="Texture2D" uid="uid://c88rtkfnl5xn2" path="res://Images/Bodies/Male/Skeleton/Left/L_Knee.PNG" id="33_oj46s"]
+[ext_resource type="Texture2D" uid="uid://k7m88itnbxp" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/Base.PNG" id="34_0afip"]
+[ext_resource type="Texture2D" uid="uid://cfjw4fjklqilm" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/5_Toe.PNG" id="35_pmgso"]
+[ext_resource type="Texture2D" uid="uid://c7h7dhn6a0ysc" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/4_Toe.PNG" id="36_ahibp"]
+[ext_resource type="Texture2D" uid="uid://bdfwib46tnuff" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/3_Toe.PNG" id="37_2qmbn"]
+[ext_resource type="Texture2D" uid="uid://dd3dqckeu4w3t" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/2_Toe.PNG" id="38_6rlat"]
+[ext_resource type="Texture2D" uid="uid://ciwhajp70v6aa" path="res://Images/Bodies/Male/Skeleton/Left/L_Foot/1_Toe.PNG" id="39_qp2tx"]
+[ext_resource type="Texture2D" uid="uid://cm474rv6gftmt" path="res://Images/Bodies/Male/Skeleton/Right/R_Shoulder.PNG" id="40_tcqsb"]
+[ext_resource type="Texture2D" uid="uid://dkgo6socewr4s" path="res://Images/Bodies/Male/Skeleton/Right/R_Collar.PNG" id="41_cleog"]
+[ext_resource type="Texture2D" uid="uid://bcgiodcyaaqw" path="res://Images/Bodies/Male/Skeleton/Right/R_Hand.PNG" id="42_l15q5"]
+[ext_resource type="Texture2D" uid="uid://cacnp22lywdoe" path="res://Images/Bodies/Male/Skeleton/Right/R_UpperArm.PNG" id="43_wpswe"]
+[ext_resource type="Texture2D" uid="uid://cjeb15qhqvy6y" path="res://Images/Bodies/Male/Skeleton/Right/R_ForeArm.PNG" id="44_t3vao"]
+[ext_resource type="Texture2D" uid="uid://b3yntmq2ra4be" path="res://Images/Bodies/Male/Skeleton/Right/R_LowerLeg.PNG" id="45_krqfn"]
+[ext_resource type="Texture2D" uid="uid://ir5nch43cr73" path="res://Images/Bodies/Male/Skeleton/Right/R_UpperLeg.PNG" id="46_ynoys"]
+[ext_resource type="Texture2D" uid="uid://5xyyj2syv6ge" path="res://Images/Bodies/Male/Skeleton/Right/R_Knee.PNG" id="47_h61k3"]
+[ext_resource type="Texture2D" uid="uid://c82w5aotyrqev" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/Base.PNG" id="48_qvkce"]
+[ext_resource type="Texture2D" uid="uid://okmayd2wd6ef" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/5_Toe.PNG" id="49_125bd"]
+[ext_resource type="Texture2D" uid="uid://pbta7shu25py" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/4_Toe.PNG" id="50_20rx8"]
+[ext_resource type="Texture2D" uid="uid://36lrqb25fgsc" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/3_Toe.PNG" id="51_qyulg"]
+[ext_resource type="Texture2D" uid="uid://c7k8wvfshl4fe" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/2_Toe.PNG" id="52_nk4av"]
+[ext_resource type="Texture2D" uid="uid://cnnyv75hq6we7" path="res://Images/Bodies/Male/Skeleton/Right/R_Foot/1_Toe.PNG" id="53_oa86i"]
+[ext_resource type="Texture2D" uid="uid://bh8o13wsmr3fk" path="res://Images/Bodies/Male/Organs_Male/Heart/Colour.PNG" id="54_eycd1"]
+[ext_resource type="Texture2D" uid="uid://dl4c6b1br0ik3" path="res://Images/Bodies/Male/Organs_Male/Heart/Ink.PNG" id="55_3gt2e"]
+[ext_resource type="Texture2D" uid="uid://dk13fc6853jir" path="res://Images/Bodies/Male/Organs_Male/Kidneys/L_Kidney.PNG" id="56_rchnn"]
+[ext_resource type="Texture2D" uid="uid://bpia5x3sfhepb" path="res://Images/Bodies/Male/Organs_Male/Kidneys/R_Kidney.PNG" id="57_7t5qj"]
+[ext_resource type="Texture2D" uid="uid://uc83qc5e50o3" path="res://Images/Bodies/Male/Organs_Male/Pancreas.PNG" id="58_ygg86"]
+[ext_resource type="Texture2D" uid="uid://dh2w612bcdywe" path="res://Images/Bodies/Male/Organs_Male/Stomach.PNG" id="59_ps88n"]
+[ext_resource type="Texture2D" uid="uid://ds0e8fxjkxptb" path="res://Images/Bodies/Male/Organs_Male/Liver.PNG" id="60_rm06c"]
+[ext_resource type="Texture2D" uid="uid://cbjeaklhtm861" path="res://Images/Bodies/Male/Organs_Male/Lungs/L_Lungs.PNG" id="61_aeesu"]
+[ext_resource type="Texture2D" uid="uid://c6vpw0drkj61s" path="res://Images/Bodies/Male/Organs_Male/Lungs/R_Lungs.PNG" id="62_cmbdr"]
+[ext_resource type="Texture2D" uid="uid://5kd7bhtale7r" path="res://Images/Bodies/Male/Organs_Male/Gallbladder.PNG" id="63_pvoii"]
+[ext_resource type="Texture2D" uid="uid://csax8wjuqe6vx" path="res://Images/Bodies/Male/Organs_Male/Intestines/Small Intenstine.PNG" id="64_gslsx"]
+[ext_resource type="Texture2D" uid="uid://bhttxo65esuvk" path="res://Images/Bodies/Male/Organs_Male/Intestines/Large Intenstine.PNG" id="65_ci8sa"]
+[ext_resource type="Texture2D" uid="uid://dxgkl4uauaueg" path="res://Images/Bodies/Male/Organs_Male/Brain.PNG" id="66_iyctu"]
+[ext_resource type="Texture2D" uid="uid://dwuc2twew1k0d" path="res://Images/Bodies/Male/Organs_Male/Male Reproducitve/Penis.PNG" id="67_awb7f"]
+[ext_resource type="Texture2D" uid="uid://6atf1tvyuahu" path="res://Images/Bodies/Male/Organs_Male/Male Reproducitve/Testicles/L_Testicles.PNG" id="68_grpes"]
+[ext_resource type="Texture2D" uid="uid://xgt1i0m3fjg7" path="res://Images/Bodies/Male/Organs_Male/Male Reproducitve/Testicles/R_Testicles.PNG" id="69_6w3v8"]
+[ext_resource type="Texture2D" uid="uid://c184uacdfyju2" path="res://Images/Bodies/Male/Organs_Male/Male Reproducitve/Bladder.PNG" id="70_8shd6"]
+
+[node name="Male" type="Node2D"]
+z_index = 7
+position = Vector2(-528, 710)
+scale = Vector2(0.28402, 0.28402)
+
+[node name="Skeleton" type="Node2D" parent="."]
+position = Vector2(-405.115, -1064.87)
+
+[node name="Neck" type="Sprite2D" parent="Skeleton"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("3_6wnpm")
+
+[node name="Skull" type="Sprite2D" parent="Skeleton"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("4_ce6he")
+
+[node name="-1Backbone" type="Sprite2D" parent="Skeleton"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("5_woof2")
+
+[node name="Ribs" type="Node2D" parent="Skeleton"]
+
+[node name="12Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("6_fmoev")
+
+[node name="11Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("7_b7fqy")
+
+[node name="10Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("8_tgo4i")
+
+[node name="9Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("9_unggg")
+
+[node name="8Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("10_x70wg")
+
+[node name="7Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("11_pheax")
+
+[node name="6Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("12_bbg7f")
+
+[node name="5Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("13_fal4n")
+
+[node name="4Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("14_2tg65")
+
+[node name="3Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("15_yfoni")
+
+[node name="2Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("16_exuba")
+
+[node name="1Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("17_qkbgg")
+
+[node name="Sternum" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("18_w3iuk")
+
+[node name="Backbone" type="Node2D" parent="Skeleton"]
+
+[node name="5Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("19_ki7jm")
+
+[node name="4Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("20_10i6j")
+
+[node name="3Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("21_u1tvs")
+
+[node name="2Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("22_30a4u")
+
+[node name="1Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("23_euys3")
+
+[node name="0Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("24_d14hi")
+
+[node name="Pelvis" type="Sprite2D" parent="Skeleton"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("25_s8jnj")
+
+[node name="Left" type="Node2D" parent="Skeleton"]
+
+[node name="LShoulder" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("26_gllsa")
+
+[node name="LCollar" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("27_0myut")
+
+[node name="LHand" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("28_gyrst")
+
+[node name="LUpperArm" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("29_vwidy")
+
+[node name="LForeArm" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("30_n7w4h")
+
+[node name="LLowerLeg" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("31_r52aj")
+
+[node name="LUpperLeg" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("32_g8l70")
+
+[node name="LKnee" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("33_oj46s")
+
+[node name="LFoot" type="Node2D" parent="Skeleton/Left"]
+
+[node name="Base" type="Sprite2D" parent="Skeleton/Left/LFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("34_0afip")
+
+[node name="5Toe" type="Sprite2D" parent="Skeleton/Left/LFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("35_pmgso")
+
+[node name="4Toe" type="Sprite2D" parent="Skeleton/Left/LFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("36_ahibp")
+
+[node name="3Toe" type="Sprite2D" parent="Skeleton/Left/LFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("37_2qmbn")
+
+[node name="2Toe" type="Sprite2D" parent="Skeleton/Left/LFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("38_6rlat")
+
+[node name="1Toe" type="Sprite2D" parent="Skeleton/Left/LFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("39_qp2tx")
+
+[node name="Right" type="Node2D" parent="Skeleton"]
+
+[node name="RShoulder" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("40_tcqsb")
+
+[node name="RCollar" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("41_cleog")
+
+[node name="RHand" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("42_l15q5")
+
+[node name="RUpperArm" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("43_wpswe")
+
+[node name="RForeArm" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("44_t3vao")
+
+[node name="RLowerLeg" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("45_krqfn")
+
+[node name="RUpperLeg" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("46_ynoys")
+
+[node name="RKnee" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("47_h61k3")
+
+[node name="RFoot" type="Node2D" parent="Skeleton/Right"]
+
+[node name="Base2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("48_qvkce")
+
+[node name="5Toe2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("49_125bd")
+
+[node name="4Toe2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("50_20rx8")
+
+[node name="3Toe2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("51_qyulg")
+
+[node name="2Toe2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("52_nk4av")
+
+[node name="1Toe2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("53_oa86i")
+
+[node name="Organs" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.462745)
+position = Vector2(-405.115, -1064.87)
+
+[node name="Heart" type="Node2D" parent="Organs"]
+
+[node name="Colour" type="Sprite2D" parent="Organs/Heart"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("54_eycd1")
+
+[node name="Ink" type="Sprite2D" parent="Organs/Heart"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("55_3gt2e")
+
+[node name="Kidneys" type="Node2D" parent="Organs"]
+
+[node name="LKidney" type="Sprite2D" parent="Organs/Kidneys"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("56_rchnn")
+
+[node name="RKidney" type="Sprite2D" parent="Organs/Kidneys"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("57_7t5qj")
+
+[node name="Pancreas" type="Sprite2D" parent="Organs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("58_ygg86")
+
+[node name="Stomach" type="Sprite2D" parent="Organs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("59_ps88n")
+
+[node name="Liver" type="Sprite2D" parent="Organs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("60_rm06c")
+
+[node name="Lungs" type="Node2D" parent="Organs"]
+
+[node name="LLungs" type="Sprite2D" parent="Organs/Lungs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("61_aeesu")
+
+[node name="RLungs" type="Sprite2D" parent="Organs/Lungs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("62_cmbdr")
+
+[node name="Gallbladder" type="Sprite2D" parent="Organs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("63_pvoii")
+
+[node name="Intenstines" type="Node2D" parent="Organs"]
+
+[node name="SmallIntenstine" type="Sprite2D" parent="Organs/Intenstines"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("64_gslsx")
+
+[node name="LargeIntenstine" type="Sprite2D" parent="Organs/Intenstines"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("65_ci8sa")
+
+[node name="Brain" type="Sprite2D" parent="Organs"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("66_iyctu")
+
+[node name="Male Reproductive" type="Node2D" parent="Organs"]
+
+[node name="Penis" type="Sprite2D" parent="Organs/Male Reproductive"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("67_awb7f")
+
+[node name="Testicles" type="Node2D" parent="Organs/Male Reproductive"]
+
+[node name="LTesticles" type="Sprite2D" parent="Organs/Male Reproductive/Testicles"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("68_grpes")
+
+[node name="RTesticles" type="Sprite2D" parent="Organs/Male Reproductive/Testicles"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("69_6w3v8")
+
+[node name="Bladder" type="Sprite2D" parent="Organs/Male Reproductive"]
+position = Vector2(402.221, 1663.86)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("70_8shd6")
