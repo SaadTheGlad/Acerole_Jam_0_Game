@@ -124,6 +124,9 @@ helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 xRayArea = NodePath("../Screen X-Ray/Main")
 skeleton = NodePath("../Screen X-Ray/Main/Male/Skeleton")
+boneGroups = 7
+tempHighlightColour = Color(1, 0, 0, 1)
+white = Color(1, 1, 1, 1)
 
 [node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("guy", "npcSignal")]
 script = ExtResource("1_0cfmg")
