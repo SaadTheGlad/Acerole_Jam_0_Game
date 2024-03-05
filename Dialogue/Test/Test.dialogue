@@ -1,9 +1,4 @@
 ~ start
 
-Herr Schwarzenaugen: Guten Tag. Ich heiße Herr Schwarzenaugen.
-Herr Schwarzenaugen: Ich würde gerne reingehen.
-- Nein
-	=> END
-- OK
-	=> END
+Man: Hello. I would like entry, here is the money.
 => END

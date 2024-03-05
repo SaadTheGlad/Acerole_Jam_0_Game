@@ -10,13 +10,14 @@ public partial class DialogueNPCSignal : Node
 
     public bool isTalking = false;
 
-    public override void _Process(double delta)
-	{
-        //Make this only work when you click on the person, no when they come in
-        //if (Input.IsActionJustPressed("action"))
-        //{
-        //    LookForNPCs();
-        //}
+    public override void _EnterTree()
+    {
+        npcController.GuyCame += LookForNPCs;
+    }
+
+    public override void _ExitTree()
+    {
+        npcController.GuyCame -= LookForNPCs;
     }
 
     void LookForNPCs()

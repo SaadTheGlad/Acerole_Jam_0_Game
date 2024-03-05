@@ -5,4 +5,7 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Update="Godot.SourceGenerators" Version="4.3.0-dev.4" />
+  </ItemGroup>
 </Project>

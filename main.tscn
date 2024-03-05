@@ -118,20 +118,19 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
-[node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "xRayArea", "skeleton")]
+[node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "xRayArea", "skeleton", "organs")]
 script = ExtResource("1_k6ho4")
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 xRayArea = NodePath("../Screen X-Ray/Main")
-skeleton = NodePath("../Screen X-Ray/Main/Male/Skeleton")
-boneGroups = 7
-tempHighlightColour = Color(1, 0, 0, 1)
-white = Color(1, 1, 1, 1)
+skeleton = NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton")
+organs = NodePath("../Screen X-Ray/Main/MaleColoured/Organs")
+veryTranslucentColour = Color(1, 1, 1, 0.00392157)
+highlightColour = Color(1, 0, 0, 1)
 
 [node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("guy", "npcSignal")]
 script = ExtResource("1_0cfmg")
 guy = NodePath("../PersonExample")
-movementSpeed = 0.25
 curve = SubResource("Curve_itk1r")
 npcSignal = NodePath("../Player/DialogueNPCSignal")
 
@@ -201,6 +200,7 @@ offset_right = 136.0
 offset_bottom = 136.0
 
 [node name="Temp Talk Button" type="Button" parent="ButtonsTemp"]
+visible = false
 self_modulate = Color(1, 0, 1, 1)
 z_index = 9
 offset_left = 1.0
@@ -210,6 +210,7 @@ offset_bottom = 292.0
 icon = ExtResource("10_w5o83")
 
 [node name="Admit Button" type="Button" parent="ButtonsTemp"]
+visible = false
 self_modulate = Color(0.168627, 1, 0, 1)
 z_index = 9
 offset_left = 172.0
@@ -231,6 +232,13 @@ position = Vector2(960, 540)
 
 [node name="Main" parent="Screen X-Ray" instance=ExtResource("15_88key")]
 position = Vector2(1940, 0)
+
+[node name="Close Scan Area Button" parent="Screen X-Ray/Main" instance=ExtResource("86_vsxkr")]
+offset_left = 820.0
+offset_top = 414.0
+offset_right = 956.0
+offset_bottom = 550.0
+scale = Vector2(0.740545, 0.740545)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Screen X-Ray/Main"]
 libraries = {
@@ -270,7 +278,9 @@ libraries = {
 [connection signal="pressed" from="ButtonsTemp/Temp Talk Button" to="Player/DialogueNPCSignal" method="LookForNPCs"]
 [connection signal="pressed" from="ButtonsTemp/Admit Button" to="NPCController" method="Admit"]
 [connection signal="pressed" from="ButtonsTemp/X Ray Button" to="X-Ray Manager" method="StartScan"]
-[connection signal="pressed" from="Screen X-Ray/Main/Ring Button" to="X-Ray Manager" method="Scan"]
+[connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]
+[connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="X-Ray Manager" method="CloseScanScreen"]
+[connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="X-Ray Manager" method="ScanOrgans"]
 
 [editable path="Screen X-Ray/Main"]
-[editable path="Screen X-Ray/Main/Male"]
+[editable path="Screen X-Ray/Main/MaleColoured"]

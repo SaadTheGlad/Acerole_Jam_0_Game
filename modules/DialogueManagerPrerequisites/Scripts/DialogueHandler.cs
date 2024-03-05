@@ -65,6 +65,8 @@ public partial class DialogueHandler : Node
         await ToSignal(GetTree().CreateTimer(0.1f), SceneTreeTimer.SignalName.Timeout);
         hasStartedDialogue = false;
         encounteredNPCSignalHolder.isTalking = false;
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DialogueEnded);
+
     }
 
     async void CheckNPC(Node2D npc, DialogueHolder holder)

@@ -18,6 +18,9 @@ public partial class NPCController : Node
 
     bool canRing = true;
 
+    [Signal] public delegate void GuyCameEventHandler();
+
+
     public void Ring()
     {
         if(canRing)
@@ -56,6 +59,7 @@ public partial class NPCController : Node
             {
                 hasReached = true;
                 currentGuy = guy;
+                EmitSignal(SignalName.GuyCame);
                 break;
             }
 

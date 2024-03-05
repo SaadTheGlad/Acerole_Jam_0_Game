@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Security;
 
 public partial class XRayManager : Node
 {
@@ -7,21 +8,42 @@ public partial class XRayManager : Node
     [Export] public AnimationPlayer scanScreenPlayer;
     [Export] public Node2D xRayArea;
     [Export] public Node2D skeleton;
-    //Make an enum for all the stuff with children and use it in line 32 (if statement)
-    [Export] public BoneGroups boneGroups;
-    [Export] public Color tempHighlightColour;
-    [Export] public Color white;
+    [Export] public Node2D organs;
+    [Export] public Color veryTranslucentColour;
+    [Export] public Color highlightColour;
 
-    private Godot.Collections.Array<Sprite2D> arrayPublic = new Godot.Collections.Array<Sprite2D>();
-    private Godot.Collections.Array<Sprite2D> array;
-    private Godot.Collections.Array<Sprite2D> arrayFull;
+    private Godot.Collections.Array<Sprite2D> skeletonArrayPublic = new Godot.Collections.Array<Sprite2D>();
+    private Godot.Collections.Array<Sprite2D> skeletonArray;
+    private Godot.Collections.Array<Sprite2D> skeletonArrayFull;
 
-    bool hasScanned = false;
-    int currentIndex = -1000;
+    private Godot.Collections.Array<Sprite2D> organsArrayPublic = new Godot.Collections.Array<Sprite2D>();
+    private Godot.Collections.Array<Sprite2D> organsArray;
+    private Godot.Collections.Array<Sprite2D> organsArrayFull;
+
+    bool canStartScan;
+    bool hasScannedSkeleton = false;
+    bool hasScannedOrgans = false;
+    int currentSkeletonIndex = -1000;
+    int currentOrgansIndex = -1000;
+
+    bool isOnSkeleton = false;
+
+    public override void _EnterTree()
+    {
+        SignalsManager.Instance.DialogueEnded += EnableScan;
+    }
+
+    public override void _ExitTree()
+    {
+        SignalsManager.Instance.DialogueEnded -= EnableScan;
+    }
+
+    public void EnableScan() => canStartScan = true;
 
     public void StartScan()
     {
-        helperPlayer.Play("LowerDown");
+        if(canStartScan)
+         helperPlayer.Play("LowerDown");
     }
 
     public void PullUpScanScreen()
@@ -29,114 +51,210 @@ public partial class XRayManager : Node
         scanScreenPlayer.Play("SlideIn");
     }
 
-    public void Scan()
+    public void CloseScanScreen()
     {
-        if (true)
+        scanScreenPlayer.Play("SlideOut");
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton inputEventMouse)
         {
-            if (currentIndex != -1000)
+            if (inputEventMouse.Pressed && inputEventMouse.ButtonIndex == MouseButton.Left)
             {
-                arrayPublic[currentIndex].SelfModulate = white;
+                //for sprites
+                if(skeletonArray != null)
+                {
+                    foreach (Sprite2D bone in skeletonArrayPublic)
+                    {
+                        //We're looking for this sprite, check if it's opaque and if not break the loop;
+                        if (skeletonArrayPublic.IndexOf(bone) == currentSkeletonIndex)
+                        {
+                            Vector2 mousePos = bone.ToLocal(inputEventMouse.GlobalPosition);
+
+                            if (bone.GetRect().HasPoint(mousePos) && bone.IsPixelOpaque(mousePos))
+                            {
+                                GD.Print("Clicked on " + bone.Name + "!");
+                                bone.Modulate = highlightColour;
+                            }
+                            break;
+                        }
+
+
+
+                    }
+                }
+
+                if (organsArray!= null)
+                {
+                    foreach (Sprite2D organ in organsArrayPublic)
+                    {
+                        //We're looking for this sprite, check if it's opaque and if not break the loop;
+                        if (organsArrayPublic.IndexOf(organ) == currentOrgansIndex)
+                        {
+                            Vector2 mousePos = organ.ToLocal(inputEventMouse.GlobalPosition);
+
+                            if (organ.GetRect().HasPoint(mousePos) && organ.IsPixelOpaque(mousePos))
+                            {
+                                GD.Print("Clicked on " + organ.Name + "!");
+                                organ.Modulate = highlightColour;
+                            }
+                            break;
+                        }
+
+
+
+                    }
+                }
+
             }
-            
-            Node2D parent = (Node2D)skeleton.GetParent();
-            parent.Visible = true;
-            foreach (var node in skeleton.GetChildren())
-            {
-                if (true/*node.Name == boneGroups.ToString()*/)
+        }
+    }
+
+    public void ScanSkeleton()
+    {
+        organs.Visible = false;
+        skeleton.Visible = true;
+
+        if (hasScannedSkeleton)
+        {
+            return;
+        }
+
+        foreach (var node in skeleton.GetChildren())
+        {
+            if (true/*node.Name == boneGroups.ToString()*/)
                 {
                     foreach (var bone in node.GetChildren())
                     {
                         if(bone is Sprite2D sprite)
                         {
                             sprite = (Sprite2D)bone;
-                            arrayPublic.Add(sprite);
-                            //GD.Print(sprite.Name);
+                            skeletonArrayPublic.Add(sprite);
                         }
                         else
                         {
-                            GD.Print(bone.Name);
                             foreach(var secondaryBone in bone.GetChildren())
                             {
                                 if(secondaryBone is Sprite2D spriteSecondary)
                                 {
                                     spriteSecondary = (Sprite2D)secondaryBone;
-                                    arrayPublic.Add(spriteSecondary);
-                                    //GD.Print(spriteSecondary.Name);
+                                    skeletonArrayPublic.Add(spriteSecondary);
                                 }
                             }
                         }
                     }
 
                 }
-                if(node is Sprite2D spriteHigher)
-                {
-                    arrayPublic.Add(spriteHigher);
-                    GD.Print(spriteHigher.Name);
-                }
+            if(node is Sprite2D spriteHigher)
+            {
+                skeletonArrayPublic.Add(spriteHigher);
             }
-
-
-
-            array = arrayPublic.Duplicate();
-
-            arrayFull = array.Duplicate();
-            array.Shuffle();
-
-
-
-            int randomIndex = RandomSelection();
-            //while (arrayPublic[randomIndex].Name == "Sternum")
-            //{
-            //    randomIndex = RandomSelection();
-            //}
-            currentIndex = randomIndex;
-            Sprite2D current = arrayPublic[randomIndex];
-            current.SelfModulate = tempHighlightColour;
-
-
-            hasScanned = true;
         }
 
+        skeletonArray = skeletonArrayPublic.Duplicate();
+        skeletonArrayFull = skeletonArray.Duplicate();
+        skeletonArray.Shuffle();
 
-        
+        int randomIndex = RandomSelectionSkeleton();
+        while (skeletonArrayPublic[randomIndex].IsInGroup("Avoid"))
+        {
+            randomIndex = RandomSelectionSkeleton();
+        }
+        currentSkeletonIndex = randomIndex;
+        Sprite2D current = skeletonArrayPublic[randomIndex];
+        current.Modulate = veryTranslucentColour;
+        hasScannedSkeleton = true;
 
     }
 
+    public void ScanOrgans()
+    {
+        skeleton.Visible = false;
+        organs.Visible = true;
+
+        if (hasScannedOrgans)
+        {
+            return;
+        }
 
 
-    int RandomSelection()
+        foreach (var node in organs.GetChildren())
+        {
+            if (true/*node.Name == boneGroups.ToString()*/)
+            {
+                foreach (var bone in node.GetChildren())
+                {
+                    if (bone is Sprite2D sprite)
+                    {
+                        sprite = (Sprite2D)bone;
+                        organsArrayPublic.Add(sprite);
+                    }
+                    else
+                    {
+                        foreach (var secondaryBone in bone.GetChildren())
+                        {
+                            if (secondaryBone is Sprite2D spriteSecondary)
+                            {
+                                spriteSecondary = (Sprite2D)secondaryBone;
+                                organsArrayPublic.Add(spriteSecondary);
+                            }
+                        }
+                    }
+                }
+
+            }
+            if (node is Sprite2D spriteHigher)
+            {
+                organsArrayPublic.Add(spriteHigher);
+            }
+        }
+
+        organsArray = organsArrayPublic.Duplicate();
+        organsArrayFull = organsArray.Duplicate();
+        organsArray.Shuffle();
+
+        int randomIndex = RandomSelectionOrgans();
+        while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))
+        {
+            randomIndex = RandomSelectionOrgans();
+        }
+        currentOrgansIndex = randomIndex;
+        Sprite2D current = organsArrayPublic[randomIndex];
+        current.Modulate = veryTranslucentColour;
+        hasScannedOrgans = true;
+
+    }
+
+    int RandomSelectionSkeleton()
     {
         //Shuffle bag random selection
-        if (array.Count == 0)
+        if (skeletonArray.Count == 0)
         {
-            array = arrayFull.Duplicate();
-            array.Shuffle();
+            skeletonArray = skeletonArrayFull.Duplicate();
+            skeletonArray.Shuffle();
         }
 
-        var randomObject = array[0];
-        array.RemoveAt(0);
+        var randomObject = skeletonArray[0];
+        skeletonArray.RemoveAt(0);
 
-
-
-        uint randomIndex = GD.Randi() % (uint)arrayPublic.Count;
+        uint randomIndex = GD.Randi() % (uint)skeletonArrayPublic.Count;
         return (int)randomIndex;
     }
-}
 
-public enum BoneGroups
-{ 
-    All,
-    Neck,
-    Skull,
-    MinuesOneBackbone,
-    Ribs,
-    Backbone,
-    Pelvis,
-    Left,
-    Right
-}
+    int RandomSelectionOrgans()
+    {
+        //Shuffle bag random selection
+        if (organsArray.Count == 0)
+        {  
+            organsArray = organsArrayFull.Duplicate();
+            organsArray.Shuffle();
+        }
 
-public enum Avoid
-{
-    Sternum,
+        var randomObject = organsArray[0];
+        organsArray.RemoveAt(0);
+
+        uint randomIndex = GD.Randi() % (uint)organsArrayPublic.Count;
+        return (int)randomIndex;
+    }
 }
