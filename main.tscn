@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=61 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
@@ -9,29 +9,65 @@
 [ext_resource type="PackedScene" uid="uid://dd2a8ofih5akl" path="res://modules/DialogueManagerPrerequisites/Balloons/noIconBalloon.tscn" id="3_jli1w"]
 [ext_resource type="PackedScene" uid="uid://bvuujxl634baj" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHandler.tscn" id="3_m45lx"]
 [ext_resource type="Texture2D" uid="uid://vpbu0uxfwxlc" path="res://Images/UI/Main/Desk.PNG" id="3_rf5ro"]
+[ext_resource type="Texture2D" uid="uid://cx7hf71ygt40a" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 2.PNG" id="3_uil03"]
 [ext_resource type="Texture2D" uid="uid://b7dv1iker83r1" path="res://Images/UI/Main/BG/Stars.PNG" id="3_vvaag"]
 [ext_resource type="Texture2D" uid="uid://bhvhrtw5kwanc" path="res://Images/UI/Main/Window/Frame.PNG" id="4_j4hjr"]
+[ext_resource type="Texture2D" uid="uid://c0y8p8f4etvu2" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 3.PNG" id="4_udkc8"]
 [ext_resource type="Texture2D" uid="uid://bywk20ymwnqkw" path="res://Images/UI/Main/BG/Snow/Full Snow.PNG" id="4_uow0l"]
 [ext_resource type="Texture2D" uid="uid://48xteqc42tnf" path="res://Images/UI/Main/Window/White Glass.png" id="6_3eqmv"]
+[ext_resource type="Texture2D" uid="uid://fitadpk8q402" path="res://Images/Bodies/Male/Outer Bodies/Lips/Lips 2.PNG" id="6_kpexn"]
+[ext_resource type="Texture2D" uid="uid://cvi48eowcf80d" path="res://Images/Bodies/Male/Outer Bodies/Lips/Lips 3.PNG" id="7_3hp3w"]
+[ext_resource type="Texture2D" uid="uid://hc68c2s66ol5" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 2.PNG" id="9_ht1l8"]
+[ext_resource type="Texture2D" uid="uid://dxb1wq3wk07av" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 3.PNG" id="10_78i85"]
 [ext_resource type="Texture2D" uid="uid://cnx5r3bennc7u" path="res://icon.svg" id="10_w5o83"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="11_g7kqk"]
+[ext_resource type="Texture2D" uid="uid://bu1e5l7mx6x3a" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 2.PNG" id="12_umw15"]
 [ext_resource type="Texture2D" uid="uid://cdtmgahapx0kv" path="res://Images/UI/Main/BG/Wall.png" id="13_4jyuk"]
 [ext_resource type="PackedScene" uid="uid://yxo2fjmt3g1j" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHolder.tscn" id="13_13vh2"]
+[ext_resource type="Texture2D" uid="uid://x05vy3jw0n7h" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 3.PNG" id="13_ioy20"]
+[ext_resource type="Texture2D" uid="uid://bx7cwm5lp37ag" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 4.PNG" id="14_n1vce"]
 [ext_resource type="PackedScene" uid="uid://cln1k7d7si5eo" path="res://Prefabs/XRayArea.tscn" id="15_88key"]
 [ext_resource type="Resource" uid="uid://501vfo16j2ea" path="res://Dialogue/Test/Test.dialogue" id="15_i1ce5"]
+[ext_resource type="Texture2D" uid="uid://cihqemsmvm2x6" path="res://Images/Bodies/Male/Outer Bodies/Ears/Ears 2.PNG" id="16_tfuhk"]
+[ext_resource type="Texture2D" uid="uid://bv205g738btbc" path="res://Images/Bodies/Male/Outer Bodies/Ears/Ears 3.PNG" id="17_kpjnd"]
+[ext_resource type="Script" path="res://Scripts/Eyes.cs" id="22_n64gu"]
 [ext_resource type="Texture2D" uid="uid://cdbwy3bkjxb5" path="res://Images/Bodies/Male/Outer Bodies/Bodies/BodyType 1/Body.PNG" id="23_jsupy"]
+[ext_resource type="Texture2D" uid="uid://0e8opw1dhwyo" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 2/Iris/Colour.PNG" id="24_pypo5"]
 [ext_resource type="Texture2D" uid="uid://cuhxgt3rp4j4w" path="res://Images/Bodies/Male/Outer Bodies/Bodies/BodyType 1/TShirt.PNG" id="24_rit0e"]
 [ext_resource type="Texture2D" uid="uid://ouu0xidkplu2" path="res://Images/Bodies/Male/Outer Bodies/Ears/Ears 1.PNG" id="25_h0c38"]
+[ext_resource type="Texture2D" uid="uid://dmg17u1rc8o10" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 2/Iris/Ink.PNG" id="25_udg0u"]
 [ext_resource type="Texture2D" uid="uid://drrey1v1kjkya" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Highlights.PNG" id="26_8amtq"]
+[ext_resource type="Texture2D" uid="uid://dg6idqfaj03tv" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 2/Sclera.PNG" id="26_yeq8w"]
 [ext_resource type="Texture2D" uid="uid://ps13cardcxy4" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Iris/Colour.PNG" id="27_kvtur"]
 [ext_resource type="Texture2D" uid="uid://wb1y6837rkei" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Iris/Ink.PNG" id="28_6ywi3"]
+[ext_resource type="Texture2D" uid="uid://u3dmrxyqfo5p" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 3/Iris/Colour.PNG" id="28_iaf5f"]
 [ext_resource type="Texture2D" uid="uid://2nq3m15oogty" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Sclera.PNG" id="29_i14k2"]
+[ext_resource type="Texture2D" uid="uid://b6m8vq5kfhmab" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 3/Iris/Ink.PNG" id="29_ijs1g"]
 [ext_resource type="Texture2D" uid="uid://dgaom57dbdmwo" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 1.PNG" id="30_6yh2k"]
+[ext_resource type="Texture2D" uid="uid://dlcgvs1aul2op" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 3/Sclera.PNG" id="30_v8e1w"]
 [ext_resource type="Texture2D" uid="uid://bvwipjfrl0bnl" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 1.PNG" id="31_rbl4f"]
 [ext_resource type="Texture2D" uid="uid://c3mj2ulxk1jps" path="res://Images/Bodies/Male/Outer Bodies/Lips/Lips 1.PNG" id="32_3e3bj"]
 [ext_resource type="Texture2D" uid="uid://bwpj0dgj8geg6" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 1.PNG" id="33_jfa6y"]
 [ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="86_vsxkr"]
 [ext_resource type="Texture2D" uid="uid://2i2unxj3453e" path="res://Images/UI/X-Ray Stuff/X-ray Helper.png" id="87_kyekx"]
+
+[sub_resource type="Resource" id="Resource_nnvhd"]
+script = ExtResource("22_n64gu")
+irisInk = ExtResource("28_6ywi3")
+irisColour = ExtResource("27_kvtur")
+sclera = ExtResource("29_i14k2")
+
+[sub_resource type="Resource" id="Resource_a0ilo"]
+script = ExtResource("22_n64gu")
+irisInk = ExtResource("25_udg0u")
+irisColour = ExtResource("24_pypo5")
+sclera = ExtResource("26_yeq8w")
+
+[sub_resource type="Resource" id="Resource_gqcxi"]
+script = ExtResource("22_n64gu")
+irisInk = ExtResource("29_ijs1g")
+irisColour = ExtResource("28_iaf5f")
+sclera = ExtResource("30_v8e1w")
 
 [sub_resource type="Curve" id="Curve_itk1r"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -129,12 +165,20 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
-[node name="NPCCreator" type="Node" parent="."]
+[node name="NPCCreator" type="Node" parent="." node_paths=PackedStringArray("NPC")]
 script = ExtResource("1_olf47")
+NPC = NodePath("../NPC")
 skinColours = PackedColorArray(1, 0.858824, 0.67451, 1, 0.945098, 0.760784, 0.490196, 1, 0.878431, 0.67451, 0.411765, 1, 0.776471, 0.52549, 0.258824, 1, 0.552941, 0.333333, 0.141176, 1, 0.301961, 0.176471, 0.0705882, 1)
 shirtColours = PackedColorArray(0.890196, 0.32549, 0, 1, 0.156863, 0.607843, 0.388235, 1, 0.698039, 0, 0, 1, 0.921569, 1, 0.231373, 1, 0, 0, 0.556863, 1)
 hairColours = PackedColorArray(0, 0, 0, 1, 0.411765, 0.231373, 0, 1, 1, 1, 1, 1, 1, 0.921569, 0.431373, 1, 1, 0.533333, 0, 1, 0.717647, 0, 0, 1)
-lipColours = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+lipColours = PackedColorArray(0.976471, 0.529412, 0.529412, 1, 0.905882, 0.415686, 0.415686, 1, 0.839216, 0.356863, 0.356863, 1, 0.756863, 0.294118, 0.294118, 1, 0.721569, 0.247059, 0.247059, 1)
+eyeColours = PackedColorArray(0, 0, 0, 1, 0.388235, 0.231373, 0.211765, 1, 0, 0.866667, 1, 1, 0, 1, 0.592157, 1, 1, 0.313726, 0.247059, 1)
+heads = Array[Texture2D]([ExtResource("31_rbl4f"), ExtResource("3_uil03"), ExtResource("4_udkc8")])
+lips = Array[Texture2D]([ExtResource("32_3e3bj"), ExtResource("6_kpexn"), ExtResource("7_3hp3w")])
+noses = Array[Texture2D]([ExtResource("33_jfa6y"), ExtResource("9_ht1l8"), ExtResource("10_78i85")])
+hairstyles = Array[Texture2D]([ExtResource("30_6yh2k"), ExtResource("12_umw15"), ExtResource("13_ioy20"), ExtResource("14_n1vce")])
+ears = Array[Texture2D]([ExtResource("25_h0c38"), ExtResource("16_tfuhk"), ExtResource("17_kpjnd")])
+eyes = Array[Object]([SubResource("Resource_nnvhd"), SubResource("Resource_a0ilo"), SubResource("Resource_gqcxi")])
 
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "xRayArea", "skeleton", "organs")]
 script = ExtResource("1_k6ho4")
