@@ -1,0 +1,75 @@
+[gd_scene load_steps=14 format=3 uid="uid://c8htou0r68ljb"]
+
+[ext_resource type="Texture2D" uid="uid://cdbwy3bkjxb5" path="res://Images/Bodies/Male/Outer Bodies/Bodies/BodyType 1/Body.PNG" id="1_sfq7k"]
+[ext_resource type="Texture2D" uid="uid://cuhxgt3rp4j4w" path="res://Images/Bodies/Male/Outer Bodies/Bodies/BodyType 1/TShirt.PNG" id="2_asy8u"]
+[ext_resource type="Texture2D" uid="uid://ouu0xidkplu2" path="res://Images/Bodies/Male/Outer Bodies/Ears/Ears 1.PNG" id="3_dwsr7"]
+[ext_resource type="Texture2D" uid="uid://bvwipjfrl0bnl" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 1.PNG" id="4_g5mbm"]
+[ext_resource type="Texture2D" uid="uid://c3mj2ulxk1jps" path="res://Images/Bodies/Male/Outer Bodies/Lips/Lips 1.PNG" id="5_ovkoh"]
+[ext_resource type="Texture2D" uid="uid://bwpj0dgj8geg6" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 1.PNG" id="6_4rurn"]
+[ext_resource type="Texture2D" uid="uid://2nq3m15oogty" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Sclera.PNG" id="7_pdrvp"]
+[ext_resource type="Texture2D" uid="uid://ps13cardcxy4" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Iris/Colour.PNG" id="8_cxrvq"]
+[ext_resource type="Texture2D" uid="uid://wb1y6837rkei" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Iris/Ink.PNG" id="9_0j7qu"]
+[ext_resource type="Texture2D" uid="uid://drrey1v1kjkya" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Highlights.PNG" id="10_k6xrc"]
+[ext_resource type="Texture2D" uid="uid://dgaom57dbdmwo" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 1.PNG" id="11_826mm"]
+[ext_resource type="PackedScene" uid="uid://yxo2fjmt3g1j" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHolder.tscn" id="12_4viyf"]
+[ext_resource type="Resource" uid="uid://501vfo16j2ea" path="res://Dialogue/Test/Test.dialogue" id="13_5vte0"]
+
+[node name="NPC" type="Node2D"]
+z_index = 7
+position = Vector2(-371, 519)
+scale = Vector2(0.489773, 0.489773)
+
+[node name="Body" type="Sprite2D" parent="." groups=["Skin"]]
+position = Vector2(30, -242)
+texture = ExtResource("1_sfq7k")
+
+[node name="TShirt" type="Sprite2D" parent="."]
+position = Vector2(30, -242)
+texture = ExtResource("2_asy8u")
+
+[node name="Ears" type="Sprite2D" parent="." groups=["Skin"]]
+position = Vector2(30, -242)
+texture = ExtResource("3_dwsr7")
+
+[node name="Head" type="Sprite2D" parent="." groups=["Skin"]]
+position = Vector2(30, -242)
+texture = ExtResource("4_g5mbm")
+
+[node name="Lips" type="Sprite2D" parent="."]
+position = Vector2(30, -242)
+texture = ExtResource("5_ovkoh")
+
+[node name="Nose" type="Sprite2D" parent="."]
+position = Vector2(30, -242)
+texture = ExtResource("6_4rurn")
+
+[node name="Eyes" type="Node2D" parent="."]
+position = Vector2(1058, -634)
+
+[node name="Sclera" type="Sprite2D" parent="Eyes"]
+position = Vector2(-1028, 392)
+texture = ExtResource("7_pdrvp")
+
+[node name="Iris" type="Node2D" parent="Eyes"]
+
+[node name="Colour" type="Sprite2D" parent="Eyes/Iris"]
+self_modulate = Color(0.388235, 0.231373, 0.211765, 1)
+position = Vector2(-1028, 392)
+texture = ExtResource("8_cxrvq")
+
+[node name="Ink" type="Sprite2D" parent="Eyes/Iris"]
+position = Vector2(-1028, 392)
+texture = ExtResource("9_0j7qu")
+
+[node name="Highlights" type="Sprite2D" parent="Eyes"]
+position = Vector2(-1028, 392)
+texture = ExtResource("10_k6xrc")
+
+[node name="Hair" type="Sprite2D" parent="." groups=["Hair"]]
+position = Vector2(30, -242)
+texture = ExtResource("11_826mm")
+
+[node name="DialogueHolder" parent="." instance=ExtResource("12_4viyf")]
+characterName = &"Schwarzeaugen"
+dialogue = ExtResource("13_5vte0")
+sfxName = &"creepyTW"

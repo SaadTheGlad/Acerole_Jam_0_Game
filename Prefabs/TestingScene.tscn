@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d20c3br5ognuf"]
+
+[ext_resource type="PackedScene" uid="uid://cal1figiv4byh" path="res://modules/FPSCounter/fpscounter.tscn" id="1_2jqk2"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Control" parent="." instance=ExtResource("1_2jqk2")]

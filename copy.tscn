@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbg2qhofofd7d"]
+
+[ext_resource type="PackedScene" uid="uid://cal1figiv4byh" path="res://modules/FPSCounter/fpscounter.tscn" id="3_ling0"]
+[ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="42_fthwi"]
+[ext_resource type="Texture2D" uid="uid://cnx5r3bennc7u" path="res://icon.svg" id="43_xde6w"]
+
+[node name="Main" type="Node2D"]
+
+[node name="ButtonsTemp" type="Node2D" parent="."]
+position = Vector2(1339, 317)
+
+[node name="Ring Button" parent="ButtonsTemp" instance=ExtResource("42_fthwi")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 136.0
+offset_bottom = 136.0
+
+[node name="Temp Talk Button" type="Button" parent="ButtonsTemp"]
+visible = false
+self_modulate = Color(1, 0, 1, 1)
+z_index = 9
+offset_left = 1.0
+offset_top = 156.0
+offset_right = 137.0
+offset_bottom = 292.0
+icon = ExtResource("43_xde6w")
+
+[node name="Admit Button" type="Button" parent="ButtonsTemp"]
+visible = false
+self_modulate = Color(0.168627, 1, 0, 1)
+z_index = 9
+offset_left = 172.0
+offset_right = 308.0
+offset_bottom = 136.0
+icon = ExtResource("43_xde6w")
+
+[node name="X Ray Button" type="Button" parent="ButtonsTemp"]
+self_modulate = Color(0.894118, 0, 0.133333, 1)
+z_index = 9
+offset_left = -88.0
+offset_top = 196.0
+offset_right = 48.0
+offset_bottom = 332.0
+icon = ExtResource("43_xde6w")
+
+[node name="Control" parent="." instance=ExtResource("3_ling0")]

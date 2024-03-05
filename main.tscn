@@ -1,6 +1,7 @@
-[gd_scene load_steps=61 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=58 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
+[ext_resource type="PackedScene" uid="uid://cal1figiv4byh" path="res://modules/FPSCounter/fpscounter.tscn" id="1_jf3cv"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
 [ext_resource type="Script" path="res://Scripts/NPCCreator.cs" id="1_olf47"]
 [ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
@@ -23,20 +24,15 @@
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="11_g7kqk"]
 [ext_resource type="Texture2D" uid="uid://bu1e5l7mx6x3a" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 2.PNG" id="12_umw15"]
 [ext_resource type="Texture2D" uid="uid://cdtmgahapx0kv" path="res://Images/UI/Main/BG/Wall.png" id="13_4jyuk"]
-[ext_resource type="PackedScene" uid="uid://yxo2fjmt3g1j" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHolder.tscn" id="13_13vh2"]
 [ext_resource type="Texture2D" uid="uid://x05vy3jw0n7h" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 3.PNG" id="13_ioy20"]
 [ext_resource type="Texture2D" uid="uid://bx7cwm5lp37ag" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 4.PNG" id="14_n1vce"]
 [ext_resource type="PackedScene" uid="uid://cln1k7d7si5eo" path="res://Prefabs/XRayArea.tscn" id="15_88key"]
-[ext_resource type="Resource" uid="uid://501vfo16j2ea" path="res://Dialogue/Test/Test.dialogue" id="15_i1ce5"]
 [ext_resource type="Texture2D" uid="uid://cihqemsmvm2x6" path="res://Images/Bodies/Male/Outer Bodies/Ears/Ears 2.PNG" id="16_tfuhk"]
 [ext_resource type="Texture2D" uid="uid://bv205g738btbc" path="res://Images/Bodies/Male/Outer Bodies/Ears/Ears 3.PNG" id="17_kpjnd"]
 [ext_resource type="Script" path="res://Scripts/Eyes.cs" id="22_n64gu"]
-[ext_resource type="Texture2D" uid="uid://cdbwy3bkjxb5" path="res://Images/Bodies/Male/Outer Bodies/Bodies/BodyType 1/Body.PNG" id="23_jsupy"]
 [ext_resource type="Texture2D" uid="uid://0e8opw1dhwyo" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 2/Iris/Colour.PNG" id="24_pypo5"]
-[ext_resource type="Texture2D" uid="uid://cuhxgt3rp4j4w" path="res://Images/Bodies/Male/Outer Bodies/Bodies/BodyType 1/TShirt.PNG" id="24_rit0e"]
 [ext_resource type="Texture2D" uid="uid://ouu0xidkplu2" path="res://Images/Bodies/Male/Outer Bodies/Ears/Ears 1.PNG" id="25_h0c38"]
 [ext_resource type="Texture2D" uid="uid://dmg17u1rc8o10" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 2/Iris/Ink.PNG" id="25_udg0u"]
-[ext_resource type="Texture2D" uid="uid://drrey1v1kjkya" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Highlights.PNG" id="26_8amtq"]
 [ext_resource type="Texture2D" uid="uid://dg6idqfaj03tv" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 2/Sclera.PNG" id="26_yeq8w"]
 [ext_resource type="Texture2D" uid="uid://ps13cardcxy4" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Iris/Colour.PNG" id="27_kvtur"]
 [ext_resource type="Texture2D" uid="uid://wb1y6837rkei" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Iris/Ink.PNG" id="28_6ywi3"]
@@ -48,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://bvwipjfrl0bnl" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 1.PNG" id="31_rbl4f"]
 [ext_resource type="Texture2D" uid="uid://c3mj2ulxk1jps" path="res://Images/Bodies/Male/Outer Bodies/Lips/Lips 1.PNG" id="32_3e3bj"]
 [ext_resource type="Texture2D" uid="uid://bwpj0dgj8geg6" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 1.PNG" id="33_jfa6y"]
+[ext_resource type="PackedScene" uid="uid://c8htou0r68ljb" path="res://Prefabs/NPC.tscn" id="46_hu5np"]
 [ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="86_vsxkr"]
 [ext_resource type="Texture2D" uid="uid://2i2unxj3453e" path="res://Images/UI/X-Ray Stuff/X-ray Helper.png" id="87_kyekx"]
 
@@ -164,6 +161,8 @@ _data = {
 }
 
 [node name="Main" type="Node2D"]
+
+[node name="Control" parent="." instance=ExtResource("1_jf3cv")]
 
 [node name="NPCCreator" type="Node" parent="." node_paths=PackedStringArray("NPC")]
 script = ExtResource("1_olf47")
@@ -324,65 +323,7 @@ libraries = {
 "": SubResource("AnimationLibrary_vwso4")
 }
 
-[node name="NPC" type="Node2D" parent="."]
-z_index = 7
-position = Vector2(-371, 519)
-scale = Vector2(0.489773, 0.489773)
-
-[node name="Body" type="Sprite2D" parent="NPC" groups=["Skin"]]
-position = Vector2(30, -242)
-texture = ExtResource("23_jsupy")
-
-[node name="TShirt" type="Sprite2D" parent="NPC"]
-position = Vector2(30, -242)
-texture = ExtResource("24_rit0e")
-
-[node name="Ears" type="Sprite2D" parent="NPC" groups=["Skin"]]
-position = Vector2(30, -242)
-texture = ExtResource("25_h0c38")
-
-[node name="Head" type="Sprite2D" parent="NPC" groups=["Skin"]]
-position = Vector2(30, -242)
-texture = ExtResource("31_rbl4f")
-
-[node name="Lips" type="Sprite2D" parent="NPC"]
-position = Vector2(30, -242)
-texture = ExtResource("32_3e3bj")
-
-[node name="Nose" type="Sprite2D" parent="NPC"]
-position = Vector2(30, -242)
-texture = ExtResource("33_jfa6y")
-
-[node name="Eyes" type="Node2D" parent="NPC"]
-position = Vector2(1058, -634)
-
-[node name="Sclera" type="Sprite2D" parent="NPC/Eyes"]
-position = Vector2(-1028, 392)
-texture = ExtResource("29_i14k2")
-
-[node name="Iris" type="Node2D" parent="NPC/Eyes"]
-
-[node name="Colour" type="Sprite2D" parent="NPC/Eyes/Iris"]
-self_modulate = Color(0.388235, 0.231373, 0.211765, 1)
-position = Vector2(-1028, 392)
-texture = ExtResource("27_kvtur")
-
-[node name="Ink" type="Sprite2D" parent="NPC/Eyes/Iris"]
-position = Vector2(-1028, 392)
-texture = ExtResource("28_6ywi3")
-
-[node name="Highlights" type="Sprite2D" parent="NPC/Eyes"]
-position = Vector2(-1028, 392)
-texture = ExtResource("26_8amtq")
-
-[node name="Hair" type="Sprite2D" parent="NPC" groups=["Hair"]]
-position = Vector2(30, -242)
-texture = ExtResource("30_6yh2k")
-
-[node name="DialogueHolder" parent="NPC" instance=ExtResource("13_13vh2")]
-characterName = &"Schwarzeaugen"
-dialogue = ExtResource("15_i1ce5")
-sfxName = &"creepyTW"
+[node name="NPC" parent="." instance=ExtResource("46_hu5np")]
 
 [connection signal="pressed" from="ButtonsTemp/Ring Button" to="NPCController" method="Ring"]
 [connection signal="pressed" from="ButtonsTemp/Temp Talk Button" to="Player/DialogueNPCSignal" method="LookForNPCs"]
@@ -394,3 +335,4 @@ sfxName = &"creepyTW"
 
 [editable path="Screen X-Ray/Main"]
 [editable path="Screen X-Ray/Main/MaleColoured"]
+[editable path="NPC"]
