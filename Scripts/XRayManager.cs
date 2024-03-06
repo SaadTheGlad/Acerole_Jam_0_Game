@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 using System.Security;
 
+[GlobalClass]
 public partial class XRayManager : Node
 {
     [Export(PropertyHint.Range, "0,100,")] public float percentageOfAbberation = 20f;
@@ -21,6 +22,8 @@ public partial class XRayManager : Node
     [Export] public Color normalBoneColour;
     [Export] public Color organsHighLightColour;
     [Export] public Color transparentColour;
+    [ExportGroup("Misc")]
+    [Export] public Button selectAnomalyButton;
 
     private Godot.Collections.Array<Sprite2D> skeletonArrayPublic = new Godot.Collections.Array<Sprite2D>();
     private Godot.Collections.Array<Sprite2D> skeletonArray;
@@ -38,8 +41,10 @@ public partial class XRayManager : Node
 
     bool isOnSkeleton = false;
 
-    Sprite2D currentSelectedBone;
-    Sprite2D currentSelectedOrgan;
+    public Sprite2D currentSelectedBone;
+    public Sprite2D currentSelectedOrgan;    
+    public Sprite2D anomalyBone;
+    public Sprite2D anomalyOrgan;
 
     Vector2 ogSkeletonPos;
     Vector2 ogOrgansPos;
@@ -57,19 +62,27 @@ public partial class XRayManager : Node
     {
         SignalsManager.Instance.DialogueEnded += EnableScan;
         SignalsManager.Instance.Admitted += DisableScan;
+        SignalsManager.Instance.ResetScan += ResetScan;
     }
 
     public override void _ExitTree()
     {
         SignalsManager.Instance.DialogueEnded -= EnableScan;
         SignalsManager.Instance.Admitted -= DisableScan;
+        SignalsManager.Instance.ResetScan -= ResetScan;
+    }
 
-
+    public void ResetScan()
+    {
+        skeleton.Visible = false;
+        organs.Visible = false;
+        selectAnomalyButton.Visible = false;
+        hasScannedOrgans = false;
+        hasScannedSkeleton = false;
     }
 
     public void EnableScan() => canStartScan = true;
     public void DisableScan() => canStartScan = false;
-
     public void StartScan()
     {
         if(canStartScan)
@@ -83,24 +96,19 @@ public partial class XRayManager : Node
             canStartScan = false;
         }
     }
-
     public void PullUpScanScreen()
     {
         scanScreenPlayer.Play("SlideIn");
     }
-
     public void CloseScanScreen()
     {
         scanScreenPlayer.Play("SlideOut");
     }
-
     public void OpenJudging()
     {
         judgingPlayer.Play("Open");
         helperPlayer.Play("RiseUp");
     }
-
-
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventMouseButton inputEventMouse)
@@ -127,6 +135,7 @@ public partial class XRayManager : Node
                         if (skeletonArrayPublic[i].GetRect().HasPoint(mousePos) && skeletonArrayPublic[i].IsPixelOpaque(mousePos))
                         {
                             currentSelectedBone = skeletonArrayPublic[i];
+                            selectAnomalyButton.Visible = true;
                             skeletonArrayPublic[i].SelfModulate = highlightColour;
                             return;
 
@@ -145,8 +154,8 @@ public partial class XRayManager : Node
                         Vector2 mousePos = organsArrayPublic[i].ToLocal(inputEventMouse.GlobalPosition);
                         if (organsArrayPublic[i].GetRect().HasPoint(mousePos) && organsArrayPublic[i].IsPixelOpaque(mousePos))
                         {
-                            GD.Print(organsArrayPublic[i].Name);
                             currentSelectedOrgan = organsArrayPublic[i];
+                            selectAnomalyButton.Visible = true;
                             organsArrayPublic[i].SelfModulate = organsHighLightColour;
                             return;
 
@@ -159,7 +168,6 @@ public partial class XRayManager : Node
             }
         }
     }
-
     public void ScanSkeleton()
     {
         skeleton.Visible = true;
@@ -220,16 +228,11 @@ public partial class XRayManager : Node
             currentSkeletonIndex = randomIndex;
             Sprite2D current = skeletonArrayPublic[randomIndex];
             current.SelfModulate = veryTranslucentColour;
+            anomalyBone = current;
             hasScannedSkeleton = true;
         }
-        else
-        {
-            GD.Print("Safe Skeleton");
-        }
 
-        GD.Print("Skeleton percentage: " + randomValue + "%");
     }
-
     public void ScanOrgans()
     {
         skeleton.Visible = false;
@@ -295,16 +298,11 @@ public partial class XRayManager : Node
             currentOrgansIndex = randomIndex;
             Sprite2D current = organsArrayPublic[randomIndex];
             current.SelfModulate = veryTranslucentColour;
+            anomalyOrgan = current;
             hasScannedOrgans = true;
         }
-        else
-        {
-            GD.Print("Safe Organs");
-        }
 
-        GD.Print("Organs percentage: " + randomValue + "%");
     }
-
     int RandomSelectionSkeleton()
     {
         //Shuffle bag random selection
@@ -320,7 +318,6 @@ public partial class XRayManager : Node
         uint randomIndex = GD.Randi() % (uint)skeletonArrayPublic.Count;
         return (int)randomIndex;
     }
-
     int RandomSelectionOrgans()
     {
         //Shuffle bag random selection

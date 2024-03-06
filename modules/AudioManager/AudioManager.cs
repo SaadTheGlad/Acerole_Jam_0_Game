@@ -24,7 +24,8 @@ public partial class AudioManager : Node
 
 		if(Instance != null)
 		{
-			//GD.Print("More than one ", Instance.Name);
+			//
+			//("More than one ", Instance.Name);
 
 		}
 		else

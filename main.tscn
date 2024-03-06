@@ -259,12 +259,13 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
-[node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "controller")]
+[node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "controller", "xRayManager")]
 script = ExtResource("1_oafhd")
 judgingPlayer = NodePath("../WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/AnimationPlayer")
 controller = NodePath("../NPCController")
 fallingSpeed = 1.0
 curve = SubResource("Curve_4fejt")
+xRayManager = NodePath("../X-Ray Manager")
 
 [node name="NPCCreator" type="Node" parent="." node_paths=PackedStringArray("Outward")]
 script = ExtResource("1_olf47")
@@ -281,9 +282,9 @@ hairstyles = Array[Texture2D]([ExtResource("30_6yh2k"), ExtResource("12_ecb3y"),
 lips = Array[Texture2D]([ExtResource("32_3e3bj"), ExtResource("16_3x7k4"), ExtResource("17_2adqt")])
 eyes = Array[Object]([SubResource("Resource_l2noe"), SubResource("Resource_6h188"), SubResource("Resource_ma3dy")])
 
-[node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "skeleton", "organs")]
+[node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "skeleton", "organs", "selectAnomalyButton")]
 script = ExtResource("1_k6ho4")
-percentageOfAbberation = 0.0
+percentageOfAbberation = 100.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -294,6 +295,7 @@ veryTranslucentColour = Color(1, 1, 1, 0.00392157)
 highlightColour = Color(1, 0, 0, 1)
 normalBoneColour = Color(1, 1, 1, 1)
 organsHighLightColour = Color(0, 0, 0, 1)
+selectAnomalyButton = NodePath("../Screen X-Ray/Main/Select Anomaly")
 
 [node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal")]
 script = ExtResource("1_0cfmg")
@@ -359,6 +361,7 @@ theme_override_font_sizes/font_size = 51
 text = "Ring Person"
 
 [node name="Let Pass Button" parent="WorkingArea/ButtonsTemp" instance=ExtResource("86_vsxkr")]
+visible = false
 self_modulate = Color(1, 1, 0, 1)
 offset_left = -103.0
 offset_top = 101.0
@@ -440,6 +443,17 @@ offset_left = 396.0
 offset_right = 841.0
 theme_override_font_sizes/font_size = 51
 text = "Scan Organs"
+
+[node name="Select Anomaly" parent="Screen X-Ray/Main" instance=ExtResource("86_vsxkr")]
+visible = false
+modulate = Color(0.670588, 0.305882, 1, 1)
+offset_left = -883.0
+offset_top = -105.0
+offset_right = -368.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 51
+text = "Select Anomaly
+"
 
 [node name="Sprite2D2" type="Sprite2D" parent="Screen X-Ray/Main"]
 self_modulate = Color(0, 0, 0.337255, 1)
@@ -541,10 +555,12 @@ sfxName = &"creepyTW"
 [connection signal="pressed" from="WorkingArea/ButtonsTemp/Ring Button" to="NPCController" method="Ring"]
 [connection signal="pressed" from="WorkingArea/ButtonsTemp/Let Pass Button" to="NPCController" method="Admit"]
 [connection signal="pressed" from="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="JudgingManager" method="FallGuy"]
-[connection signal="pressed" from="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/Interrogate Button" to="NPCController" method="Admit"]
+[connection signal="pressed" from="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/Interrogate Button" to="JudgingManager" method="Interrogate"]
 [connection signal="pressed" from="WorkingArea/ButtonsTemp/X Ray Button" to="X-Ray Manager" method="StartScan"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="X-Ray Manager" method="ScanOrgans"]
+[connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="JudgingManager" method="SelectAnomaly"]
+[connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="X-Ray Manager" method="CloseScanScreen"]
 [connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="X-Ray Manager" method="CloseScanScreen"]
 
 [editable path="Screen X-Ray/Main"]

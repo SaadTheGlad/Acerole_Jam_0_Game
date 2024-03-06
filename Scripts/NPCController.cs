@@ -42,6 +42,7 @@ public partial class NPCController : Node
     {
         if(hasReached && !npcSignal.isTalking)
         {
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Admitted);
             AdmitGuy();
             hasReached = false;
