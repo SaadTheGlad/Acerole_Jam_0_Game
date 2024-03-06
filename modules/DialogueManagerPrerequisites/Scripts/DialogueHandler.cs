@@ -20,6 +20,18 @@ public partial class DialogueHandler : Node
     public override void _Ready()
     {
         encounteredNPCSignalHolder.EncounteredNPC += CheckNPC;
+
+        //Makes sure that you don't spawn a new balloon right after you close one by adding a little delay
+        DialogueManager.DialogueEnded += (Resource dialogueResource) =>
+        {
+            WaitForBalloon();
+        };
+
+        DialogueManager.GotDialogue += (DialogueLine dialogueLine) =>
+        {
+            GotDialogue(dialogueLine);
+
+        };
     }
 
     public override void _ExitTree()
@@ -27,32 +39,21 @@ public partial class DialogueHandler : Node
         encounteredNPCSignalHolder.EncounteredNPC -= CheckNPC;
     }
 
-    public override void _Process(double delta)
+
+    void GotDialogue(DialogueLine dialogueLine)
     {
-        //Makes sure that you don't spawn a new balloon right after you close one by adding a little delay
-        DialogueManager.DialogueEnded += (Resource dialogueResource) =>
+        string mood = dialogueLine.GetTagValue("mood");
+        if (iconTexture != null && dialogueHolder.emotions != null)
         {
-            WaitForBalloon();
-        };
-
-        
-
-        DialogueManager.GotDialogue += (DialogueLine dialogueLine) =>
-        {
-            string mood = dialogueLine.GetTagValue("mood");
-            if (iconTexture != null && dialogueHolder.emotions != null)
+            foreach (var e in dialogueHolder.emotions)
             {
-                foreach (var e in dialogueHolder.emotions)
+                if (e.emotionName == mood)
                 {
-                    if (e.emotionName == mood)
-                    {
-                        iconTexture.Texture = e.texture;
-                        break;
-                    }
+                    iconTexture.Texture = e.texture;
+                    break;
                 }
             }
-
-        };
+        }
     }
 
     public void DebugDialogue()

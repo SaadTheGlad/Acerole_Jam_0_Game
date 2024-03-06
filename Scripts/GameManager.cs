@@ -9,7 +9,7 @@ public partial class GameManager : Node
     public override void _EnterTree()
     {
 
-        if (Instance != null)
+        if (IsInstanceValid(Instance))
         {
             GD.Print("More than one ", Instance.Name);
 
