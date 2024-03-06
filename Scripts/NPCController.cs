@@ -32,8 +32,8 @@ public partial class NPCController : Node
     {
         if(canRing)
         {
-            GD.Print("kill me man");
             CheckGuy();
+            //SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Ringed);
             canRing = false;
         }
     }
@@ -42,6 +42,7 @@ public partial class NPCController : Node
     {
         if(hasReached && !npcSignal.isTalking)
         {
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Admitted);
             AdmitGuy();
             hasReached = false;
         }

@@ -56,19 +56,32 @@ public partial class XRayManager : Node
     public override void _EnterTree()
     {
         SignalsManager.Instance.DialogueEnded += EnableScan;
+        SignalsManager.Instance.Admitted += DisableScan;
     }
 
     public override void _ExitTree()
     {
         SignalsManager.Instance.DialogueEnded -= EnableScan;
+        SignalsManager.Instance.Admitted -= DisableScan;
+
+
     }
 
     public void EnableScan() => canStartScan = true;
+    public void DisableScan() => canStartScan = false;
 
     public void StartScan()
     {
         if(canStartScan)
-         helperPlayer.Play("LowerDown");
+        {
+            helperPlayer.Play("LowerDown");
+            if(judgingPlayer.AssignedAnimation == "Open")
+            {
+                judgingPlayer.Play("Close");
+            }
+
+            canStartScan = false;
+        }
     }
 
     public void PullUpScanScreen()
@@ -86,6 +99,7 @@ public partial class XRayManager : Node
         judgingPlayer.Play("Open");
         helperPlayer.Play("RiseUp");
     }
+
 
     public override void _Input(InputEvent @event)
     {
@@ -159,44 +173,45 @@ public partial class XRayManager : Node
         }
 
         float randomValue = random.RandfRange(0f, 100f);
-        if (randomValue <= percentageOfAbberation/*20%*/)
-        {
 
-            foreach (var node in skeleton.GetChildren())
+
+        foreach (var node in skeleton.GetChildren())
+        {
+            if (true/*node.Name == boneGroups.ToString()*/)
             {
-                if (true/*node.Name == boneGroups.ToString()*/)
+                foreach (var bone in node.GetChildren())
                 {
-                    foreach (var bone in node.GetChildren())
+                    if (bone is Sprite2D sprite)
                     {
-                        if (bone is Sprite2D sprite)
+                        sprite = (Sprite2D)bone;
+                        skeletonArrayPublic.Add(sprite);
+                    }
+                    else
+                    {
+                        foreach (var secondaryBone in bone.GetChildren())
                         {
-                            sprite = (Sprite2D)bone;
-                            skeletonArrayPublic.Add(sprite);
-                        }
-                        else
-                        {
-                            foreach (var secondaryBone in bone.GetChildren())
+                            if (secondaryBone is Sprite2D spriteSecondary)
                             {
-                                if (secondaryBone is Sprite2D spriteSecondary)
-                                {
-                                    spriteSecondary = (Sprite2D)secondaryBone;
-                                    skeletonArrayPublic.Add(spriteSecondary);
-                                }
+                                spriteSecondary = (Sprite2D)secondaryBone;
+                                skeletonArrayPublic.Add(spriteSecondary);
                             }
                         }
                     }
+                }
 
-                }
-                if (node is Sprite2D spriteHigher)
-                {
-                    skeletonArrayPublic.Add(spriteHigher);
-                }
             }
+            if (node is Sprite2D spriteHigher)
+            {
+                skeletonArrayPublic.Add(spriteHigher);
+            }
+        }
 
-            skeletonArray = skeletonArrayPublic.Duplicate();
-            skeletonArrayFull = skeletonArray.Duplicate();
-            skeletonArray.Shuffle();
+        skeletonArray = skeletonArrayPublic.Duplicate();
+        skeletonArrayFull = skeletonArray.Duplicate();
+        skeletonArray.Shuffle();
 
+        if (randomValue <= percentageOfAbberation/*20%*/)
+        {
             int randomIndex = RandomSelectionSkeleton();
             while (skeletonArrayPublic[randomIndex].IsInGroup("Avoid"))
             {
@@ -228,48 +243,50 @@ public partial class XRayManager : Node
         }
 
         float randomValue = random.RandfRange(0f, 100f);
-        if(randomValue <= percentageOfAbberation)
-        {
-            foreach (var node in organs.GetChildren())
-            {
-                if (true/*node.Name == boneGroups.ToString()*/)
-                {
-                    foreach (var bone in node.GetChildren())
-                    {
-                        if (bone is Sprite2D sprite)
-                        {
-                            sprite = (Sprite2D)bone;
-                            organsArrayPublic.Add(sprite);
-                            nameAndOrganColourDictionary.Add(sprite.Name, sprite.SelfModulate);
-                        }
-                        else
-                        {
-                            foreach (var secondaryBone in bone.GetChildren())
-                            {
-                                if (secondaryBone is Sprite2D spriteSecondary)
-                                {
-                                    spriteSecondary = (Sprite2D)secondaryBone;
-                                    organsArrayPublic.Add(spriteSecondary);
-                                    nameAndOrganColourDictionary.Add(spriteSecondary.Name, spriteSecondary.SelfModulate);
 
-                                }
+        
+        foreach (var node in organs.GetChildren())
+        {
+            if (true/*node.Name == boneGroups.ToString()*/)
+            {
+                foreach (var bone in node.GetChildren())
+                {
+                    if (bone is Sprite2D sprite)
+                    {
+                        sprite = (Sprite2D)bone;
+                        organsArrayPublic.Add(sprite);
+                        nameAndOrganColourDictionary.Add(sprite.Name, sprite.SelfModulate);
+                    }
+                    else
+                    {
+                        foreach (var secondaryBone in bone.GetChildren())
+                        {
+                            if (secondaryBone is Sprite2D spriteSecondary)
+                            {
+                                spriteSecondary = (Sprite2D)secondaryBone;
+                                organsArrayPublic.Add(spriteSecondary);
+                                nameAndOrganColourDictionary.Add(spriteSecondary.Name, spriteSecondary.SelfModulate);
+
                             }
                         }
                     }
-
                 }
-                if (node is Sprite2D spriteHigher)
-                {
-                    organsArrayPublic.Add(spriteHigher);
-                    nameAndOrganColourDictionary.Add(spriteHigher.Name, spriteHigher.SelfModulate);
 
-                }
             }
+            if (node is Sprite2D spriteHigher)
+            {
+                organsArrayPublic.Add(spriteHigher);
+                nameAndOrganColourDictionary.Add(spriteHigher.Name, spriteHigher.SelfModulate);
 
-            organsArray = organsArrayPublic.Duplicate();
-            organsArrayFull = organsArray.Duplicate();
-            organsArray.Shuffle();
+            }
+        }
 
+        organsArray = organsArrayPublic.Duplicate();
+        organsArrayFull = organsArray.Duplicate();
+        organsArray.Shuffle();
+
+        if (randomValue <= percentageOfAbberation)
+        {
             int randomIndex = RandomSelectionOrgans();
             while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))
             {

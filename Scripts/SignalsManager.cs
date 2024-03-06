@@ -22,5 +22,7 @@ public partial class SignalsManager : Node
 
     [Signal] public delegate void DialogueStartedRunningEventHandler();
     [Signal] public delegate void DialogueEndedEventHandler();
+    [Signal] public delegate void AdmittedEventHandler();
+    [Signal] public delegate void CloseJudgingEventHandler();
     [Signal] public delegate void NPCHasPassedEventHandler();
 }
