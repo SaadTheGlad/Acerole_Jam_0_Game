@@ -20,7 +20,7 @@ public partial class SceneManager : Node
 
 		if (Instance != null)
 		{
-			GD.Print("More than one ", Instance.Name);
+			//GD.Print("More than one ", Instance.Name);
 
 		}
 		else
@@ -50,7 +50,7 @@ public partial class SceneManager : Node
         }
 		else
 		{
-            GD.PushWarning("Scene you selected does not exist, please check the name");
+            //GD.PushWarning("Scene you selected does not exist, please check the name");
             return null;
         }
 

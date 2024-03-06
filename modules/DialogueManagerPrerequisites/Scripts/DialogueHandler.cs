@@ -56,10 +56,6 @@ public partial class DialogueHandler : Node
         }
     }
 
-    public void DebugDialogue()
-    {
-        GD.Print("Function works");
-    }
 
     async void WaitForBalloon()
     {
@@ -81,7 +77,7 @@ public partial class DialogueHandler : Node
 
             if (dialogueHolder.Name.IsEmpty)
             {
-                GD.PrintErr("No name entered");
+                //GD.PrintErr("No name entered");
                 return;
             }
 
@@ -118,7 +114,7 @@ public partial class DialogueHandler : Node
             }
             else
             {
-                GD.PrintErr("The NPC with name " + dialogueHolder.characterName + " does not have a sound sfx.");
+                //GD.PrintErr("The NPC with name " + dialogueHolder.characterName + " does not have a sound sfx.");
             }
 
             if (dialogueHolder.font != null)
@@ -127,7 +123,7 @@ public partial class DialogueHandler : Node
             }
             else
             {
-                GD.PrintErr("The NPC with name " + dialogueHolder.characterName + " does not have a font, default font set.");
+                //GD.PrintErr("The NPC with name " + dialogueHolder.characterName + " does not have a font, default font set.");
             }
 
             balloon.Call("set_speed", dialogueHolder.baseSpeed);

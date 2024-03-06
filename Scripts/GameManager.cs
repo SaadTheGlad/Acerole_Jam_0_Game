@@ -11,7 +11,7 @@ public partial class GameManager : Node
 
         if (IsInstanceValid(Instance))
         {
-            GD.Print("More than one ", Instance.Name);
+            //GD.Print("More than one ", Instance.Name);
 
         }
         else

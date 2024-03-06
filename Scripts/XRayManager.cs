@@ -74,7 +74,6 @@ public partial class XRayManager : Node
 
                             if (bone.GetRect().HasPoint(mousePos) && bone.IsPixelOpaque(mousePos))
                             {
-                                GD.Print("Clicked on " + bone.Name + "!");
                                 bone.Modulate = highlightColour;
                             }
                             break;
@@ -96,7 +95,6 @@ public partial class XRayManager : Node
 
                             if (organ.GetRect().HasPoint(mousePos) && organ.IsPixelOpaque(mousePos))
                             {
-                                GD.Print("Clicked on " + organ.Name + "!");
                                 organ.Modulate = highlightColour;
                             }
                             break;

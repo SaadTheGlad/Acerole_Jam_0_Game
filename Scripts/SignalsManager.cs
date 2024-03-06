@@ -10,7 +10,7 @@ public partial class SignalsManager : Node
 
         if (Instance != null)
         {
-            GD.Print("More than one ", Instance.Name);
+            //GD.Print("More than one ", Instance.Name);
 
         }
         else

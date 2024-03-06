@@ -22,15 +22,15 @@ public partial class DialogueNPCSignal : Node
 
     void LookForNPCs()
     {
-        GD.Print("Looking...");
+        //GD.Print("Looking...");
         if(npcController.currentGuy != null)
         {
-            GD.Print("Guy detected, searching for handler...");
+            //GD.Print("Guy detected, searching for handler...");
             foreach(Node n in npcController.currentGuy.GetChildren())
             {
                 if(n is DialogueHolder holder)
                 {
-                    GD.Print("Found handler and talking.");
+                    //GD.Print("Found handler and talking.");
                     isTalking = true;
                     EmitSignal(SignalName.EncounteredNPC, npcController.currentGuy, holder);
                     break;
@@ -38,7 +38,7 @@ public partial class DialogueNPCSignal : Node
                 else
                 {
                     isTalking = false;
-                    GD.Print("Handler not found.");
+                    //GD.Print("Handler not found.");
 
                 }
             }
@@ -46,7 +46,7 @@ public partial class DialogueNPCSignal : Node
         else
         {
             isTalking = false;
-            GD.Print("Guy not detected.");
+            //GD.Print("Guy not detected.");
 
         }
     }
