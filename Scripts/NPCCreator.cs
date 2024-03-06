@@ -3,7 +3,7 @@ using System;
 
 public partial class NPCCreator : Node
 {
-    [Export] public Node2D NPC;
+    [Export] public Node2D Outward;
 
     [ExportGroup("Colours")]
     [Export] Color[] skinColours;
@@ -13,17 +13,18 @@ public partial class NPCCreator : Node
     [Export] Color[] eyeColours;
 
     [ExportGroup("Body Parts")]
+
     [Export] Texture2D[] heads;
-    [Export] Texture2D[] lips;
     [Export] Texture2D[] noses;
-    [Export] Texture2D[] hairstyles;
     [Export] Texture2D[] ears;
+    [Export] Texture2D[] hairstyles;
+    [Export] Texture2D[] lips;
     [Export] Eyes[] eyes;
 
+    RandomNumberGenerator random = new RandomNumberGenerator();
 
 
-
-    public override void _EnterTree()
+    public override void _Ready()
     {
         ApplyBodyAndColours();
     }
@@ -32,50 +33,46 @@ public partial class NPCCreator : Node
     {
         Color skinColour = GetRandomColour(skinColours);
 
-        foreach (var node in NPC.GetChildren())
+        foreach (var node in Outward.GetChildren())
         {
+
             if (node is Sprite2D sprite)
             {
+                if (sprite.IsInGroup("Skin"))
+                {
+                    sprite.SelfModulate = skinColour;
+                }
+
+                switch (sprite.Name)
+                {
+                    case "Head":
+                        sprite.Texture = GetRandomTexture(heads);
+                        break;
+
+                    case "Nose":
+                        sprite.Texture = GetRandomTexture(noses);
+                        break;
+
+                    case "Ears":
+                        sprite.Texture = GetRandomTexture(ears);
+                        break;
+                    case "Hair":
+                        sprite.Texture = GetRandomTexture(hairstyles);
+                        sprite.SelfModulate = GetRandomColour(hairColours);
+                        break;
+                    case "Lips":
+                        sprite.Texture = GetRandomTexture(lips);
+                        sprite.SelfModulate = GetRandomColour(lipColours);
+                        break;
+                    case "TShirt":
+                        sprite.SelfModulate = GetRandomColour(shirtColours);
+                        break;
+                }
 
 
-                //if (sprite.IsInGroup("Skin"))
-                //{
-                //    sprite.SelfModulate = skinColour;
-                //}
 
-                //if (sprite.Name == "TShirt")
-                //{
-                //    sprite.SelfModulate = GetRandomColour(shirtColours);
-                //}
-
-                //if (sprite.Name == "Nose")
-                //{
-                //    sprite.Texture = GetRandomTexture(noses);
-                //}
-
-                //if (sprite.Name == "Head")
-                //{
-                //    sprite.Texture = GetRandomTexture(heads);
-                //}
-
-                //if (sprite.Name == "Ears")
-                //{
-                //    sprite.Texture = GetRandomTexture(ears);
-                //}
-
-                //if (sprite.IsInGroup("Hair"))
-                //{
-                //    sprite.Texture = GetRandomTexture(hairstyles);
-                //    sprite.SelfModulate = GetRandomColour(hairColours);
-                //}
-
-                //if (sprite.Name == "Lips")
-                //{
-                //    sprite.Texture = GetRandomTexture(lips);
-                //    sprite.SelfModulate = GetRandomColour(lipColours);
-                //}
             }
-            else
+            else if(node is Node2D)
             {
                 //We're in the eye
                 Eyes randomEye = GetRandomEye(eyes);
@@ -111,6 +108,7 @@ public partial class NPCCreator : Node
                         highlightSprite.Texture = randomEye.highlights;
                     }
                 }
+
             }
 
 
@@ -119,22 +117,21 @@ public partial class NPCCreator : Node
 
     Color GetRandomColour(Color[] colorArray)
     {
-        int randomIndex = (int)(GD.Randi() % (colorArray.Length));
-        Color randomColour = colorArray[randomIndex];
-        return randomColour;
+        int randomIndex = random.RandiRange(0, colorArray.Length - 1);
+        return colorArray[randomIndex];
     }
 
     Texture2D GetRandomTexture(Texture2D[] textureArray)
     {
-        int randomIndex = (int)(GD.Randi() % (textureArray.Length));
-        Texture2D randomTexture = textureArray[randomIndex];
-        return randomTexture;
+        int randomIndex = random.RandiRange(0, textureArray.Length - 1);
+        //GD.Print("Called Texture with index: " + randomIndex);
+        return textureArray[randomIndex];
     }
 
     Eyes GetRandomEye(Eyes[] eyesArray)
     {
-        int randomIndex = (int)(GD.Randi() % (eyesArray.Length));
-        Eyes randomEye = eyesArray[randomIndex];
-        return randomEye;
+        int randomIndex = random.RandiRange(0, eyesArray.Length - 1);
+        //GD.Print("Called Eye with index: " + randomIndex);
+        return eyesArray[randomIndex];
     }
 }
