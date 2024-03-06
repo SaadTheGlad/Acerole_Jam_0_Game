@@ -3,6 +3,9 @@ using System;
 
 public partial class JudgingManager : Node
 {
+    [ExportCategory("Dialogues")]
+    [Export] public DialogueJudges[] dialogueJudges;
+    [ExportCategory("Other")]
     [Export] public AnimationPlayer judgingPlayer;
     [Export] public NPCController controller;
     [Export] public float fallingSpeed;
@@ -74,13 +77,15 @@ public partial class JudgingManager : Node
             if (selectedBone.Name == anomalyBone.Name)
             {
                 //do interrogation depending on the type of anomaly
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, dialogueJudges[0]);
+
                 selectedBone = null;
 
             }
             else
             {
                 controller.Admit();
-                GetTree().ReloadCurrentScene();
+                //Dies
             }
         }
         else if(anomalyOrgan != null)
@@ -95,7 +100,7 @@ public partial class JudgingManager : Node
             else
             {
                 controller.Admit();
-                GetTree().ReloadCurrentScene();
+                //Dies
             }
 
         }

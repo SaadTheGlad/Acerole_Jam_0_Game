@@ -26,4 +26,5 @@ public partial class SignalsManager : Node
     [Signal] public delegate void ResetScanEventHandler();
     [Signal] public delegate void CloseJudgingEventHandler();
     [Signal] public delegate void NPCHasPassedEventHandler();
+    [Signal] public delegate void InterrogateEventHandler(DialogueJudges judge);
 }

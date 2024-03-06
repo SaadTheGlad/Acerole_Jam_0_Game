@@ -94,67 +94,67 @@ texture = ExtResource("3_0ugdc")
 
 [node name="Ribs" type="Node2D" parent="Skeleton"]
 
-[node name="12Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="12Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("4_bduk4")
 
-[node name="11Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="11Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("5_iipg8")
 
-[node name="10Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="10Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("6_ob7nx")
 
-[node name="9Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="9Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("7_lf6yv")
 
-[node name="8Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="8Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("8_d6r6i")
 
-[node name="7Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="7Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("9_jtm7p")
 
-[node name="6Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="6Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("10_kk61d")
 
-[node name="5Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="5Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("11_jgflw")
 
-[node name="4Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="4Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("12_ftj37")
 
-[node name="3Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="3Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("13_kp2nu")
 
-[node name="2Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="2Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("14_typ5d")
 
-[node name="1Rib" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="1Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("15_f18ss")
 
-[node name="Sternum" type="Sprite2D" parent="Skeleton/Ribs"]
+[node name="Sternum" type="Sprite2D" parent="Skeleton/Ribs" groups=["Avoid"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("16_7byrq")
@@ -191,7 +191,7 @@ position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("22_5gyvy")
 
-[node name="Pelvis" type="Sprite2D" parent="Skeleton"]
+[node name="Pelvis" type="Sprite2D" parent="Skeleton" groups=["Avoid"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("23_ooegw")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=71 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bvuujxl634baj" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHandler.tscn" id="3_m45lx"]
 [ext_resource type="Texture2D" uid="uid://cx7hf71ygt40a" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 2.PNG" id="3_pq5c5"]
 [ext_resource type="Texture2D" uid="uid://vpbu0uxfwxlc" path="res://Images/UI/Main/Desk.PNG" id="3_rf5ro"]
+[ext_resource type="Script" path="res://Scripts/DialogueJudges.cs" id="3_t38qv"]
 [ext_resource type="Texture2D" uid="uid://b7dv1iker83r1" path="res://Images/UI/Main/BG/Stars.PNG" id="3_vvaag"]
 [ext_resource type="Texture2D" uid="uid://bhvhrtw5kwanc" path="res://Images/UI/Main/Window/Frame.PNG" id="4_j4hjr"]
 [ext_resource type="Texture2D" uid="uid://c0y8p8f4etvu2" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 3.PNG" id="4_ogc8a"]
@@ -51,8 +52,14 @@
 [ext_resource type="Texture2D" uid="uid://bvwipjfrl0bnl" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 1.PNG" id="31_rbl4f"]
 [ext_resource type="Texture2D" uid="uid://c3mj2ulxk1jps" path="res://Images/Bodies/Male/Outer Bodies/Lips/Lips 1.PNG" id="32_3e3bj"]
 [ext_resource type="Texture2D" uid="uid://bwpj0dgj8geg6" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 1.PNG" id="33_jfa6y"]
+[ext_resource type="Resource" uid="uid://c8n2vrywoahnr" path="res://Dialogue/Interrogations/Missing_Rib.dialogue" id="39_8pbci"]
 [ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="86_vsxkr"]
 [ext_resource type="Texture2D" uid="uid://2i2unxj3453e" path="res://Images/UI/X-Ray Stuff/X-ray Helper.png" id="87_kyekx"]
+
+[sub_resource type="Resource" id="Resource_gvssg"]
+script = ExtResource("3_t38qv")
+dialogueName = "ribs"
+dialogue = ExtResource("39_8pbci")
 
 [sub_resource type="Curve" id="Curve_4fejt"]
 _data = [Vector2(0, 0), 0.0, -0.101894, 0, 0, Vector2(0.487805, 0.993179), 0.0690391, 0.0, 0, 0]
@@ -261,6 +268,7 @@ _data = {
 
 [node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "controller", "xRayManager")]
 script = ExtResource("1_oafhd")
+dialogueJudges = Array[Object]([SubResource("Resource_gvssg")])
 judgingPlayer = NodePath("../WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/AnimationPlayer")
 controller = NodePath("../NPCController")
 fallingSpeed = 1.0
@@ -284,7 +292,8 @@ eyes = Array[Object]([SubResource("Resource_l2noe"), SubResource("Resource_6h188
 
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "skeleton", "organs", "selectAnomalyButton")]
 script = ExtResource("1_k6ho4")
-percentageOfAbberation = 100.0
+percentageOfSkeletonAbberation = 100.0
+percentageOfOrganAbberation = 0.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -312,8 +321,12 @@ script = ExtResource("11_g7kqk")
 
 [node name="Player" type="Node2D" parent="."]
 
-[node name="DialogueNPCSignal" parent="Player" node_paths=PackedStringArray("npcController") instance=ExtResource("2_sniyy")]
+[node name="DialogueNPCSignal" parent="Player" node_paths=PackedStringArray("player", "npcController") instance=ExtResource("2_sniyy")]
+player = NodePath("..")
 npcController = NodePath("../../NPCController")
+
+[node name="DialogueHolder" parent="Player" instance=ExtResource("13_13vh2")]
+characterName = &"You"
 
 [node name="WorkingArea" type="Node2D" parent="."]
 

@@ -6,7 +6,8 @@ using System.Security;
 [GlobalClass]
 public partial class XRayManager : Node
 {
-    [Export(PropertyHint.Range, "0,100,")] public float percentageOfAbberation = 20f;
+    [Export(PropertyHint.Range, "0,100,")] public float percentageOfSkeletonAbberation = 20f;
+    [Export(PropertyHint.Range, "0,100,")] public float percentageOfOrganAbberation = 20f;
     RandomNumberGenerator random = new RandomNumberGenerator();
 
     [ExportGroup("Animation Players")]
@@ -218,7 +219,7 @@ public partial class XRayManager : Node
         skeletonArrayFull = skeletonArray.Duplicate();
         skeletonArray.Shuffle();
 
-        if (randomValue <= percentageOfAbberation/*20%*/)
+        if (randomValue <= percentageOfSkeletonAbberation/*20%*/)
         {
             int randomIndex = RandomSelectionSkeleton();
             while (skeletonArrayPublic[randomIndex].IsInGroup("Avoid"))
@@ -229,6 +230,7 @@ public partial class XRayManager : Node
             Sprite2D current = skeletonArrayPublic[randomIndex];
             current.SelfModulate = veryTranslucentColour;
             anomalyBone = current;
+            GD.Print(current.Name);
             hasScannedSkeleton = true;
         }
 
@@ -288,7 +290,7 @@ public partial class XRayManager : Node
         organsArrayFull = organsArray.Duplicate();
         organsArray.Shuffle();
 
-        if (randomValue <= percentageOfAbberation)
+        if (randomValue <= percentageOfOrganAbberation)
         {
             int randomIndex = RandomSelectionOrgans();
             while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))

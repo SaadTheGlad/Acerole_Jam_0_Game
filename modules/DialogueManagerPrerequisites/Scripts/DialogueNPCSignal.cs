@@ -6,6 +6,8 @@ public partial class DialogueNPCSignal : Node
 {
     [Signal] public delegate void EncounteredNPCEventHandler(Node2D npc, DialogueHolder holder);
 
+    [Export] Node2D player;
+
     [Export] public NPCController npcController;
 
     public bool isTalking = false;
@@ -13,11 +15,14 @@ public partial class DialogueNPCSignal : Node
     public override void _EnterTree()
     {
         npcController.GuyCame += LookForNPCs;
+        SignalsManager.Instance.Interrogate += TalkInterrogate;
     }
 
     public override void _ExitTree()
     {
         npcController.GuyCame -= LookForNPCs;
+        SignalsManager.Instance.Interrogate -= TalkInterrogate;
+
     }
 
     void LookForNPCs()
@@ -48,6 +53,18 @@ public partial class DialogueNPCSignal : Node
             isTalking = false;
             //GD.Print("Guy not detected.");
 
+        }
+    }
+
+    void TalkInterrogate(DialogueJudges judge)
+    {
+        foreach(Node n in player.GetChildren())
+        {
+            if (n is DialogueHolder holder)
+            {
+                holder.dialogue = judge.dialogue;
+                EmitSignal(SignalName.EncounteredNPC, npcController.currentGuy, holder);
+            }
         }
     }
 }
