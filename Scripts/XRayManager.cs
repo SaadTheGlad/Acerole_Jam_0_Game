@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Security;
 
@@ -17,6 +18,9 @@ public partial class XRayManager : Node
     [Export] public Node2D organs;
     [Export] public Color veryTranslucentColour;
     [Export] public Color highlightColour;
+    [Export] public Color normalBoneColour;
+    [Export] public Color organsHighLightColour;
+    [Export] public Color transparentColour;
 
     private Godot.Collections.Array<Sprite2D> skeletonArrayPublic = new Godot.Collections.Array<Sprite2D>();
     private Godot.Collections.Array<Sprite2D> skeletonArray;
@@ -33,6 +37,21 @@ public partial class XRayManager : Node
     int currentOrgansIndex = -1000;
 
     bool isOnSkeleton = false;
+
+    Sprite2D currentSelectedBone;
+    Sprite2D currentSelectedOrgan;
+
+    Vector2 ogSkeletonPos;
+    Vector2 ogOrgansPos;
+    Vector2 outOfScreenPos = new Vector2(-405.115f, 4878.437f);
+
+    Dictionary<String, Color> nameAndOrganColourDictionary = new Dictionary<string, Color>();
+
+    public override void _Ready()
+    {
+        ogSkeletonPos = skeleton.Position;
+        ogOrgansPos = organs.Position;
+    }
 
     public override void _EnterTree()
     {
@@ -74,47 +93,53 @@ public partial class XRayManager : Node
         {
             if (inputEventMouse.Pressed && inputEventMouse.ButtonIndex == MouseButton.Left)
             {
-                //for sprites
-                if(skeletonArray != null)
+                if(currentSelectedBone != null)
                 {
-                    foreach (Sprite2D bone in skeletonArrayPublic)
-                    {
-                        //We're looking for this sprite, check if it's opaque and if not break the loop;
-                        if (skeletonArrayPublic.IndexOf(bone) == currentSkeletonIndex)
-                        {
-                            Vector2 mousePos = bone.ToLocal(inputEventMouse.GlobalPosition);
-
-                            if (bone.GetRect().HasPoint(mousePos) && bone.IsPixelOpaque(mousePos))
-                            {
-                                bone.Modulate = highlightColour;
-                            }
-                            break;
-                        }
-
-
-
-                    }
+                    currentSelectedBone.SelfModulate = normalBoneColour;
                 }
 
-                if (organsArray!= null)
+                if(currentSelectedOrgan != null && nameAndOrganColourDictionary.Count != 0)
                 {
-                    foreach (Sprite2D organ in organsArrayPublic)
-                    {
-                        //We're looking for this sprite, check if it's opaque and if not break the loop;
-                        if (organsArrayPublic.IndexOf(organ) == currentOrgansIndex)
-                        {
-                            Vector2 mousePos = organ.ToLocal(inputEventMouse.GlobalPosition);
+                    currentSelectedOrgan.SelfModulate = nameAndOrganColourDictionary[currentSelectedOrgan.Name];
+                }
 
-                            if (organ.GetRect().HasPoint(mousePos) && organ.IsPixelOpaque(mousePos))
-                            {
-                                organ.Modulate = highlightColour;
-                            }
-                            break;
+
+                //for skeleton
+                if(skeletonArray != null)
+                {
+                    for (int i = skeletonArrayPublic.Count - 1; i > -1; i--)
+                    {
+                        Vector2 mousePos = skeletonArrayPublic[i].ToLocal(inputEventMouse.GlobalPosition);
+                        if (skeletonArrayPublic[i].GetRect().HasPoint(mousePos) && skeletonArrayPublic[i].IsPixelOpaque(mousePos))
+                        {
+                            currentSelectedBone = skeletonArrayPublic[i];
+                            skeletonArrayPublic[i].SelfModulate = highlightColour;
+                            return;
+
                         }
 
+                    }
 
+                }
+
+                // for organs
+                if (organsArrayPublic != null)
+                {
+                    for (int i = organsArrayPublic.Count - 1; i > -1; i--)
+                    {
+
+                        Vector2 mousePos = organsArrayPublic[i].ToLocal(inputEventMouse.GlobalPosition);
+                        if (organsArrayPublic[i].GetRect().HasPoint(mousePos) && organsArrayPublic[i].IsPixelOpaque(mousePos))
+                        {
+                            GD.Print(organsArrayPublic[i].Name);
+                            currentSelectedOrgan = organsArrayPublic[i];
+                            organsArrayPublic[i].SelfModulate = organsHighLightColour;
+                            return;
+
+                        }
 
                     }
+
                 }
 
             }
@@ -123,8 +148,10 @@ public partial class XRayManager : Node
 
     public void ScanSkeleton()
     {
-        organs.Visible = false;
         skeleton.Visible = true;
+        skeleton.Position = ogSkeletonPos;
+        organs.Visible = false;
+        organs.Position = outOfScreenPos;
 
         if (hasScannedSkeleton)
         {
@@ -177,7 +204,7 @@ public partial class XRayManager : Node
             }
             currentSkeletonIndex = randomIndex;
             Sprite2D current = skeletonArrayPublic[randomIndex];
-            current.Modulate = veryTranslucentColour;
+            current.SelfModulate = veryTranslucentColour;
             hasScannedSkeleton = true;
         }
         else
@@ -191,7 +218,9 @@ public partial class XRayManager : Node
     public void ScanOrgans()
     {
         skeleton.Visible = false;
+        skeleton.Position = outOfScreenPos;
         organs.Visible = true;
+        organs.Position = ogOrgansPos;
 
         if (hasScannedOrgans)
         {
@@ -211,6 +240,7 @@ public partial class XRayManager : Node
                         {
                             sprite = (Sprite2D)bone;
                             organsArrayPublic.Add(sprite);
+                            nameAndOrganColourDictionary.Add(sprite.Name, sprite.SelfModulate);
                         }
                         else
                         {
@@ -220,6 +250,8 @@ public partial class XRayManager : Node
                                 {
                                     spriteSecondary = (Sprite2D)secondaryBone;
                                     organsArrayPublic.Add(spriteSecondary);
+                                    nameAndOrganColourDictionary.Add(spriteSecondary.Name, spriteSecondary.SelfModulate);
+
                                 }
                             }
                         }
@@ -229,6 +261,8 @@ public partial class XRayManager : Node
                 if (node is Sprite2D spriteHigher)
                 {
                     organsArrayPublic.Add(spriteHigher);
+                    nameAndOrganColourDictionary.Add(spriteHigher.Name, spriteHigher.SelfModulate);
+
                 }
             }
 
@@ -243,7 +277,7 @@ public partial class XRayManager : Node
             }
             currentOrgansIndex = randomIndex;
             Sprite2D current = organsArrayPublic[randomIndex];
-            current.Modulate = veryTranslucentColour;
+            current.SelfModulate = veryTranslucentColour;
             hasScannedOrgans = true;
         }
         else
@@ -285,4 +319,5 @@ public partial class XRayManager : Node
         uint randomIndex = GD.Randi() % (uint)organsArrayPublic.Count;
         return (int)randomIndex;
     }
+
 }

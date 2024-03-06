@@ -83,31 +83,6 @@ sclera = ExtResource("30_b358b")
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Animation" id="Animation_7nfgk"]
-resource_name = "Open"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.5, 0, -96, -0.8, -3, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
 [sub_resource type="Animation" id="Animation_owjp2"]
 resource_name = "Close"
 tracks/0/type = "bezier"
@@ -130,6 +105,31 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-96, -0.8, -3, 0.25, 0, 0, -0.25, 0, 0.5, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_7nfgk"]
+resource_name = "Open"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.5, 0, -96, -0.8, -3, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
@@ -278,11 +278,12 @@ skeleton = NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton")
 organs = NodePath("../Screen X-Ray/Main/MaleColoured/Organs")
 veryTranslucentColour = Color(1, 1, 1, 0.00392157)
 highlightColour = Color(1, 0, 0, 1)
+normalBoneColour = Color(1, 1, 1, 1)
+organsHighLightColour = Color(0, 0, 0, 1)
 
 [node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal")]
 script = ExtResource("1_0cfmg")
 NPC = NodePath("../NPC")
-movementSpeed = 0.5
 curve = SubResource("Curve_itk1r")
 npcSignal = NodePath("../Player/DialogueNPCSignal")
 
@@ -467,41 +468,33 @@ position = Vector2(-371, 519)
 scale = Vector2(0.489773, 0.489773)
 
 [node name="Outward" type="Node2D" parent="NPC"]
-scale = Vector2(1, 1)
 
 [node name="Body" type="Sprite2D" parent="NPC/Outward" groups=["Skin"]]
 position = Vector2(30, -242)
-scale = Vector2(1, 1)
 texture = ExtResource("23_jsupy")
 
 [node name="TShirt" type="Sprite2D" parent="NPC/Outward"]
 position = Vector2(30, -242)
-scale = Vector2(1, 1)
 texture = ExtResource("24_rit0e")
 
 [node name="Ears" type="Sprite2D" parent="NPC/Outward" groups=["Skin"]]
 position = Vector2(30, -242)
-scale = Vector2(1, 1)
 texture = ExtResource("25_h0c38")
 
 [node name="Head" type="Sprite2D" parent="NPC/Outward" groups=["Skin"]]
 position = Vector2(30, -242)
-scale = Vector2(1, 1)
 texture = ExtResource("31_rbl4f")
 
 [node name="Lips" type="Sprite2D" parent="NPC/Outward"]
 position = Vector2(30, -242)
-scale = Vector2(1, 1)
 texture = ExtResource("32_3e3bj")
 
 [node name="Nose" type="Sprite2D" parent="NPC/Outward"]
 position = Vector2(30, -242)
-scale = Vector2(1, 1)
 texture = ExtResource("33_jfa6y")
 
 [node name="Eyes" type="Node2D" parent="NPC/Outward"]
 position = Vector2(1058, -634)
-scale = Vector2(1, 1)
 
 [node name="Sclera" type="Sprite2D" parent="NPC/Outward/Eyes"]
 position = Vector2(-1028, 392)
@@ -524,7 +517,6 @@ texture = ExtResource("26_8amtq")
 
 [node name="Hair" type="Sprite2D" parent="NPC/Outward" groups=["Hair"]]
 position = Vector2(30, -242)
-scale = Vector2(1, 1)
 texture = ExtResource("30_6yh2k")
 
 [node name="DialogueHolder" parent="NPC" instance=ExtResource("13_13vh2")]
