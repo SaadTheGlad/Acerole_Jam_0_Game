@@ -23,6 +23,15 @@ public partial class NPCCreator : Node
 
     RandomNumberGenerator random = new RandomNumberGenerator();
 
+    public override void _EnterTree()
+    {
+        SignalsManager.Instance.NPCHasPassed += ApplyBodyAndColours;
+    }
+
+    public override void _ExitTree()
+    {
+        SignalsManager.Instance.NPCHasPassed -= ApplyBodyAndColours;
+    }
 
     public override void _Ready()
     {

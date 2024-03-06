@@ -1,7 +1,8 @@
-[gd_scene load_steps=66 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=68 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
+[ext_resource type="Script" path="res://Scripts/JudgingManager.cs" id="1_oafhd"]
 [ext_resource type="Script" path="res://Scripts/NPCCreator.cs" id="1_olf47"]
 [ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
 [ext_resource type="Texture2D" uid="uid://wbo7yx08rfpd" path="res://Images/UI/Main/BG/Sky.PNG" id="2_kjyi1"]
@@ -52,6 +53,10 @@
 [ext_resource type="Texture2D" uid="uid://bwpj0dgj8geg6" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 1.PNG" id="33_jfa6y"]
 [ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="86_vsxkr"]
 [ext_resource type="Texture2D" uid="uid://2i2unxj3453e" path="res://Images/UI/X-Ray Stuff/X-ray Helper.png" id="87_kyekx"]
+
+[sub_resource type="Curve" id="Curve_4fejt"]
+_data = [Vector2(0, 0), 0.0, -0.101894, 0, 0, Vector2(0.487805, 0.993179), 0.0690391, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Resource" id="Resource_l2noe"]
 script = ExtResource("18_hhyc8")
@@ -240,12 +245,19 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
+[node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "controller")]
+script = ExtResource("1_oafhd")
+judgingPlayer = NodePath("../WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/AnimationPlayer")
+controller = NodePath("../NPCController")
+fallingSpeed = 1.0
+curve = SubResource("Curve_4fejt")
+
 [node name="NPCCreator" type="Node" parent="." node_paths=PackedStringArray("Outward")]
 script = ExtResource("1_olf47")
 Outward = NodePath("../NPC/Outward")
 skinColours = PackedColorArray(1, 0.858824, 0.67451, 1, 0.945098, 0.760784, 0.490196, 1, 0.878431, 0.67451, 0.411765, 1, 0.776471, 0.52549, 0.258824, 1, 0.552941, 0.333333, 0.141176, 1, 0.301961, 0.176471, 0.0705882, 1)
 shirtColours = PackedColorArray(0.890196, 0.32549, 0, 1, 0.156863, 0.607843, 0.388235, 1, 0.698039, 0, 0, 1, 0.921569, 1, 0.231373, 1, 0, 0, 0.556863, 1)
-hairColours = PackedColorArray(0, 0, 0, 1, 0.411765, 0.231373, 0, 1, 1, 1, 1, 1, 1, 0.921569, 0.431373, 1, 1, 0.533333, 0, 1, 0.717647, 0, 0, 1)
+hairColours = PackedColorArray(0.14902, 0.0823529, 0, 1, 0.411765, 0.231373, 0, 1, 1, 1, 1, 1, 1, 0.921569, 0.431373, 1, 1, 0.533333, 0, 1, 0.717647, 0, 0, 1)
 lipColours = PackedColorArray(0.976471, 0.529412, 0.529412, 1, 0.905882, 0.415686, 0.415686, 1, 0.839216, 0.356863, 0.356863, 1, 0.756863, 0.294118, 0.294118, 1, 0.721569, 0.247059, 0.247059, 1)
 eyeColours = PackedColorArray(0, 0, 0, 1, 0.388235, 0.231373, 0.211765, 1, 0, 1, 0.815686, 1, 0, 1, 0.32549, 1, 1, 0, 0, 1)
 heads = Array[Texture2D]([ExtResource("31_rbl4f"), ExtResource("3_pq5c5"), ExtResource("4_ogc8a")])
@@ -257,6 +269,7 @@ eyes = Array[Object]([SubResource("Resource_l2noe"), SubResource("Resource_6h188
 
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "skeleton", "organs")]
 script = ExtResource("1_k6ho4")
+percentageOfAbberation = 100.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -266,9 +279,9 @@ organs = NodePath("../Screen X-Ray/Main/MaleColoured/Organs")
 veryTranslucentColour = Color(1, 1, 1, 0.00392157)
 highlightColour = Color(1, 0, 0, 1)
 
-[node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("guy", "npcSignal")]
+[node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal")]
 script = ExtResource("1_0cfmg")
-guy = NodePath("../NPC")
+NPC = NodePath("../NPC")
 movementSpeed = 0.5
 curve = SubResource("Curve_itk1r")
 npcSignal = NodePath("../Player/DialogueNPCSignal")
@@ -323,10 +336,21 @@ texture = ExtResource("2_4kdnl")
 position = Vector2(1339, 317)
 
 [node name="Ring Button" parent="WorkingArea/ButtonsTemp" instance=ExtResource("86_vsxkr")]
-offset_left = -186.0
-offset_top = -102.0
-offset_right = -50.0
-offset_bottom = 34.0
+offset_left = -103.0
+offset_top = -208.0
+offset_right = 327.0
+offset_bottom = -72.0
+theme_override_font_sizes/font_size = 51
+text = "Ring Person"
+
+[node name="Let Pass Button" parent="WorkingArea/ButtonsTemp" instance=ExtResource("86_vsxkr")]
+self_modulate = Color(1, 1, 0, 1)
+offset_left = -103.0
+offset_top = 101.0
+offset_right = 421.0
+offset_bottom = 237.0
+theme_override_font_sizes/font_size = 51
+text = "Let Person Pass"
 
 [node name="FinishButtonsHolder" type="Node2D" parent="WorkingArea/ButtonsTemp"]
 position = Vector2(131, 372)
@@ -359,10 +383,12 @@ libraries = {
 [node name="X Ray Button" type="Button" parent="WorkingArea/ButtonsTemp"]
 self_modulate = Color(0.929412, 0, 1, 1)
 z_index = 9
-offset_left = -186.0
-offset_top = 54.0
-offset_right = -50.0
-offset_bottom = 190.0
+offset_left = -103.0
+offset_top = -56.0
+offset_right = 335.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 51
+text = "Scan Person"
 icon = ExtResource("10_w5o83")
 
 [node name="Desk" type="Sprite2D" parent="WorkingArea"]
@@ -388,12 +414,31 @@ position = Vector2(960, 540)
 [node name="Main" parent="Screen X-Ray" instance=ExtResource("15_88key")]
 position = Vector2(1940, 0)
 
+[node name="Scan Skeleton Button" parent="Screen X-Ray/Main" index="1"]
+offset_left = 396.0
+offset_right = 876.0
+theme_override_font_sizes/font_size = 51
+text = "Scan Skeleton"
+
+[node name="Scan Organs Button" parent="Screen X-Ray/Main" index="2"]
+offset_left = 396.0
+offset_right = 841.0
+theme_override_font_sizes/font_size = 51
+text = "Scan Organs"
+
+[node name="Sprite2D2" type="Sprite2D" parent="Screen X-Ray/Main"]
+self_modulate = Color(0, 0, 0.337255, 1)
+position = Vector2(1, 0)
+texture = ExtResource("87_kyekx")
+
 [node name="Close Scan Area Button" parent="Screen X-Ray/Main" instance=ExtResource("86_vsxkr")]
-offset_left = 820.0
+offset_left = 685.0
 offset_top = 414.0
-offset_right = 956.0
+offset_right = 1024.0
 offset_bottom = 550.0
 scale = Vector2(0.740545, 0.740545)
+theme_override_font_sizes/font_size = 51
+text = "Go Back"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Screen X-Ray/Main"]
 libraries = {
@@ -408,7 +453,7 @@ z_index = 6
 position = Vector2(-1, -319)
 
 [node name="Sprite2D" type="Sprite2D" parent="BG X-Ray/Main"]
-self_modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0.337255, 1)
 texture = ExtResource("87_kyekx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BG X-Ray/Main"]
@@ -488,7 +533,8 @@ dialogue = ExtResource("15_i1ce5")
 sfxName = &"creepyTW"
 
 [connection signal="pressed" from="WorkingArea/ButtonsTemp/Ring Button" to="NPCController" method="Ring"]
-[connection signal="pressed" from="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="Player/DialogueNPCSignal" method="LookForNPCs"]
+[connection signal="pressed" from="WorkingArea/ButtonsTemp/Let Pass Button" to="NPCController" method="Admit"]
+[connection signal="pressed" from="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="JudgingManager" method="FallGuy"]
 [connection signal="pressed" from="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/Interrogate Button" to="NPCController" method="Admit"]
 [connection signal="pressed" from="WorkingArea/ButtonsTemp/X Ray Button" to="X-Ray Manager" method="StartScan"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]

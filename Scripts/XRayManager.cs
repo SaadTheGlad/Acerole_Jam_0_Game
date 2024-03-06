@@ -65,6 +65,7 @@ public partial class XRayManager : Node
     public void OpenJudging()
     {
         judgingPlayer.Play("Open");
+        helperPlayer.Play("RiseUp");
     }
 
     public override void _Input(InputEvent @event)
