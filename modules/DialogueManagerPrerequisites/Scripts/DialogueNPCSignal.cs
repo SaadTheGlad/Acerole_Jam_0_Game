@@ -6,36 +6,35 @@ public partial class DialogueNPCSignal : Node
 {
     [Signal] public delegate void EncounteredNPCEventHandler(Node2D npc, DialogueHolder holder);
 
+    [Export] NPCController npcController;
     [Export] Node2D player;
-
-    [Export] public NPCController npcController;
 
     public bool isTalking = false;
 
     public override void _EnterTree()
     {
-        npcController.GuyCame += LookForNPCs;
+        SignalsManager.Instance.NPCHasArrived += LookForNPCs;
         SignalsManager.Instance.Interrogate += TalkInterrogate;
     }
 
     public override void _ExitTree()
     {
-        npcController.GuyCame -= LookForNPCs;
+        SignalsManager.Instance.NPCHasArrived -= LookForNPCs;
         SignalsManager.Instance.Interrogate -= TalkInterrogate;
 
     }
 
     void LookForNPCs()
     {
-        //GD.Print("Looking...");
+        //Looking for NPC
         if(npcController.currentGuy != null)
         {
-            //GD.Print("Guy detected, searching for handler...");
+            //Person detected, looking for dialogue handler
             foreach(Node n in npcController.currentGuy.GetChildren())
             {
                 if(n is DialogueHolder holder)
                 {
-                    //GD.Print("Found handler and talking.");
+                    //Found handler and begins talking
                     isTalking = true;
                     EmitSignal(SignalName.EncounteredNPC, npcController.currentGuy, holder);
                     break;
@@ -51,7 +50,7 @@ public partial class DialogueNPCSignal : Node
         else
         {
             isTalking = false;
-            //GD.Print("Guy not detected.");
+            //Person not there
 
         }
     }

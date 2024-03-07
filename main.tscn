@@ -321,9 +321,9 @@ script = ExtResource("11_g7kqk")
 
 [node name="Player" type="Node2D" parent="."]
 
-[node name="DialogueNPCSignal" parent="Player" node_paths=PackedStringArray("player", "npcController") instance=ExtResource("2_sniyy")]
-player = NodePath("..")
+[node name="DialogueNPCSignal" parent="Player" node_paths=PackedStringArray("npcController", "player") instance=ExtResource("2_sniyy")]
 npcController = NodePath("../../NPCController")
+player = NodePath("..")
 
 [node name="DialogueHolder" parent="Player" instance=ExtResource("13_13vh2")]
 characterName = &"You"

@@ -10,7 +10,6 @@ public partial class JudgingManager : Node
     [Export] public NPCController controller;
     [Export] public float fallingSpeed;
     [Export] public Curve curve;
-
     [Export] XRayManager xRayManager;
 
     Sprite2D anomalyBone;
@@ -116,8 +115,6 @@ public partial class JudgingManager : Node
 
     public void SelectAnomaly()
     {
-
-
         selectedBone = xRayManager.currentSelectedBone;
         selectedOrgan = xRayManager.currentSelectedOrgan;
 

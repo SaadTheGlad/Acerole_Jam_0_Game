@@ -18,6 +18,7 @@ public partial class XRayManager : Node
     [Export] public Node2D xRayArea;
     [Export] public Node2D skeleton;
     [Export] public Node2D organs;
+    [ExportCategory("Colour")]
     [Export] public Color veryTranslucentColour;
     [Export] public Color highlightColour;
     [Export] public Color normalBoneColour;
@@ -49,7 +50,7 @@ public partial class XRayManager : Node
 
     Vector2 ogSkeletonPos;
     Vector2 ogOrgansPos;
-    Vector2 outOfScreenPos = new Vector2(-405.115f, 4878.437f);
+    Vector2 OUTOFSCREENPOS = new Vector2(-405.115f, 4878.437f);
 
     Dictionary<String, Color> nameAndOrganColourDictionary = new Dictionary<string, Color>();
 
@@ -174,7 +175,7 @@ public partial class XRayManager : Node
         skeleton.Visible = true;
         skeleton.Position = ogSkeletonPos;
         organs.Visible = false;
-        organs.Position = outOfScreenPos;
+        organs.Position = OUTOFSCREENPOS;
 
         if (hasScannedSkeleton)
         {
@@ -186,7 +187,7 @@ public partial class XRayManager : Node
 
         foreach (var node in skeleton.GetChildren())
         {
-            if (true/*node.Name == boneGroups.ToString()*/)
+            if (true)
             {
                 foreach (var bone in node.GetChildren())
                 {
@@ -219,7 +220,7 @@ public partial class XRayManager : Node
         skeletonArrayFull = skeletonArray.Duplicate();
         skeletonArray.Shuffle();
 
-        if (randomValue <= percentageOfSkeletonAbberation/*20%*/)
+        if (randomValue <= percentageOfSkeletonAbberation)
         {
             int randomIndex = RandomSelectionSkeleton();
             while (skeletonArrayPublic[randomIndex].IsInGroup("Avoid"))
@@ -238,7 +239,7 @@ public partial class XRayManager : Node
     public void ScanOrgans()
     {
         skeleton.Visible = false;
-        skeleton.Position = outOfScreenPos;
+        skeleton.Position = OUTOFSCREENPOS;
         organs.Visible = true;
         organs.Position = ogOrgansPos;
 

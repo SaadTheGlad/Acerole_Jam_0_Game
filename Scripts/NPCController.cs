@@ -51,8 +51,6 @@ public partial class NPCController : Node
 
     async private void CheckGuy()
     {
-
-
         float current = 0f;
         float target = 1f;
 
@@ -70,7 +68,7 @@ public partial class NPCController : Node
             {
                 hasReached = true;
                 currentGuy = NPC;
-                EmitSignal(SignalName.GuyCame);
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.NPCHasArrived);
                 break;
             }
 
