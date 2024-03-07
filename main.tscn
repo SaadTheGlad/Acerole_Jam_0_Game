@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=94 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
@@ -62,6 +62,11 @@
 [ext_resource type="Texture2D" uid="uid://bvwipjfrl0bnl" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 1.PNG" id="31_rbl4f"]
 [ext_resource type="Texture2D" uid="uid://c3mj2ulxk1jps" path="res://Images/Bodies/Male/Outer Bodies/Lips/Lips 1.PNG" id="32_3e3bj"]
 [ext_resource type="Texture2D" uid="uid://bwpj0dgj8geg6" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 1.PNG" id="33_jfa6y"]
+[ext_resource type="Texture2D" uid="uid://c85oc7by45uov" path="res://Images/UI/Little Objects/Bell/F1.PNG" id="56_8jhn2"]
+[ext_resource type="Texture2D" uid="uid://cin4yj6dfl576" path="res://Images/UI/Little Objects/Bell/F2.PNG" id="57_s5824"]
+[ext_resource type="BitMap" uid="uid://lyaulq6qjslj" path="res://Images/UI/Little Objects/Bell/BitMask.png" id="58_b2vtc"]
+[ext_resource type="Texture2D" uid="uid://n3be6fxxtqun" path="res://Images/UI/Little Objects/Scan Button/X-Ray Button Normal.png" id="59_0wwuk"]
+[ext_resource type="Texture2D" uid="uid://d18o8g7rocb7h" path="res://Images/UI/Little Objects/Scan Button/X-Ray Button Hover.png" id="60_tlsim"]
 [ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="86_vsxkr"]
 [ext_resource type="Texture2D" uid="uid://2i2unxj3453e" path="res://Images/UI/X-Ray Stuff/X-ray Helper.png" id="87_kyekx"]
 
@@ -386,6 +391,7 @@ sfxName = &"creepyTW"
 baseSpeed = 0.1
 
 [node name="WorkingArea" type="Node2D" parent="."]
+texture_filter = 1
 
 [node name="BG" type="Node2D" parent="WorkingArea"]
 z_index = 6
@@ -419,10 +425,36 @@ z_index = 9
 position = Vector2(960, 540)
 texture = ExtResource("2_4kdnl")
 
+[node name="Buttons" type="Node2D" parent="WorkingArea"]
+position = Vector2(1023, 423)
+
+[node name="Ring Button" type="TextureButton" parent="WorkingArea/Buttons"]
+z_index = 11
+offset_left = -235.0
+offset_top = 172.0
+offset_right = 151.0
+offset_bottom = 502.0
+scale = Vector2(0.420435, 0.420435)
+texture_normal = ExtResource("56_8jhn2")
+texture_pressed = ExtResource("57_s5824")
+texture_click_mask = ExtResource("58_b2vtc")
+
+[node name="Scan Button" type="TextureButton" parent="WorkingArea/Buttons"]
+z_index = 11
+offset_left = 366.0
+offset_top = -158.0
+offset_right = 720.0
+offset_bottom = 196.0
+scale = Vector2(0.420435, 0.420435)
+texture_normal = ExtResource("59_0wwuk")
+texture_pressed = ExtResource("59_0wwuk")
+texture_hover = ExtResource("60_tlsim")
+
 [node name="ButtonsTemp" type="Node2D" parent="WorkingArea"]
 position = Vector2(1339, 317)
 
 [node name="Ring Button" parent="WorkingArea/ButtonsTemp" instance=ExtResource("86_vsxkr")]
+visible = false
 offset_left = -103.0
 offset_top = -208.0
 offset_right = 327.0
@@ -469,6 +501,7 @@ libraries = {
 }
 
 [node name="X Ray Button" type="Button" parent="WorkingArea/ButtonsTemp"]
+visible = false
 self_modulate = Color(0.929412, 0, 1, 1)
 z_index = 9
 offset_left = -103.0
@@ -486,7 +519,7 @@ texture = ExtResource("3_rf5ro")
 
 [node name="Panel" type="Panel" parent="WorkingArea/Desk"]
 modulate = Color(1, 1, 1, 0)
-offset_left = -958.0
+offset_left = 72.0
 offset_top = 151.0
 offset_right = 964.0
 offset_bottom = 534.0
@@ -622,6 +655,8 @@ characterName = &"Schwarzeaugen"
 dialogue = ExtResource("15_i1ce5")
 sfxName = &"creepyTW"
 
+[connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="NPCController" method="Ring"]
+[connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="X-Ray Manager" method="StartScan"]
 [connection signal="pressed" from="WorkingArea/ButtonsTemp/Ring Button" to="NPCController" method="Ring"]
 [connection signal="pressed" from="WorkingArea/ButtonsTemp/Let Pass Button" to="NPCController" method="Admit"]
 [connection signal="pressed" from="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="JudgingManager" method="FallGuy"]

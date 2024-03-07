@@ -32,11 +32,16 @@ public partial class NPCController : Node
     {
         if(canRing)
         {
+
             CheckGuy();
             //SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Ringed);
             canRing = false;
         }
+
+        AudioManager.Instance.Play("ring");
+
     }
+
 
     public void Admit()
     {

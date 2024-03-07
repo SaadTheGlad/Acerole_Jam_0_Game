@@ -37,10 +37,6 @@ public partial class AudioManager : Node
 
 	}
 
-	public override void _Ready()
-	{
-		
-	}
 
     public void PlayMusic(string name)
 	{

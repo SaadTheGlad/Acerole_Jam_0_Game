@@ -426,7 +426,7 @@ position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("63_5738v")
 
-[node name="Brain" type="Sprite2D" parent="Organs"]
+[node name="Brain" type="Sprite2D" parent="Organs" groups=["Avoid"]]
 self_modulate = Color(0.670588, 0.470588, 0.478431, 1)
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)

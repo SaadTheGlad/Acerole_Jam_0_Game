@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://lyaulq6qjslj"
+path="res://.godot/imported/BitMask.png-50ae1da07eeca42f4768423266d886dd.res"
+
+[deps]
+
+source_file="res://Images/UI/Little Objects/Bell/BitMask.png"
+dest_files=["res://.godot/imported/BitMask.png-50ae1da07eeca42f4768423266d886dd.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
