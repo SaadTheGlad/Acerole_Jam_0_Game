@@ -329,7 +329,7 @@ _data = {
 script = ExtResource("1_oafhd")
 skeletonDialogueJudges = Array[Object]([SubResource("Resource_k83xa"), SubResource("Resource_tapia"), SubResource("Resource_ohbo3"), SubResource("Resource_4po85"), null])
 organsDialogueJudges = Array[Object]([SubResource("Resource_uytrx"), SubResource("Resource_5plvr"), SubResource("Resource_rdqgq"), SubResource("Resource_xiulc"), SubResource("Resource_v7ybv"), SubResource("Resource_fi88c")])
-judgingPlayer = NodePath("../WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/AnimationPlayer")
+judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
 controller = NodePath("../NPCController")
 fallingSpeed = 1.0
 curve = SubResource("Curve_4fejt")
@@ -356,7 +356,7 @@ percentageOfSkeletonAbberation = 0.0
 percentageOfOrganAbberation = 100.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
-judgingPlayer = NodePath("../WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/AnimationPlayer")
+judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
 xRayArea = NodePath("../Screen X-Ray/Main")
 skeleton = NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton")
 organs = NodePath("../Screen X-Ray/Main/MaleColoured/Organs")
@@ -428,6 +428,34 @@ texture = ExtResource("2_4kdnl")
 [node name="Buttons" type="Node2D" parent="WorkingArea"]
 position = Vector2(1023, 423)
 
+[node name="FinishButtonsHolder" type="Node2D" parent="WorkingArea/Buttons"]
+position = Vector2(447, 266)
+
+[node name="FinishButtons" type="Node2D" parent="WorkingArea/Buttons/FinishButtonsHolder"]
+
+[node name="Shoot Talk Button" type="Button" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
+self_modulate = Color(1, 0, 0, 1)
+z_index = 9
+offset_left = -140.0
+offset_top = 7.0
+offset_right = -4.0
+offset_bottom = 143.0
+icon = ExtResource("10_w5o83")
+
+[node name="Interrogate Button" type="Button" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
+self_modulate = Color(0.168627, 1, 0, 1)
+z_index = 9
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 141.0
+offset_bottom = 142.0
+icon = ExtResource("10_w5o83")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
+libraries = {
+"": SubResource("AnimationLibrary_p5g6n")
+}
+
 [node name="Ring Button" type="TextureButton" parent="WorkingArea/Buttons"]
 z_index = 11
 offset_left = -235.0
@@ -449,68 +477,6 @@ scale = Vector2(0.420435, 0.420435)
 texture_normal = ExtResource("59_0wwuk")
 texture_pressed = ExtResource("59_0wwuk")
 texture_hover = ExtResource("60_tlsim")
-
-[node name="ButtonsTemp" type="Node2D" parent="WorkingArea"]
-position = Vector2(1339, 317)
-
-[node name="Ring Button" parent="WorkingArea/ButtonsTemp" instance=ExtResource("86_vsxkr")]
-visible = false
-offset_left = -103.0
-offset_top = -208.0
-offset_right = 327.0
-offset_bottom = -72.0
-theme_override_font_sizes/font_size = 51
-text = "Ring Person"
-
-[node name="Let Pass Button" parent="WorkingArea/ButtonsTemp" instance=ExtResource("86_vsxkr")]
-visible = false
-self_modulate = Color(1, 1, 0, 1)
-offset_left = -103.0
-offset_top = 101.0
-offset_right = 421.0
-offset_bottom = 237.0
-theme_override_font_sizes/font_size = 51
-text = "Let Person Pass"
-
-[node name="FinishButtonsHolder" type="Node2D" parent="WorkingArea/ButtonsTemp"]
-position = Vector2(131, 372)
-
-[node name="FinishButtons" type="Node2D" parent="WorkingArea/ButtonsTemp/FinishButtonsHolder"]
-
-[node name="Shoot Talk Button" type="Button" parent="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons"]
-self_modulate = Color(1, 0, 0, 1)
-z_index = 9
-offset_left = -140.0
-offset_top = 7.0
-offset_right = -4.0
-offset_bottom = 143.0
-icon = ExtResource("10_w5o83")
-
-[node name="Interrogate Button" type="Button" parent="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons"]
-self_modulate = Color(0.168627, 1, 0, 1)
-z_index = 9
-offset_left = 5.0
-offset_top = 6.0
-offset_right = 141.0
-offset_bottom = 142.0
-icon = ExtResource("10_w5o83")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons"]
-libraries = {
-"": SubResource("AnimationLibrary_p5g6n")
-}
-
-[node name="X Ray Button" type="Button" parent="WorkingArea/ButtonsTemp"]
-visible = false
-self_modulate = Color(0.929412, 0, 1, 1)
-z_index = 9
-offset_left = -103.0
-offset_top = -56.0
-offset_right = 335.0
-offset_bottom = 80.0
-theme_override_font_sizes/font_size = 51
-text = "Scan Person"
-icon = ExtResource("10_w5o83")
 
 [node name="Desk" type="Sprite2D" parent="WorkingArea"]
 z_index = 10
@@ -655,13 +621,10 @@ characterName = &"Schwarzeaugen"
 dialogue = ExtResource("15_i1ce5")
 sfxName = &"creepyTW"
 
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="JudgingManager" method="FallGuy"]
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Interrogate Button" to="JudgingManager" method="Interrogate"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="NPCController" method="Ring"]
 [connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="X-Ray Manager" method="StartScan"]
-[connection signal="pressed" from="WorkingArea/ButtonsTemp/Ring Button" to="NPCController" method="Ring"]
-[connection signal="pressed" from="WorkingArea/ButtonsTemp/Let Pass Button" to="NPCController" method="Admit"]
-[connection signal="pressed" from="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="JudgingManager" method="FallGuy"]
-[connection signal="pressed" from="WorkingArea/ButtonsTemp/FinishButtonsHolder/FinishButtons/Interrogate Button" to="JudgingManager" method="Interrogate"]
-[connection signal="pressed" from="WorkingArea/ButtonsTemp/X Ray Button" to="X-Ray Manager" method="StartScan"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="X-Ray Manager" method="ScanOrgans"]
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="JudgingManager" method="SelectAnomaly"]
