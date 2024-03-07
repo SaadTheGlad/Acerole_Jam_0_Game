@@ -34,7 +34,7 @@ public partial class JudgingManager : Node
 
     public override void _Ready()
     {
-        //PopulateDic(nameBoneTypeDic, skeletonDialogueJudges);
+        PopulateDic(nameBoneTypeDic, skeletonDialogueJudges);
         PopulateDic(nameOrganTypeDic, organsDialogueJudges);
     }
 
@@ -62,7 +62,7 @@ public partial class JudgingManager : Node
                 controller.currentGuy = null;
                 NPC.GlobalPosition = controller.startingPos;
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.NPCHasPassed);
-                controller.canRing = true;
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
                 break;
             }
 
@@ -121,6 +121,8 @@ public partial class JudgingManager : Node
             else
             {
                 controller.Admit();
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
                 //Dies
             }
         }
@@ -167,6 +169,8 @@ public partial class JudgingManager : Node
             else
             {
                 controller.Admit();
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
                 //Dies
             }
 
@@ -175,6 +179,7 @@ public partial class JudgingManager : Node
         {
             controller.Admit();
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
 
 
         }

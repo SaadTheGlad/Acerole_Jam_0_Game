@@ -6,8 +6,9 @@ using System.Security;
 [GlobalClass]
 public partial class XRayManager : Node
 {
-    [Export(PropertyHint.Range, "0,100,")] public float percentageOfSkeletonAbberation = 20f;
-    [Export(PropertyHint.Range, "0,100,")] public float percentageOfOrganAbberation = 20f;
+    [Export(PropertyHint.Range, "0,100,")] public float probabilityOfGeneralAbberation = 20f;
+    [Export(PropertyHint.Range, "0,100,")] public float probabilityOfSkeletonToOrgansAbberation = 50f;
+    //[Export(PropertyHint.Range, "0,100,")] public float probabilityOfOrganAbberation = 50f;
     RandomNumberGenerator random = new RandomNumberGenerator();
 
     [ExportGroup("Animation Players")]
@@ -54,6 +55,10 @@ public partial class XRayManager : Node
 
     Dictionary<String, Color> nameAndOrganColourDictionary = new Dictionary<string, Color>();
 
+    bool isDG;
+    bool canRoll = true;
+    bool skeletonOrOrgan = false;
+
     public override void _Ready()
     {
         ogSkeletonPos = skeleton.Position;
@@ -65,6 +70,9 @@ public partial class XRayManager : Node
         SignalsManager.Instance.DialogueEnded += EnableScan;
         SignalsManager.Instance.Admitted += DisableScan;
         SignalsManager.Instance.ResetScan += ResetScan;
+        SignalsManager.Instance.CreatedNPC += RollAbberation;
+        SignalsManager.Instance.EnableNPC += EnableRolling;
+
     }
 
     public override void _ExitTree()
@@ -72,6 +80,51 @@ public partial class XRayManager : Node
         SignalsManager.Instance.DialogueEnded -= EnableScan;
         SignalsManager.Instance.Admitted -= DisableScan;
         SignalsManager.Instance.ResetScan -= ResetScan;
+        SignalsManager.Instance.CreatedNPC -= RollAbberation;
+        SignalsManager.Instance.EnableNPC -= EnableRolling;
+
+    }
+
+    public void EnableRolling() => canRoll = true;
+
+    public void RollAbberation()
+    {
+        if(canRoll)
+        {
+            float randomGeneralValue = random.RandiRange(0, 100);
+            if (randomGeneralValue <= probabilityOfGeneralAbberation)
+            {
+                isDG = true;
+
+                float randomSpecificValue = random.RandiRange(0, 100);
+                if (randomSpecificValue <= probabilityOfSkeletonToOrgansAbberation)
+                {
+                    skeletonOrOrgan = false;
+                    GD.Print("Abberation in Organs");
+
+                }
+                else
+                {
+                    skeletonOrOrgan = true;
+                    GD.Print("Abberation in Skeleton");
+
+                }
+
+            }
+            else
+            {
+                isDG = false;
+            }
+            GD.Print("Doppelganger State: " + isDG);
+
+
+
+            canRoll = false;
+
+
+        }
+
+
     }
 
     public void ResetScan()
@@ -82,7 +135,6 @@ public partial class XRayManager : Node
         hasScannedOrgans = false;
         hasScannedSkeleton = false;
     }
-
     public void EnableScan() => canStartScan = true;
     public void DisableScan() => canStartScan = false;
     public void StartScan()
@@ -182,7 +234,7 @@ public partial class XRayManager : Node
             return;
         }
 
-        float randomValue = random.RandfRange(0f, 100f);
+        int randomValue = random.RandiRange(0, 100);
 
 
         foreach (var node in skeleton.GetChildren())
@@ -220,7 +272,7 @@ public partial class XRayManager : Node
         skeletonArrayFull = skeletonArray.Duplicate();
         skeletonArray.Shuffle();
 
-        if (randomValue <= percentageOfSkeletonAbberation)
+        if (skeletonOrOrgan && isDG)
         {
             int randomIndex = RandomSelectionSkeleton();
             while (skeletonArrayPublic[randomIndex].IsInGroup("Avoid"))
@@ -248,7 +300,7 @@ public partial class XRayManager : Node
             return;
         }
 
-        float randomValue = random.RandfRange(0f, 100f);
+        int randomValue = random.RandiRange(0, 100);
 
         
         foreach (var node in organs.GetChildren())
@@ -261,7 +313,8 @@ public partial class XRayManager : Node
                     {
                         sprite = (Sprite2D)bone;
                         organsArrayPublic.Add(sprite);
-                        nameAndOrganColourDictionary.Add(sprite.Name, sprite.SelfModulate);
+                        if(!nameAndOrganColourDictionary.ContainsKey(sprite.Name))
+                            nameAndOrganColourDictionary.Add(sprite.Name, sprite.SelfModulate);
                     }
                     else
                     {
@@ -271,7 +324,8 @@ public partial class XRayManager : Node
                             {
                                 spriteSecondary = (Sprite2D)secondaryBone;
                                 organsArrayPublic.Add(spriteSecondary);
-                                nameAndOrganColourDictionary.Add(spriteSecondary.Name, spriteSecondary.SelfModulate);
+                                if (!nameAndOrganColourDictionary.ContainsKey(spriteSecondary.Name))
+                                    nameAndOrganColourDictionary.Add(spriteSecondary.Name, spriteSecondary.SelfModulate);
 
                             }
                         }
@@ -282,7 +336,8 @@ public partial class XRayManager : Node
             if (node is Sprite2D spriteHigher)
             {
                 organsArrayPublic.Add(spriteHigher);
-                nameAndOrganColourDictionary.Add(spriteHigher.Name, spriteHigher.SelfModulate);
+                if (!nameAndOrganColourDictionary.ContainsKey(spriteHigher.Name))
+                    nameAndOrganColourDictionary.Add(spriteHigher.Name, spriteHigher.SelfModulate);
 
             }
         }
@@ -291,7 +346,7 @@ public partial class XRayManager : Node
         organsArrayFull = organsArray.Duplicate();
         organsArray.Shuffle();
 
-        if (randomValue <= percentageOfOrganAbberation)
+        if (!skeletonOrOrgan && isDG)
         {
             int randomIndex = RandomSelectionOrgans();
             while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))

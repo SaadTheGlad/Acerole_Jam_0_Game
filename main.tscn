@@ -1,9 +1,10 @@
-[gd_scene load_steps=94 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=95 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
 [ext_resource type="Script" path="res://Scripts/JudgingManager.cs" id="1_oafhd"]
 [ext_resource type="Script" path="res://Scripts/NPCCreator.cs" id="1_olf47"]
+[ext_resource type="Script" path="res://Scripts/SystemsManager.cs" id="1_wulak"]
 [ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
 [ext_resource type="Texture2D" uid="uid://wbo7yx08rfpd" path="res://Images/UI/Main/BG/Sky.PNG" id="2_kjyi1"]
 [ext_resource type="Resource" uid="uid://c8n2vrywoahnr" path="res://Dialogue/Interrogations/SkeletonDialogue/Missing_Rib.dialogue" id="2_kqor8"]
@@ -70,6 +71,31 @@
 [ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="86_vsxkr"]
 [ext_resource type="Texture2D" uid="uid://2i2unxj3453e" path="res://Images/UI/X-Ray Stuff/X-ray Helper.png" id="87_kyekx"]
 
+[sub_resource type="Resource" id="Resource_l2noe"]
+script = ExtResource("18_hhyc8")
+irisInk = ExtResource("28_6ywi3")
+irisColour = ExtResource("27_kvtur")
+highlights = ExtResource("26_8amtq")
+sclera = ExtResource("29_i14k2")
+
+[sub_resource type="Resource" id="Resource_6h188"]
+script = ExtResource("18_hhyc8")
+irisInk = ExtResource("25_ysqlw")
+irisColour = ExtResource("24_6x1yk")
+highlights = ExtResource("23_hpf1x")
+sclera = ExtResource("26_jg73s")
+
+[sub_resource type="Resource" id="Resource_ma3dy"]
+script = ExtResource("18_hhyc8")
+irisInk = ExtResource("29_mepub")
+irisColour = ExtResource("28_4w8n6")
+highlights = ExtResource("27_e3h2g")
+sclera = ExtResource("30_b358b")
+
+[sub_resource type="Curve" id="Curve_itk1r"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Resource" id="Resource_k83xa"]
 script = ExtResource("3_t38qv")
 dialogueName = "backbone"
@@ -122,31 +148,6 @@ dialogue = ExtResource("12_kg5fv")
 
 [sub_resource type="Curve" id="Curve_4fejt"]
 _data = [Vector2(0, 0), 0.0, -0.101894, 0, 0, Vector2(0.487805, 0.993179), 0.0690391, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Resource" id="Resource_l2noe"]
-script = ExtResource("18_hhyc8")
-irisInk = ExtResource("28_6ywi3")
-irisColour = ExtResource("27_kvtur")
-highlights = ExtResource("26_8amtq")
-sclera = ExtResource("29_i14k2")
-
-[sub_resource type="Resource" id="Resource_6h188"]
-script = ExtResource("18_hhyc8")
-irisInk = ExtResource("25_ysqlw")
-irisColour = ExtResource("24_6x1yk")
-highlights = ExtResource("23_hpf1x")
-sclera = ExtResource("26_jg73s")
-
-[sub_resource type="Resource" id="Resource_ma3dy"]
-script = ExtResource("18_hhyc8")
-irisInk = ExtResource("29_mepub")
-irisColour = ExtResource("28_4w8n6")
-highlights = ExtResource("27_e3h2g")
-sclera = ExtResource("30_b358b")
-
-[sub_resource type="Curve" id="Curve_itk1r"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Animation" id="Animation_owjp2"]
@@ -325,15 +326,8 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
-[node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "controller", "xRayManager")]
-script = ExtResource("1_oafhd")
-skeletonDialogueJudges = Array[Object]([SubResource("Resource_k83xa"), SubResource("Resource_tapia"), SubResource("Resource_ohbo3"), SubResource("Resource_4po85"), null])
-organsDialogueJudges = Array[Object]([SubResource("Resource_uytrx"), SubResource("Resource_5plvr"), SubResource("Resource_rdqgq"), SubResource("Resource_xiulc"), SubResource("Resource_v7ybv"), SubResource("Resource_fi88c")])
-judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
-controller = NodePath("../NPCController")
-fallingSpeed = 1.0
-curve = SubResource("Curve_4fejt")
-xRayManager = NodePath("../X-Ray Manager")
+[node name="SystemsManager" type="Node" parent="."]
+script = ExtResource("1_wulak")
 
 [node name="NPCCreator" type="Node" parent="." node_paths=PackedStringArray("Outward")]
 script = ExtResource("1_olf47")
@@ -350,10 +344,25 @@ hairstyles = Array[Texture2D]([ExtResource("30_6yh2k"), ExtResource("12_ecb3y"),
 lips = Array[Texture2D]([ExtResource("32_3e3bj"), ExtResource("16_3x7k4"), ExtResource("17_2adqt")])
 eyes = Array[Object]([SubResource("Resource_l2noe"), SubResource("Resource_6h188"), SubResource("Resource_ma3dy")])
 
+[node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal")]
+script = ExtResource("1_0cfmg")
+NPC = NodePath("../NPC")
+curve = SubResource("Curve_itk1r")
+npcSignal = NodePath("../Player/DialogueNPCSignal")
+
+[node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "controller", "xRayManager")]
+script = ExtResource("1_oafhd")
+skeletonDialogueJudges = Array[Object]([SubResource("Resource_k83xa"), SubResource("Resource_tapia"), SubResource("Resource_ohbo3"), SubResource("Resource_4po85")])
+organsDialogueJudges = Array[Object]([SubResource("Resource_uytrx"), SubResource("Resource_5plvr"), SubResource("Resource_rdqgq"), SubResource("Resource_xiulc"), SubResource("Resource_v7ybv"), SubResource("Resource_fi88c")])
+judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
+controller = NodePath("../NPCController")
+fallingSpeed = 1.0
+curve = SubResource("Curve_4fejt")
+xRayManager = NodePath("../X-Ray Manager")
+
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "skeleton", "organs", "selectAnomalyButton")]
 script = ExtResource("1_k6ho4")
-percentageOfSkeletonAbberation = 0.0
-percentageOfOrganAbberation = 100.0
+probabilityOfGeneralAbberation = 50.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -365,12 +374,6 @@ highlightColour = Color(1, 0, 0, 1)
 normalBoneColour = Color(1, 1, 1, 1)
 organsHighLightColour = Color(0, 0, 0, 1)
 selectAnomalyButton = NodePath("../Screen X-Ray/Main/Select Anomaly")
-
-[node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal")]
-script = ExtResource("1_0cfmg")
-NPC = NodePath("../NPC")
-curve = SubResource("Curve_itk1r")
-npcSignal = NodePath("../Player/DialogueNPCSignal")
 
 [node name="DialogueHandler" parent="." node_paths=PackedStringArray("encounteredNPCSignalHolder") instance=ExtResource("3_m45lx")]
 encounteredNPCSignalHolder = NodePath("../Player/DialogueNPCSignal")
@@ -623,7 +626,7 @@ sfxName = &"creepyTW"
 
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="JudgingManager" method="FallGuy"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Interrogate Button" to="JudgingManager" method="Interrogate"]
-[connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="NPCController" method="Ring"]
+[connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="SystemsManager" method="Ring"]
 [connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="X-Ray Manager" method="StartScan"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="X-Ray Manager" method="ScanOrgans"]

@@ -241,7 +241,7 @@ texture = ExtResource("31_ec2hd")
 
 [node name="LFoot" type="Node2D" parent="Skeleton/Left"]
 
-[node name="Base" type="Sprite2D" parent="Skeleton/Left/LFoot"]
+[node name="Base" type="Sprite2D" parent="Skeleton/Left/LFoot" groups=["Avoid"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("32_5gk7t")
@@ -315,7 +315,7 @@ texture = ExtResource("45_ip4g3")
 
 [node name="RFoot" type="Node2D" parent="Skeleton/Right"]
 
-[node name="Base2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
+[node name="Base2" type="Sprite2D" parent="Skeleton/Right/RFoot" groups=["Avoid"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("46_dj6j2")

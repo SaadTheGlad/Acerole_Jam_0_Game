@@ -19,6 +19,9 @@ public partial class SignalsManager : Node
         }
 
     }
+    //Main signal
+    [Signal] public delegate void CreatedNPCEventHandler();
+    [Signal] public delegate void EnableNPCEventHandler();
 
     [Signal] public delegate void DialogueStartedRunningEventHandler();
     [Signal] public delegate void DialogueEndedEventHandler();

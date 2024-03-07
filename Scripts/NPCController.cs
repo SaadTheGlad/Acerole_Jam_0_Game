@@ -8,33 +8,39 @@ public partial class NPCController : Node
     [Export] public Node2D NPC;
     [Export] private float movementSpeed = 10f;
     [Export] private Curve curve;
-
     [Export] public DialogueNPCSignal npcSignal;
     public Node2D currentGuy;
 
     private const float CENTEROFWINDOWX = 518f;
-
     bool hasReached;
-
     public bool canRing = true;
-
-    [Signal] public delegate void GuyCameEventHandler();
-
     public Vector2 startingPos;
 
+    public override void _EnterTree()
+    {
+        SignalsManager.Instance.CreatedNPC += Ring;
+        SignalsManager.Instance.EnableNPC += EnableScan;
+    }
+
+    public override void _ExitTree()
+    {
+        SignalsManager.Instance.CreatedNPC -= Ring;
+        SignalsManager.Instance.EnableNPC -= EnableScan;
+
+    }
 
     public override void _Ready()
     {
         startingPos = NPC.GlobalPosition;
     }
 
+    public void EnableScan() => canRing = true;
+
     public void Ring()
     {
         if(canRing)
         {
-
             CheckGuy();
-            //SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Ringed);
             canRing = false;
         }
 

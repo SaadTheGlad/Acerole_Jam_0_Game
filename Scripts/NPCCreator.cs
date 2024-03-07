@@ -31,6 +31,7 @@ public partial class NPCCreator : Node
     public override void _ExitTree()
     {
         SignalsManager.Instance.NPCHasPassed -= ApplyBodyAndColours;
+
     }
 
     public override void _Ready()
