@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://csx8qqsbplfnl"
+path="res://.godot/imported/Missing_Backbone.dialogue-71862867bb3e4047bde59a41fcb0f2e9.tres"
+
+[deps]
+
+source_file="res://Dialogue/Interrogations/SkeletonDialogue/Missing_Backbone.dialogue"
+dest_files=["res://.godot/imported/Missing_Backbone.dialogue-71862867bb3e4047bde59a41fcb0f2e9.tres"]
+
+[params]
+
+defaults=true

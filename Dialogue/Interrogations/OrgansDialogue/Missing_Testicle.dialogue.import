@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://jvgkadh0oku0"
+path="res://.godot/imported/Missing_Testicle.dialogue-55d512f14cc5ad06423776a3a8225778.tres"
+
+[deps]
+
+source_file="res://Dialogue/Interrogations/OrgansDialogue/Missing_Testicle.dialogue"
+dest_files=["res://.godot/imported/Missing_Testicle.dialogue-55d512f14cc5ad06423776a3a8225778.tres"]
+
+[params]
+
+defaults=true

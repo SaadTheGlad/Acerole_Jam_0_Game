@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://6una0hg0fsgc"
+path="res://.godot/imported/Missing_Kidney.dialogue-83295f4ce1d6a89357bafdcd09246826.tres"
+
+[deps]
+
+source_file="res://Dialogue/Interrogations/OrgansDialogue/Missing_Kidney.dialogue"
+dest_files=["res://.godot/imported/Missing_Kidney.dialogue-83295f4ce1d6a89357bafdcd09246826.tres"]
+
+[params]
+
+defaults=true

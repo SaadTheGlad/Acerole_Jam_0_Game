@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://bhojdivsso4g"
+path="res://.godot/imported/Missing_Lung.dialogue-48776a006078f2d5bf35dbacc0a98dd6.tres"
+
+[deps]
+
+source_file="res://Dialogue/Interrogations/OrgansDialogue/Missing_Lung.dialogue"
+dest_files=["res://.godot/imported/Missing_Lung.dialogue-48776a006078f2d5bf35dbacc0a98dd6.tres"]
+
+[params]
+
+defaults=true

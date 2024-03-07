@@ -1,10 +1,12 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class JudgingManager : Node
 {
     [ExportCategory("Dialogues")]
-    [Export] public DialogueJudges[] dialogueJudges;
+    [Export] public DialogueJudges[] skeletonDialogueJudges;
+    [Export] public DialogueJudges[] organsDialogueJudges;
     [ExportCategory("Other")]
     [Export] public AnimationPlayer judgingPlayer;
     [Export] public NPCController controller;
@@ -17,6 +19,8 @@ public partial class JudgingManager : Node
     Sprite2D selectedBone;
     Sprite2D selectedOrgan;
 
+    Dictionary<String, DialogueJudges> nameBoneTypeDic = new Dictionary<String, DialogueJudges>();
+    Dictionary<String, DialogueJudges> nameOrganTypeDic = new Dictionary<String, DialogueJudges>();
 
     public override void _EnterTree()
     {
@@ -26,6 +30,12 @@ public partial class JudgingManager : Node
     public override void _ExitTree()
     {
         SignalsManager.Instance.Admitted -= CloseJudge;
+    }
+
+    public override void _Ready()
+    {
+        //PopulateDic(nameBoneTypeDic, skeletonDialogueJudges);
+        PopulateDic(nameOrganTypeDic, organsDialogueJudges);
     }
 
     async private void FallGuy()
@@ -66,6 +76,14 @@ public partial class JudgingManager : Node
         judgingPlayer.Play("Close");
     }
 
+    public void PopulateDic(Dictionary<String, DialogueJudges> dictionary, DialogueJudges[] judges)
+    {
+        foreach(DialogueJudges n in judges)
+        {
+            dictionary.Add(n.dialogueName, n);
+        }
+    }
+
     public void Interrogate()
     {
 
@@ -75,8 +93,27 @@ public partial class JudgingManager : Node
 
             if (selectedBone.Name == anomalyBone.Name)
             {
-                //do interrogation depending on the type of anomaly
-                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, dialogueJudges[0]);
+                string boneName = anomalyBone.Name;
+                if(boneName.Contains("Rib"))
+                {
+                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["rib"]);
+                }
+                else if(boneName.Contains("Backbone"))
+                {
+                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["backbone"]);
+
+                }
+                else if(boneName.Contains("Knee"))
+                {
+                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["knee"]);
+
+                }
+                else if(boneName.Contains("Toe"))
+                {
+                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["toe"]);  
+                }
+
+
 
                 selectedBone = null;
 
@@ -92,7 +129,38 @@ public partial class JudgingManager : Node
             //anomalous organ
             if (selectedOrgan.Name == anomalyOrgan.Name)
             {
-                //do interrogation depending on the type of anomaly
+                string organName = anomalyOrgan.Name;
+
+
+                if (organName.Contains("Kidney"))
+                {
+                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["kidney"]);
+                }
+                else if (organName.Contains("Pancreas"))
+                {
+                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["pancreas"]);
+
+                }
+                else if (organName.Contains("Testicles"))
+                {
+                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["testicle"]);
+
+                }
+                else if (organName.Contains("Gallbladder"))
+                {
+                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["gallbladder"]);
+                }
+                else if (organName.Contains("Lungs"))
+                {
+                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["lung"]);
+                }
+                else if (organName.Contains("Penis"))
+                {
+                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["penis"]);
+                }
+                //Add one for stomach and bladder
+
+
                 selectedOrgan = null;
 
             }
@@ -106,10 +174,11 @@ public partial class JudgingManager : Node
         else
         {
             controller.Admit();
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
+
 
         }
 
-        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
 
     }
 

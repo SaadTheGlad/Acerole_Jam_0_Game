@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://dw2b03b56nykq"
+path="res://.godot/imported/Missing_Penis.dialogue-0c1480a383c69d30095e3dcc93897b62.tres"
+
+[deps]
+
+source_file="res://Dialogue/Interrogations/OrgansDialogue/Missing_Penis.dialogue"
+dest_files=["res://.godot/imported/Missing_Penis.dialogue-0c1480a383c69d30095e3dcc93897b62.tres"]
+
+[params]
+
+defaults=true

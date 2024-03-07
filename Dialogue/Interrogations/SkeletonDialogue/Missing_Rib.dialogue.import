@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://c8n2vrywoahnr"
+path="res://.godot/imported/Missing_Rib.dialogue-b56a119126dc0fa6747e8ca180e7c20d.tres"
+
+[deps]
+
+source_file="res://Dialogue/Interrogations/SkeletonDialogue/Missing_Rib.dialogue"
+dest_files=["res://.godot/imported/Missing_Rib.dialogue-b56a119126dc0fa6747e8ca180e7c20d.tres"]
+
+[params]
+
+defaults=true

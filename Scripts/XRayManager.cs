@@ -302,6 +302,7 @@ public partial class XRayManager : Node
             Sprite2D current = organsArrayPublic[randomIndex];
             current.SelfModulate = veryTranslucentColour;
             anomalyOrgan = current;
+            GD.Print(current.Name);
             hasScannedOrgans = true;
         }
 

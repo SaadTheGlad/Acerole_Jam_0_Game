@@ -75,6 +75,7 @@ position = Vector2(1, -134)
 scale = Vector2(0.18838, 0.18838)
 
 [node name="Skeleton" type="Node2D" parent="."]
+visible = false
 position = Vector2(-405.115, -1064.87)
 
 [node name="Neck" type="Sprite2D" parent="Skeleton"]
@@ -87,7 +88,7 @@ position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("2_h5232")
 
-[node name="-1Backbone" type="Sprite2D" parent="Skeleton"]
+[node name="-1Backbone" type="Sprite2D" parent="Skeleton" groups=["Backbones"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("3_0ugdc")
@@ -159,34 +160,34 @@ position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("16_7byrq")
 
-[node name="Backbone" type="Node2D" parent="Skeleton"]
+[node name="Backbone" type="Node2D" parent="Skeleton" groups=["Backbones"]]
 
-[node name="5Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+[node name="5Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("17_d2gif")
 
-[node name="4Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+[node name="4Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("18_ofcbb")
 
-[node name="3Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+[node name="3Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("19_lue0v")
 
-[node name="2Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+[node name="2Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("20_b670t")
 
-[node name="1Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+[node name="1Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("21_pk43p")
 
-[node name="0Backbone" type="Sprite2D" parent="Skeleton/Backbone"]
+[node name="0Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("22_5gyvy")
@@ -347,14 +348,14 @@ texture = ExtResource("51_b7a53")
 [node name="Organs" type="Node2D" parent="."]
 position = Vector2(-405.115, -1064.87)
 
-[node name="Heart" type="Node2D" parent="Organs"]
+[node name="Heart" type="Node2D" parent="Organs" groups=["Avoid"]]
 
-[node name="Colour" type="Sprite2D" parent="Organs/Heart"]
+[node name="Colour" type="Sprite2D" parent="Organs/Heart" groups=["Avoid"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("52_vwoal")
 
-[node name="Ink" type="Sprite2D" parent="Organs/Heart"]
+[node name="Ink" type="Sprite2D" parent="Organs/Heart" groups=["Avoid"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("53_0lg8h")
@@ -379,13 +380,13 @@ position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("56_l3py2")
 
-[node name="Stomach" type="Sprite2D" parent="Organs"]
+[node name="Stomach" type="Sprite2D" parent="Organs" groups=["Avoid"]]
 self_modulate = Color(0.956863, 0.65098, 0.615686, 1)
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("57_p0hmh")
 
-[node name="Liver" type="Sprite2D" parent="Organs"]
+[node name="Liver" type="Sprite2D" parent="Organs" groups=["Avoid"]]
 self_modulate = Color(0.309804, 0.121569, 0.0823529, 1)
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
@@ -413,13 +414,13 @@ texture = ExtResource("61_aqk3t")
 
 [node name="Intenstines" type="Node2D" parent="Organs"]
 
-[node name="SmallIntenstine" type="Sprite2D" parent="Organs/Intenstines"]
+[node name="SmallIntenstine" type="Sprite2D" parent="Organs/Intenstines" groups=["Avoid"]]
 self_modulate = Color(0.933333, 0.615686, 0.6, 1)
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("62_67m2r")
 
-[node name="LargeIntenstine" type="Sprite2D" parent="Organs/Intenstines"]
+[node name="LargeIntenstine" type="Sprite2D" parent="Organs/Intenstines" groups=["Avoid"]]
 self_modulate = Color(0.996078, 0.545098, 0.541176, 1)
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
@@ -453,7 +454,7 @@ position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("67_duusq")
 
-[node name="Bladder" type="Sprite2D" parent="Organs/Male Reproductive"]
+[node name="Bladder" type="Sprite2D" parent="Organs/Male Reproductive" groups=["Avoid"]]
 self_modulate = Color(0.909804, 0.4, 0.435294, 1)
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
