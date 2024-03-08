@@ -326,8 +326,10 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
-[node name="SystemsManager" type="Node" parent="."]
+[node name="SystemsManager" type="Node" parent="." node_paths=PackedStringArray("npcHolder", "personsAdmittedCounter")]
 script = ExtResource("1_wulak")
+npcHolder = NodePath("../NPC/DialogueHolder")
+personsAdmittedCounter = NodePath("../WorkingArea/Control/People Admitted")
 
 [node name="NPCCreator" type="Node" parent="." node_paths=PackedStringArray("Outward")]
 script = ExtResource("1_olf47")
@@ -390,11 +392,42 @@ player = NodePath("..")
 
 [node name="DialogueHolder" parent="Player" instance=ExtResource("13_13vh2")]
 characterName = &"You"
-sfxName = &"creepyTW"
+sfxName = &"ring"
 baseSpeed = 0.1
 
 [node name="WorkingArea" type="Node2D" parent="."]
 texture_filter = 1
+
+[node name="Control" type="Control" parent="WorkingArea"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1662.0
+offset_top = 83.0
+offset_right = 1662.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="People Admitted" type="Label" parent="WorkingArea/Control"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -334.0
+offset_top = -53.0
+offset_right = 253.0
+offset_bottom = 88.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "Total people admitted: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="BG" type="Node2D" parent="WorkingArea"]
 z_index = 6

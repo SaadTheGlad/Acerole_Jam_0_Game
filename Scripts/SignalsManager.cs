@@ -26,9 +26,13 @@ public partial class SignalsManager : Node
     [Signal] public delegate void DialogueStartedRunningEventHandler();
     [Signal] public delegate void DialogueEndedEventHandler();
     [Signal] public delegate void AdmittedEventHandler();
+    [Signal] public delegate void DisposedOfEventHandler();
     [Signal] public delegate void NPCHasArrivedEventHandler();
     [Signal] public delegate void ResetScanEventHandler();
     [Signal] public delegate void CloseJudgingEventHandler();
     [Signal] public delegate void NPCHasPassedEventHandler();
     [Signal] public delegate void InterrogateEventHandler(DialogueJudges judge);
+    [Signal] public delegate void DoneInterrogateEventHandler();
+    [Signal] public delegate void ChangeSoundEventHandler(string sfxName);
+    [Signal] public delegate void SendSoundEventHandler(string sfxName);
 }

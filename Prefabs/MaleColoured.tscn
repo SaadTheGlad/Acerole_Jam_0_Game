@@ -75,7 +75,6 @@ position = Vector2(1, -134)
 scale = Vector2(0.18838, 0.18838)
 
 [node name="Skeleton" type="Node2D" parent="."]
-visible = false
 position = Vector2(-405.115, -1064.87)
 
 [node name="Neck" type="Sprite2D" parent="Skeleton"]
@@ -87,11 +86,6 @@ texture = ExtResource("1_8bss7")
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("2_h5232")
-
-[node name="-1Backbone" type="Sprite2D" parent="Skeleton" groups=["Backbones"]]
-position = Vector2(402.221, 1663.86)
-scale = Vector2(2.89368, 2.89368)
-texture = ExtResource("3_0ugdc")
 
 [node name="Ribs" type="Node2D" parent="Skeleton"]
 
@@ -114,6 +108,11 @@ texture = ExtResource("6_ob7nx")
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("7_lf6yv")
+
+[node name="-1Backbone" type="Sprite2D" parent="Skeleton/Ribs" groups=["Backbones"]]
+position = Vector2(402.221, 1659.41)
+scale = Vector2(2.89368, 2.89368)
+texture = ExtResource("3_0ugdc")
 
 [node name="8Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
 position = Vector2(402.221, 1663.86)
@@ -346,6 +345,7 @@ scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("51_b7a53")
 
 [node name="Organs" type="Node2D" parent="."]
+visible = false
 position = Vector2(-405.115, -1064.87)
 
 [node name="Heart" type="Node2D" parent="Organs" groups=["Avoid"]]
@@ -396,15 +396,17 @@ texture = ExtResource("58_mqusr")
 
 [node name="LLungs" type="Sprite2D" parent="Organs/Lungs"]
 self_modulate = Color(0.823529, 0.321569, 0.317647, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(171.545, 305.766)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("59_n7umo")
+offset = Vector2(79.7173, 469.331)
 
 [node name="RLungs" type="Sprite2D" parent="Organs/Lungs"]
 self_modulate = Color(0.823529, 0.321569, 0.317647, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(617.452, 289.841)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("60_5aocn")
+offset = Vector2(-74.3796, 474.835)
 
 [node name="Gallbladder" type="Sprite2D" parent="Organs"]
 self_modulate = Color(0.545098, 0.584314, 0.364706, 1)

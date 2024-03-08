@@ -16,10 +16,16 @@ public partial class DialogueHandler : Node
     TextureRect iconTexture;
     DialogueHolder dialogueHolder;
 
+    CanvasLayer currentBalloon;
+
+    bool isInUse = false;
+    string currentNPCSFXName;
 
     public override void _Ready()
     {
         encounteredNPCSignalHolder.EncounteredNPC += CheckNPC;
+        SignalsManager.Instance.ChangeSound += ChangeSound;
+        SignalsManager.Instance.SendSound += SetNPCSfxName;
 
         //Makes sure that you don't spawn a new balloon right after you close one by adding a little delay
         DialogueManager.DialogueEnded += (Resource dialogueResource) =>
@@ -37,6 +43,10 @@ public partial class DialogueHandler : Node
     public override void _ExitTree()
     {
         encounteredNPCSignalHolder.EncounteredNPC -= CheckNPC;
+        SignalsManager.Instance.ChangeSound -= ChangeSound;
+        SignalsManager.Instance.SendSound -= SetNPCSfxName;
+
+
     }
 
 
@@ -100,6 +110,7 @@ public partial class DialogueHandler : Node
 
             AddChild(canvas);
             var balloon = canvas;
+            currentBalloon = balloon;
             var line = await DialogueManager.GetNextDialogueLine(dialogueResource, "start", variant);
             string mood = line.GetTagValue("mood");
             balloon.Call("start", dialogueResource, "start", variant);
@@ -110,7 +121,11 @@ public partial class DialogueHandler : Node
             //Sets the sound, font and the text speed 
             if (dialogueHolder.sfxName != null)
             {
-                balloon.Set("soundName", dialogueHolder.sfxName);
+                if(!isInUse)
+                {
+                    GD.Print("setting things");
+                    balloon.Set("soundName", dialogueHolder.sfxName);
+                }
             }
             else
             {
@@ -164,5 +179,21 @@ public partial class DialogueHandler : Node
 
     }
 
+    void SetNPCSfxName(string name)
+    {
+        currentNPCSFXName = name;
+        GD.Print(currentNPCSFXName);
+    }
 
+    void ChangeSound(string soundSFXName)
+    {
+        isInUse = true;
+        currentBalloon.Set("soundName", soundSFXName);
+    }
+
+    void ResetSound()
+    {
+        isInUse = false;
+        currentBalloon.Set("soundName", dialogueHolder.sfxName);
+    }
 }

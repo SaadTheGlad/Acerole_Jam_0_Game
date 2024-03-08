@@ -69,6 +69,7 @@ public partial class XRayManager : Node
     {
         SignalsManager.Instance.DialogueEnded += EnableScan;
         SignalsManager.Instance.Admitted += DisableScan;
+        SignalsManager.Instance.DisposedOf += DisableScan;
         SignalsManager.Instance.ResetScan += ResetScan;
         SignalsManager.Instance.CreatedNPC += RollAbberation;
         SignalsManager.Instance.EnableNPC += EnableRolling;
@@ -79,6 +80,7 @@ public partial class XRayManager : Node
     {
         SignalsManager.Instance.DialogueEnded -= EnableScan;
         SignalsManager.Instance.Admitted -= DisableScan;
+        SignalsManager.Instance.DisposedOf -= DisableScan;
         SignalsManager.Instance.ResetScan -= ResetScan;
         SignalsManager.Instance.CreatedNPC -= RollAbberation;
         SignalsManager.Instance.EnableNPC -= EnableRolling;

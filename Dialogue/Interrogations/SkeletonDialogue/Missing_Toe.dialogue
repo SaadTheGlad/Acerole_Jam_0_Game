@@ -1,5 +1,8 @@
 ~ start
 
 You: Why do you have a missing toe?
-
+do ChangeSound(currentNPCSFXName)
+Man: Because I like tits
+do ResetSound()
+You: Oh ok
 => END

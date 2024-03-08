@@ -25,11 +25,13 @@ public partial class JudgingManager : Node
     public override void _EnterTree()
     {
         SignalsManager.Instance.Admitted += CloseJudge;
+        SignalsManager.Instance.DoneInterrogate += ResetAnomalies;
     }
 
     public override void _ExitTree()
     {
         SignalsManager.Instance.Admitted -= CloseJudge;
+        SignalsManager.Instance.DoneInterrogate -= ResetAnomalies;
     }
 
     public override void _Ready()
@@ -63,6 +65,7 @@ public partial class JudgingManager : Node
                 NPC.GlobalPosition = controller.startingPos;
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.NPCHasPassed);
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisposedOf);
                 break;
             }
 
@@ -87,7 +90,7 @@ public partial class JudgingManager : Node
     public void Interrogate()
     {
 
-        if(anomalyBone != null)
+        if(anomalyBone != null && selectedBone != null)
         {
             //anomalous bone
 
@@ -96,26 +99,31 @@ public partial class JudgingManager : Node
                 string boneName = anomalyBone.Name;
                 if(boneName.Contains("Rib"))
                 {
+
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["rib"]);
                 }
                 else if(boneName.Contains("Backbone"))
                 {
+                    
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["backbone"]);
 
                 }
                 else if(boneName.Contains("Knee"))
                 {
+
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["knee"]);
 
                 }
                 else if(boneName.Contains("Toe"))
                 {
+
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["toe"]);  
                 }
 
 
 
-                selectedBone = null;
+                //ResetAnomalies();
+
 
             }
             else
@@ -124,9 +132,11 @@ public partial class JudgingManager : Node
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
                 //Dies
+                ResetAnomalies();
+
             }
         }
-        else if(anomalyOrgan != null)
+        else if(anomalyOrgan != null && selectedOrgan != null)
         {
             //anomalous organ
             if (selectedOrgan.Name == anomalyOrgan.Name)
@@ -140,20 +150,24 @@ public partial class JudgingManager : Node
                 }
                 else if (organName.Contains("Pancreas"))
                 {
+
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["pancreas"]);
 
                 }
                 else if (organName.Contains("Testicles"))
                 {
+
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["testicle"]);
 
                 }
                 else if (organName.Contains("Gallbladder"))
                 {
+
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["gallbladder"]);
                 }
                 else if (organName.Contains("Lungs"))
                 {
+
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["lung"]);
                 }
                 else if (organName.Contains("Penis"))
@@ -163,7 +177,7 @@ public partial class JudgingManager : Node
                 //Add one for stomach and bladder
 
 
-                selectedOrgan = null;
+                //ResetAnomalies();
 
             }
             else
@@ -171,6 +185,9 @@ public partial class JudgingManager : Node
                 controller.Admit();
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
+                ResetAnomalies();
+
+
                 //Dies
             }
 
@@ -180,11 +197,18 @@ public partial class JudgingManager : Node
             controller.Admit();
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
+            ResetAnomalies();
 
 
         }
 
 
+    }
+
+    void ResetAnomalies()
+    {
+        selectedOrgan = null;
+        selectedBone = null;
     }
 
     public void SelectAnomaly()

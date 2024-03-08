@@ -1,5 +1,8 @@
 ~ start
 
 You: Why do you have a missing testicle?
-
+do ChangeSound(currentNPCSFXName)
+Man: Because I like tits
+do ResetSound()
+You: Oh ok
 => END
