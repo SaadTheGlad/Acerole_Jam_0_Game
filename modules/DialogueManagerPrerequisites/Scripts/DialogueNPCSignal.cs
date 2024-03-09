@@ -37,6 +37,7 @@ public partial class DialogueNPCSignal : Node
                     //Found handler and begins talking
                     isTalking = true;
                     EmitSignal(SignalName.EncounteredNPC, npcController.currentGuy, holder);
+                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DialogueStartedRunning);
                     break;
                 }
                 else
@@ -61,6 +62,7 @@ public partial class DialogueNPCSignal : Node
         {
             if (n is DialogueHolder holder)
             {
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DialogueStartedRunning);
                 EmitSignal(SignalName.EncounteredNPC, npcController.currentGuy, holder);
             }
         }

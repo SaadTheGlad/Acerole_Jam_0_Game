@@ -6,8 +6,10 @@ public partial class DialogueData : Node
 {
     public static DialogueData Instance { get; private set; }
 
-    public string objectName = "PLACEHOLDER NAME";
+    public string objectName = "PLACEHOLDER OBJECT NAME";
     public string colourName = "PLACEHOLDER COLOUR";
+    public string npcName = "PLACEHOLDER NPC NAME";
+    public string sfxName = "creepyTW";
 
     public bool isMissing;
     public bool isRotated;
@@ -29,6 +31,8 @@ public partial class DialogueData : Node
         SignalsManager.Instance.SelectedCorrect += SelectedCorrect;
         SignalsManager.Instance.SelectedIncorrect += SelectedInCorrect;
         SignalsManager.Instance.SendColour += SetColourName;
+        SignalsManager.Instance.SetNPCName += SetNPCName;
+        SignalsManager.Instance.SetSFXName += SetSFXName;
 
         if (IsInstanceValid(Instance))
         {
@@ -53,6 +57,9 @@ public partial class DialogueData : Node
         SignalsManager.Instance.SelectedCorrect -= SelectedCorrect;
         SignalsManager.Instance.SelectedIncorrect -= SelectedInCorrect;
         SignalsManager.Instance.SendColour -= SetColourName;
+        SignalsManager.Instance.SetNPCName -= SetNPCName;
+        SignalsManager.Instance.SetSFXName -= SetSFXName;
+
 
 
     }
@@ -102,6 +109,10 @@ public partial class DialogueData : Node
     {
         colourName = name;
     }
+
+    public void SetNPCName(string name) => npcName = name;
+
+    public void SetSFXName(string name) => sfxName = name;
 
     void ResetBools()
     {

@@ -3,5 +3,5 @@ import "res://Dialogue/Interrogations/General Responses.dialogue" as snippets
 ~ start
 
 
-Man: Hello. My name is Saad.
+{{npcName}}: Hello. My name is {{npcName}}.
 => END

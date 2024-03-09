@@ -284,7 +284,7 @@ _data = {
 
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "skeleton", "organs", "selectAnomalyButton", "stomach", "liver")]
 script = ExtResource("1_k6ho4")
-probabilityOfGeneralAbberation = 50.0
+probabilityOfGeneralAbberation = 100.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -305,9 +305,10 @@ script = ExtResource("1_wulak")
 npcHolder = NodePath("../NPC/DialogueHolder")
 personsAdmittedCounter = NodePath("../WorkingArea/Control/People Admitted")
 
-[node name="NPCCreator" type="Node" parent="." node_paths=PackedStringArray("Outward")]
+[node name="NPCCreator" type="Node" parent="." node_paths=PackedStringArray("Outward", "npcHolder")]
 script = ExtResource("1_olf47")
 Outward = NodePath("../NPC/Outward")
+npcHolder = NodePath("../NPC/DialogueHolder")
 skinColours = PackedColorArray(1, 0.858824, 0.67451, 1, 0.945098, 0.760784, 0.490196, 1, 0.878431, 0.67451, 0.411765, 1, 0.776471, 0.52549, 0.258824, 1, 0.552941, 0.333333, 0.141176, 1, 0.301961, 0.176471, 0.0705882, 1)
 shirtColours = PackedColorArray(0.890196, 0.32549, 0, 1, 0.156863, 0.607843, 0.388235, 1, 0.698039, 0, 0, 1, 0.921569, 1, 0.231373, 1, 0, 0, 0.556863, 1)
 hairColours = PackedColorArray(0.14902, 0.0823529, 0, 1, 0.411765, 0.231373, 0, 1, 1, 1, 1, 1, 1, 0.921569, 0.431373, 1, 1, 0.533333, 0, 1, 0.717647, 0, 0, 1)
@@ -319,6 +320,7 @@ ears = Array[Texture2D]([ExtResource("25_h0c38"), ExtResource("6_4l7nj"), ExtRes
 hairstyles = Array[Texture2D]([ExtResource("30_6yh2k"), ExtResource("12_ecb3y"), ExtResource("13_t3u1j"), ExtResource("14_y0ibn")])
 lips = Array[Texture2D]([ExtResource("32_3e3bj"), ExtResource("16_3x7k4"), ExtResource("17_2adqt")])
 eyes = Array[Object]([SubResource("Resource_l2noe"), SubResource("Resource_6h188"), SubResource("Resource_ma3dy")])
+maleNames = PackedStringArray("Saad", "Mohammed", "John", "Jake", "Booba")
 
 [node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal")]
 script = ExtResource("1_0cfmg")
@@ -350,7 +352,7 @@ player = NodePath("..")
 [node name="DialogueHolder" parent="Player" instance=ExtResource("13_13vh2")]
 characterName = &"You"
 dialogue = ExtResource("40_dt8n8")
-sfxName = &"ring"
+sfxName = &"creepyTW"
 baseSpeed = 0.1
 
 [node name="WorkingArea" type="Node2D" parent="."]
@@ -621,9 +623,8 @@ position = Vector2(30, -242)
 texture = ExtResource("30_6yh2k")
 
 [node name="DialogueHolder" parent="NPC" instance=ExtResource("13_13vh2")]
-characterName = &"Schwarzeaugen"
 dialogue = ExtResource("15_i1ce5")
-sfxName = &"creepyTW"
+sfxName = &"ring"
 
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="JudgingManager" method="FallGuy"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Interrogate Button" to="JudgingManager" method="Interrogate"]

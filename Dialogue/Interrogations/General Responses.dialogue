@@ -1,39 +1,55 @@
 ~ confusion
-% What are you talking about?
-% Excuse me? I don't quite follow.
-% I... I don't understand.
+% {{npcName}}: What are you talking about?
+% {{npcName}}: Excuse me? I don't quite follow.
+% {{npcName}}: I... I don't understand.
 => END
 
 ~ missing
-- Where is your {{objectName}}?
-	% I lost it in an accident.
-	% I don't need it anymore.
+do ResetSound()
+You: Where is your {{objectName}}?
+do ChangeSound(sfxName)
+% {{npcName}}: I lost it in an accident.
+% {{npcName}}: I don't need it anymore.
 => END
 
 ~ discolouration
-- Why is your {{objectName}} {{colourName}}?
-	I have a rare condition.
-	- What is it's name?
-		Huepigment Tintinitus.
-		=> END
+do ResetSound()
+You: Why is your {{objectName}} {{colourName}}?
+do ChangeSound(sfxName)
+{{npcName}}: I have a rare condition.
+do ResetSound()
+You: What is its name?
+do ChangeSound(sfxName)
+{{npcName}}: Huepigment Tintinitus.
 => END
+
 		
 ~ flipped
-- What's wrong with your {{objectName}}?
-	% It got twisted in an automobile accident.
-	- A full 180 degrees?
-		Yes, the doctors were amazed I survived.
-		=> END
-	% I fell and twisted it earlier, you have doctors in there right? They should be able to help me with it
-	=> END
+do ResetSound()
+You: What's wrong with your {{objectName}}?
+do ChangeSound(sfxName)
+% {{npcName}}: It got twisted in an automobile accident.
+do ResetSound()
+You: A full 180 degrees?
+do ChangeSound(sfxName)
+{{npcName}}: Yes, the doctors were amazed I survived.
+=> END
+do ChangeSound(sfxName)
+% {{npcName}}: I fell and twisted it earlier, you have doctors in there right? They should be able to help me with it
+=> END
 
 
 ~ duplicated
-- Why do you have an extra {{objectName}}?
-	% It's a rare disorder.
-	- What is it called?
-		Additicus Organum.
-		=> END
-	% I donated one to my [[brother | mum | sister | dad | grandpa | grandma | uncle | aunt]].
-	=> END
+do ResetSound()
+You: Why do you have an extra {{objectName}}?
+do ChangeSound(sfxName)
+% {{npcName}}: It's a rare disorder.
+do ResetSound()
+You: What is it called?
+do ChangeSound(sfxName)
+{{npcName}}: Additicus Organum.
+=> END
+do ChangeSound(sfxName)
+% {{npcName}}: I donated one to my [[brother | mum | sister | dad | grandpa | grandma | uncle | aunt]].
+=> END
 	

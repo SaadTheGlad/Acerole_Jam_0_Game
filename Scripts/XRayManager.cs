@@ -171,7 +171,6 @@ public partial class XRayManager : Node
         //Removes the duplicate objects
         foreach (Sprite2D n in duplicateObjects)
         {
-            GD.Print("Removed " + n.Name);
             duplicateObjects.Remove(n);
             n.QueueFree();
         }
@@ -241,9 +240,14 @@ public partial class XRayManager : Node
                             {
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
                             }
+                            else if(currentSelectedBone == null || anomalyBone == null) 
+                            {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+                            }
                             else
                             {
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+
                             }
                             return;
 
@@ -270,9 +274,14 @@ public partial class XRayManager : Node
                             {
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
                             }
+                            else if (currentSelectedOrgan == null || anomalyOrgan == null)
+                            {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+                            }
                             else
                             {
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+
                             }
                             return;
 

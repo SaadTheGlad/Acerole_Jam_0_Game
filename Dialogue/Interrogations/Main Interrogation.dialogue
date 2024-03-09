@@ -14,7 +14,8 @@ if isAnomaly
 		else
 			You dumb, something broke
 	else
-		Lmao got the wrong one.
+		Why is your {{objectName}} like that?
+		{{npcName}}: What do you mean, it's perfectly fine?
 else
-	The fuck are you on about mate?
+	{{npcName}}: The fuck are you on about mate?
 => END

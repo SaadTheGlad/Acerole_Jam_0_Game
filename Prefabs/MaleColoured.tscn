@@ -506,14 +506,14 @@ offset = Vector2(0.834387, -22.3115)
 
 [node name="Testicles" type="Node2D" parent="Organs/Male Reproductive"]
 
-[node name="Testicles" type="Sprite2D" parent="Organs/Male Reproductive/Testicles"]
+[node name="Testicle" type="Sprite2D" parent="Organs/Male Reproductive/Testicles"]
 self_modulate = Color(0.6, 0.235294, 0.160784, 1)
 position = Vector2(309.563, 1813.36)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("66_tlmgq")
 offset = Vector2(32.0207, -51.6633)
 
-[node name="Testicles2" type="Sprite2D" parent="Organs/Male Reproductive/Testicles"]
+[node name="Testicle2" type="Sprite2D" parent="Organs/Male Reproductive/Testicles"]
 self_modulate = Color(0.6, 0.235294, 0.160784, 1)
 position = Vector2(479.433, 1818.67)
 scale = Vector2(2.89368, 2.89368)

@@ -4,6 +4,7 @@ using System;
 public partial class NPCCreator : Node
 {
     [Export] public Node2D Outward;
+    [Export] public DialogueHolder npcHolder;
 
     [ExportGroup("Colours")]
     [Export] Color[] skinColours;
@@ -21,21 +22,29 @@ public partial class NPCCreator : Node
     [Export] Texture2D[] lips;
     [Export] Eyes[] eyes;
 
+    [ExportGroup("Names")]
+    [Export] public string[] maleNames;
+    [Export] public string[] femaleNames;
+
     RandomNumberGenerator random = new RandomNumberGenerator();
 
     public override void _EnterTree()
     {
+
         SignalsManager.Instance.NPCHasPassed += ApplyBodyAndColours;
+        SignalsManager.Instance.NPCHasPassed += SelectRandomName;
     }
 
     public override void _ExitTree()
     {
         SignalsManager.Instance.NPCHasPassed -= ApplyBodyAndColours;
+        SignalsManager.Instance.NPCHasPassed -= SelectRandomName;
 
     }
 
     public override void _Ready()
     {
+        SelectRandomName();
         ApplyBodyAndColours();
     }
 
@@ -123,6 +132,14 @@ public partial class NPCCreator : Node
 
 
         }
+    }
+
+    void SelectRandomName()
+    {
+        int randomIndex = random.RandiRange(0, maleNames.Length - 1);
+        npcHolder.Name = maleNames[randomIndex];
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SetNPCName, npcHolder.Name);
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SetSFXName, npcHolder.sfxName);
     }
 
     Color GetRandomColour(Color[] colorArray)
