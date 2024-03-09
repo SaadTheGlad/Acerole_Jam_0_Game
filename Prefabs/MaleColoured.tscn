@@ -75,6 +75,7 @@ position = Vector2(1, -134)
 scale = Vector2(0.18838, 0.18838)
 
 [node name="Skeleton" type="Node2D" parent="."]
+visible = false
 position = Vector2(-405.115, -1064.87)
 
 [node name="Neck" type="Sprite2D" parent="Skeleton"]
@@ -399,14 +400,14 @@ offset = Vector2(61.3725, -945.059)
 visible = false
 position = Vector2(-405.115, -1064.87)
 
-[node name="Heart" type="Node2D" parent="Organs"]
+[node name="Heart" type="Node2D" parent="Organs" groups=["Avoid"]]
 
-[node name="Colour" type="Sprite2D" parent="Organs/Heart"]
+[node name="Colour" type="Sprite2D" parent="Organs/Heart" groups=["Avoid"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("52_vwoal")
 
-[node name="Ink" type="Sprite2D" parent="Organs/Heart"]
+[node name="Ink" type="Sprite2D" parent="Organs/Heart" groups=["Avoid"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("53_0lg8h")

@@ -392,10 +392,10 @@ public partial class XRayManager : Node
         if (randomValue < 25f)
         {
             //Make missing
-            //while (/*organsArrayPublic[randomIndex].IsInGroup("CanMiss") || organsArrayPublic[randomIndex].IsInGroup("Avoid")*/)
-            //{
-            //    randomIndex = RandomSelectionOrgans();
-            //}
+            while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))
+            {
+                randomIndex = RandomSelectionOrgans();
+            }
 
             Sprite2D current = array[randomIndex];
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeMissing, current.Name);
@@ -406,10 +406,10 @@ public partial class XRayManager : Node
         else if (randomValue < 50f)
         {
             //Make colourable
-            //while (/*organsArrayPublic[randomIndex].IsInGroup("CanColour") || organsArrayPublic[randomIndex].IsInGroup("Avoid")*/)
-            //{
-            //    randomIndex = RandomSelectionOrgans();
-            //}
+            while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))
+            {
+                randomIndex = RandomSelectionOrgans();
+            }
 
             Sprite2D current = array[randomIndex];
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeDiscoloured, current.Name);
@@ -419,10 +419,10 @@ public partial class XRayManager : Node
         else if (randomValue < 75f)
         {
             //transform thing
-            //while (/*organsArrayPublic[randomIndex].IsInGroup("CanColour") || organsArrayPublic[randomIndex].IsInGroup("Avoid"*/))
-            //{
-            //    randomIndex = RandomSelectionOrgans();
-            //}
+            while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))
+            {
+                randomIndex = RandomSelectionOrgans();
+            }
             Sprite2D current = array[randomIndex];
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeRotated, current.Name);
             AlterTransformOfObject(current, 180f);
@@ -430,10 +430,10 @@ public partial class XRayManager : Node
         }
         else if(randomValue <= 100f)
         {
-            //while (/*organsArrayPublic[randomIndex].IsInGroup("CanColour") || organsArrayPublic[randomIndex].IsInGroup("Avoid")*/)
-            //{
-            //    randomIndex = RandomSelectionOrgans();
-            //}
+            while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))
+            {
+                randomIndex = RandomSelectionOrgans();
+            }
 
             Sprite2D current = array[randomIndex];
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeDuplicated, current.Name);
