@@ -123,7 +123,6 @@ public partial class DialogueHandler : Node
             {
                 if(!isInUse)
                 {
-                    GD.Print("setting things");
                     balloon.Set("soundName", dialogueHolder.sfxName);
                 }
             }
@@ -182,7 +181,6 @@ public partial class DialogueHandler : Node
     void SetNPCSfxName(string name)
     {
         currentNPCSFXName = name;
-        GD.Print(currentNPCSFXName);
     }
 
     void ChangeSound(string soundSFXName)

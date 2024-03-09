@@ -1,8 +1,4 @@
 ~ start
 
-Man: Hello. I would like entry, here is the payment.
-Man: My voice will get higher now
-do ChangeSound("ring")
-Man: Fuck me harder 
-do ResetSound()
+Man: Hello. 
 => END

@@ -6,9 +6,10 @@ using System.Security;
 [GlobalClass]
 public partial class XRayManager : Node
 {
+    [ExportGroup("Probabilities")]
     [Export(PropertyHint.Range, "0,100,")] public float probabilityOfGeneralAbberation = 20f;
     [Export(PropertyHint.Range, "0,100,")] public float probabilityOfSkeletonToOrgansAbberation = 50f;
-    //[Export(PropertyHint.Range, "0,100,")] public float probabilityOfOrganAbberation = 50f;
+
     RandomNumberGenerator random = new RandomNumberGenerator();
 
     [ExportGroup("Animation Players")]
@@ -27,6 +28,7 @@ public partial class XRayManager : Node
     [Export] public Color transparentColour;
     [ExportGroup("Misc")]
     [Export] public Button selectAnomalyButton;
+    [Export] public Sprite2D stomach, liver;
 
     private Godot.Collections.Array<Sprite2D> skeletonArrayPublic = new Godot.Collections.Array<Sprite2D>();
     private Godot.Collections.Array<Sprite2D> skeletonArray;
@@ -58,6 +60,7 @@ public partial class XRayManager : Node
     bool isDG;
     bool canRoll = true;
     bool skeletonOrOrgan = false;
+    string offColourOrganName;
 
     public override void _Ready()
     {
@@ -178,7 +181,14 @@ public partial class XRayManager : Node
 
                 if(currentSelectedOrgan != null && nameAndOrganColourDictionary.Count != 0)
                 {
-                    currentSelectedOrgan.SelfModulate = nameAndOrganColourDictionary[currentSelectedOrgan.Name];
+                    //if(currentSelectedOrgan.Name != offColourOrganName)
+                    //{
+                        currentSelectedOrgan.SelfModulate = nameAndOrganColourDictionary[currentSelectedOrgan.Name];
+                    //}
+                    //else
+                    //{
+
+                    //}
                 }
 
 
@@ -188,7 +198,7 @@ public partial class XRayManager : Node
                     for (int i = skeletonArrayPublic.Count - 1; i > -1; i--)
                     {
                         Vector2 mousePos = skeletonArrayPublic[i].ToLocal(inputEventMouse.GlobalPosition);
-                        if (skeletonArrayPublic[i].GetRect().HasPoint(mousePos) && skeletonArrayPublic[i].IsPixelOpaque(mousePos))
+                        if (skeletonArrayPublic[i].GetRect().HasPoint(mousePos) && skeletonArrayPublic[i].IsPixelOpaque(mousePos) && skeletonArrayPublic[i].Visible)
                         {
                             currentSelectedBone = skeletonArrayPublic[i];
                             selectAnomalyButton.Visible = true;
@@ -208,7 +218,7 @@ public partial class XRayManager : Node
                     {
 
                         Vector2 mousePos = organsArrayPublic[i].ToLocal(inputEventMouse.GlobalPosition);
-                        if (organsArrayPublic[i].GetRect().HasPoint(mousePos) && organsArrayPublic[i].IsPixelOpaque(mousePos))
+                        if (organsArrayPublic[i].GetRect().HasPoint(mousePos) && organsArrayPublic[i].IsPixelOpaque(mousePos) && organsArrayPublic[i].Visible)
                         {
                             currentSelectedOrgan = organsArrayPublic[i];
                             selectAnomalyButton.Visible = true;
@@ -277,13 +287,9 @@ public partial class XRayManager : Node
         if (skeletonOrOrgan && isDG)
         {
             int randomIndex = RandomSelectionSkeleton();
-            while (skeletonArrayPublic[randomIndex].IsInGroup("Avoid"))
-            {
-                randomIndex = RandomSelectionSkeleton();
-            }
+            Sprite2D current = Abberate(randomIndex, skeletonArrayPublic);
+
             currentSkeletonIndex = randomIndex;
-            Sprite2D current = skeletonArrayPublic[randomIndex];
-            current.SelfModulate = veryTranslucentColour;
             anomalyBone = current;
             GD.Print(current.Name);
             hasScannedSkeleton = true;
@@ -350,20 +356,105 @@ public partial class XRayManager : Node
 
         if (!skeletonOrOrgan && isDG)
         {
+
             int randomIndex = RandomSelectionOrgans();
-            while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))
-            {
-                randomIndex = RandomSelectionOrgans();
-            }
+            Sprite2D current = Abberate(randomIndex, organsArrayPublic);
+
             currentOrgansIndex = randomIndex;
-            Sprite2D current = organsArrayPublic[randomIndex];
-            current.SelfModulate = veryTranslucentColour;
             anomalyOrgan = current;
             GD.Print(current.Name);
             hasScannedOrgans = true;
         }
 
     }
+
+
+    Sprite2D Abberate(int randomIndex, Godot.Collections.Array<Sprite2D> array)
+    {
+
+        float randomValue = random.RandiRange(0, 100);
+        if (randomValue < 25f)
+        {
+            //Make missing
+            //while (/*organsArrayPublic[randomIndex].IsInGroup("CanMiss") || organsArrayPublic[randomIndex].IsInGroup("Avoid")*/)
+            //{
+            //    randomIndex = RandomSelectionOrgans();
+            //}
+
+            Sprite2D current = array[randomIndex];
+            MakeMissing(current);
+            return current;
+
+        }
+        else if (randomValue < 50f)
+        {
+            //Make colourable
+            //while (/*organsArrayPublic[randomIndex].IsInGroup("CanColour") || organsArrayPublic[randomIndex].IsInGroup("Avoid")*/)
+            //{
+            //    randomIndex = RandomSelectionOrgans();
+            //}
+
+            Sprite2D current = array[randomIndex];
+            ReColour(current);
+            return current;
+        }
+        else if (randomValue < 75f)
+        {
+            //transform thing
+            //while (/*organsArrayPublic[randomIndex].IsInGroup("CanColour") || organsArrayPublic[randomIndex].IsInGroup("Avoid"*/))
+            //{
+            //    randomIndex = RandomSelectionOrgans();
+            //}
+            Sprite2D current = array[randomIndex];
+            AlterTransformOfObject(current, 180f);
+            return current;
+        }
+        else if(randomValue <= 100f)
+        {
+            //while (/*organsArrayPublic[randomIndex].IsInGroup("CanColour") || organsArrayPublic[randomIndex].IsInGroup("Avoid")*/)
+            //{
+            //    randomIndex = RandomSelectionOrgans();
+            //}
+
+            Sprite2D current = array[randomIndex];
+            AddObject(current);
+            return current;
+
+        }
+        else
+        {
+            Sprite2D current = array[randomIndex];
+            GD.Print("something went seriously wrong");
+            return current;
+        }
+
+
+
+    }
+
+    void MakeMissing(Sprite2D current)
+    {
+        current.SelfModulate = veryTranslucentColour;
+    }
+
+    void AlterTransformOfObject(Sprite2D current, float angle)
+    {
+        current.RotationDegrees = angle;
+    }
+
+    void AddObject(Sprite2D current)
+    {
+        Sprite2D duplicatedOrgan = (Sprite2D)current.Duplicate();
+        current.GetParent().AddChild(duplicatedOrgan);
+        AlterTransformOfObject(duplicatedOrgan, 90f);
+    }
+
+    void ReColour(Sprite2D current)
+    {
+        current.SelfModulate = new Color(1, 1, 1);
+        offColourOrganName = current.Name;
+    }
+
     int RandomSelectionSkeleton()
     {
         //Shuffle bag random selection
@@ -393,6 +484,28 @@ public partial class XRayManager : Node
 
         uint randomIndex = GD.Randi() % (uint)organsArrayPublic.Count;
         return (int)randomIndex;
+    }
+
+    bool visible = true;
+    void ClearForKidneys()
+    {
+        visible = !visible;
+        if(visible)
+        {
+            stomach.Visible = true;
+            stomach.SelfModulate = nameAndOrganColourDictionary["Stomach"];
+            liver.Visible = true;
+            liver.SelfModulate = nameAndOrganColourDictionary["Liver"];
+        }
+        else
+        {
+            stomach.Visible = false;
+            stomach.SelfModulate = new Color(stomach.SelfModulate.R, stomach.SelfModulate.G, stomach.SelfModulate.B, 0f);
+            liver.Visible = false;
+            liver.SelfModulate = new Color(liver.SelfModulate.R, liver.SelfModulate.G, liver.SelfModulate.B, 0f);
+        }
+
+
     }
 
 }

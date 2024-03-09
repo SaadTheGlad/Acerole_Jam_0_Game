@@ -25,19 +25,11 @@ public partial class JudgingManager : Node
     public override void _EnterTree()
     {
         SignalsManager.Instance.Admitted += CloseJudge;
-        SignalsManager.Instance.DoneInterrogate += ResetAnomalies;
     }
 
     public override void _ExitTree()
     {
         SignalsManager.Instance.Admitted -= CloseJudge;
-        SignalsManager.Instance.DoneInterrogate -= ResetAnomalies;
-    }
-
-    public override void _Ready()
-    {
-        PopulateDic(nameBoneTypeDic, skeletonDialogueJudges);
-        PopulateDic(nameOrganTypeDic, organsDialogueJudges);
     }
 
     async private void FallGuy()
@@ -73,158 +65,158 @@ public partial class JudgingManager : Node
 
         }
     }
-
     void CloseJudge()
     {
         judgingPlayer.Play("Close");
     }
 
-    public void PopulateDic(Dictionary<String, DialogueJudges> dictionary, DialogueJudges[] judges)
-    {
-        foreach(DialogueJudges n in judges)
-        {
-            dictionary.Add(n.dialogueName, n);
-        }
-    }
-
     public void Interrogate()
     {
-
-        if(anomalyBone != null && selectedBone != null)
-        {
-            //anomalous bone
-
-            if (selectedBone.Name == anomalyBone.Name)
-            {
-                string boneName = anomalyBone.Name;
-                if(boneName.Contains("Rib"))
-                {
-
-                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["rib"]);
-                }
-                else if(boneName.Contains("Backbone"))
-                {
-                    
-                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["backbone"]);
-
-                }
-                else if(boneName.Contains("Knee"))
-                {
-
-                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["knee"]);
-
-                }
-                else if(boneName.Contains("Toe"))
-                {
-
-                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["toe"]);  
-                }
-
-
-
-                //ResetAnomalies();
-
-
-            }
-            else
-            {
-                controller.Admit();
-                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
-                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
-                //Dies
-                ResetAnomalies();
-
-            }
-        }
-        else if(anomalyOrgan != null && selectedOrgan != null)
-        {
-            //anomalous organ
-            if (selectedOrgan.Name == anomalyOrgan.Name)
-            {
-                string organName = anomalyOrgan.Name;
-
-
-                if (organName.Contains("Kidney"))
-                {
-                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["kidney"]);
-                }
-                else if (organName.Contains("Pancreas"))
-                {
-
-                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["pancreas"]);
-
-                }
-                else if (organName.Contains("Testicles"))
-                {
-
-                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["testicle"]);
-
-                }
-                else if (organName.Contains("Gallbladder"))
-                {
-
-                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["gallbladder"]);
-                }
-                else if (organName.Contains("Lungs"))
-                {
-
-                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["lung"]);
-                }
-                else if (organName.Contains("Penis"))
-                {
-                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["penis"]);
-                }
-                //Add one for stomach and bladder
-
-
-                //ResetAnomalies();
-
-            }
-            else
-            {
-                controller.Admit();
-                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
-                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
-                ResetAnomalies();
-
-
-                //Dies
-            }
-
-        }
-        else
-        {
-            controller.Admit();
-            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
-            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
-            ResetAnomalies();
-
-
-        }
-
-
+        GD.Print("Is interrogating...");
+        PassThrough();
     }
 
-    void ResetAnomalies()
+    void PassThrough()
     {
-        selectedOrgan = null;
-        selectedBone = null;
+        controller.Admit();
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
     }
 
-    public void SelectAnomaly()
-    {
-        selectedBone = xRayManager.currentSelectedBone;
-        selectedOrgan = xRayManager.currentSelectedOrgan;
 
-        if(xRayManager.anomalyBone != null)
-        {
-            anomalyBone = xRayManager.anomalyBone;
-        }
+    #region Old Code
+    //public void PopulateDic(Dictionary<String, DialogueJudges> dictionary, DialogueJudges[] judges)
+    //{
+    //    foreach (DialogueJudges n in judges)
+    //    {
+    //        dictionary.Add(n.dialogueName, n);
+    //    }
+    //}
 
-        if(xRayManager.anomalyOrgan != null)
-        {
-            anomalyOrgan = xRayManager.anomalyOrgan;
-        }
+    //public void Interrogate()
+    //{
 
-    }
+    //    if(anomalyBone != null && selectedBone != null)
+    //    {
+    //        //anomalous bone
+
+    //        if (selectedBone.Name == anomalyBone.Name)
+    //        {
+    //            string boneName = anomalyBone.Name;
+    //            if(boneName.Contains("Rib"))
+    //            {
+
+    //                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["rib"]);
+    //            }
+    //            else if(boneName.Contains("Backbone"))
+    //            {
+
+    //                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["backbone"]);
+
+    //            }
+    //            else if(boneName.Contains("Knee"))
+    //            {
+
+    //                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["knee"]);
+
+    //            }
+    //            else if(boneName.Contains("Toe"))
+    //            {
+
+    //                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameBoneTypeDic["toe"]);  
+    //            }
+    //            else
+    //            {
+    //                //I haven't added it yet so I guess just let em pass for now 
+    //                PassThrough();
+
+    //            }
+
+    //            //ResetAnomalies();
+
+    //        }
+    //        else
+    //        {
+    //            PassThrough();
+    //        }
+    //    }
+    //    else if(anomalyOrgan != null && selectedOrgan != null)
+    //    {
+    //        //anomalous organ
+    //        if (selectedOrgan.Name == anomalyOrgan.Name)
+    //        {
+    //            string organName = anomalyOrgan.Name;
+
+
+    //            if (organName.Contains("Kidney"))
+    //            {
+    //                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["kidney"]);
+    //            }
+    //            else if (organName.Contains("Pancreas"))
+    //            {
+
+    //                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["pancreas"]);
+
+    //            }
+    //            else if (organName.Contains("Testicles"))
+    //            {
+
+    //                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["testicle"]);
+
+    //            }
+    //            else if (organName.Contains("Gallbladder"))
+    //            {
+
+    //                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["gallbladder"]);
+    //            }
+    //            else if (organName.Contains("Lungs"))
+    //            {
+
+    //                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["lung"]);
+    //            }
+    //            else if (organName.Contains("Penis"))
+    //            {
+    //                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate, nameOrganTypeDic["penis"]);
+    //            }
+    //            else
+    //            {
+    //                //I haven't added it yet so I guess just let em pass for now 
+    //                PassThrough();
+    //            }
+
+
+    //            //ResetAnomalies();
+
+    //        }
+    //        else
+    //        {
+    //            PassThrough();
+    //            //Dies
+    //        }
+
+    //    }
+    //    else
+    //    {
+    //        PassThrough();
+    //    }
+
+    //}
+
+    //public void SelectAnomaly()
+    //{
+    //    selectedBone = xRayManager.currentSelectedBone;
+    //    selectedOrgan = xRayManager.currentSelectedOrgan;
+
+    //    if(xRayManager.anomalyBone != null)
+    //    {
+    //        anomalyBone = xRayManager.anomalyBone;
+    //    }
+
+    //    if(xRayManager.anomalyOrgan != null)
+    //    {
+    //        anomalyOrgan = xRayManager.anomalyOrgan;
+    //    }
+
+    //}
+    #endregion
 }

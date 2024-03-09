@@ -78,284 +78,335 @@ scale = Vector2(0.18838, 0.18838)
 position = Vector2(-405.115, -1064.87)
 
 [node name="Neck" type="Sprite2D" parent="Skeleton"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, -203.842)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("1_8bss7")
+offset = Vector2(0.834387, 645.442)
 
-[node name="Skull" type="Sprite2D" parent="Skeleton" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="Skull" type="Sprite2D" parent="Skeleton"]
+position = Vector2(399.807, -633.824)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("2_h5232")
+offset = Vector2(0.834387, 794.035)
 
 [node name="Ribs" type="Node2D" parent="Skeleton"]
 
 [node name="12Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, 884.384)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("4_bduk4")
+offset = Vector2(0.834387, 269.372)
 
 [node name="11Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, 799.449)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("5_iipg8")
+offset = Vector2(0.834387, 298.724)
 
 [node name="10Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, 783.524)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("6_ob7nx")
+offset = Vector2(0.834387, 304.227)
 
 [node name="9Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, 709.206)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("7_lf6yv")
+offset = Vector2(0.834387, 329.91)
 
 [node name="-1Backbone" type="Sprite2D" parent="Skeleton/Ribs" groups=["Backbones"]]
-position = Vector2(402.221, 1659.41)
+position = Vector2(399.807, 475.635)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("3_0ugdc")
+offset = Vector2(0.834387, 409.09)
 
 [node name="8Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, 603.038)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("8_d6r6i")
+offset = Vector2(0.834387, 366.6)
 
 [node name="7Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, 502.178)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("9_jtm7p")
+offset = Vector2(0.834387, 401.455)
 
 [node name="6Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, 396.009)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("10_kk61d")
+offset = Vector2(0.834374, 438.145)
 
 [node name="5Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, 263.299)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("11_jgflw")
+offset = Vector2(0.834387, 484.007)
 
 [node name="4Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, 151.822)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("12_ftj37")
+offset = Vector2(0.834387, 522.531)
 
 [node name="3Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(394.498, 66.8871)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("13_kp2nu")
+offset = Vector2(2.66887, 551.883)
 
 [node name="2Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, -7.43066)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("14_typ5d")
+offset = Vector2(0.834387, 577.566)
 
 [node name="1Rib" type="Sprite2D" parent="Skeleton/Ribs" groups=["Ribs"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(394.498, -81.7484)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("15_f18ss")
+offset = Vector2(2.66887, 603.249)
 
-[node name="Sternum" type="Sprite2D" parent="Skeleton/Ribs" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="Sternum" type="Sprite2D" parent="Skeleton/Ribs"]
+position = Vector2(399.807, 188.981)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("16_7byrq")
+offset = Vector2(0.834387, 509.69)
 
 [node name="Backbone" type="Node2D" parent="Skeleton" groups=["Backbones"]]
 
 [node name="5Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(405.115, 1107.34)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("17_d2gif")
+offset = Vector2(-1.0001, 192.323)
 
 [node name="4Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(405.115, 985.244)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("18_ofcbb")
+offset = Vector2(-1.0001, 234.517)
 
 [node name="3Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(410.423, 863.15)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("19_lue0v")
+offset = Vector2(-2.83459, 276.71)
 
 [node name="2Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(410.423, 751.673)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("20_b670t")
+offset = Vector2(-2.83459, 315.234)
 
 [node name="1Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(415.732, 682.664)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("21_pk43p")
+offset = Vector2(-4.66906, 339.082)
 
 [node name="0Backbone" type="Sprite2D" parent="Skeleton/Backbone" groups=["Backbones"]]
-position = Vector2(402.221, 1663.86)
+position = Vector2(405.115, 592.421)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("22_5gyvy")
+offset = Vector2(-1.0001, 370.269)
 
-[node name="Pelvis" type="Sprite2D" parent="Skeleton" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="Pelvis" type="Sprite2D" parent="Skeleton"]
+position = Vector2(405.115, 1378.07)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("23_ooegw")
+offset = Vector2(-1.0001, 98.7646)
 
 [node name="Left" type="Node2D" parent="Skeleton"]
 
 [node name="LShoulder" type="Sprite2D" parent="Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(909.415, 72.1958)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("24_yodxt")
+offset = Vector2(-175.276, 550.048)
 
 [node name="LCollar" type="Sprite2D" parent="Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(744.854, -55.2064)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("25_l4csc")
+offset = Vector2(-118.407, 594.076)
 
 [node name="LHand" type="Sprite2D" parent="Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(1047.43, 1961.99)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("26_3rdfx")
+offset = Vector2(-222.973, -103.029)
 
-[node name="LUpperArm" type="Sprite2D" parent="Skeleton/Left" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="LUpperArm" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(1004.97, 475.635)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("27_m2bx5")
+offset = Vector2(-208.297, 410.627)
 
-[node name="LForeArm" type="Sprite2D" parent="Skeleton/Left" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="LForeArm" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(1036.82, 1330.29)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("28_vgx71")
+offset = Vector2(-219.304, 115.275)
 
-[node name="LLowerLeg" type="Sprite2D" parent="Skeleton/Left" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="LLowerLeg" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(628.069, 3607.6)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("29_u0aiq")
+offset = Vector2(-78.0486, -671.72)
 
-[node name="LUpperLeg" type="Sprite2D" parent="Skeleton/Left" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="LUpperLeg" type="Sprite2D" parent="Skeleton/Left"]
+position = Vector2(707.695, 2285.81)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("30_l5k8m")
+offset = Vector2(-105.566, -214.933)
 
 [node name="LKnee" type="Sprite2D" parent="Skeleton/Left"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(638.685, 2991.83)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("31_ec2hd")
+offset = Vector2(-81.7175, -458.919)
 
 [node name="LFoot" type="Node2D" parent="Skeleton/Left"]
 
-[node name="Base" type="Sprite2D" parent="Skeleton/Left/LFoot" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="Base" type="Sprite2D" parent="Skeleton/Left/LFoot"]
+position = Vector2(633.377, 4265.85)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("32_5gk7t")
+offset = Vector2(-79.883, -899.196)
 
 [node name="5Toe" type="Sprite2D" parent="Skeleton/Left/LFoot"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(771.396, 4382.63)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("33_pmbo2")
+offset = Vector2(-127.58, -939.555)
 
 [node name="4Toe" type="Sprite2D" parent="Skeleton/Left/LFoot"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(760.779, 4398.56)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("34_q22d8")
+offset = Vector2(-123.911, -945.059)
 
 [node name="3Toe" type="Sprite2D" parent="Skeleton/Left/LFoot"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(718.312, 4398.56)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("35_ltarv")
+offset = Vector2(-109.235, -945.059)
 
 [node name="2Toe" type="Sprite2D" parent="Skeleton/Left/LFoot"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(649.302, 4398.56)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("36_pp8u6")
+offset = Vector2(-85.3865, -945.059)
 
 [node name="1Toe" type="Sprite2D" parent="Skeleton/Left/LFoot"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(580.293, 4398.56)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("37_pfw3i")
+offset = Vector2(-61.5382, -945.058)
 
 [node name="Right" type="Node2D" parent="Skeleton"]
 
 [node name="RShoulder" type="Sprite2D" parent="Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(-99.1849, 82.8126)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("38_sgqyj")
+offset = Vector2(173.276, 546.379)
 
 [node name="RCollar" type="Sprite2D" parent="Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(65.3762, -55.2062)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("39_pedoo")
+offset = Vector2(116.407, 594.076)
 
 [node name="RHand" type="Sprite2D" parent="Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(-247.821, 1956.68)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("40_7a3ir")
+offset = Vector2(224.642, -101.194)
 
-[node name="RUpperArm" type="Sprite2D" parent="Skeleton/Right" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="RUpperArm" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(-200.045, 480.944)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("41_ms4dx")
+offset = Vector2(208.131, 408.793)
 
-[node name="RForeArm" type="Sprite2D" parent="Skeleton/Right" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="RForeArm" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(-237.204, 1330.29)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("42_r07bi")
+offset = Vector2(220.973, 115.275)
 
-[node name="RLowerLeg" type="Sprite2D" parent="Skeleton/Right" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="RLowerLeg" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(182.161, 3607.6)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("43_8oy43")
+offset = Vector2(76.0484, -671.72)
 
-[node name="RUpperLeg" type="Sprite2D" parent="Skeleton/Right" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="RUpperLeg" type="Sprite2D" parent="Skeleton/Right"]
+position = Vector2(97.2266, 2291.11)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("44_34ap3")
+offset = Vector2(105.4, -216.767)
 
 [node name="RKnee" type="Sprite2D" parent="Skeleton/Right"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(160.928, 2986.52)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("45_ip4g3")
+offset = Vector2(83.3863, -457.085)
 
 [node name="RFoot" type="Node2D" parent="Skeleton/Right"]
 
-[node name="Base2" type="Sprite2D" parent="Skeleton/Right/RFoot" groups=["Avoid"]]
-position = Vector2(402.221, 1663.86)
+[node name="Base2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
+position = Vector2(171.545, 4265.85)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("46_dj6j2")
+offset = Vector2(79.7173, -899.196)
 
 [node name="5Toe2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(33.5256, 4382.63)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("47_1ksle")
+offset = Vector2(127.414, -939.555)
 
 [node name="4Toe2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(38.834, 4398.56)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("48_xq3ld")
+offset = Vector2(125.58, -945.059)
 
 [node name="3Toe2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(75.993, 4398.56)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("49_hmv1p")
+offset = Vector2(112.738, -945.059)
 
 [node name="2Toe2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(150.311, 4398.56)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("50_umpr2")
+offset = Vector2(87.0553, -945.058)
 
 [node name="1Toe2" type="Sprite2D" parent="Skeleton/Right/RFoot"]
-position = Vector2(402.221, 1663.86)
+position = Vector2(224.629, 4398.56)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("51_b7a53")
+offset = Vector2(61.3725, -945.059)
 
 [node name="Organs" type="Node2D" parent="."]
 visible = false
 position = Vector2(-405.115, -1064.87)
 
-[node name="Heart" type="Node2D" parent="Organs" groups=["Avoid"]]
+[node name="Heart" type="Node2D" parent="Organs"]
 
-[node name="Colour" type="Sprite2D" parent="Organs/Heart" groups=["Avoid"]]
+[node name="Colour" type="Sprite2D" parent="Organs/Heart"]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("52_vwoal")
 
-[node name="Ink" type="Sprite2D" parent="Organs/Heart" groups=["Avoid"]]
+[node name="Ink" type="Sprite2D" parent="Organs/Heart"]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("53_0lg8h")
@@ -364,33 +415,38 @@ texture = ExtResource("53_0lg8h")
 
 [node name="LKidney" type="Sprite2D" parent="Organs/Kidneys"]
 self_modulate = Color(0.564706, 0.243137, 0.243137, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(160.928, 831.299)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("54_4g0iu")
+offset = Vector2(83.3863, 287.717)
 
 [node name="RKidney" type="Sprite2D" parent="Organs/Kidneys"]
 self_modulate = Color(0.564706, 0.243137, 0.243137, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(633.377, 820.683)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("55_6ircp")
+offset = Vector2(-78.0486, 289.551)
 
 [node name="Pancreas" type="Sprite2D" parent="Organs"]
 self_modulate = Color(0.956863, 0.682353, 0.317647, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(373.264, 964.01)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("56_l3py2")
+offset = Vector2(10.0068, 241.855)
 
-[node name="Stomach" type="Sprite2D" parent="Organs" groups=["Avoid"]]
+[node name="Stomach" type="Sprite2D" parent="Organs"]
 self_modulate = Color(0.956863, 0.65098, 0.615686, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(580.293, 825.991)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("57_p0hmh")
+offset = Vector2(-61.5382, 289.551)
 
-[node name="Liver" type="Sprite2D" parent="Organs" groups=["Avoid"]]
+[node name="Liver" type="Sprite2D" parent="Organs"]
 self_modulate = Color(0.309804, 0.121569, 0.0823529, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(277.713, 709.206)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("58_mqusr")
+offset = Vector2(43.0276, 329.91)
 
 [node name="Lungs" type="Node2D" parent="Organs"]
 
@@ -410,54 +466,62 @@ offset = Vector2(-74.3796, 474.835)
 
 [node name="Gallbladder" type="Sprite2D" parent="Organs"]
 self_modulate = Color(0.545098, 0.584314, 0.364706, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(155.619, 921.543)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("61_aqk3t")
+offset = Vector2(85.2208, 256.531)
 
 [node name="Intenstines" type="Node2D" parent="Organs"]
 
-[node name="SmallIntenstine" type="Sprite2D" parent="Organs/Intenstines" groups=["Avoid"]]
+[node name="SmallIntenstine" type="Sprite2D" parent="Organs/Intenstines"]
 self_modulate = Color(0.933333, 0.615686, 0.6, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(405.115, 1282.52)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("62_67m2r")
+offset = Vector2(-1.0001, 131.785)
 
-[node name="LargeIntenstine" type="Sprite2D" parent="Organs/Intenstines" groups=["Avoid"]]
+[node name="LargeIntenstine" type="Sprite2D" parent="Organs/Intenstines"]
 self_modulate = Color(0.996078, 0.545098, 0.541176, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(410.423, 1287.82)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("63_5738v")
+offset = Vector2(-2.83459, 129.951)
 
-[node name="Brain" type="Sprite2D" parent="Organs" groups=["Avoid"]]
+[node name="Brain" type="Sprite2D" parent="Organs"]
 self_modulate = Color(0.670588, 0.470588, 0.478431, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(394.498, -809.002)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("64_ib8po")
+offset = Vector2(2.66887, 854.573)
 
 [node name="Male Reproductive" type="Node2D" parent="Organs"]
 
 [node name="Penis" type="Sprite2D" parent="Organs/Male Reproductive"]
 self_modulate = Color(1, 0.717647, 0.490196, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(399.807, 1728.42)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("65_m4c17")
+offset = Vector2(0.834387, -22.3115)
 
 [node name="Testicles" type="Node2D" parent="Organs/Male Reproductive"]
 
 [node name="LTesticles" type="Sprite2D" parent="Organs/Male Reproductive/Testicles"]
 self_modulate = Color(0.6, 0.235294, 0.160784, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(309.563, 1813.36)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("66_tlmgq")
+offset = Vector2(32.0207, -51.6633)
 
 [node name="RTesticles" type="Sprite2D" parent="Organs/Male Reproductive/Testicles"]
 self_modulate = Color(0.6, 0.235294, 0.160784, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(479.433, 1818.67)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("67_duusq")
+offset = Vector2(-26.6829, -53.4978)
 
-[node name="Bladder" type="Sprite2D" parent="Organs/Male Reproductive" groups=["Avoid"]]
+[node name="Bladder" type="Sprite2D" parent="Organs/Male Reproductive"]
 self_modulate = Color(0.909804, 0.4, 0.435294, 1)
-position = Vector2(402.221, 1663.86)
+position = Vector2(394.498, 1616.95)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("68_yykx3")
+offset = Vector2(2.66887, 16.2127)
