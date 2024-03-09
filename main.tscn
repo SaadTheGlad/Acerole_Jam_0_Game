@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=74 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
@@ -7,34 +7,23 @@
 [ext_resource type="Script" path="res://Scripts/SystemsManager.cs" id="1_wulak"]
 [ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
 [ext_resource type="Texture2D" uid="uid://wbo7yx08rfpd" path="res://Images/UI/Main/BG/Sky.PNG" id="2_kjyi1"]
-[ext_resource type="Resource" uid="uid://c8n2vrywoahnr" path="res://Dialogue/Interrogations/SkeletonDialogue/Missing_Rib.dialogue" id="2_kqor8"]
 [ext_resource type="PackedScene" uid="uid://cfghkkaxcybkb" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueNPCSignal.tscn" id="2_sniyy"]
 [ext_resource type="PackedScene" uid="uid://dd2a8ofih5akl" path="res://modules/DialogueManagerPrerequisites/Balloons/noIconBalloon.tscn" id="3_jli1w"]
 [ext_resource type="PackedScene" uid="uid://bvuujxl634baj" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHandler.tscn" id="3_m45lx"]
 [ext_resource type="Texture2D" uid="uid://cx7hf71ygt40a" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 2.PNG" id="3_pq5c5"]
 [ext_resource type="Texture2D" uid="uid://vpbu0uxfwxlc" path="res://Images/UI/Main/Desk.PNG" id="3_rf5ro"]
-[ext_resource type="Script" path="res://Scripts/DialogueJudges.cs" id="3_t38qv"]
 [ext_resource type="Texture2D" uid="uid://b7dv1iker83r1" path="res://Images/UI/Main/BG/Stars.PNG" id="3_vvaag"]
 [ext_resource type="Texture2D" uid="uid://bhvhrtw5kwanc" path="res://Images/UI/Main/Window/Frame.PNG" id="4_j4hjr"]
 [ext_resource type="Texture2D" uid="uid://c0y8p8f4etvu2" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 3.PNG" id="4_ogc8a"]
 [ext_resource type="Texture2D" uid="uid://bywk20ymwnqkw" path="res://Images/UI/Main/BG/Snow/Full Snow.PNG" id="4_uow0l"]
-[ext_resource type="Resource" uid="uid://csx8qqsbplfnl" path="res://Dialogue/Interrogations/SkeletonDialogue/Missing_Backbone.dialogue" id="4_wmbtc"]
-[ext_resource type="Resource" uid="uid://bkmlwp6hk3jwu" path="res://Dialogue/Interrogations/SkeletonDialogue/Missing_Knee.dialogue" id="5_nglbv"]
-[ext_resource type="Resource" uid="uid://dfuwtqb6m745r" path="res://Dialogue/Interrogations/SkeletonDialogue/Missing_Toe.dialogue" id="6_3a4hp"]
 [ext_resource type="Texture2D" uid="uid://48xteqc42tnf" path="res://Images/UI/Main/Window/White Glass.png" id="6_3eqmv"]
 [ext_resource type="Texture2D" uid="uid://cihqemsmvm2x6" path="res://Images/Bodies/Male/Outer Bodies/Ears/Ears 2.PNG" id="6_4l7nj"]
 [ext_resource type="Texture2D" uid="uid://hc68c2s66ol5" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 2.PNG" id="6_76evy"]
 [ext_resource type="Texture2D" uid="uid://dxb1wq3wk07av" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 3.PNG" id="7_2u833"]
-[ext_resource type="Resource" uid="uid://yl0g5g1n62js" path="res://Dialogue/Interrogations/OrgansDialogue/Missing_Gallbladder.dialogue" id="7_3apy0"]
 [ext_resource type="Texture2D" uid="uid://bv205g738btbc" path="res://Images/Bodies/Male/Outer Bodies/Ears/Ears 3.PNG" id="7_qwwwa"]
-[ext_resource type="Resource" uid="uid://6una0hg0fsgc" path="res://Dialogue/Interrogations/OrgansDialogue/Missing_Kidney.dialogue" id="8_yw25a"]
-[ext_resource type="Resource" uid="uid://bhojdivsso4g" path="res://Dialogue/Interrogations/OrgansDialogue/Missing_Lung.dialogue" id="9_4i8k7"]
-[ext_resource type="Resource" uid="uid://dbxt8700lqpow" path="res://Dialogue/Interrogations/OrgansDialogue/Missing_Pancreas.dialogue" id="10_hkipg"]
 [ext_resource type="Texture2D" uid="uid://cnx5r3bennc7u" path="res://icon.svg" id="10_w5o83"]
-[ext_resource type="Resource" uid="uid://dw2b03b56nykq" path="res://Dialogue/Interrogations/OrgansDialogue/Missing_Penis.dialogue" id="11_01ykd"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="11_g7kqk"]
 [ext_resource type="Texture2D" uid="uid://bu1e5l7mx6x3a" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 2.PNG" id="12_ecb3y"]
-[ext_resource type="Resource" uid="uid://jvgkadh0oku0" path="res://Dialogue/Interrogations/OrgansDialogue/Missing_Testicle.dialogue" id="12_kg5fv"]
 [ext_resource type="Texture2D" uid="uid://cdtmgahapx0kv" path="res://Images/UI/Main/BG/Wall.png" id="13_4jyuk"]
 [ext_resource type="PackedScene" uid="uid://yxo2fjmt3g1j" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueHolder.tscn" id="13_13vh2"]
 [ext_resource type="Texture2D" uid="uid://x05vy3jw0n7h" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 3.PNG" id="13_t3u1j"]
@@ -95,56 +84,6 @@ sclera = ExtResource("30_b358b")
 [sub_resource type="Curve" id="Curve_itk1r"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
-
-[sub_resource type="Resource" id="Resource_k83xa"]
-script = ExtResource("3_t38qv")
-dialogueName = "backbone"
-dialogue = ExtResource("4_wmbtc")
-
-[sub_resource type="Resource" id="Resource_tapia"]
-script = ExtResource("3_t38qv")
-dialogueName = "knee"
-dialogue = ExtResource("5_nglbv")
-
-[sub_resource type="Resource" id="Resource_ohbo3"]
-script = ExtResource("3_t38qv")
-dialogueName = "rib"
-dialogue = ExtResource("2_kqor8")
-
-[sub_resource type="Resource" id="Resource_4po85"]
-script = ExtResource("3_t38qv")
-dialogueName = "toe"
-dialogue = ExtResource("6_3a4hp")
-
-[sub_resource type="Resource" id="Resource_uytrx"]
-script = ExtResource("3_t38qv")
-dialogueName = "gallbladder"
-dialogue = ExtResource("7_3apy0")
-
-[sub_resource type="Resource" id="Resource_5plvr"]
-script = ExtResource("3_t38qv")
-dialogueName = "kidney"
-dialogue = ExtResource("8_yw25a")
-
-[sub_resource type="Resource" id="Resource_rdqgq"]
-script = ExtResource("3_t38qv")
-dialogueName = "lung"
-dialogue = ExtResource("9_4i8k7")
-
-[sub_resource type="Resource" id="Resource_xiulc"]
-script = ExtResource("3_t38qv")
-dialogueName = "pancreas"
-dialogue = ExtResource("10_hkipg")
-
-[sub_resource type="Resource" id="Resource_v7ybv"]
-script = ExtResource("3_t38qv")
-dialogueName = "penis"
-dialogue = ExtResource("11_01ykd")
-
-[sub_resource type="Resource" id="Resource_fi88c"]
-script = ExtResource("3_t38qv")
-dialogueName = "testicle"
-dialogue = ExtResource("12_kg5fv")
 
 [sub_resource type="Curve" id="Curve_4fejt"]
 _data = [Vector2(0, 0), 0.0, -0.101894, 0, 0, Vector2(0.487805, 0.993179), 0.0690391, 0.0, 0, 0]
@@ -329,14 +268,13 @@ _data = {
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "skeleton", "organs", "selectAnomalyButton", "stomach", "liver")]
 script = ExtResource("1_k6ho4")
 probabilityOfGeneralAbberation = 100.0
-probabilityOfSkeletonToOrgansAbberation = 0.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
-xRayArea = NodePath("../Screen X-Ray/Main")
+xRayArea = NodePath("../Screen X-Ray")
 skeleton = NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton")
 organs = NodePath("../Screen X-Ray/Main/MaleColoured/Organs")
-veryTranslucentColour = Color(1, 1, 1, 0.00392157)
+veryTranslucentColour = Color(0, 0, 0, 0.00392157)
 highlightColour = Color(1, 0, 0, 1)
 normalBoneColour = Color(1, 1, 1, 1)
 organsHighLightColour = Color(0, 0, 0, 1)
@@ -372,8 +310,6 @@ npcSignal = NodePath("../Player/DialogueNPCSignal")
 
 [node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "controller", "xRayManager")]
 script = ExtResource("1_oafhd")
-skeletonDialogueJudges = Array[Object]([SubResource("Resource_k83xa"), SubResource("Resource_tapia"), SubResource("Resource_ohbo3"), SubResource("Resource_4po85")])
-organsDialogueJudges = Array[Object]([SubResource("Resource_uytrx"), SubResource("Resource_5plvr"), SubResource("Resource_rdqgq"), SubResource("Resource_xiulc"), SubResource("Resource_v7ybv"), SubResource("Resource_fi88c")])
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
 controller = NodePath("../NPCController")
 fallingSpeed = 1.0

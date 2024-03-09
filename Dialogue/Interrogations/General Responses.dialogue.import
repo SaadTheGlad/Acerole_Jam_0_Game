@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://baf2al0j35ewv"
+path="res://.godot/imported/General Responses.dialogue-af9d6b5fed9ec4474e70d6bcf8fd53aa.tres"
+
+[deps]
+
+source_file="res://Dialogue/Interrogations/General Responses.dialogue"
+dest_files=["res://.godot/imported/General Responses.dialogue-af9d6b5fed9ec4474e70d6bcf8fd53aa.tres"]
+
+[params]
+
+defaults=true
