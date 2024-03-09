@@ -1,0 +1,11 @@
+import "res://Dialogue/Interrogations/General Responses.dialogue" as snippets
+
+~ start
+if isAnomaly
+	if selectedCorrectObject
+		The organ/skeleton name is {{objectName}}.
+	else
+		Lmao got the wrong one.
+else
+	The fuck are you on about mate?
+=> END

@@ -100,6 +100,8 @@ public partial class XRayManager : Node
             if (randomGeneralValue <= probabilityOfGeneralAbberation)
             {
                 isDG = true;
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableAbberation);
+
 
                 float randomSpecificValue = random.RandiRange(0, 100);
                 if (randomSpecificValue <= probabilityOfSkeletonToOrgansAbberation)
@@ -119,6 +121,8 @@ public partial class XRayManager : Node
             else
             {
                 isDG = false;
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisableAbberation);
+
             }
             GD.Print("Doppelganger State: " + isDG);
 
@@ -181,14 +185,9 @@ public partial class XRayManager : Node
 
                 if(currentSelectedOrgan != null && nameAndOrganColourDictionary.Count != 0)
                 {
-                    //if(currentSelectedOrgan.Name != offColourOrganName)
-                    //{
-                        currentSelectedOrgan.SelfModulate = nameAndOrganColourDictionary[currentSelectedOrgan.Name];
-                    //}
-                    //else
-                    //{
 
-                    //}
+                    currentSelectedOrgan.SelfModulate = nameAndOrganColourDictionary[currentSelectedOrgan.Name];
+
                 }
 
 
@@ -203,6 +202,16 @@ public partial class XRayManager : Node
                             currentSelectedBone = skeletonArrayPublic[i];
                             selectAnomalyButton.Visible = true;
                             skeletonArrayPublic[i].SelfModulate = highlightColour;
+
+                            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SetName, currentSelectedBone.Name);
+                            if (currentSelectedBone.Name == anomalyBone.Name)
+                            {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
+                            }
+                            else
+                            {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+                            }
                             return;
 
                         }
@@ -223,6 +232,15 @@ public partial class XRayManager : Node
                             currentSelectedOrgan = organsArrayPublic[i];
                             selectAnomalyButton.Visible = true;
                             organsArrayPublic[i].SelfModulate = organsHighLightColour;
+                            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SetName, currentSelectedOrgan.Name);
+                            if (currentSelectedOrgan.Name == anomalyOrgan.Name)
+                            {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
+                            }
+                            else
+                            {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+                            }
                             return;
 
                         }
@@ -356,7 +374,6 @@ public partial class XRayManager : Node
 
         if (!skeletonOrOrgan && isDG)
         {
-
             int randomIndex = RandomSelectionOrgans();
             Sprite2D current = Abberate(randomIndex, organsArrayPublic);
 
@@ -367,7 +384,6 @@ public partial class XRayManager : Node
         }
 
     }
-
 
     Sprite2D Abberate(int randomIndex, Godot.Collections.Array<Sprite2D> array)
     {
@@ -382,6 +398,7 @@ public partial class XRayManager : Node
             //}
 
             Sprite2D current = array[randomIndex];
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeMissing, current.Name);
             MakeMissing(current);
             return current;
 
@@ -395,6 +412,7 @@ public partial class XRayManager : Node
             //}
 
             Sprite2D current = array[randomIndex];
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeDiscoloured, current.Name);
             ReColour(current);
             return current;
         }
@@ -406,6 +424,7 @@ public partial class XRayManager : Node
             //    randomIndex = RandomSelectionOrgans();
             //}
             Sprite2D current = array[randomIndex];
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeRotated, current.Name);
             AlterTransformOfObject(current, 180f);
             return current;
         }
@@ -417,6 +436,7 @@ public partial class XRayManager : Node
             //}
 
             Sprite2D current = array[randomIndex];
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeDuplicated, current.Name);
             AddObject(current);
             return current;
 

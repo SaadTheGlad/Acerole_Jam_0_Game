@@ -55,13 +55,12 @@ public partial class DialogueNPCSignal : Node
         }
     }
 
-    void TalkInterrogate(DialogueJudges judge)
+    void TalkInterrogate()
     {
         foreach(Node n in player.GetChildren())
         {
             if (n is DialogueHolder holder)
             {
-                holder.dialogue = judge.dialogue;
                 EmitSignal(SignalName.EncounteredNPC, npcController.currentGuy, holder);
             }
         }

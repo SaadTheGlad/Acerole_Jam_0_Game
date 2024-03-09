@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://bcdgcbdhp5d6l"
+path="res://.godot/imported/Main Interrogation.dialogue-0fb666a1e19dba6351f999285c15a11e.tres"
+
+[deps]
+
+source_file="res://Dialogue/Interrogations/Main Interrogation.dialogue"
+dest_files=["res://.godot/imported/Main Interrogation.dialogue-0fb666a1e19dba6351f999285c15a11e.tres"]
+
+[params]
+
+defaults=true

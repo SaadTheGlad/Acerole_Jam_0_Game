@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=75 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
@@ -52,6 +52,7 @@
 [ext_resource type="Texture2D" uid="uid://bvwipjfrl0bnl" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 1.PNG" id="31_rbl4f"]
 [ext_resource type="Texture2D" uid="uid://c3mj2ulxk1jps" path="res://Images/Bodies/Male/Outer Bodies/Lips/Lips 1.PNG" id="32_3e3bj"]
 [ext_resource type="Texture2D" uid="uid://bwpj0dgj8geg6" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 1.PNG" id="33_jfa6y"]
+[ext_resource type="Resource" uid="uid://bcdgcbdhp5d6l" path="res://Dialogue/Interrogations/Main Interrogation.dialogue" id="40_dt8n8"]
 [ext_resource type="Texture2D" uid="uid://c85oc7by45uov" path="res://Images/UI/Little Objects/Bell/F1.PNG" id="56_8jhn2"]
 [ext_resource type="Texture2D" uid="uid://cin4yj6dfl576" path="res://Images/UI/Little Objects/Bell/F2.PNG" id="57_s5824"]
 [ext_resource type="BitMap" uid="uid://lyaulq6qjslj" path="res://Images/UI/Little Objects/Bell/BitMask.png" id="58_b2vtc"]
@@ -267,7 +268,8 @@ _data = {
 
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "skeleton", "organs", "selectAnomalyButton", "stomach", "liver")]
 script = ExtResource("1_k6ho4")
-probabilityOfGeneralAbberation = 100.0
+probabilityOfGeneralAbberation = 50.0
+probabilityOfSkeletonToOrgansAbberation = 0.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -331,6 +333,7 @@ player = NodePath("..")
 
 [node name="DialogueHolder" parent="Player" instance=ExtResource("13_13vh2")]
 characterName = &"You"
+dialogue = ExtResource("40_dt8n8")
 sfxName = &"ring"
 baseSpeed = 0.1
 

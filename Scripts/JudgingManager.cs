@@ -47,6 +47,7 @@ public partial class JudgingManager : Node
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.NPCHasPassed);
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisposedOf);
+                ResetStuff();
                 break;
             }
 
@@ -62,16 +63,22 @@ public partial class JudgingManager : Node
     public void Interrogate()
     {
         GD.Print("Is interrogating...");
-        PassThrough();
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate);
+        //PassThrough();
     }
 
     void PassThrough()
     {
+        ResetStuff();
         controller.Admit();
         SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
         SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
     }
 
+    void ResetStuff()
+    {
+        //SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisableAbberation);
+    }
 
     #region Old Code
     //public void PopulateDic(Dictionary<String, DialogueJudges> dictionary, DialogueJudges[] judges)

@@ -21,6 +21,11 @@ AudioManager="*res://modules/AudioManager/AudioManager.tscn"
 SceneManager="*res://modules/SceneManager/SceneManager.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SignalsManager="*res://Prefabs/SignalsManager.tscn"
+DialogueData="*res://Scripts/DialogueData.cs"
+
+[dialogue_manager]
+
+general/states=["DialogueData"]
 
 [display]
 
@@ -123,7 +128,7 @@ restart={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Dialogue/Test/Test.dialogue", "res://Dialogue/Interrogations/General Responses.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Dialogue/Test/Test.dialogue", "res://Dialogue/Interrogations/General Responses.dialogue", "res://Dialogue/Test/Reference.dialogue", "res://Dialogue/Interrogations/Main Interrogation.dialogue")
 
 [rendering]
 
