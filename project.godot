@@ -21,7 +21,6 @@ AudioManager="*res://modules/AudioManager/AudioManager.tscn"
 SceneManager="*res://modules/SceneManager/SceneManager.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SignalsManager="*res://Prefabs/SignalsManager.tscn"
-DialogueData="*res://Scripts/DialogueData.cs"
 
 [display]
 
