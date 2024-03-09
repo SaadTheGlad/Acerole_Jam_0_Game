@@ -4,23 +4,12 @@ using System;
 
 public partial class JudgingManager : Node
 {
-    [ExportCategory("Dialogues")]
-    [Export] public DialogueJudges[] skeletonDialogueJudges;
-    [Export] public DialogueJudges[] organsDialogueJudges;
     [ExportCategory("Other")]
     [Export] public AnimationPlayer judgingPlayer;
     [Export] public NPCController controller;
     [Export] public float fallingSpeed;
     [Export] public Curve curve;
     [Export] XRayManager xRayManager;
-
-    Sprite2D anomalyBone;
-    Sprite2D anomalyOrgan;
-    Sprite2D selectedBone;
-    Sprite2D selectedOrgan;
-
-    Dictionary<String, DialogueJudges> nameBoneTypeDic = new Dictionary<String, DialogueJudges>();
-    Dictionary<String, DialogueJudges> nameOrganTypeDic = new Dictionary<String, DialogueJudges>();
 
     public override void _EnterTree()
     {
