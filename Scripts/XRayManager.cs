@@ -171,6 +171,8 @@ public partial class XRayManager : Node
         //Removes the duplicate objects
         foreach (Sprite2D n in duplicateObjects)
         {
+            GD.Print("Removed " + n.Name);
+            duplicateObjects.Remove(n);
             n.QueueFree();
         }
 
@@ -504,7 +506,7 @@ public partial class XRayManager : Node
 
     void ReColour(Sprite2D current)
     {
-        int randomIndex = random.RandiRange(0, weirdColours.Length);
+        int randomIndex = random.RandiRange(0, weirdColours.Length - 1);
         current.SelfModulate = weirdColours[randomIndex].colour;
         SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SendColour, weirdColours[randomIndex].colourName);
         offColourOrganName = current.Name;

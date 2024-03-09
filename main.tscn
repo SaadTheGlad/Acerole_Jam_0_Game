@@ -284,8 +284,7 @@ _data = {
 
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "skeleton", "organs", "selectAnomalyButton", "stomach", "liver")]
 script = ExtResource("1_k6ho4")
-probabilityOfGeneralAbberation = 100.0
-probabilityOfSkeletonToOrgansAbberation = 0.0
+probabilityOfGeneralAbberation = 50.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
