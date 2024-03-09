@@ -112,7 +112,7 @@ public partial class DialogueHandler : Node
             var balloon = canvas;
             currentBalloon = balloon;
             var line = await DialogueManager.GetNextDialogueLine(dialogueResource, "start", variant);
-            string mood = line.GetTagValue("mood");
+            //string mood = line.GetTagValue("mood");
             balloon.Call("start", dialogueResource, "start", variant);
 
 
@@ -157,11 +157,11 @@ public partial class DialogueHandler : Node
 
                 foreach (var e in dialogueHolder.emotions)
                 {
-                    if (e.emotionName == mood)
-                    {
-                        iconTexture.Texture = e.texture;
-                        break;
-                    }
+                    //if (e.emotionName == mood)
+                    //{
+                    //    iconTexture.Texture = e.texture;
+                    //    break;
+                    //}
                 }
 
                 if (iconTexture.Texture == null)

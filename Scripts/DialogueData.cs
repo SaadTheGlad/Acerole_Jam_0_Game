@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Text.RegularExpressions;
 
 public partial class DialogueData : Node
 {
@@ -27,6 +28,7 @@ public partial class DialogueData : Node
         SignalsManager.Instance.DisableAbberation += MakeUnAbberated;
         SignalsManager.Instance.SelectedCorrect += SelectedCorrect;
         SignalsManager.Instance.SelectedIncorrect += SelectedInCorrect;
+        SignalsManager.Instance.SendColour += SetColourName;
 
         if (IsInstanceValid(Instance))
         {
@@ -50,6 +52,8 @@ public partial class DialogueData : Node
         SignalsManager.Instance.DisableAbberation -= MakeUnAbberated;
         SignalsManager.Instance.SelectedCorrect -= SelectedCorrect;
         SignalsManager.Instance.SelectedIncorrect -= SelectedInCorrect;
+        SignalsManager.Instance.SendColour -= SetColourName;
+
 
     }
 
@@ -63,26 +67,40 @@ public partial class DialogueData : Node
     {
         ResetBools();
         isMissing = true;
+        GD.Print("isMissing");
     }
     public void MakeRotated()
     {
         ResetBools();
         isRotated = true;
+        GD.Print("isRotated");
+
     }
     public void MakeDiscoloured()
     {
         ResetBools();
         isDiscoloured = true;
+        GD.Print("isColoured");
+
     }
     public void MakeDuplicated()
     {
         ResetBools();
         isDuplicated = true;
+        GD.Print("isDuplicated");
+
     }
 
     public void SetObjectName(string name)
     {
-        objectName = name;
+        var lowerCase = name.ToLower();
+        var output = Regex.Replace(lowerCase, @"[\d-]", string.Empty);
+        objectName = output;
+    }
+
+    public void SetColourName(string name)
+    {
+        colourName = name;
     }
 
     void ResetBools()

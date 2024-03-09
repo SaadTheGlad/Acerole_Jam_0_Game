@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Collections.Generic;
 using System.Security;
 
 [GlobalClass]
@@ -26,6 +27,7 @@ public partial class XRayManager : Node
     [Export] public Color normalBoneColour;
     [Export] public Color organsHighLightColour;
     [Export] public Color transparentColour;
+    [Export] public ColourName[] weirdColours;
     [ExportGroup("Misc")]
     [Export] public Button selectAnomalyButton;
     [Export] public Sprite2D stomach, liver;
@@ -55,7 +57,8 @@ public partial class XRayManager : Node
     Vector2 ogOrgansPos;
     Vector2 OUTOFSCREENPOS = new Vector2(-405.115f, 4878.437f);
 
-    Dictionary<String, Color> nameAndOrganColourDictionary = new Dictionary<string, Color>();
+    Godot.Collections.Dictionary<string, Color> nameAndOrganColourDictionary = new Godot.Collections.Dictionary<string, Color>();
+    private List<Sprite2D> duplicateObjects = new List<Sprite2D>();
 
     bool isDG;
     bool canRoll = true;
@@ -138,11 +141,39 @@ public partial class XRayManager : Node
 
     public void ResetScan()
     {
+        //Make the stuf visible and variables and shit
         skeleton.Visible = false;
         organs.Visible = false;
         selectAnomalyButton.Visible = false;
         hasScannedOrgans = false;
         hasScannedSkeleton = false;
+        
+        //Reset bones and organs colours
+        foreach(Sprite2D b in skeletonArrayPublic)
+        {
+            b.SelfModulate = normalBoneColour;
+        }
+        foreach(Sprite2D o in organsArrayPublic)
+        {
+            o.SelfModulate = nameAndOrganColourDictionary[o.Name];
+        }
+
+        //Rerotate the things
+        foreach (Sprite2D b in skeletonArrayPublic)
+        {
+            b.RotationDegrees = 0f;
+        }
+        foreach (Sprite2D o in organsArrayPublic)
+        {
+            o.RotationDegrees = 0f;
+        }
+
+        //Removes the duplicate objects
+        foreach (Sprite2D n in duplicateObjects)
+        {
+            n.QueueFree();
+        }
+
     }
     public void EnableScan() => canStartScan = true;
     public void DisableScan() => canStartScan = false;
@@ -389,16 +420,16 @@ public partial class XRayManager : Node
     {
 
         float randomValue = random.RandiRange(0, 100);
-        if (randomValue < 25f)
+        if (randomValue <= 25f)
         {
             //Make missing
-            while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))
+            while (array[randomIndex].IsInGroup("Avoid"))
             {
                 randomIndex = RandomSelectionOrgans();
             }
 
             Sprite2D current = array[randomIndex];
-            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeMissing, current.Name);
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeMissing);
             MakeMissing(current);
             return current;
 
@@ -406,37 +437,38 @@ public partial class XRayManager : Node
         else if (randomValue < 50f)
         {
             //Make colourable
-            while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))
+            while (array[randomIndex].IsInGroup("Avoid"))
             {
                 randomIndex = RandomSelectionOrgans();
             }
 
             Sprite2D current = array[randomIndex];
-            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeDiscoloured, current.Name);
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeDiscoloured);
             ReColour(current);
             return current;
         }
         else if (randomValue < 75f)
         {
             //transform thing
-            while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))
+            while (array[randomIndex].IsInGroup("Avoid"))
             {
                 randomIndex = RandomSelectionOrgans();
             }
             Sprite2D current = array[randomIndex];
-            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeRotated, current.Name);
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeRotated);
             AlterTransformOfObject(current, 180f);
             return current;
         }
-        else if(randomValue <= 100f)
+        else if (randomValue <= 100f)
         {
-            while (organsArrayPublic[randomIndex].IsInGroup("Avoid"))
+            //Duplicate
+            while (array[randomIndex].IsInGroup("Avoid"))
             {
                 randomIndex = RandomSelectionOrgans();
             }
 
             Sprite2D current = array[randomIndex];
-            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeDuplicated, current.Name);
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeDuplicated);
             AddObject(current);
             return current;
 
@@ -464,14 +496,17 @@ public partial class XRayManager : Node
 
     void AddObject(Sprite2D current)
     {
-        Sprite2D duplicatedOrgan = (Sprite2D)current.Duplicate();
-        current.GetParent().AddChild(duplicatedOrgan);
-        AlterTransformOfObject(duplicatedOrgan, 90f);
+        Sprite2D duplicatedObject = (Sprite2D)current.Duplicate();
+        duplicateObjects.Add(duplicatedObject);
+        current.GetParent().AddChild(duplicatedObject);
+        AlterTransformOfObject(duplicatedObject, 90f);
     }
 
     void ReColour(Sprite2D current)
     {
-        current.SelfModulate = new Color(1, 1, 1);
+        int randomIndex = random.RandiRange(0, weirdColours.Length);
+        current.SelfModulate = weirdColours[randomIndex].colour;
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SendColour, weirdColours[randomIndex].colourName);
         offColourOrganName = current.Name;
     }
 

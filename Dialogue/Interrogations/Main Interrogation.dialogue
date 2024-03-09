@@ -3,7 +3,16 @@ import "res://Dialogue/Interrogations/General Responses.dialogue" as snippets
 ~ start
 if isAnomaly
 	if selectedCorrectObject
-		The organ/skeleton name is {{objectName}}.
+		if isMissing
+			=> snippets/missing
+		elif isRotated
+			=> snippets/flipped
+		elif isDiscoloured
+			=> snippets/discolouration
+		elif isDuplicated
+			=> snippets/duplicated	
+		else
+			You dumb, something broke
 	else
 		Lmao got the wrong one.
 else

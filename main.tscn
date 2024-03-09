@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=79 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/NPCCreator.cs" id="1_olf47"]
 [ext_resource type="Script" path="res://Scripts/SystemsManager.cs" id="1_wulak"]
 [ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
+[ext_resource type="Script" path="res://Scripts/ColourName.cs" id="2_firhl"]
 [ext_resource type="Texture2D" uid="uid://wbo7yx08rfpd" path="res://Images/UI/Main/BG/Sky.PNG" id="2_kjyi1"]
 [ext_resource type="PackedScene" uid="uid://cfghkkaxcybkb" path="res://modules/DialogueManagerPrerequisites/Scenes/DialogueNPCSignal.tscn" id="2_sniyy"]
 [ext_resource type="PackedScene" uid="uid://dd2a8ofih5akl" path="res://modules/DialogueManagerPrerequisites/Balloons/noIconBalloon.tscn" id="3_jli1w"]
@@ -60,6 +61,21 @@
 [ext_resource type="Texture2D" uid="uid://d18o8g7rocb7h" path="res://Images/UI/Little Objects/Scan Button/X-Ray Button Hover.png" id="60_tlsim"]
 [ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="86_vsxkr"]
 [ext_resource type="Texture2D" uid="uid://2i2unxj3453e" path="res://Images/UI/X-Ray Stuff/X-ray Helper.png" id="87_kyekx"]
+
+[sub_resource type="Resource" id="Resource_d37rt"]
+script = ExtResource("2_firhl")
+colourName = "yellow"
+colour = Color(1, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_fjpe2"]
+script = ExtResource("2_firhl")
+colourName = "pink"
+colour = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_ohq0c"]
+script = ExtResource("2_firhl")
+colourName = "green"
+colour = Color(0, 0.639216, 0, 1)
 
 [sub_resource type="Resource" id="Resource_l2noe"]
 script = ExtResource("18_hhyc8")
@@ -268,7 +284,8 @@ _data = {
 
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "skeleton", "organs", "selectAnomalyButton", "stomach", "liver")]
 script = ExtResource("1_k6ho4")
-probabilityOfGeneralAbberation = 50.0
+probabilityOfGeneralAbberation = 100.0
+probabilityOfSkeletonToOrgansAbberation = 0.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -279,6 +296,7 @@ veryTranslucentColour = Color(0, 0, 0, 0.00392157)
 highlightColour = Color(1, 0, 0, 1)
 normalBoneColour = Color(1, 1, 1, 1)
 organsHighLightColour = Color(0, 0, 0, 1)
+weirdColours = Array[Object]([SubResource("Resource_d37rt"), SubResource("Resource_fjpe2"), SubResource("Resource_ohq0c")])
 selectAnomalyButton = NodePath("../Screen X-Ray/Main/Select Anomaly")
 stomach = NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Stomach")
 liver = NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Liver")

@@ -46,6 +46,6 @@ public partial class SignalsManager : Node
     [Signal] public delegate void DisableAbberationEventHandler();
     [Signal] public delegate void SelectedCorrectEventHandler();
     [Signal] public delegate void SelectedIncorrectEventHandler();
-
+    [Signal] public delegate void SendColourEventHandler(string name);
 
 }
