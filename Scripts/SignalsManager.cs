@@ -49,5 +49,6 @@ public partial class SignalsManager : Node
     [Signal] public delegate void SendColourEventHandler(string name);
     [Signal] public delegate void SetNPCNameEventHandler(string name);
     [Signal] public delegate void SetSFXNameEventHandler(string name);
+    [Signal] public delegate void HasSelectedEventHandler();
 
 }

@@ -17,6 +17,7 @@ public partial class DialogueData : Node
     public bool isDuplicated;
     public bool isAnomaly;
     public bool selectedCorrectObject;
+    public bool hasSelectedObject;
 
     public override void _EnterTree()
     {
@@ -33,6 +34,8 @@ public partial class DialogueData : Node
         SignalsManager.Instance.SendColour += SetColourName;
         SignalsManager.Instance.SetNPCName += SetNPCName;
         SignalsManager.Instance.SetSFXName += SetSFXName;
+        SignalsManager.Instance.HasSelected += MakeSelected;
+
 
         if (IsInstanceValid(Instance))
         {
@@ -59,13 +62,25 @@ public partial class DialogueData : Node
         SignalsManager.Instance.SendColour -= SetColourName;
         SignalsManager.Instance.SetNPCName -= SetNPCName;
         SignalsManager.Instance.SetSFXName -= SetSFXName;
+        SignalsManager.Instance.HasSelected -= MakeSelected;
 
 
 
     }
 
+    public override void _Process(double delta)
+    {
+        GD.Print(hasSelectedObject);
+    }
+
     public void MakeAbberated() => isAnomaly = true;
-    public void MakeUnAbberated() => isAnomaly = false;
+    public void MakeSelected() => hasSelectedObject = true;
+    public void MakeUnAbberated()
+    {
+        ResetEverything();
+    }
+
+
 
     public void SelectedCorrect() => selectedCorrectObject = true;
     public void SelectedInCorrect() => selectedCorrectObject = false;
@@ -120,6 +135,14 @@ public partial class DialogueData : Node
         isRotated = false;
         isDiscoloured = false;
         isDuplicated = false;
+    }
+
+    void ResetEverything()
+    {
+        ResetBools();
+        isAnomaly = false;
+        hasSelectedObject = false;
+        selectedCorrectObject = false;
     }
 
 

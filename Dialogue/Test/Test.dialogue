@@ -2,6 +2,6 @@ import "res://Dialogue/Interrogations/General Responses.dialogue" as snippets
 
 ~ start
 
-
+do ResetSound()
 {{npcName}}: Hello. My name is {{npcName}}.
 => END

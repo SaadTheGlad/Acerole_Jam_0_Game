@@ -19,6 +19,7 @@ public partial class NPCCreator : Node
     [Export] Texture2D[] noses;
     [Export] Texture2D[] ears;
     [Export] Texture2D[] hairstyles;
+    [Export] Texture2D[] mustaches;
     [Export] Texture2D[] lips;
     [Export] Eyes[] eyes;
 
@@ -51,6 +52,7 @@ public partial class NPCCreator : Node
     void ApplyBodyAndColours()
     {
         Color skinColour = GetRandomColour(skinColours);
+        Color hairColour = GetRandomColour(hairColours);
 
         foreach (var node in Outward.GetChildren())
         {
@@ -77,7 +79,7 @@ public partial class NPCCreator : Node
                         break;
                     case "Hair":
                         sprite.Texture = GetRandomTexture(hairstyles);
-                        sprite.SelfModulate = GetRandomColour(hairColours);
+                        sprite.SelfModulate = hairColour;
                         break;
                     case "Lips":
                         sprite.Texture = GetRandomTexture(lips);
@@ -85,6 +87,10 @@ public partial class NPCCreator : Node
                         break;
                     case "TShirt":
                         sprite.SelfModulate = GetRandomColour(shirtColours);
+                        break;
+                    case "Mustache":
+                        sprite.Texture = GetRandomTexture(mustaches);
+                        sprite.SelfModulate = hairColour;
                         break;
                 }
 
@@ -119,6 +125,13 @@ public partial class NPCCreator : Node
                     {
                         Sprite2D scleraSprite = (Sprite2D)secondaryNode;
                         scleraSprite.Texture = randomEye.sclera;
+                    }
+
+                    if(secondaryNode.Name == "Eyebrows")
+                    {
+                        Sprite2D eyebrowsSprite = (Sprite2D)secondaryNode;
+                        eyebrowsSprite.Texture = randomEye.eyebrows;
+                        eyebrowsSprite.SelfModulate = hairColour;
                     }
 
                     if (secondaryNode.Name == "Highlights")

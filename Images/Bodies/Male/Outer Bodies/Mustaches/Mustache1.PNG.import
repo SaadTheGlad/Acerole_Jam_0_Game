@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drya4frkcel2j"
-path="res://.godot/imported/Sclera.PNG-4e4c7ac6830d5f8b9ecc0d38d4561897.ctex"
+uid="uid://c0o3cdy5lahhf"
+path="res://.godot/imported/Mustache1.PNG-6174b13609d6d90204e5ef7c865bc345.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Sclera.PNG"
-dest_files=["res://.godot/imported/Sclera.PNG-4e4c7ac6830d5f8b9ecc0d38d4561897.ctex"]
+source_file="res://Images/Bodies/Male/Outer Bodies/Mustaches/Mustache1.PNG"
+dest_files=["res://.godot/imported/Mustache1.PNG-6174b13609d6d90204e5ef7c865bc345.ctex"]
 
 [params]
 

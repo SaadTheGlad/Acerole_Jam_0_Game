@@ -91,7 +91,7 @@ public partial class JudgingManager : Node
 
     void ResetStuff()
     {
-        //SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisableAbberation);
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisableAbberation);
     }
 
     #region Old Code

@@ -238,14 +238,17 @@ public partial class XRayManager : Node
                             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SetName, currentSelectedBone.Name);
                             if (currentSelectedBone.Name == anomalyBone.Name)
                             {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
                             }
                             else if(currentSelectedBone == null || anomalyBone == null) 
                             {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
                             }
                             else
                             {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
 
                             }
@@ -272,14 +275,17 @@ public partial class XRayManager : Node
                             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SetName, currentSelectedOrgan.Name);
                             if (currentSelectedOrgan.Name == anomalyOrgan.Name)
                             {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
                             }
                             else if (currentSelectedOrgan == null || anomalyOrgan == null)
                             {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
                             }
                             else
                             {
+                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
 
                             }

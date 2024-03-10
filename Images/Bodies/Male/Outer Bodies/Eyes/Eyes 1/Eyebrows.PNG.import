@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drya4frkcel2j"
-path="res://.godot/imported/Sclera.PNG-4e4c7ac6830d5f8b9ecc0d38d4561897.ctex"
+uid="uid://x41eyycyt4nt"
+path="res://.godot/imported/Eyebrows.PNG-625426f36f64776b1c2c3bafebeb3757.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Sclera.PNG"
-dest_files=["res://.godot/imported/Sclera.PNG-4e4c7ac6830d5f8b9ecc0d38d4561897.ctex"]
+source_file="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Eyebrows.PNG"
+dest_files=["res://.godot/imported/Eyebrows.PNG-625426f36f64776b1c2c3bafebeb3757.ctex"]
 
 [params]
 

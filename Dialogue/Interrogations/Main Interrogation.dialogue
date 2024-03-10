@@ -13,9 +13,14 @@ if isAnomaly
 			=> snippets/duplicated	
 		else
 			You dumb, something broke
-	else
-		Why is your {{objectName}} like that?
+	elif hasSelectedObject
+		do ResetSound()
+		You: Why is your {{objectName}} like that?
+		do ChangeSound(sfxName)
 		{{npcName}}: What do you mean, it's perfectly fine?
+	else
+		{{npcName}}: What?
 else
+	do ChangeSFX(sfxName)
 	{{npcName}}: The fuck are you on about mate?
 => END
