@@ -60,8 +60,8 @@ public partial class NPCCreator : Node
 
     public override void _Ready()
     {
-        SelectRandomName();
         CreateNPC();
+        SelectRandomName();
     }
 
     void CreateNPC()
@@ -280,12 +280,15 @@ public partial class NPCCreator : Node
             int randomFirstIndex = random.RandiRange(0, maleFirstNames.Length - 1);
             int randomLastIndex = random.RandiRange(0, maleLastNames.Length - 1);
             npcHolder.Name = maleFirstNames[randomFirstIndex] + " " + maleLastNames[randomLastIndex];
+            GD.Print("Man");
         }
         else
         {
             int randomFirstIndex = random.RandiRange(0, femaleFirstNames.Length - 1);
             int randomLastIndex = random.RandiRange(0, femaleLastNames.Length - 1);
             npcHolder.Name = femaleFirstNames[randomFirstIndex] + " " + femaleLastNames[randomLastIndex];
+            GD.Print("Female");
+
         }
 
 

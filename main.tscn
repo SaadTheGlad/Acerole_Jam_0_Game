@@ -519,7 +519,6 @@ position = Vector2(1023, 423)
 position = Vector2(447, 266)
 
 [node name="FinishButtons" type="Node2D" parent="WorkingArea/Buttons/FinishButtonsHolder"]
-position = Vector2(0, -96)
 
 [node name="Shoot Talk Button" type="Button" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
 self_modulate = Color(1, 0, 0, 1)
