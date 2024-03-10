@@ -395,7 +395,7 @@ _data = {
 
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "skeleton", "organs", "selectAnomalyButton", "stomach", "liver")]
 script = ExtResource("1_k6ho4")
-probabilityOfGeneralAbberation = 100.0
+probabilityOfGeneralAbberation = 50.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -586,6 +586,7 @@ libraries = {
 }
 
 [node name="Ring Button" type="TextureButton" parent="WorkingArea/Buttons"]
+self_modulate = Color(1, 0.843137, 0.305882, 1)
 z_index = 11
 offset_left = -235.0
 offset_top = 172.0

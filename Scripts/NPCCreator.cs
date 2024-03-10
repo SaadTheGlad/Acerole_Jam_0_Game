@@ -217,6 +217,9 @@ public partial class NPCCreator : Node
                         case "Body":
                             sprite.Texture = bodyType.body;
                             break;
+                        case "Mustache":
+                            sprite.Texture = null;
+                            break;
                     }
 
 
