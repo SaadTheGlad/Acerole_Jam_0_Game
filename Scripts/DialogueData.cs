@@ -68,11 +68,6 @@ public partial class DialogueData : Node
 
     }
 
-    public override void _Process(double delta)
-    {
-        GD.Print(hasSelectedObject);
-    }
-
     public void MakeAbberated() => isAnomaly = true;
     public void MakeSelected() => hasSelectedObject = true;
     public void MakeUnAbberated()

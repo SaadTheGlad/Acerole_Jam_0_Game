@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=87 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
@@ -50,9 +50,11 @@
 [ext_resource type="Texture2D" uid="uid://drya4frkcel2j" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 1/Sclera.PNG" id="29_i14k2"]
 [ext_resource type="Texture2D" uid="uid://b6m8vq5kfhmab" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 3/Iris/Ink.PNG" id="29_mepub"]
 [ext_resource type="Texture2D" uid="uid://dgaom57dbdmwo" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 1.PNG" id="30_6yh2k"]
+[ext_resource type="Texture2D" uid="uid://dfdjbt3urxr1c" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 2/Eyebrows.PNG" id="31_5gn0f"]
 [ext_resource type="Texture2D" uid="uid://bvwipjfrl0bnl" path="res://Images/Bodies/Male/Outer Bodies/Heads/Head 1.PNG" id="31_rbl4f"]
 [ext_resource type="Texture2D" uid="uid://c3mj2ulxk1jps" path="res://Images/Bodies/Male/Outer Bodies/Lips/Lips 1.PNG" id="32_3e3bj"]
 [ext_resource type="Texture2D" uid="uid://bwpj0dgj8geg6" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 1.PNG" id="33_jfa6y"]
+[ext_resource type="Texture2D" uid="uid://bgqaj50e6ey6f" path="res://Images/Bodies/Male/Outer Bodies/Eyes/Eyes 3/Eyebrows.PNG" id="35_qs1qg"]
 [ext_resource type="Resource" uid="uid://bcdgcbdhp5d6l" path="res://Dialogue/Interrogations/Main Interrogation.dialogue" id="40_dt8n8"]
 [ext_resource type="Texture2D" uid="uid://c85oc7by45uov" path="res://Images/UI/Little Objects/Bell/F1.PNG" id="56_8jhn2"]
 [ext_resource type="Texture2D" uid="uid://cin4yj6dfl576" path="res://Images/UI/Little Objects/Bell/F2.PNG" id="57_s5824"]
@@ -81,15 +83,13 @@ script = ExtResource("2_firhl")
 colourName = "green"
 colour = Color(0, 0.639216, 0, 1)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_heyvo"]
-load_path = "res://.godot/imported/Sclera.PNG-4e4c7ac6830d5f8b9ecc0d38d4561897.ctex"
-
 [sub_resource type="Resource" id="Resource_l2noe"]
 script = ExtResource("18_hhyc8")
 irisInk = ExtResource("28_6ywi3")
 irisColour = ExtResource("27_kvtur")
 highlights = ExtResource("26_8amtq")
-sclera = SubResource("CompressedTexture2D_heyvo")
+eyebrows = ExtResource("64_xcx3u")
+sclera = ExtResource("29_i14k2")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cmx5x"]
 load_path = "res://.godot/imported/Sclera.PNG-ac0b590e7a818ce0fa182d6a8ce75f2f.ctex"
@@ -99,6 +99,7 @@ script = ExtResource("18_hhyc8")
 irisInk = ExtResource("25_ysqlw")
 irisColour = ExtResource("24_6x1yk")
 highlights = ExtResource("23_hpf1x")
+eyebrows = ExtResource("31_5gn0f")
 sclera = SubResource("CompressedTexture2D_cmx5x")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4hk3p"]
@@ -109,6 +110,7 @@ script = ExtResource("18_hhyc8")
 irisInk = ExtResource("29_mepub")
 irisColour = ExtResource("28_4w8n6")
 highlights = ExtResource("27_e3h2g")
+eyebrows = ExtResource("35_qs1qg")
 sclera = SubResource("CompressedTexture2D_4hk3p")
 
 [sub_resource type="Curve" id="Curve_itk1r"]
@@ -442,6 +444,7 @@ position = Vector2(1023, 423)
 position = Vector2(447, 266)
 
 [node name="FinishButtons" type="Node2D" parent="WorkingArea/Buttons/FinishButtonsHolder"]
+position = Vector2(0, -96)
 
 [node name="Shoot Talk Button" type="Button" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
 self_modulate = Color(1, 0, 0, 1)

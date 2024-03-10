@@ -125,14 +125,15 @@ public partial class NPCCreator : Node
                     {
                         Sprite2D scleraSprite = (Sprite2D)secondaryNode;
                         scleraSprite.Texture = randomEye.sclera;
-                    }
 
-                    if(secondaryNode.Name == "Eyebrows")
-                    {
-                        Sprite2D eyebrowsSprite = (Sprite2D)secondaryNode;
+                        var eyebrowNode = secondaryNode.GetChild(0);
+                        Sprite2D eyebrowsSprite = (Sprite2D)eyebrowNode;
                         eyebrowsSprite.Texture = randomEye.eyebrows;
                         eyebrowsSprite.SelfModulate = hairColour;
+                        
                     }
+
+
 
                     if (secondaryNode.Name == "Highlights")
                     {
