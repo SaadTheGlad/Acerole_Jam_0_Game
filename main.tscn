@@ -393,7 +393,7 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
-[node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("npcCreator", "helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "maleSkeleton", "maleOrgans", "femaleSkeleton", "femaleOrgans", "selectAnomalyButton", "stomach", "liver")]
+[node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("npcCreator", "helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "maleSkeleton", "maleOrgans", "femaleSkeleton", "femaleOrgans", "selectAnomalyButton", "m_stomach", "m_liver", "f_stomach", "f_liver")]
 script = ExtResource("1_k6ho4")
 npcCreator = NodePath("../NPCCreator")
 probabilityOfGeneralAbberation = 50.0
@@ -411,8 +411,10 @@ normalBoneColour = Color(1, 1, 1, 1)
 organsHighLightColour = Color(0, 0, 0, 1)
 weirdColours = Array[Object]([SubResource("Resource_d37rt"), SubResource("Resource_fjpe2"), SubResource("Resource_ohq0c")])
 selectAnomalyButton = NodePath("../Screen X-Ray/Main/Select Anomaly")
-stomach = NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Stomach")
-liver = NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Liver")
+m_stomach = NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Stomach")
+m_liver = NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Liver")
+f_stomach = NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Stomach")
+f_liver = NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Liver")
 
 [node name="SystemsManager" type="Node" parent="." node_paths=PackedStringArray("npcHolder", "personsAdmittedCounter")]
 script = ExtResource("1_wulak")
@@ -661,6 +663,16 @@ scale = Vector2(4.62964, 4.62964)
 theme_override_font_sizes/font_size = 26
 text = "GO LIVER AND STOMACH"
 
+[node name="Make the Stomach And Liver Go" parent="Screen X-Ray/Main/FemaleColoured/Organs" index="10" instance=ExtResource("86_vsxkr")]
+modulate = Color(0, 0.647059, 0.137255, 1)
+offset_left = 2501.94
+offset_top = 2338.89
+offset_right = 3009.94
+offset_bottom = 2474.89
+scale = Vector2(4.62964, 4.62964)
+theme_override_font_sizes/font_size = 26
+text = "GO LIVER AND STOMACH"
+
 [node name="Select Anomaly" parent="Screen X-Ray/Main" instance=ExtResource("86_vsxkr")]
 visible = false
 modulate = Color(0.670588, 0.305882, 1, 1)
@@ -785,6 +797,7 @@ sfxName = &"ring"
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="X-Ray Manager" method="ScanOrgans"]
 [connection signal="pressed" from="Screen X-Ray/Main/MaleColoured/Organs/Make the Stomach And Liver Go" to="X-Ray Manager" method="ClearForKidneys"]
+[connection signal="pressed" from="Screen X-Ray/Main/FemaleColoured/Organs/Make the Stomach And Liver Go" to="X-Ray Manager" method="ClearForKidneys"]
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="X-Ray Manager" method="CloseScanScreen"]
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="JudgingManager" method="SelectAnomaly"]
 [connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="X-Ray Manager" method="CloseScanScreen"]

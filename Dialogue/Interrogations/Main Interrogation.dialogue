@@ -21,6 +21,6 @@ if isAnomaly
 	else
 		{{npcName}}: What?
 else
-	do ChangeSFX(sfxName)
+	do ChangeSound(sfxName)
 	{{npcName}}: The fuck are you on about mate?
 => END

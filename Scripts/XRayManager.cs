@@ -34,7 +34,7 @@ public partial class XRayManager : Node
     [Export] public ColourName[] weirdColours;
     [ExportGroup("Misc")]
     [Export] public Button selectAnomalyButton;
-    [Export] public Sprite2D stomach, liver;
+    [Export] public Sprite2D m_stomach, m_liver, f_stomach, f_liver;
 
     private Godot.Collections.Array<Sprite2D> skeletonArrayPublic = new Godot.Collections.Array<Sprite2D>();
     private Godot.Collections.Array<Sprite2D> skeletonArray;
@@ -61,7 +61,7 @@ public partial class XRayManager : Node
     Vector2 ogOrgansPos;
     Vector2 OUTOFSCREENPOS = new Vector2(-405.115f, 4878.437f);
 
-    Godot.Collections.Dictionary<string, Color> nameAndOrganColourDictionary = new Godot.Collections.Dictionary<string, Color>();
+    Godot.Collections.Dictionary<string, Color> nameAndOrganDictionary = new Godot.Collections.Dictionary<string, Color>();
     private List<Sprite2D> duplicateObjects = new List<Sprite2D>();
 
     bool isDG;
@@ -148,10 +148,14 @@ public partial class XRayManager : Node
         //Make the stuf visible and variables and shit
         // do it for female
         maleSkeleton.Visible = false;
+        femaleSkeleton.Visible = false;
         maleOrgans.Visible = false;
+        femaleOrgans.Visible = false;
         selectAnomalyButton.Visible = false;
         hasScannedOrgans = false;
         hasScannedSkeleton = false;
+
+        EnableStomachAndKidneys();
         
         //Reset bones and organs colours
         foreach(Sprite2D b in skeletonArrayPublic)
@@ -160,8 +164,7 @@ public partial class XRayManager : Node
         }
         foreach(Sprite2D o in organsArrayPublic)
         {
-            // do it for female too
-            o.SelfModulate = nameAndOrganColourDictionary[o.Name];
+            o.SelfModulate = nameAndOrganDictionary[o.Name];
         }
 
         //Rerotate the things
@@ -221,10 +224,10 @@ public partial class XRayManager : Node
                     currentSelectedBone.SelfModulate = normalBoneColour;
                 }
 
-                if(currentSelectedOrgan != null && nameAndOrganColourDictionary.Count != 0)
+                if(currentSelectedOrgan != null && nameAndOrganDictionary.Count != 0)
                 {
 
-                    currentSelectedOrgan.SelfModulate = nameAndOrganColourDictionary[currentSelectedOrgan.Name];
+                    currentSelectedOrgan.SelfModulate = nameAndOrganDictionary[currentSelectedOrgan.Name];
 
                 }
 
@@ -431,14 +434,6 @@ public partial class XRayManager : Node
     }
     public void ScanOrgans()
     {
-        //maleSkeleton.Visible = false;
-        //femaleSkeleton.Visible = false;
-        //maleSkeleton.Position = OUTOFSCREENPOS;
-        //femaleSkeleton.Position = OUTOFSCREENPOS;
-        //maleOrgans.Visible = true;
-        //femaleOrgans.Visible = true;
-        //maleOrgans.Position = ogOrgansPos;
-        //femaleOrgans.Position = ogOrgansPos;
 
         if (npcCreator.manOrWoman)
         {
@@ -473,45 +468,91 @@ public partial class XRayManager : Node
 
         int randomValue = random.RandiRange(0, 100);
 
-        
-        foreach (var node in maleOrgans.GetChildren())
+        if(npcCreator.manOrWoman)
         {
-            if (true/*node.Name == boneGroups.ToString()*/)
+            //man
+            foreach (var node in maleOrgans.GetChildren())
             {
-                foreach (var bone in node.GetChildren())
+                if (true/*node.Name == boneGroups.ToString()*/)
                 {
-                    if (bone is Sprite2D sprite)
+                    foreach (var bone in node.GetChildren())
                     {
-                        sprite = (Sprite2D)bone;
-                        organsArrayPublic.Add(sprite);
-                        if(!nameAndOrganColourDictionary.ContainsKey(sprite.Name))
-                            nameAndOrganColourDictionary.Add(sprite.Name, sprite.SelfModulate);
-                    }
-                    else
-                    {
-                        foreach (var secondaryBone in bone.GetChildren())
+                        if (bone is Sprite2D sprite)
                         {
-                            if (secondaryBone is Sprite2D spriteSecondary)
+                            sprite = (Sprite2D)bone;
+                            organsArrayPublic.Add(sprite);
+                            if (!nameAndOrganDictionary.ContainsKey(sprite.Name))
+                                nameAndOrganDictionary.Add(sprite.Name, sprite.SelfModulate);
+                        }
+                        else
+                        {
+                            foreach (var secondaryBone in bone.GetChildren())
                             {
-                                spriteSecondary = (Sprite2D)secondaryBone;
-                                organsArrayPublic.Add(spriteSecondary);
-                                if (!nameAndOrganColourDictionary.ContainsKey(spriteSecondary.Name))
-                                    nameAndOrganColourDictionary.Add(spriteSecondary.Name, spriteSecondary.SelfModulate);
+                                if (secondaryBone is Sprite2D spriteSecondary)
+                                {
+                                    spriteSecondary = (Sprite2D)secondaryBone;
+                                    organsArrayPublic.Add(spriteSecondary);
+                                    if (!nameAndOrganDictionary.ContainsKey(spriteSecondary.Name))
+                                        nameAndOrganDictionary.Add(spriteSecondary.Name, spriteSecondary.SelfModulate);
 
+                                }
                             }
                         }
                     }
+
                 }
+                if (node is Sprite2D spriteHigher)
+                {
+                    organsArrayPublic.Add(spriteHigher);
+                    if (!nameAndOrganDictionary.ContainsKey(spriteHigher.Name))
+                        nameAndOrganDictionary.Add(spriteHigher.Name, spriteHigher.SelfModulate);
 
-            }
-            if (node is Sprite2D spriteHigher)
-            {
-                organsArrayPublic.Add(spriteHigher);
-                if (!nameAndOrganColourDictionary.ContainsKey(spriteHigher.Name))
-                    nameAndOrganColourDictionary.Add(spriteHigher.Name, spriteHigher.SelfModulate);
-
+                }
             }
         }
+        else
+        {
+            //woman
+            foreach (var node in femaleOrgans.GetChildren())
+            {
+                if (true/*node.Name == boneGroups.ToString()*/)
+                {
+                    foreach (var bone in node.GetChildren())
+                    {
+                        if (bone is Sprite2D sprite)
+                        {
+                            sprite = (Sprite2D)bone;
+                            organsArrayPublic.Add(sprite);
+                            if (!nameAndOrganDictionary.ContainsKey(sprite.Name))
+                                nameAndOrganDictionary.Add(sprite.Name, sprite.SelfModulate);
+                        }
+                        else
+                        {
+                            foreach (var secondaryBone in bone.GetChildren())
+                            {
+                                if (secondaryBone is Sprite2D spriteSecondary)
+                                {
+                                    spriteSecondary = (Sprite2D)secondaryBone;
+                                    organsArrayPublic.Add(spriteSecondary);
+                                    if (!nameAndOrganDictionary.ContainsKey(spriteSecondary.Name))
+                                        nameAndOrganDictionary.Add(spriteSecondary.Name, spriteSecondary.SelfModulate);
+
+                                }
+                            }
+                        }
+                    }
+
+                }
+                if (node is Sprite2D spriteHigher)
+                {
+                    organsArrayPublic.Add(spriteHigher);
+                    if (!nameAndOrganDictionary.ContainsKey(spriteHigher.Name))
+                        nameAndOrganDictionary.Add(spriteHigher.Name, spriteHigher.SelfModulate);
+
+                }
+            }
+        }
+
 
         organsArray = organsArrayPublic.Duplicate();
         organsArrayFull = organsArray.Duplicate();
@@ -661,20 +702,43 @@ public partial class XRayManager : Node
         visible = !visible;
         if(visible)
         {
-            stomach.Visible = true;
-            stomach.SelfModulate = nameAndOrganColourDictionary["Stomach"];
-            liver.Visible = true;
-            liver.SelfModulate = nameAndOrganColourDictionary["Liver"];
+            m_stomach.Visible = true;
+            m_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
+            m_liver.Visible = true;
+            m_liver.SelfModulate = nameAndOrganDictionary["Liver"];
+
+            f_stomach.Visible = true;
+            f_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
+            f_liver.Visible = true;
+            f_liver.SelfModulate = nameAndOrganDictionary["Liver"];
         }
         else
         {
-            stomach.Visible = false;
-            stomach.SelfModulate = new Color(stomach.SelfModulate.R, stomach.SelfModulate.G, stomach.SelfModulate.B, 0f);
-            liver.Visible = false;
-            liver.SelfModulate = new Color(liver.SelfModulate.R, liver.SelfModulate.G, liver.SelfModulate.B, 0f);
+            m_stomach.Visible = false;
+            m_stomach.SelfModulate = new Color(m_stomach.SelfModulate.R, m_stomach.SelfModulate.G, m_stomach.SelfModulate.B, 0f);
+            m_liver.Visible = false;
+            m_liver.SelfModulate = new Color(m_liver.SelfModulate.R, m_liver.SelfModulate.G, m_liver.SelfModulate.B, 0f);
+
+            f_stomach.Visible = false;
+            f_stomach.SelfModulate = new Color(m_stomach.SelfModulate.R, m_stomach.SelfModulate.G, m_stomach.SelfModulate.B, 0f);
+            f_liver.Visible = false;
+            f_liver.SelfModulate = new Color(m_liver.SelfModulate.R, m_liver.SelfModulate.G, m_liver.SelfModulate.B, 0f);
         }
 
 
+    }
+
+    void EnableStomachAndKidneys()
+    {
+        m_stomach.Visible = true;
+        m_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
+        m_liver.Visible = true;
+        m_liver.SelfModulate = nameAndOrganDictionary["Liver"];
+
+        f_stomach.Visible = true;
+        f_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
+        f_liver.Visible = true;
+        f_liver.SelfModulate = nameAndOrganDictionary["Liver"];
     }
 
 }
