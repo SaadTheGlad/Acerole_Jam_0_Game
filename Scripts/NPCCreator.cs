@@ -42,7 +42,7 @@ public partial class NPCCreator : Node
 
     RandomNumberGenerator random = new RandomNumberGenerator();
 
-    bool manOrWoman;
+    public bool manOrWoman;
 
     public override void _EnterTree()
     {

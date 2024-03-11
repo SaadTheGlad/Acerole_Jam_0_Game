@@ -7,6 +7,8 @@ using System.Security;
 [GlobalClass]
 public partial class XRayManager : Node
 {
+    [Export] public NPCCreator npcCreator;
+
     [ExportGroup("Probabilities")]
     [Export(PropertyHint.Range, "0,100,")] public float probabilityOfGeneralAbberation = 20f;
     [Export(PropertyHint.Range, "0,100,")] public float probabilityOfSkeletonToOrgansAbberation = 50f;
@@ -19,8 +21,10 @@ public partial class XRayManager : Node
     [Export] public AnimationPlayer judgingPlayer;
     [ExportGroup("Main X-Ray Variables")]
     [Export] public Node2D xRayArea;
-    [Export] public Node2D skeleton;
-    [Export] public Node2D organs;
+    [Export] public Node2D maleSkeleton;
+    [Export] public Node2D maleOrgans;
+    [Export] public Node2D femaleSkeleton;
+    [Export] public Node2D femaleOrgans;
     [ExportCategory("Colour")]
     [Export] public Color veryTranslucentColour;
     [Export] public Color highlightColour;
@@ -67,8 +71,8 @@ public partial class XRayManager : Node
 
     public override void _Ready()
     {
-        ogSkeletonPos = skeleton.Position;
-        ogOrgansPos = organs.Position;
+        ogSkeletonPos = maleSkeleton.Position;
+        ogOrgansPos = maleOrgans.Position;
     }
 
     public override void _EnterTree()
@@ -142,8 +146,9 @@ public partial class XRayManager : Node
     public void ResetScan()
     {
         //Make the stuf visible and variables and shit
-        skeleton.Visible = false;
-        organs.Visible = false;
+        // do it for female
+        maleSkeleton.Visible = false;
+        maleOrgans.Visible = false;
         selectAnomalyButton.Visible = false;
         hasScannedOrgans = false;
         hasScannedSkeleton = false;
@@ -155,6 +160,7 @@ public partial class XRayManager : Node
         }
         foreach(Sprite2D o in organsArrayPublic)
         {
+            // do it for female too
             o.SelfModulate = nameAndOrganColourDictionary[o.Name];
         }
 
@@ -302,10 +308,31 @@ public partial class XRayManager : Node
     }
     public void ScanSkeleton()
     {
-        skeleton.Visible = true;
-        skeleton.Position = ogSkeletonPos;
-        organs.Visible = false;
-        organs.Position = OUTOFSCREENPOS;
+        if(npcCreator.manOrWoman)
+        {
+            //man
+            maleSkeleton.Visible = true;
+            femaleSkeleton.Visible = false;
+            maleSkeleton.Position = ogSkeletonPos;
+            femaleSkeleton.Position = OUTOFSCREENPOS;
+            femaleOrgans.Visible = false;
+            femaleOrgans.Position = OUTOFSCREENPOS;
+            maleOrgans.Visible = false;
+            maleOrgans.Position = OUTOFSCREENPOS;
+
+        }
+        else
+        {
+            maleSkeleton.Visible = false;
+            femaleSkeleton.Visible = true;
+            maleSkeleton.Position = OUTOFSCREENPOS;
+            femaleSkeleton.Position = ogSkeletonPos;
+            femaleOrgans.Visible = false;
+            femaleOrgans.Position = OUTOFSCREENPOS;
+            maleOrgans.Visible = false;
+            maleOrgans.Position = OUTOFSCREENPOS;
+        }
+
 
         if (hasScannedSkeleton)
         {
@@ -314,37 +341,77 @@ public partial class XRayManager : Node
 
         int randomValue = random.RandiRange(0, 100);
 
-
-        foreach (var node in skeleton.GetChildren())
+        if(npcCreator.manOrWoman)
         {
-            if (true)
+            //it's a man
+            GD.Print("man");
+            foreach (var node in maleSkeleton.GetChildren())
             {
-                foreach (var bone in node.GetChildren())
+                if (true)
                 {
-                    if (bone is Sprite2D sprite)
+                    foreach (var bone in node.GetChildren())
                     {
-                        sprite = (Sprite2D)bone;
-                        skeletonArrayPublic.Add(sprite);
-                    }
-                    else
-                    {
-                        foreach (var secondaryBone in bone.GetChildren())
+                        if (bone is Sprite2D sprite)
                         {
-                            if (secondaryBone is Sprite2D spriteSecondary)
+                            sprite = (Sprite2D)bone;
+                            skeletonArrayPublic.Add(sprite);
+                        }
+                        else
+                        {
+                            foreach (var secondaryBone in bone.GetChildren())
                             {
-                                spriteSecondary = (Sprite2D)secondaryBone;
-                                skeletonArrayPublic.Add(spriteSecondary);
+                                if (secondaryBone is Sprite2D spriteSecondary)
+                                {
+                                    spriteSecondary = (Sprite2D)secondaryBone;
+                                    skeletonArrayPublic.Add(spriteSecondary);
+                                }
                             }
                         }
                     }
-                }
 
-            }
-            if (node is Sprite2D spriteHigher)
-            {
-                skeletonArrayPublic.Add(spriteHigher);
+                }
+                if (node is Sprite2D spriteHigher)
+                {
+                    skeletonArrayPublic.Add(spriteHigher);
+                }
             }
         }
+        else
+        {
+            GD.Print("woman");
+            foreach (var node in femaleSkeleton.GetChildren())
+            {
+                if (true)
+                {
+                    foreach (var bone in node.GetChildren())
+                    {
+                        if (bone is Sprite2D sprite)
+                        {
+                            sprite = (Sprite2D)bone;
+                            skeletonArrayPublic.Add(sprite);
+                        }
+                        else
+                        {
+                            foreach (var secondaryBone in bone.GetChildren())
+                            {
+                                if (secondaryBone is Sprite2D spriteSecondary)
+                                {
+                                    spriteSecondary = (Sprite2D)secondaryBone;
+                                    skeletonArrayPublic.Add(spriteSecondary);
+                                }
+                            }
+                        }
+                    }
+
+                }
+                if (node is Sprite2D spriteHigher)
+                {
+                    skeletonArrayPublic.Add(spriteHigher);
+                }
+            }
+        }
+
+
 
         skeletonArray = skeletonArrayPublic.Duplicate();
         skeletonArrayFull = skeletonArray.Duplicate();
@@ -364,10 +431,40 @@ public partial class XRayManager : Node
     }
     public void ScanOrgans()
     {
-        skeleton.Visible = false;
-        skeleton.Position = OUTOFSCREENPOS;
-        organs.Visible = true;
-        organs.Position = ogOrgansPos;
+        //maleSkeleton.Visible = false;
+        //femaleSkeleton.Visible = false;
+        //maleSkeleton.Position = OUTOFSCREENPOS;
+        //femaleSkeleton.Position = OUTOFSCREENPOS;
+        //maleOrgans.Visible = true;
+        //femaleOrgans.Visible = true;
+        //maleOrgans.Position = ogOrgansPos;
+        //femaleOrgans.Position = ogOrgansPos;
+
+        if (npcCreator.manOrWoman)
+        {
+            //man
+            maleSkeleton.Visible = false;
+            femaleSkeleton.Visible = false;
+            maleSkeleton.Position = OUTOFSCREENPOS;
+            femaleSkeleton.Position = OUTOFSCREENPOS;
+            femaleOrgans.Visible = false;
+            femaleOrgans.Position = OUTOFSCREENPOS;
+            maleOrgans.Visible = true;
+            maleOrgans.Position = ogOrgansPos;
+
+        }
+        else
+        {
+            maleSkeleton.Visible = false;
+            femaleSkeleton.Visible = false;
+            maleSkeleton.Position = OUTOFSCREENPOS;
+            femaleSkeleton.Position = OUTOFSCREENPOS;
+            femaleOrgans.Visible = true;
+            femaleOrgans.Position = ogOrgansPos;
+            maleOrgans.Visible = false;
+            maleOrgans.Position = OUTOFSCREENPOS;
+        }
+
 
         if (hasScannedOrgans)
         {
@@ -377,7 +474,7 @@ public partial class XRayManager : Node
         int randomValue = random.RandiRange(0, 100);
 
         
-        foreach (var node in organs.GetChildren())
+        foreach (var node in maleOrgans.GetChildren())
         {
             if (true/*node.Name == boneGroups.ToString()*/)
             {
