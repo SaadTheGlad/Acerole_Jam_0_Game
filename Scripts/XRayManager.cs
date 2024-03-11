@@ -34,7 +34,9 @@ public partial class XRayManager : Node
     [Export] public ColourName[] weirdColours;
     [ExportGroup("Misc")]
     [Export] public Button selectAnomalyButton;
-    [Export] public Sprite2D m_stomach, m_liver, f_stomach, f_liver;
+
+    [Export] public Sprite2D[] hideables;
+    Godot.Collections.Dictionary<string, Color> originalColours = new Godot.Collections.Dictionary<string, Color>();
 
     private Godot.Collections.Array<Sprite2D> skeletonArrayPublic = new Godot.Collections.Array<Sprite2D>();
     private Godot.Collections.Array<Sprite2D> skeletonArray;
@@ -155,7 +157,7 @@ public partial class XRayManager : Node
         hasScannedOrgans = false;
         hasScannedSkeleton = false;
 
-        EnableStomachAndKidneys();
+        EnableObjects();
         
         //Reset bones and organs colours
         foreach(Sprite2D b in skeletonArrayPublic)
@@ -286,24 +288,6 @@ public partial class XRayManager : Node
                             }
                             return;
 
-                            //if (currentSelectedBone.Name == anomalyBone.Name)
-                            //{
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
-                            //}
-                            //else if(currentSelectedBone == null || anomalyBone == null) 
-                            //{
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
-                            //}
-                            //else
-                            //{
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
-
-                            //}
-                            //return;
-
                         }
 
                     }
@@ -363,24 +347,6 @@ public partial class XRayManager : Node
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
                             }
                             return;
-
-                            //if (currentSelectedOrgan.Name == anomalyOrgan.Name)
-                            //{
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
-                            //}
-                            //else if (currentSelectedOrgan == null || anomalyOrgan == null)
-                            //{
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
-                            //}
-                            //else
-                            //{
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
-                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
-
-                            //}
-                            //return;
 
                         }
 
@@ -779,48 +745,86 @@ public partial class XRayManager : Node
     }
 
     bool visible = true;
-    void ClearForKidneys()
+    void ClearObjects()
     {
         visible = !visible;
+
+        Color transparent = new Color(0f, 0f, 0f, 0f);
+
+        foreach (Sprite2D sprite in hideables)
+        {
+            //Populates the dictionary
+            if (!originalColours.ContainsKey(sprite.Name))
+            {
+                originalColours.Add(sprite.Name, sprite.SelfModulate);
+            }
+        }
+
         if(visible)
         {
-            m_stomach.Visible = true;
-            m_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
-            m_liver.Visible = true;
-            m_liver.SelfModulate = nameAndOrganDictionary["Liver"];
-
-            f_stomach.Visible = true;
-            f_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
-            f_liver.Visible = true;
-            f_liver.SelfModulate = nameAndOrganDictionary["Liver"];
+            foreach(Sprite2D sprite in hideables)
+            {
+                sprite.Visible = true;
+                sprite.SelfModulate = originalColours[sprite.Name];
+            }
         }
         else
         {
-            m_stomach.Visible = false;
-            m_stomach.SelfModulate = new Color(m_stomach.SelfModulate.R, m_stomach.SelfModulate.G, m_stomach.SelfModulate.B, 0f);
-            m_liver.Visible = false;
-            m_liver.SelfModulate = new Color(m_liver.SelfModulate.R, m_liver.SelfModulate.G, m_liver.SelfModulate.B, 0f);
-
-            f_stomach.Visible = false;
-            f_stomach.SelfModulate = new Color(m_stomach.SelfModulate.R, m_stomach.SelfModulate.G, m_stomach.SelfModulate.B, 0f);
-            f_liver.Visible = false;
-            f_liver.SelfModulate = new Color(m_liver.SelfModulate.R, m_liver.SelfModulate.G, m_liver.SelfModulate.B, 0f);
+            foreach(Sprite2D sprite in hideables)
+            {
+                sprite.Visible = false;
+                sprite.SelfModulate = transparent;
+                
+            }
         }
+
+        #region Old Code
+        //if(visible)
+        //{
+        //    m_stomach.Visible = true;
+        //    m_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
+        //    m_liver.Visible = true;
+        //    m_liver.SelfModulate = nameAndOrganDictionary["Liver"];
+
+        //    f_stomach.Visible = true;
+        //    f_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
+        //    f_liver.Visible = true;
+        //    f_liver.SelfModulate = nameAndOrganDictionary["Liver"];
+        //}
+        //else
+        //{
+        //    m_stomach.Visible = false;
+        //    m_stomach.SelfModulate = new Color(m_stomach.SelfModulate.R, m_stomach.SelfModulate.G, m_stomach.SelfModulate.B, 0f);
+        //    m_liver.Visible = false;
+        //    m_liver.SelfModulate = new Color(m_liver.SelfModulate.R, m_liver.SelfModulate.G, m_liver.SelfModulate.B, 0f);
+
+        //    f_stomach.Visible = false;
+        //    f_stomach.SelfModulate = new Color(m_stomach.SelfModulate.R, m_stomach.SelfModulate.G, m_stomach.SelfModulate.B, 0f);
+        //    f_liver.Visible = false;
+        //    f_liver.SelfModulate = new Color(m_liver.SelfModulate.R, m_liver.SelfModulate.G, m_liver.SelfModulate.B, 0f);
+        //}
+        #endregion 
 
 
     }
 
-    void EnableStomachAndKidneys()
+    void EnableObjects()
     {
-        m_stomach.Visible = true;
-        m_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
-        m_liver.Visible = true;
-        m_liver.SelfModulate = nameAndOrganDictionary["Liver"];
+        foreach (Sprite2D sprite in hideables)
+        {
+            sprite.Visible = true;
+            sprite.SelfModulate = originalColours[sprite.Name];
+        }
 
-        f_stomach.Visible = true;
-        f_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
-        f_liver.Visible = true;
-        f_liver.SelfModulate = nameAndOrganDictionary["Liver"];
+        //m_stomach.Visible = true;
+        //m_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
+        //m_liver.Visible = true;
+        //m_liver.SelfModulate = nameAndOrganDictionary["Liver"];
+
+        //f_stomach.Visible = true;
+        //f_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
+        //f_liver.Visible = true;
+        //f_liver.SelfModulate = nameAndOrganDictionary["Liver"];
     }
 
 }
