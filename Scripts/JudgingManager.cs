@@ -12,12 +12,14 @@ public partial class JudgingManager : Node
     [Export] XRayManager xRayManager;
 
     bool canFall = true;
+    public bool canClick = true;
 
     public override void _EnterTree()
     {
         SignalsManager.Instance.Admitted += CloseJudge;
         SignalsManager.Instance.DialogueEnded += EnableFall;
         SignalsManager.Instance.DialogueStartedRunning += DisableFall;
+        SignalsManager.Instance.PassThrough += PassThrough;
     }
 
     public override void _ExitTree()
@@ -25,6 +27,8 @@ public partial class JudgingManager : Node
         SignalsManager.Instance.Admitted -= CloseJudge;
         SignalsManager.Instance.DialogueEnded -= EnableFall;
         SignalsManager.Instance.DialogueStartedRunning -= DisableFall;
+        SignalsManager.Instance.PassThrough -= PassThrough;
+
 
 
     }
@@ -34,6 +38,8 @@ public partial class JudgingManager : Node
 
     async private void FallGuy()
     {
+        canClick = false;
+
         if (canFall)
         {
 
@@ -62,6 +68,7 @@ public partial class JudgingManager : Node
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisposedOf);
                     ResetStuff();
+                    canClick = true;
                     break;
                 }
 
@@ -77,12 +84,13 @@ public partial class JudgingManager : Node
 
     public void Interrogate()
     {
-        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate);
-        //PassThrough();
+        if(canClick)
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate);
     }
 
     void PassThrough()
     {
+        canClick = false;
         ResetStuff();
         controller.Admit();
         SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);

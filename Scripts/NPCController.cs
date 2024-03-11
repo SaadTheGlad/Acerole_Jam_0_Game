@@ -9,6 +9,7 @@ public partial class NPCController : Node
     [Export] private float movementSpeed = 10f;
     [Export] private Curve curve;
     [Export] public DialogueNPCSignal npcSignal;
+    [Export] public JudgingManager judge;
     public Node2D currentGuy;
 
     private const float CENTEROFWINDOWX = 518f;
@@ -109,6 +110,7 @@ public partial class NPCController : Node
                 currentGuy = null;
                 NPC.GlobalPosition = startingPos;
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.NPCHasPassed);
+                judge.canClick = true;
                 canRing = true;
                 break;
             }

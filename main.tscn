@@ -450,11 +450,13 @@ femaleFirstNames = PackedStringArray("Amelie", "Sara", "Lina", "Zakia", "Zahra")
 maleLastNames = PackedStringArray("Abdullah", "Jeremiah", "Fox", "Johnson", "Doe")
 femaleLastNames = PackedStringArray("Rose", "Faust", "Warda", "Tanner", "Smith")
 
-[node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal")]
+[node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal", "judge")]
 script = ExtResource("1_0cfmg")
 NPC = NodePath("../NPC")
+movementSpeed = 1.0
 curve = SubResource("Curve_itk1r")
 npcSignal = NodePath("../Player/DialogueNPCSignal")
+judge = NodePath("../JudgingManager")
 
 [node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "controller", "xRayManager")]
 script = ExtResource("1_oafhd")
@@ -563,7 +565,7 @@ texture = ExtResource("2_4kdnl")
 position = Vector2(1023, 423)
 
 [node name="FinishButtonsHolder" type="Node2D" parent="WorkingArea/Buttons"]
-position = Vector2(447, 266)
+position = Vector2(370, 266)
 
 [node name="FinishButtons" type="Node2D" parent="WorkingArea/Buttons/FinishButtonsHolder"]
 
@@ -577,11 +579,20 @@ offset_bottom = 143.0
 icon = ExtResource("10_w5o83")
 
 [node name="Interrogate Button" type="Button" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
-self_modulate = Color(0.168627, 1, 0, 1)
+self_modulate = Color(1, 0.67451, 0, 1)
 z_index = 9
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 141.0
+offset_bottom = 142.0
+icon = ExtResource("10_w5o83")
+
+[node name="Let Pass Button" type="Button" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
+self_modulate = Color(0.168627, 1, 0, 1)
+z_index = 9
+offset_left = 151.0
+offset_top = 6.0
+offset_right = 287.0
 offset_bottom = 142.0
 icon = ExtResource("10_w5o83")
 
@@ -792,6 +803,7 @@ sfxName = &"ring"
 
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="JudgingManager" method="FallGuy"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Interrogate Button" to="JudgingManager" method="Interrogate"]
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Let Pass Button" to="JudgingManager" method="PassThrough"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="SystemsManager" method="Ring"]
 [connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="X-Ray Manager" method="StartScan"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]

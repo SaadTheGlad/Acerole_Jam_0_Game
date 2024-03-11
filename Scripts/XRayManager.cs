@@ -245,23 +245,64 @@ public partial class XRayManager : Node
                             skeletonArrayPublic[i].SelfModulate = highlightColour;
 
                             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SetName, currentSelectedBone.Name);
-                            if (currentSelectedBone.Name == anomalyBone.Name)
+
+                            if(anomalyBone != null)
                             {
-                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
-                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
+                                // in an anomaly case
+                                if(currentSelectedBone != null)
+                                {
+                                    //in an anomaly case and selected a bone
+                                    if(currentSelectedBone == anomalyBone)
+                                    {
+                                        //in an anomaly case and selected the correct bone
+                                        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
+                                        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
+                                    }
+                                    else
+                                    {
+                                        //in an anomaly case and selected the incorrect bone
+                                        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
+                                        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+                                    }
+                                }
+                                else
+                                {
+                                    //in an anomaly case and selected no bone    
+
+                                }
+
                             }
-                            else if(currentSelectedBone == null || anomalyBone == null) 
+                            else if(currentSelectedBone != null)
                             {
+                                // not an anomaly and selected bone
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
                             }
                             else
                             {
+                                //not an anomaly and selected nothing.
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
-
                             }
                             return;
+
+                            //if (currentSelectedBone.Name == anomalyBone.Name)
+                            //{
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
+                            //}
+                            //else if(currentSelectedBone == null || anomalyBone == null) 
+                            //{
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+                            //}
+                            //else
+                            //{
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+
+                            //}
+                            //return;
 
                         }
 
@@ -282,23 +323,64 @@ public partial class XRayManager : Node
                             selectAnomalyButton.Visible = true;
                             organsArrayPublic[i].SelfModulate = organsHighLightColour;
                             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SetName, currentSelectedOrgan.Name);
-                            if (currentSelectedOrgan.Name == anomalyOrgan.Name)
+
+                            if (anomalyOrgan != null)
                             {
-                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
-                                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
+                                // in an anomaly case
+                                if (currentSelectedOrgan != null)
+                                {
+                                    //in an anomaly case and selected a organ
+                                    if (currentSelectedOrgan == anomalyOrgan)
+                                    {
+                                        //in an anomaly case and selected the correct organ
+                                        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
+                                        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
+                                    }
+                                    else
+                                    {
+                                        //in an anomaly case and selected the incorrect bonorgane
+                                        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
+                                        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+                                    }
+                                }
+                                else
+                                {
+                                    //in an anomaly case and selected no organ    
+
+                                }
+
                             }
-                            else if (currentSelectedOrgan == null || anomalyOrgan == null)
+                            else if (currentSelectedOrgan != null)
                             {
+                                // not an anomaly and selected organ
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
                             }
                             else
                             {
+                                //not an anomaly and selected nothing.
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
                                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
-
                             }
                             return;
+
+                            //if (currentSelectedOrgan.Name == anomalyOrgan.Name)
+                            //{
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedCorrect);
+                            //}
+                            //else if (currentSelectedOrgan == null || anomalyOrgan == null)
+                            //{
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+                            //}
+                            //else
+                            //{
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.HasSelected);
+                            //    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SelectedIncorrect);
+
+                            //}
+                            //return;
 
                         }
 

@@ -194,4 +194,9 @@ public partial class DialogueHandler : Node
         isInUse = false;
         currentBalloon.Set("soundName", dialogueHolder.sfxName);
     }
+
+    void Admit()
+    {
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.PassThrough);
+    }
 }
