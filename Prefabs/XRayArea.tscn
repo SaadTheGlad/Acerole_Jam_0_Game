@@ -34,13 +34,7 @@ texture = ExtResource("1_opfmu")
 
 [node name="MaleColoured" parent="." instance=ExtResource("3_23vdf")]
 
-[node name="Skeleton" parent="MaleColoured" index="0"]
-visible = false
-
 [node name="FemaleColoured" parent="." instance=ExtResource("4_erkmo")]
-
-[node name="Organs" parent="FemaleColoured" index="1"]
-visible = false
 
 [editable path="MaleColoured"]
 [editable path="FemaleColoured"]

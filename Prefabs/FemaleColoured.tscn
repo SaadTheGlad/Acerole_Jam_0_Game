@@ -506,12 +506,10 @@ scale = Vector2(2.89971, 2.89971)
 [node name="Bladder" type="Sprite2D" parent="Organs/Female Reproductive"]
 self_modulate = Color(0.909804, 0.4, 0.435294, 1)
 position = Vector2(8.15344, 61.4736)
-scale = Vector2(1, 1)
 texture = ExtResource("66_1m04g")
 
 [node name="Ovaries" type="Node2D" parent="Organs/Female Reproductive"]
 position = Vector2(-375.223, -1727.36)
-scale = Vector2(1, 1)
 
 [node name="Ovary2" type="Sprite2D" parent="Organs/Female Reproductive/Ovaries"]
 self_modulate = Color(0.980392, 0.886275, 0.792157, 1)
@@ -526,17 +524,14 @@ texture = ExtResource("69_7thk2")
 [node name="FallopianTubes" type="Sprite2D" parent="Organs/Female Reproductive"]
 self_modulate = Color(1, 0.482353, 0.447059, 1)
 position = Vector2(8.15344, 61.4738)
-scale = Vector2(1, 1)
 texture = ExtResource("67_65uu0")
 
 [node name="Vagina" type="Sprite2D" parent="Organs/Female Reproductive"]
 self_modulate = Color(1, 0.482353, 0.447059, 1)
 position = Vector2(8.15341, 61.4736)
-scale = Vector2(1, 1)
 texture = ExtResource("71_lit37")
 
 [node name="Uterus" type="Sprite2D" parent="Organs/Female Reproductive"]
 self_modulate = Color(1, 0.482353, 0.447059, 1)
 position = Vector2(8.15344, 61.4738)
-scale = Vector2(1, 1)
 texture = ExtResource("70_1o1yl")
