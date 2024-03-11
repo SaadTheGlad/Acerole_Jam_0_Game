@@ -397,7 +397,7 @@ _data = {
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("npcCreator", "helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "maleSkeleton", "maleOrgans", "femaleSkeleton", "femaleOrgans", "selectAnomalyButton", "hideables")]
 script = ExtResource("1_k6ho4")
 npcCreator = NodePath("../NPCCreator")
-probabilityOfGeneralAbberation = 50.0
+probabilityOfGeneralAbberation = 0.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -412,11 +412,12 @@ normalBoneColour = Color(1, 1, 1, 1)
 organsHighLightColour = Color(0, 0, 0, 1)
 weirdColours = Array[Object]([SubResource("Resource_d37rt"), SubResource("Resource_fjpe2"), SubResource("Resource_ohq0c")])
 selectAnomalyButton = NodePath("../Screen X-Ray/Main/Select Anomaly")
-hideables = [NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/12Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/11Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/10Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/9Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/8Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/7Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/6Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/5Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/4Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/3Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/2Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/1Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/Sternum"), NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Liver"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Liver")]
+hideables = [NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/12Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/11Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/10Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/9Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/8Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/7Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/6Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/5Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/4Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/3Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/2Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/1Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/Sternum"), NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Liver"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Liver"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/12Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/11Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/10Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/9Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/8Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/7Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/6Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/5Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/4Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/3Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/2Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/1Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/Sternum")]
 
-[node name="SystemsManager" type="Node" parent="." node_paths=PackedStringArray("npcHolder", "personsAdmittedCounter")]
+[node name="SystemsManager" type="Node" parent="." node_paths=PackedStringArray("npcHolder", "npcController", "personsAdmittedCounter")]
 script = ExtResource("1_wulak")
 npcHolder = NodePath("../NPC/DialogueHolder")
+npcController = NodePath("../NPCController")
 personsAdmittedCounter = NodePath("../WorkingArea/Control/People Admitted")
 
 [node name="NPCCreator" type="Node" parent="." node_paths=PackedStringArray("Outward", "npcHolder")]
@@ -665,6 +666,9 @@ offset_right = 841.0
 theme_override_font_sizes/font_size = 51
 text = "Scan Organs"
 
+[node name="Bg" parent="Screen X-Ray/Main" index="3"]
+self_modulate = Color(0, 0, 0, 1)
+
 [node name="Make the Stomach And Liver Go" parent="Screen X-Ray/Main/MaleColoured" index="0" instance=ExtResource("86_vsxkr")]
 modulate = Color(0, 0.647059, 0.137255, 1)
 offset_left = 2096.82
@@ -687,7 +691,7 @@ text = "Select Anomaly
 "
 
 [node name="CustomScanBG" type="Sprite2D" parent="Screen X-Ray/Main"]
-self_modulate = Color(0, 0, 0.337255, 1)
+self_modulate = Color(0.129412, 0.117647, 0.203922, 1)
 position = Vector2(1, 0)
 texture = ExtResource("87_kyekx")
 

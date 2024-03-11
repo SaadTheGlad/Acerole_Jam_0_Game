@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cln1k7d7si5eo"]
+[gd_scene load_steps=6 format=3 uid="uid://cln1k7d7si5eo"]
 
 [ext_resource type="Texture2D" uid="uid://r22m5j4s72ku" path="res://Images/UI/X-Ray Stuff/X-Ray Area/BG.PNG" id="1_opfmu"]
 [ext_resource type="PackedScene" uid="uid://dg5tmfnpys8x1" path="res://Prefabs/MaleColoured.tscn" id="3_23vdf"]
 [ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="3_c23yt"]
 [ext_resource type="PackedScene" uid="uid://cuna0hlfacwfw" path="res://Prefabs/FemaleColoured.tscn" id="4_erkmo"]
+[ext_resource type="PackedScene" uid="uid://cylbk1xurw66l" path="res://Prefabs/Handbook.tscn" id="5_4fndu"]
 
 [node name="X-Ray Area" type="Node2D"]
 z_index = 11
@@ -33,8 +34,15 @@ offset_bottom = 74.0
 texture = ExtResource("1_opfmu")
 
 [node name="MaleColoured" parent="." instance=ExtResource("3_23vdf")]
+position = Vector2(1, -121)
 
 [node name="FemaleColoured" parent="." instance=ExtResource("4_erkmo")]
+position = Vector2(1, -121)
+
+[node name="Skeleton" parent="FemaleColoured" index="0"]
+visible = false
+
+[node name="Handbook" parent="." instance=ExtResource("5_4fndu")]
 
 [editable path="MaleColoured"]
 [editable path="FemaleColoured"]

@@ -5,6 +5,7 @@ public partial class SystemsManager : Node
 {
     //important information
     [Export] private DialogueHolder npcHolder;
+    [Export] private NPCController npcController;
     public string currentNPCSFXName;
 
     [ExportCategory("UI")]
@@ -34,8 +35,18 @@ public partial class SystemsManager : Node
 
     public void Ring()
     {
-        currentNPCSFXName = npcHolder.sfxName;
-        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SendSound, currentNPCSFXName);
-        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.CreatedNPC);
+
+        AudioManager.Instance.Play("ring");
+        if(npcController.canRing == true)
+        {
+            currentNPCSFXName = npcHolder.sfxName;
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SendSound, currentNPCSFXName);
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.CreatedNPC);
+        }
+        else
+        {
+            GD.Print("can't ring");
+        }
+
     }
 }

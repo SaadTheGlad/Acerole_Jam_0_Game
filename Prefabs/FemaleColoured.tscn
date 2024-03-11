@@ -441,7 +441,7 @@ offset = Vector2(10.0068, 241.855)
 
 [node name="Stomach" type="Sprite2D" parent="Organs"]
 self_modulate = Color(0.956863, 0.65098, 0.615686, 1)
-position = Vector2(580.293, 825.991)
+position = Vector2(601.526, 825.991)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("57_ofv4e")
 offset = Vector2(-61.5382, 289.551)

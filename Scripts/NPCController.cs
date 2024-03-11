@@ -20,13 +20,13 @@ public partial class NPCController : Node
     public override void _EnterTree()
     {
         SignalsManager.Instance.CreatedNPC += Ring;
-        SignalsManager.Instance.EnableNPC += EnableScan;
+        //SignalsManager.Instance.EnableNPC += EnableScan;
     }
 
     public override void _ExitTree()
     {
         SignalsManager.Instance.CreatedNPC -= Ring;
-        SignalsManager.Instance.EnableNPC -= EnableScan;
+        //SignalsManager.Instance.EnableNPC -= EnableScan;
 
     }
 
@@ -35,7 +35,7 @@ public partial class NPCController : Node
         startingPos = NPC.GlobalPosition;
     }
 
-    public void EnableScan() => canRing = true;
+    //public void EnableScan() => canRing = true;
 
     public void Ring()
     {
@@ -45,7 +45,6 @@ public partial class NPCController : Node
             canRing = false;
         }
 
-        AudioManager.Instance.Play("ring");
 
     }
 
@@ -114,6 +113,7 @@ public partial class NPCController : Node
                 canRing = true;
                 break;
             }
+            GD.Print("is moving");
 
             await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
 

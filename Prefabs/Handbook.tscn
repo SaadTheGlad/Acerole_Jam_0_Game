@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://cylbk1xurw66l"]
+
+[ext_resource type="Script" path="res://Scripts/Handbook.cs" id="1_c7lfb"]
+[ext_resource type="Texture2D" uid="uid://dfctlv57ixa7b" path="res://Images/Bodies/Male/Male_Skeleton.png" id="2_0vqb0"]
+[ext_resource type="Texture2D" uid="uid://je4hkmh6r6yr" path="res://Images/Bodies/Male/Male_Organs.png" id="3_te3tj"]
+[ext_resource type="Texture2D" uid="uid://bl44gng4ehglx" path="res://Images/Bodies/Female/Female_Skeleton.png" id="4_piins"]
+[ext_resource type="Texture2D" uid="uid://b453sdsh51whk" path="res://Images/Bodies/Female/Female_Organs.png" id="5_45boa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xe6b"]
+bg_color = Color(0.984314, 0.360784, 0.396078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i063"]
+bg_color = Color(0.129412, 0.117647, 0.203922, 1)
+
+[node name="Handbook" type="Node2D"]
+script = ExtResource("1_c7lfb")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+offset_left = -942.0
+offset_top = -518.0
+offset_right = -307.0
+offset_bottom = 524.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0xe6b")
+tab_alignment = 1
+current_tab = 2
+
+[node name="Male" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Male"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/Male/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i063")
+
+[node name="MaleSkeleton" type="Sprite2D" parent="TabContainer/Male/MarginContainer/PanelContainer"]
+position = Vector2(194.893, 489.807)
+scale = Vector2(0.502807, 0.502807)
+texture = ExtResource("2_0vqb0")
+
+[node name="MaleOrgans" type="Sprite2D" parent="TabContainer/Male/MarginContainer/PanelContainer"]
+position = Vector2(435.893, 489.807)
+scale = Vector2(0.502807, 0.502807)
+texture = ExtResource("3_te3tj")
+
+[node name="Female" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Female"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/Female/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i063")
+
+[node name="FemaleSkeleton" type="Sprite2D" parent="TabContainer/Female/MarginContainer/PanelContainer"]
+position = Vector2(194.893, 502)
+scale = Vector2(0.92, 0.92)
+texture = ExtResource("4_piins")
+
+[node name="FemaleOrgans" type="Sprite2D" parent="TabContainer/Female/MarginContainer/PanelContainer"]
+position = Vector2(452, 500)
+scale = Vector2(0.92, 0.92)
+texture = ExtResource("5_45boa")
+
+[node name="Info" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Info"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/Info/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i063")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Info/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Info/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 31
+text = "When detecting a duplicated object, click on the original, not the duplicated one."
