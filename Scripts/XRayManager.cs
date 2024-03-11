@@ -778,34 +778,6 @@ public partial class XRayManager : Node
             }
         }
 
-        #region Old Code
-        //if(visible)
-        //{
-        //    m_stomach.Visible = true;
-        //    m_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
-        //    m_liver.Visible = true;
-        //    m_liver.SelfModulate = nameAndOrganDictionary["Liver"];
-
-        //    f_stomach.Visible = true;
-        //    f_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
-        //    f_liver.Visible = true;
-        //    f_liver.SelfModulate = nameAndOrganDictionary["Liver"];
-        //}
-        //else
-        //{
-        //    m_stomach.Visible = false;
-        //    m_stomach.SelfModulate = new Color(m_stomach.SelfModulate.R, m_stomach.SelfModulate.G, m_stomach.SelfModulate.B, 0f);
-        //    m_liver.Visible = false;
-        //    m_liver.SelfModulate = new Color(m_liver.SelfModulate.R, m_liver.SelfModulate.G, m_liver.SelfModulate.B, 0f);
-
-        //    f_stomach.Visible = false;
-        //    f_stomach.SelfModulate = new Color(m_stomach.SelfModulate.R, m_stomach.SelfModulate.G, m_stomach.SelfModulate.B, 0f);
-        //    f_liver.Visible = false;
-        //    f_liver.SelfModulate = new Color(m_liver.SelfModulate.R, m_liver.SelfModulate.G, m_liver.SelfModulate.B, 0f);
-        //}
-        #endregion 
-
-
     }
 
     void EnableObjects()
@@ -816,15 +788,6 @@ public partial class XRayManager : Node
             sprite.SelfModulate = originalColours[sprite.Name];
         }
 
-        //m_stomach.Visible = true;
-        //m_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
-        //m_liver.Visible = true;
-        //m_liver.SelfModulate = nameAndOrganDictionary["Liver"];
-
-        //f_stomach.Visible = true;
-        //f_stomach.SelfModulate = nameAndOrganDictionary["Stomach"];
-        //f_liver.Visible = true;
-        //f_liver.SelfModulate = nameAndOrganDictionary["Liver"];
     }
 
 }

@@ -1,0 +1,18 @@
+~ start
+
+Boss: Welcome to your first day. You've already been told in the job description the importance of meticulousness here. 
+Boss: However I would still like to reiterate, one small mishap, and it's not only your life you'll put in jeopardy but all the others bunkered up down there as well.
+Boss: I won't hold you up anymore now, here is the handbook. You'll use it as a reference for what's right and what's an anomaly, don't lose it.
+Boss: ...
+Boss: What? Is that another handbook? Ohh god. What did he look like?
+- Like you
+Boss: Damn it, they've got here already. Alright, just... discard that. Throw it away and make sure you don't confuse it with the one I gave you.
+- How do I know you're the real one?
+	Boss: Have a look at the handbook it gave you. It's just gibberish.
+	Boss: Alright. Good luck. And remember, if you do your job well, in a while we can all have a fresh start.
+	do ImposterBye(0.5)
+	=> END
+- OK
+	Boss: Alright. Good luck. And remember, if you do your job well, in a while we can all have a fresh start.
+	do ImposterBye(0.5)
+	=> END

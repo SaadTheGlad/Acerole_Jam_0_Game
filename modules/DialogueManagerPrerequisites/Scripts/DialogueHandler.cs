@@ -199,4 +199,11 @@ public partial class DialogueHandler : Node
     {
         SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.PassThrough);
     }
+
+    async void ImposterBye(float time)
+    {
+        await ToSignal(GetTree().CreateTimer(time), SceneTreeTimer.SignalName.Timeout);
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ImposterFinished);
+    }
+
 }

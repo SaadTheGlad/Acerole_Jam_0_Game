@@ -52,4 +52,7 @@ public partial class SignalsManager : Node
     [Signal] public delegate void HasSelectedEventHandler();
     [Signal] public delegate void PassThroughEventHandler();
 
+    //Cutscene signals
+    [Signal] public delegate void ImposterFinishedEventHandler();
+
 }

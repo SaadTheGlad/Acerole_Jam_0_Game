@@ -14,7 +14,7 @@ public partial class NPCController : Node
 
     private const float CENTEROFWINDOWX = 518f;
     bool hasReached;
-    public bool canRing = true;
+    public bool canRing = false;
     public Vector2 startingPos;
 
     public override void _EnterTree()

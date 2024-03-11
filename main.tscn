@@ -1,10 +1,11 @@
-[gd_scene load_steps=134 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=140 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
 [ext_resource type="Script" path="res://Scripts/JudgingManager.cs" id="1_oafhd"]
 [ext_resource type="Script" path="res://Scripts/NPCCreator.cs" id="1_olf47"]
 [ext_resource type="Script" path="res://Scripts/SystemsManager.cs" id="1_wulak"]
+[ext_resource type="Script" path="res://Scripts/CutsceneManager.cs" id="1_xa843"]
 [ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
 [ext_resource type="Script" path="res://Scripts/ColourName.cs" id="2_firhl"]
 [ext_resource type="Texture2D" uid="uid://wbo7yx08rfpd" path="res://Images/UI/Main/BG/Sky.PNG" id="2_kjyi1"]
@@ -110,6 +111,14 @@
 [ext_resource type="Texture2D" uid="uid://0xhk7qssew5m" path="res://Images/UI/Main/BG/Animation/5.png" id="93_5nxes"]
 [ext_resource type="Texture2D" uid="uid://bkn43035mgql" path="res://Images/UI/Main/BG/Animation/6.png" id="94_kml2p"]
 [ext_resource type="PackedScene" uid="uid://biyedqbx1ckt0" path="res://Prefabs/Calendar.tscn" id="98_cq70s"]
+[ext_resource type="Script" path="res://modules/DialogueManagerPrerequisites/Scripts/DialogueHolder.cs" id="112_jbj27"]
+[ext_resource type="Resource" uid="uid://bjjcue0kj0y87" path="res://Dialogue/Cutscene/Imposter.dialogue" id="113_jmuyj"]
+[ext_resource type="Resource" uid="uid://dnjtkutf00c72" path="res://Dialogue/Cutscene/Real.dialogue" id="114_tlioa"]
+[ext_resource type="Texture2D" uid="uid://dm3b71apw2jsu" path="res://Images/UI/Little Objects/Normal.png" id="115_vcrck"]
+
+[sub_resource type="Curve" id="Curve_cguf4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Resource" id="Resource_d37rt"]
 script = ExtResource("2_firhl")
@@ -394,6 +403,16 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
+[node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal", "imposter", "real", "controller")]
+script = ExtResource("1_xa843")
+NPC = NodePath("../NPC")
+movementSpeed = 1.0
+curve = SubResource("Curve_cguf4")
+npcSignal = NodePath("../Player/DialogueNPCSignal")
+imposter = NodePath("../ImposterGhost/DialogueHolder")
+real = NodePath("../RealGhost/DialogueHolder")
+controller = NodePath("../NPCController")
+
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("npcCreator", "helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "maleSkeleton", "maleOrgans", "femaleSkeleton", "femaleOrgans", "selectAnomalyButton", "hideables")]
 script = ExtResource("1_k6ho4")
 npcCreator = NodePath("../NPCCreator")
@@ -617,10 +636,10 @@ texture_click_mask = ExtResource("58_b2vtc")
 
 [node name="Scan Button" type="TextureButton" parent="WorkingArea/Buttons"]
 z_index = 11
-offset_left = 366.0
-offset_top = -158.0
-offset_right = 720.0
-offset_bottom = 196.0
+offset_left = 50.0
+offset_top = 96.0
+offset_right = 404.0
+offset_bottom = 450.0
 scale = Vector2(0.420435, 0.420435)
 texture_normal = ExtResource("59_0wwuk")
 texture_pressed = ExtResource("59_0wwuk")
@@ -637,6 +656,13 @@ offset_left = 72.0
 offset_top = 151.0
 offset_right = 964.0
 offset_bottom = 534.0
+
+[node name="Normal" type="Sprite2D" parent="WorkingArea/Desk"]
+texture_filter = 2
+position = Vector2(-432, 261)
+rotation = -0.15112
+scale = Vector2(0.284431, 0.284431)
+texture = ExtResource("115_vcrck")
 
 [node name="WallwithWindow" type="Sprite2D" parent="WorkingArea"]
 z_index = 6
@@ -717,7 +743,7 @@ z_index = 6
 position = Vector2(-1, -319)
 
 [node name="Sprite2D" type="Sprite2D" parent="BG X-Ray/Main"]
-self_modulate = Color(0, 0, 0.337255, 1)
+self_modulate = Color(0.129412, 0.117647, 0.203922, 1)
 texture = ExtResource("87_kyekx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BG X-Ray/Main"]
@@ -733,22 +759,27 @@ scale = Vector2(0.489773, 0.489773)
 [node name="Outward" type="Node2D" parent="NPC"]
 
 [node name="Body" type="Sprite2D" parent="NPC/Outward" groups=["Skin"]]
+self_modulate = Color(0.945098, 0.760784, 0.490196, 1)
 position = Vector2(30, -242)
 texture = ExtResource("23_jsupy")
 
 [node name="TShirt" type="Sprite2D" parent="NPC/Outward"]
+self_modulate = Color(0.376471, 0, 0.054902, 1)
 position = Vector2(30, -242)
 texture = ExtResource("24_rit0e")
 
 [node name="Ears" type="Sprite2D" parent="NPC/Outward" groups=["Skin"]]
+self_modulate = Color(0.945098, 0.760784, 0.490196, 1)
 position = Vector2(30, -242)
 texture = ExtResource("25_h0c38")
 
 [node name="Head" type="Sprite2D" parent="NPC/Outward" groups=["Skin"]]
+self_modulate = Color(0.945098, 0.760784, 0.490196, 1)
 position = Vector2(30, -242)
-texture = ExtResource("31_rbl4f")
+texture = ExtResource("3_pq5c5")
 
 [node name="Lips" type="Sprite2D" parent="NPC/Outward"]
+self_modulate = Color(0.756863, 0.294118, 0.294118, 1)
 position = Vector2(30, -242)
 texture = ExtResource("32_3e3bj")
 
@@ -767,38 +798,54 @@ position = Vector2(1058, -634)
 
 [node name="Sclera" type="Sprite2D" parent="NPC/Outward/Eyes"]
 position = Vector2(-1028, 392)
-texture = ExtResource("29_i14k2")
+texture = ExtResource("26_jg73s")
 
 [node name="Eyebrows" type="Sprite2D" parent="NPC/Outward/Eyes/Sclera"]
 self_modulate = Color(0, 0, 0, 1)
-texture = ExtResource("64_xcx3u")
+texture = ExtResource("31_5gn0f")
 
 [node name="Iris" type="Node2D" parent="NPC/Outward/Eyes"]
 
 [node name="Colour" type="Sprite2D" parent="NPC/Outward/Eyes/Iris"]
 self_modulate = Color(0.388235, 0.231373, 0.211765, 1)
 position = Vector2(-1028, 392)
-texture = ExtResource("27_kvtur")
+texture = ExtResource("24_6x1yk")
 
 [node name="Ink" type="Sprite2D" parent="NPC/Outward/Eyes/Iris"]
 position = Vector2(-1028, 392)
-texture = ExtResource("28_6ywi3")
+texture = ExtResource("25_ysqlw")
 
 [node name="Highlights" type="Sprite2D" parent="NPC/Outward/Eyes"]
 position = Vector2(-1028, 392)
-texture = ExtResource("26_8amtq")
+texture = ExtResource("23_hpf1x")
 
 [node name="Hair" type="Sprite2D" parent="NPC/Outward" groups=["Hair"]]
 position = Vector2(30, -242)
-texture = ExtResource("30_6yh2k")
 
 [node name="DialogueHolder" parent="NPC" instance=ExtResource("13_13vh2")]
 dialogue = ExtResource("15_i1ce5")
 sfxName = &"ring"
 
+[node name="ImposterGhost" type="Node2D" parent="."]
+
+[node name="DialogueHolder" type="Node" parent="ImposterGhost"]
+script = ExtResource("112_jbj27")
+characterName = &"Boss"
+dialogue = ExtResource("113_jmuyj")
+sfxName = &"creepyTW"
+
+[node name="RealGhost" type="Node2D" parent="."]
+
+[node name="DialogueHolder" type="Node" parent="RealGhost"]
+script = ExtResource("112_jbj27")
+characterName = &"Boss"
+dialogue = ExtResource("114_tlioa")
+sfxName = &"creepyTW"
+
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="JudgingManager" method="FallGuy"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Interrogate Button" to="JudgingManager" method="Interrogate"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Let Pass Button" to="JudgingManager" method="PassThrough"]
+[connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="CutsceneManager" method="PersonCome"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="SystemsManager" method="Ring"]
 [connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="X-Ray Manager" method="StartScan"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]

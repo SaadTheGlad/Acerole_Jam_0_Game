@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://dnjtkutf00c72"
+path="res://.godot/imported/Real.dialogue-5686679222f38cda591d7a7c8b473636.tres"
+
+[deps]
+
+source_file="res://Dialogue/Cutscene/Real.dialogue"
+dest_files=["res://.godot/imported/Real.dialogue-5686679222f38cda591d7a7c8b473636.tres"]
+
+[params]
+
+defaults=true

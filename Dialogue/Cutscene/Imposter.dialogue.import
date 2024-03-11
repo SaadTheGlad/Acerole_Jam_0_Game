@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://bjjcue0kj0y87"
+path="res://.godot/imported/Imposter.dialogue-8953c042173f830fb4fc160c5d8f9081.tres"
+
+[deps]
+
+source_file="res://Dialogue/Cutscene/Imposter.dialogue"
+dest_files=["res://.godot/imported/Imposter.dialogue-8953c042173f830fb4fc160c5d8f9081.tres"]
+
+[params]
+
+defaults=true

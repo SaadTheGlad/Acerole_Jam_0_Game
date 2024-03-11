@@ -128,7 +128,7 @@ restart={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Dialogue/Test/Test.dialogue", "res://Dialogue/Interrogations/General Responses.dialogue", "res://Dialogue/Test/Reference.dialogue", "res://Dialogue/Interrogations/Main Interrogation.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Dialogue/Test/Test.dialogue", "res://Dialogue/Interrogations/General Responses.dialogue", "res://Dialogue/Test/Reference.dialogue", "res://Dialogue/Interrogations/Main Interrogation.dialogue", "res://Dialogue/Cutscene/Imposter.dialogue", "res://Dialogue/Cutscene/Real.dialogue")
 
 [rendering]
 

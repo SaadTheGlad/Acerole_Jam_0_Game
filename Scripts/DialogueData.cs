@@ -140,5 +140,4 @@ public partial class DialogueData : Node
         selectedCorrectObject = false;
     }
 
-
 }

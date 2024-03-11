@@ -67,4 +67,10 @@ public partial class DialogueNPCSignal : Node
             }
         }
     }
+
+    public void TalkCustom(Node2D ghost, DialogueHolder holder)
+    {
+        EmitSignal(SignalName.EncounteredNPC, ghost, holder);
+    }
+
 }
