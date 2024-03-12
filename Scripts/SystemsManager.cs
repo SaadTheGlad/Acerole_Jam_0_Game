@@ -30,7 +30,7 @@ public partial class SystemsManager : Node
     void IncrementCounter()
     {
         totalPeopleAdmitted++;
-        personsAdmittedCounter.Text = "Total people admitted " + totalPeopleAdmitted.ToString();
+        personsAdmittedCounter.Text = "Total people admitted " + "\n" + totalPeopleAdmitted.ToString();
     }
 
     public void Ring()
@@ -45,7 +45,6 @@ public partial class SystemsManager : Node
         }
         else
         {
-            GD.Print("can't ring");
         }
 
     }

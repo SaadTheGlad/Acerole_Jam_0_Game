@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dw4eqjb8abcwf"]
+
+[ext_resource type="FontFile" uid="uid://cbvftgk122w8p" path="res://Fonts/Renogare-Regular.otf" id="1_agfr1"]
+
+[resource]
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_agfr1")

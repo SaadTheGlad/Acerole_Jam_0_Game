@@ -103,11 +103,6 @@ public partial class XRayManager : Node
 
     }
 
-    public override void _Process(double delta)
-    {
-        GD.Print(signal.isTalking);
-    }
-
     public void EnableRolling() => canRoll = true;
 
     public void RollAbberation()
@@ -129,7 +124,7 @@ public partial class XRayManager : Node
                     GD.Print("Abberation in Organs");
 
                 }
-                else if (randomSpecificValue <= 90f)
+                else if (randomSpecificValue < 90f)
                 {
                     skeletonOrOrgan = true;
                     physiqueAbberation = false;
@@ -141,6 +136,8 @@ public partial class XRayManager : Node
                     physiqueAbberation = true;
                     GD.Print("Abberation in Physique");
                 }
+
+                GD.Print(randomSpecificValue);
 
             }
             else

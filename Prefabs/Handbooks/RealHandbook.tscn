@@ -1,19 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvcllgamamfhw"]
+[gd_scene load_steps=6 format=3 uid="uid://bvcllgamamfhw"]
 
 [ext_resource type="Script" path="res://Scripts/Handbook.cs" id="1_8dy4u"]
-[ext_resource type="Texture2D" uid="uid://dfctlv57ixa7b" path="res://Images/Bodies/Male/Male_Skeleton.png" id="2_g2gut"]
-[ext_resource type="Texture2D" uid="uid://je4hkmh6r6yr" path="res://Images/Bodies/Male/Male_Organs.png" id="3_ydrei"]
-[ext_resource type="Texture2D" uid="uid://bl44gng4ehglx" path="res://Images/Bodies/Female/Female_Skeleton.png" id="4_ws2rn"]
-[ext_resource type="Texture2D" uid="uid://b453sdsh51whk" path="res://Images/Bodies/Female/Female_Organs.png" id="5_rclwa"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uynh"]
-bg_color = Color(0.984314, 0.360784, 0.396078, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xe6b"]
-bg_color = Color(0.984314, 0.360784, 0.396078, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i063"]
-bg_color = Color(0.129412, 0.117647, 0.203922, 1)
+[ext_resource type="PackedScene" uid="uid://cylbk1xurw66l" path="res://Prefabs/Handbooks/Handbook.tscn" id="2_xkpm1"]
 
 [sub_resource type="Animation" id="Animation_hp1eg"]
 resource_name = "Close"
@@ -55,124 +43,16 @@ script = ExtResource("1_8dy4u")
 [node name="Helper" type="Node2D" parent="."]
 position = Vector2(0, 1776)
 
-[node name="PanelContainer" type="PanelContainer" parent="Helper"]
-offset_left = -315.0
-offset_top = -523.0
-offset_right = 320.0
-offset_bottom = 524.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_2uynh")
+[node name="Handbook" parent="Helper" instance=ExtResource("2_xkpm1")]
+position = Vector2(4, 0)
 
-[node name="MarginContainer" type="MarginContainer" parent="Helper/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-
-[node name="TabContainer" type="TabContainer" parent="Helper/PanelContainer/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_0xe6b")
-tab_alignment = 1
-
-[node name="Male" type="TabBar" parent="Helper/PanelContainer/MarginContainer/TabContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Helper/PanelContainer/MarginContainer/TabContainer/Male"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="PanelContainer" type="PanelContainer" parent="Helper/PanelContainer/MarginContainer/TabContainer/Male/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5i063")
-
-[node name="MaleSkeleton" type="Sprite2D" parent="Helper/PanelContainer/MarginContainer/TabContainer/Male/MarginContainer/PanelContainer"]
-position = Vector2(194.893, 489.807)
-scale = Vector2(0.502807, 0.502807)
-texture = ExtResource("2_g2gut")
-
-[node name="MaleOrgans" type="Sprite2D" parent="Helper/PanelContainer/MarginContainer/TabContainer/Male/MarginContainer/PanelContainer"]
-position = Vector2(435.893, 489.807)
-scale = Vector2(0.502807, 0.502807)
-texture = ExtResource("3_ydrei")
-
-[node name="Female" type="TabBar" parent="Helper/PanelContainer/MarginContainer/TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Helper/PanelContainer/MarginContainer/TabContainer/Female"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="PanelContainer" type="PanelContainer" parent="Helper/PanelContainer/MarginContainer/TabContainer/Female/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5i063")
-
-[node name="FemaleSkeleton" type="Sprite2D" parent="Helper/PanelContainer/MarginContainer/TabContainer/Female/MarginContainer/PanelContainer"]
-position = Vector2(194.893, 502)
-scale = Vector2(0.92, 0.92)
-texture = ExtResource("4_ws2rn")
-
-[node name="FemaleOrgans" type="Sprite2D" parent="Helper/PanelContainer/MarginContainer/TabContainer/Female/MarginContainer/PanelContainer"]
-position = Vector2(452, 500)
-scale = Vector2(0.92, 0.92)
-texture = ExtResource("5_rclwa")
-
-[node name="Info" type="TabBar" parent="Helper/PanelContainer/MarginContainer/TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Helper/PanelContainer/MarginContainer/TabContainer/Info"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="PanelContainer" type="PanelContainer" parent="Helper/PanelContainer/MarginContainer/TabContainer/Info/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5i063")
-
-[node name="MarginContainer" type="MarginContainer" parent="Helper/PanelContainer/MarginContainer/TabContainer/Info/MarginContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Helper/PanelContainer/MarginContainer/TabContainer/Info/MarginContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 25
-text = "Organs and bones - which will henceforth be referred to as objects can undergo 4 types of abberation:
-
-Rotation: a full 180 degree rotation about their centre
-
-Duplication: The object is duplicated and is rotated 90 degrees upon its centre
-
-Discolouration: An object can have a different hue/shade than normal, refer to the chart for the correct hue.
-
-Missing: An object can be simply missing. When noticing such an anomaly, make sure to interrogate the subject first, lest it be a normal occurance, e.g. missing kidney.
-
-Another rare abberation which can occur is the complete transformation of outward appearance. Be vigilant at all times."
+[node name="PanelContainer" parent="Helper/Handbook" index="0"]
+offset_left = -319.0
+offset_right = 316.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Helper"]
 libraries = {
 "": SubResource("AnimationLibrary_ftf68")
 }
+
+[editable path="Helper/Handbook"]

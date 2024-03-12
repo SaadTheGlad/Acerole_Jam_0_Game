@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=146 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/InfractionManager.cs" id="1_dvhbd"]
@@ -112,6 +112,7 @@
 [ext_resource type="Texture2D" uid="uid://0xhk7qssew5m" path="res://Images/UI/Main/BG/Animation/5.png" id="93_5nxes"]
 [ext_resource type="Texture2D" uid="uid://bkn43035mgql" path="res://Images/UI/Main/BG/Animation/6.png" id="94_kml2p"]
 [ext_resource type="PackedScene" uid="uid://biyedqbx1ckt0" path="res://Prefabs/Calendar.tscn" id="98_cq70s"]
+[ext_resource type="PackedScene" uid="uid://k6pe23jlsyb5" path="res://Prefabs/Counter.tscn" id="100_psc18"]
 [ext_resource type="Script" path="res://Scripts/SelectableHandler.cs" id="108_wrsf6"]
 [ext_resource type="PackedScene" uid="uid://kf6u3hv8nc07" path="res://Prefabs/Handbooks/FakeHandbook.tscn" id="110_n6ncr"]
 [ext_resource type="Script" path="res://modules/DialogueManagerPrerequisites/Scripts/DialogueHolder.cs" id="112_jbj27"]
@@ -461,11 +462,10 @@ weirdColours = Array[Object]([SubResource("Resource_d37rt"), SubResource("Resour
 selectAnomalyButton = NodePath("../Screen X-Ray/Main/Select Anomaly")
 hideables = [NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/12Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/11Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/10Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/9Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/8Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/7Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/6Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/5Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/4Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/3Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/2Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/1Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/Sternum"), NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Liver"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Liver"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/12Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/11Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/10Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/9Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/8Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/7Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/6Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/5Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/4Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/3Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/2Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/1Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/Sternum")]
 
-[node name="SystemsManager" type="Node" parent="." node_paths=PackedStringArray("npcHolder", "npcController", "personsAdmittedCounter")]
+[node name="SystemsManager" type="Node" parent="." node_paths=PackedStringArray("npcHolder", "npcController")]
 script = ExtResource("1_wulak")
 npcHolder = NodePath("../NPC/DialogueHolder")
 npcController = NodePath("../NPCController")
-personsAdmittedCounter = NodePath("../WorkingArea/Control/People Admitted")
 
 [node name="NPCCreator" type="Node" parent="." node_paths=PackedStringArray("Outward", "npcHolder")]
 script = ExtResource("1_olf47")
@@ -534,37 +534,6 @@ baseSpeed = 0.1
 [node name="WorkingArea" type="Node2D" parent="."]
 texture_filter = 1
 
-[node name="Control" type="Control" parent="WorkingArea"]
-z_index = 10
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1662.0
-offset_top = 83.0
-offset_right = 1662.0
-offset_bottom = 83.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="People Admitted" type="Label" parent="WorkingArea/Control"]
-texture_filter = 2
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -156.0
-offset_top = -53.0
-offset_right = 253.0
-offset_bottom = 88.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 50
-text = "Total people admitted: 0"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
 [node name="BG" type="Node2D" parent="WorkingArea"]
 z_index = 6
 
@@ -606,6 +575,9 @@ texture = ExtResource("4_j4hjr")
 z_index = 9
 position = Vector2(960, 540)
 texture = ExtResource("2_4kdnl")
+
+[node name="Counter" parent="WorkingArea/Wall" instance=ExtResource("100_psc18")]
+position = Vector2(540, -484)
 
 [node name="Calendar" parent="WorkingArea/Wall" instance=ExtResource("98_cq70s")]
 position = Vector2(123, -495)

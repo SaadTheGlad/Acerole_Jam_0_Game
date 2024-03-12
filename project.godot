@@ -43,6 +43,10 @@ project/assembly_name="Acerole_Jam_0_Game"
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
+[gui]
+
+theme/custom="res://Themes/MainTheme.tres"
+
 [input]
 
 ui_accept={

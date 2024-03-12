@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://k6pe23jlsyb5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wqoa"]
+bg_color = Color(0.984314, 0.423529, 0.396078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0saf6"]
+bg_color = Color(0.129412, 0.117647, 0.203922, 1)
+
+[node name="Counter" type="Node2D"]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 394.0
+offset_bottom = 180.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8wqoa")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0saf6")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Total people admitted: 
+0"
+horizontal_alignment = 1
+vertical_alignment = 1
