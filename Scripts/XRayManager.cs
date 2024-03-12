@@ -122,20 +122,20 @@ public partial class XRayManager : Node
 
 
                 float randomSpecificValue = random.RandiRange(0, 100);
-                //if (randomSpecificValue < 45f)
-                //{
-                //    skeletonOrOrgan = false;
-                //    physiqueAbberation = false;
-                //    GD.Print("Abberation in Organs");
+                if (randomSpecificValue < 45f)
+                {
+                    skeletonOrOrgan = false;
+                    physiqueAbberation = false;
+                    GD.Print("Abberation in Organs");
 
-                //}
-                //else if (randomSpecificValue <= 90f)
-                //{
-                //    skeletonOrOrgan = true;
-                //    physiqueAbberation = false;
-                //    GD.Print("Abberation in Skeleton");
+                }
+                else if (randomSpecificValue <= 90f)
+                {
+                    skeletonOrOrgan = true;
+                    physiqueAbberation = false;
+                    GD.Print("Abberation in Skeleton");
 
-                //}
+                }
                 if (randomSpecificValue <= 100f)
                 {
                     physiqueAbberation = true;
