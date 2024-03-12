@@ -1,6 +1,7 @@
-[gd_scene load_steps=144 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=145 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
+[ext_resource type="Script" path="res://Scripts/InfractionManager.cs" id="1_dvhbd"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
 [ext_resource type="Script" path="res://Scripts/JudgingManager.cs" id="1_oafhd"]
 [ext_resource type="Script" path="res://Scripts/NPCCreator.cs" id="1_olf47"]
@@ -423,6 +424,9 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
+[node name="InfractionManager" type="Node" parent="."]
+script = ExtResource("1_dvhbd")
+
 [node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal", "imposter", "real", "controller", "fakeHandbook", "realHandbook")]
 script = ExtResource("1_xa843")
 NPC = NodePath("../NPC")
@@ -440,7 +444,7 @@ fadingSpeed = 1.0
 script = ExtResource("1_k6ho4")
 npcCreator = NodePath("../NPCCreator")
 signal = NodePath("../Player/DialogueNPCSignal")
-probabilityOfGeneralAbberation = 100.0
+probabilityOfGeneralAbberation = 50.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")

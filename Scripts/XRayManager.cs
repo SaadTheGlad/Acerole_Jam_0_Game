@@ -678,7 +678,7 @@ public partial class XRayManager : Node
         else if (randomValue < 75f)
         {
             //transform thing
-            while (array[randomIndex].IsInGroup("Avoid"))
+            while (array[randomIndex].IsInGroup("Avoid") && array[randomIndex].IsInGroup("NoRotate"))
             {
                 randomIndex = RandomSelectionOrgans();
             }
