@@ -25,7 +25,6 @@
 [ext_resource type="Script" path="res://Scripts/BodyType.cs" id="6_buml1"]
 [ext_resource type="Texture2D" uid="uid://dxb1wq3wk07av" path="res://Images/Bodies/Male/Outer Bodies/Noses/Nose 3.PNG" id="7_2u833"]
 [ext_resource type="Texture2D" uid="uid://bv205g738btbc" path="res://Images/Bodies/Male/Outer Bodies/Ears/Ears 3.PNG" id="7_qwwwa"]
-[ext_resource type="Texture2D" uid="uid://cnx5r3bennc7u" path="res://icon.svg" id="10_w5o83"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="11_g7kqk"]
 [ext_resource type="Texture2D" uid="uid://bu1e5l7mx6x3a" path="res://Images/Bodies/Male/Outer Bodies/Hairstyles/Hair 2.PNG" id="12_ecb3y"]
 [ext_resource type="Texture2D" uid="uid://cdtmgahapx0kv" path="res://Images/UI/Main/BG/Wall.png" id="13_4jyuk"]
@@ -113,6 +112,7 @@
 [ext_resource type="Texture2D" uid="uid://bkn43035mgql" path="res://Images/UI/Main/BG/Animation/6.png" id="94_kml2p"]
 [ext_resource type="PackedScene" uid="uid://biyedqbx1ckt0" path="res://Prefabs/Calendar.tscn" id="98_cq70s"]
 [ext_resource type="PackedScene" uid="uid://k6pe23jlsyb5" path="res://Prefabs/Counter.tscn" id="100_psc18"]
+[ext_resource type="PackedScene" uid="uid://b5i0kuwjktb8p" path="res://Prefabs/Button.tscn" id="102_p74r8"]
 [ext_resource type="Script" path="res://Scripts/SelectableHandler.cs" id="108_wrsf6"]
 [ext_resource type="PackedScene" uid="uid://kf6u3hv8nc07" path="res://Prefabs/Handbooks/FakeHandbook.tscn" id="110_n6ncr"]
 [ext_resource type="Script" path="res://modules/DialogueManagerPrerequisites/Scripts/DialogueHolder.cs" id="112_jbj27"]
@@ -232,31 +232,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_owjp2"]
-resource_name = "Close"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-96, -0.8, -3, 0.25, 0, 0, -0.25, 0, 0.5, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
 [sub_resource type="Animation" id="Animation_7nfgk"]
 resource_name = "Open"
 tracks/0/type = "bezier"
@@ -278,13 +253,38 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.5, 0, -96, -0.8, -3, 0.25, 0),
+"points": PackedFloat32Array(45, -0.25, 0, 0.25, 0, -96, -0.8, -3, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_cgbkc"]
+resource_name = "Close"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-96, -0.8, -3, 0.25, 0, 45, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p5g6n"]
 _data = {
-"Close": SubResource("Animation_owjp2"),
+"Close": SubResource("Animation_cgbkc"),
 "Open": SubResource("Animation_7nfgk")
 }
 
@@ -576,8 +576,16 @@ z_index = 9
 position = Vector2(960, 540)
 texture = ExtResource("2_4kdnl")
 
-[node name="Counter" parent="WorkingArea/Wall" instance=ExtResource("100_psc18")]
-position = Vector2(540, -484)
+[node name="PeopleCounter" parent="WorkingArea/Wall" instance=ExtResource("100_psc18")]
+position = Vector2(661, -508)
+
+[node name="InfractionCounter" parent="WorkingArea/Wall" instance=ExtResource("100_psc18")]
+position = Vector2(661, -333)
+
+[node name="Label" parent="WorkingArea/Wall/InfractionCounter/PanelContainer/MarginContainer/PanelContainer/MarginContainer" index="0"]
+text = "Total
+infractions:
+0/3"
 
 [node name="Calendar" parent="WorkingArea/Wall" instance=ExtResource("98_cq70s")]
 position = Vector2(123, -495)
@@ -586,36 +594,42 @@ position = Vector2(123, -495)
 position = Vector2(1023, 423)
 
 [node name="FinishButtonsHolder" type="Node2D" parent="WorkingArea/Buttons"]
-position = Vector2(370, 266)
+position = Vector2(502, 221)
 
 [node name="FinishButtons" type="Node2D" parent="WorkingArea/Buttons/FinishButtonsHolder"]
+position = Vector2(0, 45)
 
-[node name="Shoot Talk Button" type="Button" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
-self_modulate = Color(1, 0, 0, 1)
-z_index = 9
-offset_left = -140.0
-offset_top = 7.0
-offset_right = -4.0
-offset_bottom = 143.0
-icon = ExtResource("10_w5o83")
+[node name="HBoxContainer" type="HBoxContainer" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
+offset_left = -142.0
+offset_top = 8.99999
+offset_right = 1188.0
+offset_bottom = 439.0
+scale = Vector2(0.321863, 0.321863)
+theme_override_constants/separation = 20
 
-[node name="Interrogate Button" type="Button" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
-self_modulate = Color(1, 0.67451, 0, 1)
+[node name="Deny" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer" instance=ExtResource("102_p74r8")]
 z_index = 9
-offset_left = 5.0
-offset_top = 6.0
-offset_right = 141.0
-offset_bottom = 142.0
-icon = ExtResource("10_w5o83")
+layout_mode = 2
 
-[node name="Let Pass Button" type="Button" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
-self_modulate = Color(0.168627, 1, 0, 1)
+[node name="TextureButton" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Deny/MarginContainer" index="0"]
+self_modulate = Color(0.976471, 0, 0, 1)
+
+[node name="TextureRect" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Deny/MarginContainer" index="1"]
+visible = false
+
+[node name="Interrogate" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer" instance=ExtResource("102_p74r8")]
 z_index = 9
-offset_left = 151.0
-offset_top = 6.0
-offset_right = 287.0
-offset_bottom = 142.0
-icon = ExtResource("10_w5o83")
+layout_mode = 2
+
+[node name="Pass" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer" instance=ExtResource("102_p74r8")]
+z_index = 9
+layout_mode = 2
+
+[node name="TextureButton" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Pass/MarginContainer" index="0"]
+self_modulate = Color(0, 0.792157, 0, 1)
+
+[node name="TextureRect" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Pass/MarginContainer" index="1"]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons"]
 libraries = {
@@ -725,19 +739,27 @@ position = Vector2(960, 540)
 z_index = 13
 position = Vector2(1940, 0)
 
-[node name="Scan Skeleton Button" parent="Screen X-Ray/Main" index="1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen X-Ray/Main"]
+offset_left = -1013.0
+offset_top = -581.0
+offset_right = -973.0
+offset_bottom = -541.0
+
+[node name="Scan Skeleton Button" parent="Screen X-Ray/Main" index="2"]
 offset_left = 396.0
 offset_right = 876.0
 theme_override_font_sizes/font_size = 51
 text = "Scan Skeleton"
+icon = null
 
-[node name="Scan Organs Button" parent="Screen X-Ray/Main" index="2"]
+[node name="Scan Organs Button" parent="Screen X-Ray/Main" index="3"]
 offset_left = 396.0
 offset_right = 841.0
 theme_override_font_sizes/font_size = 51
 text = "Scan Organs"
+icon = null
 
-[node name="Bg" parent="Screen X-Ray/Main" index="3"]
+[node name="Bg" parent="Screen X-Ray/Main" index="4"]
 self_modulate = Color(0, 0, 0, 1)
 
 [node name="Make the Stomach And Liver Go" parent="Screen X-Ray/Main/MaleColoured" index="0" instance=ExtResource("86_vsxkr")]
@@ -891,9 +913,9 @@ sfxName = &"creepyTW"
 z_index = 100
 position = Vector2(960, 0)
 
-[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="JudgingManager" method="FallGuy"]
-[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Interrogate Button" to="JudgingManager" method="Interrogate"]
-[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Let Pass Button" to="JudgingManager" method="PassThrough"]
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Deny/MarginContainer/TextureButton" to="JudgingManager" method="FallGuy"]
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Interrogate/MarginContainer/TextureButton" to="JudgingManager" method="Interrogate"]
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Pass/MarginContainer/TextureButton" to="JudgingManager" method="PassThrough"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="CutsceneManager" method="PersonCome"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="SystemsManager" method="Ring"]
 [connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="X-Ray Manager" method="StartScan"]
@@ -906,6 +928,10 @@ position = Vector2(960, 0)
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="JudgingManager" method="SelectAnomaly"]
 [connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="X-Ray Manager" method="CloseScanScreen"]
 
+[editable path="WorkingArea/Wall/InfractionCounter"]
+[editable path="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Deny"]
+[editable path="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Interrogate"]
+[editable path="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Pass"]
 [editable path="Screen X-Ray/Main"]
 [editable path="Screen X-Ray/Main/MaleColoured"]
 [editable path="Screen X-Ray/Main/FemaleColoured"]

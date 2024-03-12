@@ -30,7 +30,7 @@ public partial class SystemsManager : Node
     void IncrementCounter()
     {
         totalPeopleAdmitted++;
-        personsAdmittedCounter.Text = "Total people admitted " + "\n" + totalPeopleAdmitted.ToString();
+        personsAdmittedCounter.Text = "Total people\nadmitted:" + "\n" + totalPeopleAdmitted.ToString();
     }
 
     public void Ring()

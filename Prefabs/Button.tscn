@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5i0kuwjktb8p"]
+
+[ext_resource type="Texture2D" uid="uid://dsodtkhc17vqk" path="res://Images/UI/Buttons/ButtonBlank.png" id="1_8dyi0"]
+[ext_resource type="Texture2D" uid="uid://bldio8hi1hgau" path="res://Images/UI/Buttons/ButtonBlankHover.png" id="2_dv21w"]
+[ext_resource type="Texture2D" uid="uid://cxe5sum1dp1is" path="res://Images/UI/Buttons/QuestionMark.png" id="3_wtbl4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtlte"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 410.0
+offset_bottom = 410.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vtlte")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer"]
+self_modulate = Color(0.380392, 0.631373, 0.811765, 1)
+layout_mode = 2
+texture_normal = ExtResource("1_8dyi0")
+texture_pressed = ExtResource("1_8dyi0")
+texture_hover = ExtResource("2_dv21w")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_wtbl4")

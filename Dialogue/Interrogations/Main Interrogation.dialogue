@@ -19,7 +19,7 @@ if isAnomaly
 		do ChangeSound(sfxName)
 		{{npcName}}: What do you mean, it's perfectly fine?
 	else
-		{{npcName}}: You're free to go.
+		You: You're free to go.
 elif hasSelectedObject
 	do ResetSound()
 	You: Why is your {{objectName}} like that?
@@ -27,5 +27,5 @@ elif hasSelectedObject
 	{{npcName}}: What do you mean, it's perfectly fine?
 else
 	do ChangeSound(sfxName)
-	{{npcName}}: You're free to go.
+	You: You're free to go.
 => END

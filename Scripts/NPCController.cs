@@ -115,7 +115,6 @@ public partial class NPCController : Node
                 canRing = true;
                 break;
             }
-            GD.Print("is moving");
 
             await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
 

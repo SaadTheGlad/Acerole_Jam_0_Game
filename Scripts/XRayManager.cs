@@ -131,13 +131,11 @@ public partial class XRayManager : Node
                     GD.Print("Abberation in Skeleton");
 
                 }
-                if (randomSpecificValue <= 100f)
+                else if (randomSpecificValue <= 100f)
                 {
                     physiqueAbberation = true;
                     GD.Print("Abberation in Physique");
                 }
-
-                GD.Print(randomSpecificValue);
 
             }
             else
