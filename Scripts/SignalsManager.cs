@@ -54,5 +54,6 @@ public partial class SignalsManager : Node
 
     //Cutscene signals
     [Signal] public delegate void ImposterFinishedEventHandler();
+    [Signal] public delegate void EnableFakeHandbookEventHandler();
 
 }

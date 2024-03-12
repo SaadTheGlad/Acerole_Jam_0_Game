@@ -72,7 +72,10 @@ public partial class DialogueHandler : Node
         await ToSignal(GetTree().CreateTimer(0.1f), SceneTreeTimer.SignalName.Timeout);
         hasStartedDialogue = false;
         encounteredNPCSignalHolder.isTalking = false;
-        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DialogueEnded);
+        GD.Print(DialogueData.Instance.npcName);
+
+        if(DialogueData.Instance.npcName != "Boss")
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DialogueEnded);
 
     }
 
@@ -204,6 +207,11 @@ public partial class DialogueHandler : Node
     {
         await ToSignal(GetTree().CreateTimer(time), SceneTreeTimer.SignalName.Timeout);
         SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ImposterFinished);
+    }
+
+    void EnableFakeHandbook()
+    {
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableFakeHandbook);
     }
 
 }

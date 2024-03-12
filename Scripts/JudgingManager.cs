@@ -68,6 +68,7 @@ public partial class JudgingManager : Node
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisposedOf);
                     ResetStuff();
+                    controller.canRing = true;
                     canClick = true;
                     break;
                 }

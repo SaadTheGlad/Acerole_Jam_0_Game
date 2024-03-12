@@ -20,7 +20,8 @@ public partial class NPCController : Node
     public override void _EnterTree()
     {
         SignalsManager.Instance.CreatedNPC += Ring;
-        //SignalsManager.Instance.EnableNPC += EnableScan;
+        //SignalsManager.Instance.EnableNPC +=
+        //;
     }
 
     public override void _ExitTree()

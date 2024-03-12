@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dg5tmfnpys8x1" path="res://Prefabs/MaleColoured.tscn" id="3_23vdf"]
 [ext_resource type="PackedScene" uid="uid://c8sd7f6shkee6" path="res://Prefabs/ButtonPlaceHolder.tscn" id="3_c23yt"]
 [ext_resource type="PackedScene" uid="uid://cuna0hlfacwfw" path="res://Prefabs/FemaleColoured.tscn" id="4_erkmo"]
-[ext_resource type="PackedScene" uid="uid://cylbk1xurw66l" path="res://Prefabs/Handbook.tscn" id="5_4fndu"]
+[ext_resource type="PackedScene" uid="uid://cylbk1xurw66l" path="res://Prefabs/Handbooks/Handbook.tscn" id="5_4fndu"]
 
 [node name="X-Ray Area" type="Node2D"]
 z_index = 11

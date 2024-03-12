@@ -129,6 +129,7 @@ public partial class XRayManager : Node
             }
             else
             {
+                // make it so there is a chance they can lose an organ here and that's what you base it on
                 isDG = false;
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisableAbberation);
 
@@ -665,7 +666,7 @@ public partial class XRayManager : Node
         else if (randomValue <= 100f)
         {
             //Duplicate
-            while (array[randomIndex].IsInGroup("Avoid"))
+            while (array[randomIndex].IsInGroup("Avoid") && array[randomIndex].IsInGroup("Ribs"))
             {
                 randomIndex = RandomSelectionOrgans();
             }
@@ -702,7 +703,7 @@ public partial class XRayManager : Node
         Sprite2D duplicatedObject = (Sprite2D)current.Duplicate();
         duplicateObjects.Add(duplicatedObject);
         current.GetParent().AddChild(duplicatedObject);
-        AlterTransformOfObject(duplicatedObject, 90f);
+        AlterTransformOfObject(duplicatedObject, random.RandiRange(30, 120));
     }
 
     void ReColour(Sprite2D current)

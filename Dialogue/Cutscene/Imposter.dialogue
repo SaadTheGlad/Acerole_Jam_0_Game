@@ -2,6 +2,7 @@
 
 Boss: Hello. Welcome to the job. I'm sure you've read the job description already so I won't bore you with the details. 
 Boss: Here is the handbook that'll aid you in identification, but don't fret too much, it's mainly there to guide you. Leniency is the name of the game.
+do EnableFakeHandbook()
 Boss: Well, I'll leave you to it. Good luck.
 do ImposterBye(0.5)
 => END

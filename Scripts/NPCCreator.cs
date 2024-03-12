@@ -61,7 +61,7 @@ public partial class NPCCreator : Node
     public override void _Ready()
     {
         //CreateNPC();
-        SelectRandomName();
+        //SelectRandomName();
     }
 
     void CreateNPC()

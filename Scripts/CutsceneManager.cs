@@ -10,6 +10,8 @@ public partial class CutsceneManager : Node
     [Export] public DialogueNPCSignal npcSignal;
     [Export] public DialogueHolder imposter, real;
     [Export] public NPCController controller;
+    [Export] public Node2D fakeHandbook, realHandbook;
+    [Export] public float fadingSpeed = 10f;
 
     bool calledPerson = false;
     bool playedImposter = false;
@@ -21,11 +23,19 @@ public partial class CutsceneManager : Node
     public override void _EnterTree()
     {
         SignalsManager.Instance.ImposterFinished += ImposterBye;
+        SignalsManager.Instance.EnableFakeHandbook += EnableFakeHandbook;
     }
 
     public override void _ExitTree()
     {
         SignalsManager.Instance.ImposterFinished -= ImposterBye;
+        SignalsManager.Instance.EnableFakeHandbook -= EnableFakeHandbook;
+
+    }
+
+    public override void _Ready()
+    {
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SetNPCName, "Boss");
     }
 
     async public void PersonCome()
@@ -107,6 +117,36 @@ public partial class CutsceneManager : Node
             await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
         }
        
+    }
+
+    public void EnableFakeHandbook()
+    {
+        fakeHandbook.Modulate = new Color(fakeHandbook.Modulate.R, fakeHandbook.Modulate.G, fakeHandbook.Modulate.B, 0f);
+
+
+        while (true)
+        {
+
+            fakeHandbook.Visible = true;
+
+            float currentOpacity = 0f;
+            float startingOpacity = 0f;
+            float endingOpacity = 1f;
+
+            float current = 0f;
+            float target = 1f;
+
+            current = Mathf.MoveToward(current, target, fadingSpeed * (float)GetProcessDeltaTime());
+            currentOpacity = Mathf.Lerp(startingOpacity, endingOpacity, current);
+
+            fakeHandbook.Modulate = new Color(fakeHandbook.Modulate.R, fakeHandbook.Modulate.G, fakeHandbook.Modulate.B, currentOpacity);
+
+            if(fakeHandbook.Modulate.A == 1f)
+            {
+                break;
+            }
+
+        }
     }
 
 }

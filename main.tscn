@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=144 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
@@ -111,10 +111,13 @@
 [ext_resource type="Texture2D" uid="uid://0xhk7qssew5m" path="res://Images/UI/Main/BG/Animation/5.png" id="93_5nxes"]
 [ext_resource type="Texture2D" uid="uid://bkn43035mgql" path="res://Images/UI/Main/BG/Animation/6.png" id="94_kml2p"]
 [ext_resource type="PackedScene" uid="uid://biyedqbx1ckt0" path="res://Prefabs/Calendar.tscn" id="98_cq70s"]
+[ext_resource type="Script" path="res://Scripts/SelectableHandler.cs" id="108_wrsf6"]
+[ext_resource type="PackedScene" uid="uid://kf6u3hv8nc07" path="res://Prefabs/Handbooks/FakeHandbook.tscn" id="110_n6ncr"]
 [ext_resource type="Script" path="res://modules/DialogueManagerPrerequisites/Scripts/DialogueHolder.cs" id="112_jbj27"]
 [ext_resource type="Resource" uid="uid://bjjcue0kj0y87" path="res://Dialogue/Cutscene/Imposter.dialogue" id="113_jmuyj"]
 [ext_resource type="Resource" uid="uid://dnjtkutf00c72" path="res://Dialogue/Cutscene/Real.dialogue" id="114_tlioa"]
 [ext_resource type="Texture2D" uid="uid://dm3b71apw2jsu" path="res://Images/UI/Little Objects/Normal.png" id="115_vcrck"]
+[ext_resource type="PackedScene" uid="uid://bvcllgamamfhw" path="res://Prefabs/Handbooks/RealHandbook.tscn" id="117_0mcy8"]
 
 [sub_resource type="Curve" id="Curve_cguf4"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -283,6 +286,9 @@ _data = {
 "Open": SubResource("Animation_7nfgk")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0k4ya"]
+size = Vector2(197.744, 316.583)
+
 [sub_resource type="Animation" id="Animation_g18b4"]
 resource_name = "SlideIn"
 length = 1.2
@@ -403,7 +409,7 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
-[node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal", "imposter", "real", "controller")]
+[node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal", "imposter", "real", "controller", "fakeHandbook", "realHandbook")]
 script = ExtResource("1_xa843")
 NPC = NodePath("../NPC")
 movementSpeed = 1.0
@@ -412,6 +418,9 @@ npcSignal = NodePath("../Player/DialogueNPCSignal")
 imposter = NodePath("../ImposterGhost/DialogueHolder")
 real = NodePath("../RealGhost/DialogueHolder")
 controller = NodePath("../NPCController")
+fakeHandbook = NodePath("../WorkingArea/FakeHandbook")
+realHandbook = NodePath("../WorkingArea/RealHandbook")
+fadingSpeed = 1.0
 
 [node name="X-Ray Manager" type="Node" parent="." node_paths=PackedStringArray("npcCreator", "helperPlayer", "scanScreenPlayer", "judgingPlayer", "xRayArea", "maleSkeleton", "maleOrgans", "femaleSkeleton", "femaleOrgans", "selectAnomalyButton", "hideables")]
 script = ExtResource("1_k6ho4")
@@ -624,7 +633,7 @@ libraries = {
 
 [node name="Ring Button" type="TextureButton" parent="WorkingArea/Buttons"]
 self_modulate = Color(1, 0.843137, 0.305882, 1)
-z_index = 11
+z_index = 10
 offset_left = -235.0
 offset_top = 172.0
 offset_right = 151.0
@@ -646,7 +655,7 @@ texture_pressed = ExtResource("59_0wwuk")
 texture_hover = ExtResource("60_tlsim")
 
 [node name="Desk" type="Sprite2D" parent="WorkingArea"]
-z_index = 10
+z_index = 9
 position = Vector2(960, 540)
 texture = ExtResource("3_rf5ro")
 
@@ -656,13 +665,56 @@ offset_left = 72.0
 offset_top = 151.0
 offset_right = 964.0
 offset_bottom = 534.0
+mouse_filter = 1
 
-[node name="Normal" type="Sprite2D" parent="WorkingArea/Desk"]
+[node name="RealHandbook" type="Node2D" parent="WorkingArea" node_paths=PackedStringArray("handBookSpawnPoint")]
+visible = false
+z_index = 11
+position = Vector2(537, 797)
+rotation = -0.310474
+script = ExtResource("108_wrsf6")
+gravitySpeed = 300.0
+yGround = 836.0
+handbook = ExtResource("117_0mcy8")
+handBookSpawnPoint = NodePath("../../Handbook SpawnPoint")
+
+[node name="Sprite" type="Sprite2D" parent="WorkingArea/RealHandbook"]
 texture_filter = 2
-position = Vector2(-432, 261)
-rotation = -0.15112
+position = Vector2(2.16461, -11.3848)
 scale = Vector2(0.284431, 0.284431)
 texture = ExtResource("115_vcrck")
+
+[node name="Area2D" type="Area2D" parent="WorkingArea/RealHandbook"]
+position = Vector2(-1.83539, -3.38477)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorkingArea/RealHandbook/Area2D"]
+position = Vector2(4.33536, -8.11523)
+shape = SubResource("RectangleShape2D_0k4ya")
+
+[node name="FakeHandbook" type="Node2D" parent="WorkingArea" node_paths=PackedStringArray("handBookSpawnPoint")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 11
+position = Vector2(554, 811)
+rotation = -0.310474
+script = ExtResource("108_wrsf6")
+gravitySpeed = 300.0
+yGround = 836.0
+handbook = ExtResource("110_n6ncr")
+handBookSpawnPoint = NodePath("../../Handbook SpawnPoint")
+
+[node name="Sprite" type="Sprite2D" parent="WorkingArea/FakeHandbook"]
+texture_filter = 2
+position = Vector2(2.16461, -11.3848)
+scale = Vector2(0.284431, 0.284431)
+texture = ExtResource("115_vcrck")
+
+[node name="Area2D" type="Area2D" parent="WorkingArea/FakeHandbook"]
+position = Vector2(-1.83539, -3.38477)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorkingArea/FakeHandbook/Area2D"]
+position = Vector2(4.33536, -8.11523)
+shape = SubResource("RectangleShape2D_0k4ya")
 
 [node name="WallwithWindow" type="Sprite2D" parent="WorkingArea"]
 z_index = 6
@@ -678,6 +730,7 @@ texture = ExtResource("13_4jyuk")
 position = Vector2(960, 540)
 
 [node name="Main" parent="Screen X-Ray" instance=ExtResource("15_88key")]
+z_index = 13
 position = Vector2(1940, 0)
 
 [node name="Scan Skeleton Button" parent="Screen X-Ray/Main" index="1"]
@@ -842,12 +895,18 @@ characterName = &"Boss"
 dialogue = ExtResource("114_tlioa")
 sfxName = &"creepyTW"
 
+[node name="Handbook SpawnPoint" type="Node2D" parent="."]
+z_index = 100
+position = Vector2(960, 0)
+
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Shoot Talk Button" to="JudgingManager" method="FallGuy"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Interrogate Button" to="JudgingManager" method="Interrogate"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/Let Pass Button" to="JudgingManager" method="PassThrough"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="CutsceneManager" method="PersonCome"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="SystemsManager" method="Ring"]
 [connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="X-Ray Manager" method="StartScan"]
+[connection signal="input_event" from="WorkingArea/RealHandbook/Area2D" to="WorkingArea/RealHandbook" method="OnArea2DInputEvent"]
+[connection signal="input_event" from="WorkingArea/FakeHandbook/Area2D" to="WorkingArea/FakeHandbook" method="OnArea2DInputEvent"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="X-Ray Manager" method="ScanOrgans"]
 [connection signal="pressed" from="Screen X-Ray/Main/MaleColoured/Make the Stomach And Liver Go" to="X-Ray Manager" method="ClearObjects"]
