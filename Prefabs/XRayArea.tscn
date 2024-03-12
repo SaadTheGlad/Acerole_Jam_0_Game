@@ -39,9 +39,6 @@ position = Vector2(1, -121)
 [node name="FemaleColoured" parent="." instance=ExtResource("4_erkmo")]
 position = Vector2(1, -121)
 
-[node name="Skeleton" parent="FemaleColoured" index="0"]
-visible = false
-
 [node name="Handbook" parent="." instance=ExtResource("5_4fndu")]
 
 [editable path="MaleColoured"]

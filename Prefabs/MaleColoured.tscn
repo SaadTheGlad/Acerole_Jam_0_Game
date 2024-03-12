@@ -116,7 +116,7 @@ scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("7_lf6yv")
 offset = Vector2(0.834387, 329.91)
 
-[node name="01Backbone" type="Sprite2D" parent="Skeleton/Ribs" groups=["Backbones"]]
+[node name="01Backbone" type="Sprite2D" parent="Skeleton/Ribs" groups=["Avoid", "Backbones"]]
 position = Vector2(399.807, 475.635)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("3_0ugdc")

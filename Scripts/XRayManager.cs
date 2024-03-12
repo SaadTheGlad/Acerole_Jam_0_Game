@@ -78,7 +78,6 @@ public partial class XRayManager : Node
         ogSkeletonPos = maleSkeleton.Position;
         ogOrgansPos = maleOrgans.Position;
     }
-
     public override void _EnterTree()
     {
         SignalsManager.Instance.DialogueEnded += EnableScan;
@@ -90,7 +89,6 @@ public partial class XRayManager : Node
         SignalsManager.Instance.EnableNPC += EnableRolling;
 
     }
-
     public override void _ExitTree()
     {
         SignalsManager.Instance.DialogueEnded -= EnableScan;
@@ -103,8 +101,12 @@ public partial class XRayManager : Node
 
     }
 
-    public void EnableRolling() => canRoll = true;
+    public override void _Process(double delta)
+    {
+        //GD.Print(signal.isTalking);
+    }
 
+    public void EnableRolling() => canRoll = true;
     public void RollAbberation()
     {
         if(canRoll)
@@ -156,7 +158,6 @@ public partial class XRayManager : Node
 
 
     }
-
     public void ResetScan()
     {
         //Make the stuf visible and variables and shit
@@ -221,7 +222,6 @@ public partial class XRayManager : Node
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ChangeOut);
         }
     }
-
     public void PullUpScanScreen()
     {
         scanScreenPlayer.Play("SlideIn");
@@ -502,6 +502,16 @@ public partial class XRayManager : Node
     }
     public void ScanOrgans()
     {
+        if(organsArrayPublic != null)
+        {
+            organsArrayPublic.Clear();
+
+        }
+        if(organsArray!= null)
+        {
+            organsArray.Clear();
+
+        }
 
         if (npcCreator.manOrWoman)
         {
@@ -638,7 +648,6 @@ public partial class XRayManager : Node
         }
 
     }
-
     Sprite2D Abberate(int randomIndex, Godot.Collections.Array<Sprite2D> array)
     {
 
@@ -673,7 +682,7 @@ public partial class XRayManager : Node
         else if (randomValue < 75f)
         {
             //transform thing
-            while (array[randomIndex].IsInGroup("Avoid") && array[randomIndex].IsInGroup("NoRotate"))
+            while (array[randomIndex].IsInGroup("Avoid") || array[randomIndex].IsInGroup("NoRotate"))
             {
                 randomIndex = RandomSelectionOrgans();
             }
@@ -685,7 +694,7 @@ public partial class XRayManager : Node
         else if (randomValue <= 100f)
         {
             //Duplicate
-            while (array[randomIndex].IsInGroup("Avoid") && array[randomIndex].IsInGroup("Ribs"))
+            while (array[randomIndex].IsInGroup("Avoid") || array[randomIndex].IsInGroup("Ribs"))
             {
                 randomIndex = RandomSelectionOrgans();
             }
@@ -706,17 +715,14 @@ public partial class XRayManager : Node
 
 
     }
-
     void MakeMissing(Sprite2D current)
     {
         current.SelfModulate = veryTranslucentColour;
     }
-
     void AlterTransformOfObject(Sprite2D current, float angle)
     {
         current.RotationDegrees = angle;
     }
-
     void AddObject(Sprite2D current)
     {
         Sprite2D duplicatedObject = (Sprite2D)current.Duplicate();
@@ -724,7 +730,6 @@ public partial class XRayManager : Node
         current.GetParent().AddChild(duplicatedObject);
         AlterTransformOfObject(duplicatedObject, random.RandiRange(30, 120));
     }
-
     void ReColour(Sprite2D current)
     {
         int randomIndex = random.RandiRange(0, weirdColours.Length - 1);
@@ -732,7 +737,6 @@ public partial class XRayManager : Node
         SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SendColour, weirdColours[randomIndex].colourName);
         offColourOrganName = current.Name;
     }
-
     int RandomSelectionSkeleton()
     {
         //Shuffle bag random selection
@@ -763,7 +767,6 @@ public partial class XRayManager : Node
         uint randomIndex = GD.Randi() % (uint)organsArrayPublic.Count;
         return (int)randomIndex;
     }
-
     bool visible = true;
     void ClearObjects()
     {
@@ -799,13 +802,13 @@ public partial class XRayManager : Node
         }
 
     }
-
     void EnableObjects()
     {
         foreach (Sprite2D sprite in hideables)
         {
             sprite.Visible = true;
-            sprite.SelfModulate = originalColours[sprite.Name];
+            if(originalColours.ContainsKey(sprite.Name))
+                sprite.SelfModulate = originalColours[sprite.Name];
         }
 
     }

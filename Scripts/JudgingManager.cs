@@ -6,6 +6,7 @@ public partial class JudgingManager : Node
 {
     [ExportCategory("Other")]
     [Export] public AnimationPlayer judgingPlayer;
+    [Export] public DialogueNPCSignal signal;
     [Export] public NPCController controller;
     [Export] public float fallingSpeed;
     [Export] public Curve curve;
@@ -38,7 +39,14 @@ public partial class JudgingManager : Node
 
     async private void FallGuy()
     {
+        if (!DialogueData.Instance.isAnomaly)
+        {
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.IncreaseInfraction);
+        }
+
         canClick = false;
+
+
 
         if (canFall)
         {
@@ -68,8 +76,12 @@ public partial class JudgingManager : Node
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisposedOf);
                     ResetStuff();
+                    signal.isTalking = false;
                     controller.canRing = true;
+                    
                     canClick = true;
+
+
                     break;
                 }
 
@@ -85,8 +97,6 @@ public partial class JudgingManager : Node
 
     public void Interrogate()
     {
-
-
         if(canClick)
         {
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.CameIn);
@@ -96,9 +106,12 @@ public partial class JudgingManager : Node
 
     void PassThrough()
     {
+        GD.Print("Was anomaly: " + DialogueData.Instance.isAnomaly);
+        //kill
+        signal.isTalking = false;
+
+
         SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.CameIn);
-
-
         canClick = false;
         ResetStuff();
         controller.Admit();

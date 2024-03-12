@@ -425,8 +425,9 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
-[node name="InfractionManager" type="Node" parent="."]
+[node name="InfractionManager" type="Node" parent="." node_paths=PackedStringArray("infractionLabel")]
 script = ExtResource("1_dvhbd")
+infractionLabel = NodePath("../WorkingArea/Wall/InfractionCounter/PanelContainer/MarginContainer/PanelContainer/MarginContainer/Label")
 
 [node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal", "imposter", "real", "controller", "fakeHandbook", "realHandbook")]
 script = ExtResource("1_xa843")
@@ -460,12 +461,13 @@ normalBoneColour = Color(1, 1, 1, 1)
 organsHighLightColour = Color(0, 0, 0, 1)
 weirdColours = Array[Object]([SubResource("Resource_d37rt"), SubResource("Resource_fjpe2"), SubResource("Resource_ohq0c")])
 selectAnomalyButton = NodePath("../Screen X-Ray/Main/Select Anomaly")
-hideables = [NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/12Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/11Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/10Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/9Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/8Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/7Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/6Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/5Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/4Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/3Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/2Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/1Rib"), NodePath("../Screen X-Ray/Main/MaleColoured/Skeleton/Ribs/Sternum"), NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Liver"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Liver"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/12Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/11Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/10Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/9Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/8Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/7Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/6Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/5Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/4Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/3Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/2Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/1Rib"), NodePath("../Screen X-Ray/Main/FemaleColoured/Skeleton/Ribs/Sternum")]
+hideables = [NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Liver"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Liver")]
 
-[node name="SystemsManager" type="Node" parent="." node_paths=PackedStringArray("npcHolder", "npcController")]
+[node name="SystemsManager" type="Node" parent="." node_paths=PackedStringArray("npcHolder", "npcController", "personsAdmittedCounter")]
 script = ExtResource("1_wulak")
 npcHolder = NodePath("../NPC/DialogueHolder")
 npcController = NodePath("../NPCController")
+personsAdmittedCounter = NodePath("../WorkingArea/Wall/PeopleCounter/PanelContainer/MarginContainer/PanelContainer/MarginContainer/Label")
 
 [node name="NPCCreator" type="Node" parent="." node_paths=PackedStringArray("Outward", "npcHolder")]
 script = ExtResource("1_olf47")
@@ -504,9 +506,10 @@ curve = SubResource("Curve_itk1r")
 npcSignal = NodePath("../Player/DialogueNPCSignal")
 judge = NodePath("../JudgingManager")
 
-[node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "controller", "xRayManager")]
+[node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "signal", "controller", "xRayManager")]
 script = ExtResource("1_oafhd")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
+signal = NodePath("../Player/DialogueNPCSignal")
 controller = NodePath("../NPCController")
 fallingSpeed = 1.0
 curve = SubResource("Curve_4fejt")
@@ -650,9 +653,9 @@ texture_click_mask = ExtResource("58_b2vtc")
 
 [node name="Scan Button" type="TextureButton" parent="WorkingArea/Buttons"]
 z_index = 11
-offset_left = 50.0
+offset_left = 48.0
 offset_top = 96.0
-offset_right = 404.0
+offset_right = 402.0
 offset_bottom = 450.0
 scale = Vector2(0.420435, 0.420435)
 texture_normal = ExtResource("59_0wwuk")
@@ -676,6 +679,7 @@ mouse_filter = 1
 visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 11
+texture_filter = 1
 position = Vector2(554, 811)
 rotation = -0.310474
 script = ExtResource("108_wrsf6")
@@ -701,6 +705,7 @@ shape = SubResource("RectangleShape2D_0k4ya")
 visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 11
+texture_filter = 1
 position = Vector2(454, 806)
 rotation = 0.170039
 script = ExtResource("108_wrsf6")
@@ -739,49 +744,45 @@ position = Vector2(960, 540)
 z_index = 13
 position = Vector2(1940, 0)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Screen X-Ray/Main"]
-offset_left = -1013.0
-offset_top = -581.0
-offset_right = -973.0
-offset_bottom = -541.0
-
-[node name="Scan Skeleton Button" parent="Screen X-Ray/Main" index="2"]
+[node name="Scan Skeleton Button" parent="Screen X-Ray/Main" index="1"]
 offset_left = 396.0
 offset_right = 876.0
 theme_override_font_sizes/font_size = 51
 text = "Scan Skeleton"
 icon = null
 
-[node name="Scan Organs Button" parent="Screen X-Ray/Main" index="3"]
+[node name="Scan Organs Button" parent="Screen X-Ray/Main" index="2"]
+modulate = Color(0.968627, 0, 0, 1)
 offset_left = 396.0
-offset_right = 841.0
+offset_right = 876.0
 theme_override_font_sizes/font_size = 51
 text = "Scan Organs"
 icon = null
 
-[node name="Bg" parent="Screen X-Ray/Main" index="4"]
+[node name="Bg" parent="Screen X-Ray/Main" index="3"]
 self_modulate = Color(0, 0, 0, 1)
 
-[node name="Make the Stomach And Liver Go" parent="Screen X-Ray/Main/MaleColoured" index="0" instance=ExtResource("86_vsxkr")]
-modulate = Color(0, 0.647059, 0.137255, 1)
-offset_left = 2096.82
-offset_top = 1274.02
-offset_right = 2604.82
-offset_bottom = 1410.02
-scale = Vector2(4.62964, 4.62964)
-theme_override_font_sizes/font_size = 26
-text = "GO LIVER AND STOMACH"
+[node name="Scan Organs Button2" parent="Screen X-Ray/Main" instance=ExtResource("86_vsxkr")]
+modulate = Color(0.262745, 0.470588, 1, 1)
+offset_left = 396.0
+offset_top = 103.0
+offset_right = 876.0
+offset_bottom = 239.0
+theme_override_font_sizes/font_size = 51
+text = "Show Covered"
+icon = null
 
 [node name="Select Anomaly" parent="Screen X-Ray/Main" instance=ExtResource("86_vsxkr")]
 visible = false
 modulate = Color(0.670588, 0.305882, 1, 1)
-offset_left = -883.0
-offset_top = -105.0
-offset_right = -368.0
-offset_bottom = 31.0
+offset_left = 350.0
+offset_top = -460.0
+offset_right = 926.0
+offset_bottom = -324.0
 theme_override_font_sizes/font_size = 51
 text = "Select Anomaly
 "
+icon = null
 
 [node name="CustomScanBG" type="Sprite2D" parent="Screen X-Ray/Main"]
 self_modulate = Color(0.129412, 0.117647, 0.203922, 1)
@@ -789,13 +790,14 @@ position = Vector2(1, 0)
 texture = ExtResource("87_kyekx")
 
 [node name="Close Scan Area Button" parent="Screen X-Ray/Main" instance=ExtResource("86_vsxkr")]
-offset_left = 685.0
+offset_left = 648.0
 offset_top = 414.0
-offset_right = 1024.0
+offset_right = 1019.0
 offset_bottom = 550.0
 scale = Vector2(0.740545, 0.740545)
 theme_override_font_sizes/font_size = 51
 text = "Go Back"
+icon = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Screen X-Ray/Main"]
 libraries = {
@@ -923,11 +925,12 @@ position = Vector2(960, 0)
 [connection signal="input_event" from="WorkingArea/RealHandbook/Area2D" to="WorkingArea/RealHandbook" method="OnArea2DInputEvent"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="X-Ray Manager" method="ScanOrgans"]
-[connection signal="pressed" from="Screen X-Ray/Main/MaleColoured/Make the Stomach And Liver Go" to="X-Ray Manager" method="ClearObjects"]
+[connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button2" to="X-Ray Manager" method="ClearObjects"]
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="X-Ray Manager" method="CloseScanScreen"]
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="JudgingManager" method="SelectAnomaly"]
 [connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="X-Ray Manager" method="CloseScanScreen"]
 
+[editable path="WorkingArea/Wall/PeopleCounter"]
 [editable path="WorkingArea/Wall/InfractionCounter"]
 [editable path="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Deny"]
 [editable path="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Interrogate"]

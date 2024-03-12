@@ -118,7 +118,7 @@ scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("6_rsy68")
 offset = Vector2(0.834387, 329.91)
 
-[node name="01Backbone" type="Sprite2D" parent="Skeleton/Ribs" groups=["Backbones"]]
+[node name="01Backbone" type="Sprite2D" parent="Skeleton/Ribs" groups=["Avoid", "Backbones"]]
 position = Vector2(399.807, 475.635)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("7_m7sno")
@@ -521,7 +521,7 @@ self_modulate = Color(0.980392, 0.886275, 0.792157, 1)
 position = Vector2(383.376, 1788.83)
 texture = ExtResource("69_7thk2")
 
-[node name="FallopianTubes" type="Sprite2D" parent="Organs/Female Reproductive"]
+[node name="Fallopian Tubes" type="Sprite2D" parent="Organs/Female Reproductive"]
 self_modulate = Color(1, 0.482353, 0.447059, 1)
 position = Vector2(8.15344, 61.4738)
 texture = ExtResource("67_65uu0")

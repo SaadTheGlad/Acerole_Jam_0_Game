@@ -61,6 +61,7 @@ public partial class SignalsManager : Node
     [Signal] public delegate void ChangeOutEventHandler();
 
     [Signal] public delegate void CameInEventHandler();
+    [Signal] public delegate void IncreaseInfractionEventHandler();
 
 
 
