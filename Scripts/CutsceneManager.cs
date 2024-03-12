@@ -24,12 +24,14 @@ public partial class CutsceneManager : Node
     {
         SignalsManager.Instance.ImposterFinished += ImposterBye;
         SignalsManager.Instance.EnableFakeHandbook += EnableFakeHandbook;
+        SignalsManager.Instance.EnableRealHandbook += EnableRealHandbook;
     }
 
     public override void _ExitTree()
     {
         SignalsManager.Instance.ImposterFinished -= ImposterBye;
         SignalsManager.Instance.EnableFakeHandbook -= EnableFakeHandbook;
+        SignalsManager.Instance.EnableRealHandbook -= EnableRealHandbook;
 
     }
 
@@ -119,34 +121,52 @@ public partial class CutsceneManager : Node
        
     }
 
-    public void EnableFakeHandbook()
+    async public void EnableFakeHandbook()
     {
-        fakeHandbook.Modulate = new Color(fakeHandbook.Modulate.R, fakeHandbook.Modulate.G, fakeHandbook.Modulate.B, 0f);
 
+        float current = 0f;
+        float target = 1f;
+        fakeHandbook.Visible = true;
 
         while (true)
         {
-
-            fakeHandbook.Visible = true;
-
-            float currentOpacity = 0f;
-            float startingOpacity = 0f;
-            float endingOpacity = 1f;
-
-            float current = 0f;
-            float target = 1f;
-
             current = Mathf.MoveToward(current, target, fadingSpeed * (float)GetProcessDeltaTime());
-            currentOpacity = Mathf.Lerp(startingOpacity, endingOpacity, current);
 
-            fakeHandbook.Modulate = new Color(fakeHandbook.Modulate.R, fakeHandbook.Modulate.G, fakeHandbook.Modulate.B, currentOpacity);
+            fakeHandbook.Modulate = new Color(fakeHandbook.Modulate.R, fakeHandbook.Modulate.G, fakeHandbook.Modulate.B, current);
 
-            if(fakeHandbook.Modulate.A == 1f)
+            if (current == 1f)
             {
                 break;
             }
 
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         }
+
+
+    }
+
+    async public void EnableRealHandbook()
+    {
+
+        float current = 0f;
+        float target = 1f;
+        realHandbook.Visible = true;
+
+        while (true)
+        {
+            current = Mathf.MoveToward(current, target, fadingSpeed * (float)GetProcessDeltaTime());
+
+            realHandbook.Modulate = new Color(realHandbook.Modulate.R, realHandbook.Modulate.G, realHandbook.Modulate.B, current);
+
+            if (current == 1f)
+            {
+                break;
+            }
+
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        }
+
+
     }
 
 }

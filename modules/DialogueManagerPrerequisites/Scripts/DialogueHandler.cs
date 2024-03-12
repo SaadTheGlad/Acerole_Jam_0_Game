@@ -214,4 +214,9 @@ public partial class DialogueHandler : Node
         SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableFakeHandbook);
     }
 
+    void EnableRealHandbook()
+    {
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableRealHandbook);
+    }
+
 }

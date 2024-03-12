@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://kf6u3hv8nc07"]
+[gd_scene load_steps=11 format=3 uid="uid://kf6u3hv8nc07"]
 
 [ext_resource type="Script" path="res://Scripts/Handbook.cs" id="1_vyo2w"]
-[ext_resource type="Texture2D" uid="uid://dfctlv57ixa7b" path="res://Images/Bodies/Male/Male_Skeleton.png" id="2_o7yrx"]
-[ext_resource type="Texture2D" uid="uid://je4hkmh6r6yr" path="res://Images/Bodies/Male/Male_Organs.png" id="3_6cx4g"]
-[ext_resource type="Texture2D" uid="uid://bl44gng4ehglx" path="res://Images/Bodies/Female/Female_Skeleton.png" id="4_h0cqk"]
-[ext_resource type="Texture2D" uid="uid://b453sdsh51whk" path="res://Images/Bodies/Female/Female_Organs.png" id="5_tx6au"]
+[ext_resource type="Texture2D" uid="uid://dl8w40rjw8vma" path="res://Images/Distortion/MaleSkeletonDistorted.png" id="2_f627d"]
+[ext_resource type="Texture2D" uid="uid://byyat4fxojdri" path="res://Images/Distortion/OrgansDistorted.png" id="3_73jj3"]
+[ext_resource type="Texture2D" uid="uid://bm5xfv3u127qp" path="res://Images/Distortion/FemaleSkeletonDistorted.png" id="4_g0g15"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uynh"]
 bg_color = Color(0.984314, 0.360784, 0.396078, 1)
@@ -91,16 +90,14 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i063")
 
 [node name="MaleSkeleton" type="Sprite2D" parent="Helper/PanelContainer/MarginContainer/TabContainer/Male/MarginContainer/PanelContainer"]
-visible = false
 position = Vector2(194.893, 489.807)
 scale = Vector2(0.502807, 0.502807)
-texture = ExtResource("2_o7yrx")
+texture = ExtResource("2_f627d")
 
 [node name="MaleOrgans" type="Sprite2D" parent="Helper/PanelContainer/MarginContainer/TabContainer/Male/MarginContainer/PanelContainer"]
-visible = false
 position = Vector2(435.893, 489.807)
 scale = Vector2(0.502807, 0.502807)
-texture = ExtResource("3_6cx4g")
+texture = ExtResource("3_73jj3")
 
 [node name="Female" type="TabBar" parent="Helper/PanelContainer/MarginContainer/TabContainer"]
 visible = false
@@ -122,17 +119,15 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i063")
 
-[node name="FemaleSkeleton" type="Sprite2D" parent="Helper/PanelContainer/MarginContainer/TabContainer/Female/MarginContainer/PanelContainer"]
-visible = false
-position = Vector2(194.893, 502)
-scale = Vector2(0.92, 0.92)
-texture = ExtResource("4_h0cqk")
+[node name="FeMaleSkeleton" type="Sprite2D" parent="Helper/PanelContainer/MarginContainer/TabContainer/Female/MarginContainer/PanelContainer"]
+position = Vector2(194.893, 489.807)
+scale = Vector2(0.502807, 0.502807)
+texture = ExtResource("4_g0g15")
 
-[node name="FemaleOrgans" type="Sprite2D" parent="Helper/PanelContainer/MarginContainer/TabContainer/Female/MarginContainer/PanelContainer"]
-visible = false
-position = Vector2(452, 500)
-scale = Vector2(0.92, 0.92)
-texture = ExtResource("5_tx6au")
+[node name="FeMaleOrgans" type="Sprite2D" parent="Helper/PanelContainer/MarginContainer/TabContainer/Female/MarginContainer/PanelContainer"]
+position = Vector2(435.893, 489.807)
+scale = Vector2(0.502807, 0.502807)
+texture = ExtResource("3_73jj3")
 
 [node name="Info" type="TabBar" parent="Helper/PanelContainer/MarginContainer/TabContainer"]
 visible = false
@@ -163,14 +158,23 @@ theme_override_constants/margin_bottom = 15
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Helper/PanelContainer/MarginContainer/TabContainer/Info/MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 31
+theme_override_font_sizes/normal_font_size = 25
 text = "When detecting an anomaly, ignore it
 
 Under no circumstance will you discard a person
 
 However severe an anomaly might look, it is normal
 
-Leniency is the name of the game"
+Discoloration is a sign of good health
+
+Unattached body parts are a product of most recent evolution, enabling a wider range of motion
+
+Rotated or missing skulls are on the rise in humans as they leave more room for the brain
+
+Individualism of society shows in a variety of possible skeletal structures. this is a sign of good genetics
+
+
+"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Helper"]
 libraries = {

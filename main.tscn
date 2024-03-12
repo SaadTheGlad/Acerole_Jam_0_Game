@@ -667,30 +667,6 @@ offset_right = 964.0
 offset_bottom = 534.0
 mouse_filter = 1
 
-[node name="RealHandbook" type="Node2D" parent="WorkingArea" node_paths=PackedStringArray("handBookSpawnPoint")]
-visible = false
-z_index = 11
-position = Vector2(537, 797)
-rotation = -0.310474
-script = ExtResource("108_wrsf6")
-gravitySpeed = 300.0
-yGround = 836.0
-handbook = ExtResource("117_0mcy8")
-handBookSpawnPoint = NodePath("../../Handbook SpawnPoint")
-
-[node name="Sprite" type="Sprite2D" parent="WorkingArea/RealHandbook"]
-texture_filter = 2
-position = Vector2(2.16461, -11.3848)
-scale = Vector2(0.284431, 0.284431)
-texture = ExtResource("115_vcrck")
-
-[node name="Area2D" type="Area2D" parent="WorkingArea/RealHandbook"]
-position = Vector2(-1.83539, -3.38477)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorkingArea/RealHandbook/Area2D"]
-position = Vector2(4.33536, -8.11523)
-shape = SubResource("RectangleShape2D_0k4ya")
-
 [node name="FakeHandbook" type="Node2D" parent="WorkingArea" node_paths=PackedStringArray("handBookSpawnPoint")]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -713,6 +689,31 @@ texture = ExtResource("115_vcrck")
 position = Vector2(-1.83539, -3.38477)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorkingArea/FakeHandbook/Area2D"]
+position = Vector2(4.33536, -8.11523)
+shape = SubResource("RectangleShape2D_0k4ya")
+
+[node name="RealHandbook" type="Node2D" parent="WorkingArea" node_paths=PackedStringArray("handBookSpawnPoint")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 11
+position = Vector2(454, 806)
+rotation = 0.170039
+script = ExtResource("108_wrsf6")
+gravitySpeed = 300.0
+yGround = 836.0
+handbook = ExtResource("117_0mcy8")
+handBookSpawnPoint = NodePath("../../Handbook SpawnPoint")
+
+[node name="Sprite" type="Sprite2D" parent="WorkingArea/RealHandbook"]
+texture_filter = 2
+position = Vector2(2.16461, -11.3848)
+scale = Vector2(0.284431, 0.284431)
+texture = ExtResource("115_vcrck")
+
+[node name="Area2D" type="Area2D" parent="WorkingArea/RealHandbook"]
+position = Vector2(-1.83539, -3.38477)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorkingArea/RealHandbook/Area2D"]
 position = Vector2(4.33536, -8.11523)
 shape = SubResource("RectangleShape2D_0k4ya")
 
@@ -905,8 +906,8 @@ position = Vector2(960, 0)
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="CutsceneManager" method="PersonCome"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="SystemsManager" method="Ring"]
 [connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="X-Ray Manager" method="StartScan"]
-[connection signal="input_event" from="WorkingArea/RealHandbook/Area2D" to="WorkingArea/RealHandbook" method="OnArea2DInputEvent"]
 [connection signal="input_event" from="WorkingArea/FakeHandbook/Area2D" to="WorkingArea/FakeHandbook" method="OnArea2DInputEvent"]
+[connection signal="input_event" from="WorkingArea/RealHandbook/Area2D" to="WorkingArea/RealHandbook" method="OnArea2DInputEvent"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="X-Ray Manager" method="ScanOrgans"]
 [connection signal="pressed" from="Screen X-Ray/Main/MaleColoured/Make the Stomach And Liver Go" to="X-Ray Manager" method="ClearObjects"]

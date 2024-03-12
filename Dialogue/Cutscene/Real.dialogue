@@ -1,8 +1,9 @@
 ~ start
 
 Boss: Welcome to your first day. You've already been told in the job description the importance of meticulousness here. 
-Boss: However I would still like to reiterate, one small mishap, and it's not only your life you'll put in jeopardy but all the others bunkered up down there as well.
+Boss: However I would still like to reiterate, one small mishap, and it's not only your life you'll put in jeopardy but all the others bunkered up down here as well.
 Boss: I won't hold you up anymore now, here is the handbook. You'll use it as a reference for what's right and what's an anomaly, don't lose it.
+do EnableRealHandbook()
 Boss: ...
 Boss: What? Is that another handbook? Ohh god. What did he look like?
 - Like you
