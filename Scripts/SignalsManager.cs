@@ -57,4 +57,12 @@ public partial class SignalsManager : Node
     [Signal] public delegate void EnableFakeHandbookEventHandler();
     [Signal] public delegate void EnableRealHandbookEventHandler();
 
+    //abberation phsqie
+    [Signal] public delegate void ChangeOutEventHandler();
+
+    [Signal] public delegate void CameInEventHandler();
+
+
+
+
 }

@@ -62,6 +62,7 @@ public partial class DialogueNPCSignal : Node
         {
             if (n is DialogueHolder holder)
             {
+                isTalking = true;
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DialogueStartedRunning);
                 EmitSignal(SignalName.EncounteredNPC, npcController.currentGuy, holder);
             }

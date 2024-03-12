@@ -82,6 +82,7 @@ public partial class NPCController : Node
                 hasReached = true;
                 currentGuy = NPC;
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.NPCHasArrived);
+                SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.CameIn);
                 break;
             }
 

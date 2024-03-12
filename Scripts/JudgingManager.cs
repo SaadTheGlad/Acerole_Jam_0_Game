@@ -85,12 +85,20 @@ public partial class JudgingManager : Node
 
     public void Interrogate()
     {
+
+
         if(canClick)
+        {
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.CameIn);
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate);
+        }
     }
 
     void PassThrough()
     {
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.CameIn);
+
+
         canClick = false;
         ResetStuff();
         controller.Admit();

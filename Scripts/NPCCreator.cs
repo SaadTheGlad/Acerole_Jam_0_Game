@@ -49,14 +49,18 @@ public partial class NPCCreator : Node
 
         SignalsManager.Instance.NPCHasPassed += CreateNPC;
         SignalsManager.Instance.NPCHasPassed += SelectRandomName;
+        SignalsManager.Instance.ChangeOut += CreateNPC;
     }
 
     public override void _ExitTree()
     {
         SignalsManager.Instance.NPCHasPassed -= CreateNPC;
         SignalsManager.Instance.NPCHasPassed -= SelectRandomName;
+        SignalsManager.Instance.ChangeOut += CreateNPC;
 
     }
+
+
 
     public override void _Ready()
     {

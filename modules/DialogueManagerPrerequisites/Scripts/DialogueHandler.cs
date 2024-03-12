@@ -36,8 +36,10 @@ public partial class DialogueHandler : Node
         DialogueManager.GotDialogue += (DialogueLine dialogueLine) =>
         {
             GotDialogue(dialogueLine);
+           
 
         };
+
     }
 
     public override void _ExitTree()

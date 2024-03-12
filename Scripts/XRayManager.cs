@@ -8,10 +8,11 @@ using System.Security;
 public partial class XRayManager : Node
 {
     [Export] public NPCCreator npcCreator;
+    [Export] public DialogueNPCSignal signal;
 
     [ExportGroup("Probabilities")]
     [Export(PropertyHint.Range, "0,100,")] public float probabilityOfGeneralAbberation = 20f;
-    [Export(PropertyHint.Range, "0,100,")] public float probabilityOfSkeletonToOrgansAbberation = 50f;
+    [Export(PropertyHint.Range, "0,90,")] public float probabilityOfSkeletonToOrgansAbberation = 45f;
 
     RandomNumberGenerator random = new RandomNumberGenerator();
 
@@ -69,6 +70,7 @@ public partial class XRayManager : Node
     bool isDG;
     bool canRoll = true;
     bool skeletonOrOrgan = false;
+    bool physiqueAbberation = false;
     string offColourOrganName;
 
     public override void _Ready()
@@ -82,6 +84,7 @@ public partial class XRayManager : Node
         SignalsManager.Instance.DialogueEnded += EnableScan;
         SignalsManager.Instance.Admitted += DisableScan;
         SignalsManager.Instance.DisposedOf += DisableScan;
+        SignalsManager.Instance.CameIn += DisableScan;
         SignalsManager.Instance.ResetScan += ResetScan;
         SignalsManager.Instance.CreatedNPC += RollAbberation;
         SignalsManager.Instance.EnableNPC += EnableRolling;
@@ -93,10 +96,16 @@ public partial class XRayManager : Node
         SignalsManager.Instance.DialogueEnded -= EnableScan;
         SignalsManager.Instance.Admitted -= DisableScan;
         SignalsManager.Instance.DisposedOf -= DisableScan;
+        SignalsManager.Instance.CameIn -= DisableScan;
         SignalsManager.Instance.ResetScan -= ResetScan;
         SignalsManager.Instance.CreatedNPC -= RollAbberation;
         SignalsManager.Instance.EnableNPC -= EnableRolling;
 
+    }
+
+    public override void _Process(double delta)
+    {
+        GD.Print(signal.isTalking);
     }
 
     public void EnableRolling() => canRoll = true;
@@ -113,17 +122,24 @@ public partial class XRayManager : Node
 
 
                 float randomSpecificValue = random.RandiRange(0, 100);
-                if (randomSpecificValue <= probabilityOfSkeletonToOrgansAbberation)
-                {
-                    skeletonOrOrgan = false;
-                    GD.Print("Abberation in Organs");
+                //if (randomSpecificValue < 45f)
+                //{
+                //    skeletonOrOrgan = false;
+                //    physiqueAbberation = false;
+                //    GD.Print("Abberation in Organs");
 
-                }
-                else
-                {
-                    skeletonOrOrgan = true;
-                    GD.Print("Abberation in Skeleton");
+                //}
+                //else if (randomSpecificValue <= 90f)
+                //{
+                //    skeletonOrOrgan = true;
+                //    physiqueAbberation = false;
+                //    GD.Print("Abberation in Skeleton");
 
+                //}
+                if (randomSpecificValue <= 100f)
+                {
+                    physiqueAbberation = true;
+                    GD.Print("Abberation in Physique");
                 }
 
             }
@@ -192,7 +208,7 @@ public partial class XRayManager : Node
     public void DisableScan() => canStartScan = false;
     public void StartScan()
     {
-        if(canStartScan)
+        if(canStartScan && !signal.isTalking)
         {
             helperPlayer.Play("LowerDown");
             if(judgingPlayer.AssignedAnimation == "Open")
@@ -203,6 +219,14 @@ public partial class XRayManager : Node
             canStartScan = false;
         }
     }
+    public void ChangeOut()
+    {
+        if(physiqueAbberation)
+        {
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ChangeOut);
+        }
+    }
+
     public void PullUpScanScreen()
     {
         scanScreenPlayer.Play("SlideIn");
@@ -469,7 +493,7 @@ public partial class XRayManager : Node
         skeletonArrayFull = skeletonArray.Duplicate();
         skeletonArray.Shuffle();
 
-        if (skeletonOrOrgan && isDG)
+        if (skeletonOrOrgan && isDG && !physiqueAbberation)
         {
             int randomIndex = RandomSelectionSkeleton();
             Sprite2D current = Abberate(randomIndex, skeletonArrayPublic);
@@ -607,7 +631,7 @@ public partial class XRayManager : Node
         organsArrayFull = organsArray.Duplicate();
         organsArray.Shuffle();
 
-        if (!skeletonOrOrgan && isDG)
+        if (!skeletonOrOrgan && isDG && !physiqueAbberation)
         {
             int randomIndex = RandomSelectionOrgans();
             Sprite2D current = Abberate(randomIndex, organsArrayPublic);
