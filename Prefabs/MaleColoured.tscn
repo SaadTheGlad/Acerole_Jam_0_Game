@@ -340,13 +340,13 @@ scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("42_r07bi")
 offset = Vector2(220.973, 115.275)
 
-[node name="LowerLeg" type="Sprite2D" parent="Skeleton/Right"]
+[node name="Lower Leg" type="Sprite2D" parent="Skeleton/Right"]
 position = Vector2(182.161, 3607.6)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("43_8oy43")
 offset = Vector2(76.0484, -671.72)
 
-[node name="UpperLeg" type="Sprite2D" parent="Skeleton/Right"]
+[node name="Upper Leg" type="Sprite2D" parent="Skeleton/Right"]
 position = Vector2(97.2266, 2291.11)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("44_34ap3")

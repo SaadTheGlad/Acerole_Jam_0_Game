@@ -15,6 +15,7 @@
 %2 => doctor
 %2 => uncomfortable
 %2 => mistake
+%2 => donation
 % => accidentconfusion
 
 ~ accident
@@ -22,6 +23,13 @@ do ResetSound()
 You: Where is your {{objectName}}?
 do ChangeSound(sfxName)
 {{npcName}}: I lost it in an accident.
+=> END
+
+~ donation
+do ResetSound()
+You: Where is your {{objectName}}?
+do ChangeSound(sfxName)
+% {{npcName}}: I donated it to my [[brother|mum|sister|dad|grandpa|grandma|uncle|aunt]].
 => END
 
 ~ noneed
@@ -56,9 +64,9 @@ do ChangeSound(sfxName)
 do ResetSound()
 You: Where is your {{objectName}}?
 do ChangeSound(sfxName)
-{{npcName}}: What? Nothing's missing, there must be a mistake.
+{{npcName}}: What? It's right there, what do you mean?
 do ResetSound()
-You: I can see it right here through the scan.
+You: I can see everything on the scan and there is no {{objectName}} there.
 do ChangeSound(sfxName)
 {{npcName}}: That can't be, please let me through, my family's expecting me.
 => END
@@ -106,7 +114,7 @@ do ChangeSound(sfxName)
 do ResetSound()
 You: What food exactly?
 do ChangeSound(sfxName)
-{{npcName}}: [[Frozen pizza|Sushi|Tajine||Bastilla||Frozen tacos||Raw berries||Vegetable soup]].
+{{npcName}}: [[Frozen pizza|Sushi|Tajine|Bastilla|Frozen tacos|Raw berries|Vegetable soup]].
 
 => END
 
@@ -144,7 +152,7 @@ do ChangeSound(sfxName)
 do ResetSound()
 You: What's wrong with your {{objectName}}?
 do ChangeSound(sfxName)
-{{npcName}}: I fell and twisted it earlier, you have doctors in there right? They should be able to help me with it
+{{npcName}}: I fell and twisted it earlier, you have doctors in there right? They should be able to help me with it.
 => END
 
 ~ yoga
@@ -173,10 +181,10 @@ do ChangeSound(sfxName)
 
 
 ~ duplicated
-%2 => donation
 %2 => disorder
 %2 => born
 %2 => experiment
+%2 => tumour
 % => duplicatedconfusion
 
 ~ disorder
@@ -188,13 +196,6 @@ do ResetSound()
 You: What is it called?
 do ChangeSound(sfxName)
 {{npcName}}: Additicus Organum.
-=> END
-
-~ donation
-do ResetSound()
-You: Why do you have an extra {{objectName}}?
-do ChangeSound(sfxName)
-% {{npcName}}: I donated one to my [[brother|mum|sister|dad|grandpa|grandma|uncle|aunt]].
 => END
 
 ~ born
@@ -209,6 +210,13 @@ do ResetSound()
 You: Why do you have an extra {{objectName}}?
 do ChangeSound(sfxName)
 % {{npcName}}: Oh that? Ehh, nothing to worry about. My doctors said it's pretty rare but completely harmless!
+=> END
+
+~ tumour
+do ResetSound()
+You: Why do you have an extra {{objectName}}?
+do ChangeSound(sfxName)
+% {{npcName}}: It's a cancerous tumour. I'm undergoing treatment, should be cured soon.
 => END
 
 ~ duplicatedconfusion

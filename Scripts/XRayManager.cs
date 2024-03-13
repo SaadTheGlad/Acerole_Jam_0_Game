@@ -681,7 +681,9 @@ public partial class XRayManager : Node
     Sprite2D Abberate(int randomIndex, Godot.Collections.Array<Sprite2D> array)
     {
 
+
         float randomValue = random.RandiRange(0, 100);
+
         if (randomValue < 25f)
         {
             ////Make missing

@@ -7,21 +7,24 @@ import "res://Dialogue/Interrogations/General Responses.dialogue" as snippets
 % => gratitude
 % => normal
 % => excited
+% => snow
+% => generous
+% => cold
 
 ~ gratitude
 do ResetSound()
 Hello. My name is {{npcName}}.
 {{npcName}}: Thank you for this, really. It's a miracle you guys exist. I was told there would be a scan?
 do ChangeSound("normalTW")
-You: Yes. Please stay still.
+You: Yes. [[Please stay still|Please don't move|Please remain stationary]].
 => END
 
 ~ normal
 do ResetSound()
 Hello. I'm {{npcName}}.
-{{npcName}}: Uh, is this the right place? 
+{{npcName}}: This is the right place, yeah?
 do ChangeSound("normalTW")
-You: Yes. Please stay still.
+You: Yes. [[Please stay still|Please don't move|Please remain stationary]].
 => END
 
 ~ excited
@@ -29,11 +32,39 @@ do ResetSound()
 Hi! Oh gosh, it's true! There is still hope for humanity after all.
 do ChangeSound("normalTW")
 You: What's your name?
-Oh yes, sorry, it's {{npcName}}.
 do ResetSound()
-You: Please stay still while the scan is in process {{npcName}}.
+Oh yes, sorry, it's {{npcName}}.
+do ChangeSound("normalTW")
+You: [[Please stay still|Please don't move|Please remain stationary]] while the scan is in progress {{npcName}}.
 => END
 
+~ snow
+do ResetSound()
+Hi, hello. Why did you have to build it all the way out here? Practically impossible to walk on that snow.
+do ChangeSound("normalTW")
+You: What's your name?
+do ResetSound()
+Rude. Uh, {{npcName}}.
+do ChangeSound("normalTW")
+You: [[Please stay still|Please don't move|Please remain stationary]] while the scan is in progress {{npcName}}.
+=> END
+
+~ generous
+do ResetSound()
+Good evening. I was told you only required submission to a scan, is that so?
+do ChangeSound("normalTW")
+You: Yes, that is correct. What is your name?
+do ResetSound()
+{{npcName}}. Huh, thought for sure there would be some payment involved. You're doing god's work here. Thank you.
+do ChangeSound("normalTW")
+You: [[Please stay still|Please don't move|Please remain stationary]] while the scan is in progress {{npcName}}.
+=> END
+
+~ cold
+do ResetSound()
+Good evening. My name is {{npcName}}.
+do ChangeSound("normalTW")
+You: Yes. [[Please stay still|Please don't move|Please remain stationary]].
 
 
 => END

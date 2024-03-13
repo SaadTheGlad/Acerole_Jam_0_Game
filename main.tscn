@@ -597,7 +597,7 @@ fadingSpeed = 1.0
 script = ExtResource("1_k6ho4")
 npcCreator = NodePath("../NPCCreator")
 signal = NodePath("../Player/DialogueNPCSignal")
-probabilityOfGeneralAbberation = 100.0
+probabilityOfGeneralAbberation = 50.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -686,7 +686,7 @@ characterName = &"You"
 dialogue = ExtResource("40_dt8n8")
 font = ExtResource("119_58pcu")
 sfxName = &"normalTW"
-baseSpeed = 0.12
+baseSpeed = 0.07
 
 [node name="WorkingArea" type="Node2D" parent="."]
 texture_filter = 1
@@ -1049,6 +1049,7 @@ position = Vector2(30, -242)
 dialogue = ExtResource("15_i1ce5")
 font = ExtResource("119_58pcu")
 sfxName = &"deepTW"
+baseSpeed = 0.07
 
 [node name="ImposterGhost" type="Node2D" parent="."]
 
@@ -1058,6 +1059,7 @@ characterName = &"Boss"
 dialogue = ExtResource("113_jmuyj")
 font = ExtResource("122_2rhrw")
 sfxName = &"deepTW"
+baseSpeed = 0.07
 
 [node name="RealGhost" type="Node2D" parent="."]
 
@@ -1067,6 +1069,7 @@ characterName = &"Boss"
 dialogue = ExtResource("114_tlioa")
 font = ExtResource("119_58pcu")
 sfxName = &"deepTW"
+baseSpeed = 0.07
 
 [node name="Handbook SpawnPoint" type="Node2D" parent="."]
 z_index = 100
