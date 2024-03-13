@@ -551,16 +551,18 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
-[node name="ShiftManager" type="Node" parent="." node_paths=PackedStringArray("winPlayer", "scoreLabel")]
+[node name="ShiftManager" type="Node" parent="." node_paths=PackedStringArray("winPlayer", "scoreLabel", "handler")]
 script = ExtResource("1_pmo76")
-timeInMinutes = 5.0
+timeInMinutes = 15.0
 winPlayer = NodePath("../PinkSlipHolder/WinScreen/AnimationPlayer")
 scoreLabel = NodePath("../PinkSlipHolder/WinScreen/PanelContainer/MarginContainer/TabContainer/Notice/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/People counter")
+handler = NodePath("../DialogueHandler")
 
-[node name="InfractionManager" type="Node" parent="." node_paths=PackedStringArray("infractionLabel", "player")]
+[node name="InfractionManager" type="Node" parent="." node_paths=PackedStringArray("infractionLabel", "player", "handler")]
 script = ExtResource("1_dvhbd")
 infractionLabel = NodePath("../WorkingArea/Wall/InfractionCounter/PanelContainer/MarginContainer/PanelContainer/MarginContainer/Label")
 player = NodePath("../PinkSlipHolder/PinkSlip/AnimationPlayer")
+handler = NodePath("../DialogueHandler")
 
 [node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal", "imposter", "real", "controller", "fakeHandbook", "realHandbook")]
 script = ExtResource("1_xa843")

@@ -7,6 +7,7 @@ public partial class ShiftManager : Node
 
     [Export] public AnimationPlayer winPlayer;
     [Export] public RichTextLabel scoreLabel;
+    [Export] public DialogueHandler handler;
 
     SceneTreeTimer timer;
 
@@ -35,6 +36,14 @@ public partial class ShiftManager : Node
 
     void ShowScreen()
     {
+
+        if (handler.GetChild(0) != null)
+        {
+            Node balloon = handler.GetChild(0);
+            balloon.QueueFree();
+
+        }
+
         //play ring sound
         scoreLabel.Text = "\r\n[center][font_size={40}]A total of " + localCounter + " people have been admitted into the bunker.";
         winPlayer.Play("Open");

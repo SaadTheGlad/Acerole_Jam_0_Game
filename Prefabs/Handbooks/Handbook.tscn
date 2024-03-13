@@ -123,6 +123,7 @@ theme_override_constants/margin_bottom = 15
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/TabContainer/Info/MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
 text = "Organs and bones - which will henceforth be referred to as objects can undergo 4 types of abberation:
 
 Rotation: a full 180 degree rotation about their centre.
@@ -131,7 +132,7 @@ Duplication: The object is duplicated and is rotated about its centre.
 
 Discolouration: An object can have a different hue/shade than normal, refer to the chart for the correct hue.
 
-Missing: An object can be simply missing. When noticing such an anomaly, make sure to interrogate the subject first, lest it be a normal occurance, e.g. missing kidney.
+Missing: An object can be simply missing. [s] When noticing such an anomaly, make sure to interrogate the subject first, lest it be a normal occurance, e.g. missing kidney.[/s] No exceptions.
 
 Another somewhat rare abberation which can occur is the complete transformation of outward appearance. Be vigilant at all times.
 

@@ -145,6 +145,9 @@ public partial class XRayManager : Node
             else
             {
                 // make it so there is a chance they can lose an organ here and that's what you base it on
+
+                
+
                 isDG = false;
                 SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisableAbberation);
 
