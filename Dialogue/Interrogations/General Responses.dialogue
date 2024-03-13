@@ -5,9 +5,16 @@
 % {{npcName}}: What do you mean, it's perfectly fine?
 => END
 
+
+
+
+
 ~ missing
 %2 => accident
 %2 => noneed
+%2 => doctor
+%2 => uncomfortable
+%2 => mistake
 % => accidentconfusion
 
 ~ accident
@@ -31,8 +38,40 @@ do ChangeSound(sfxName)
 => confusion
 => END
 
+~ doctor
+do ResetSound()
+You: Where is your {{objectName}}?
+do ChangeSound(sfxName)
+{{npcName}}: My doctor told me I don't need it in my case.
+=> END
+
+~ uncomfortable
+do ResetSound()
+You: Where is your {{objectName}}?
+do ChangeSound(sfxName)
+{{npcName}}: I'm not comfortable answering that.
+=> END
+
+~ mistake
+do ResetSound()
+You: Where is your {{objectName}}?
+do ChangeSound(sfxName)
+{{npcName}}: What? Nothing's missing, there must be a mistake.
+do ResetSound()
+You: I can see it right here through the scan.
+do ChangeSound(sfxName)
+{{npcName}}: That can't be, please let me through, my family's expecting me.
+=> END
+
+
+
+
 ~ discolouration
 %2 => condition
+%2 => highlevels
+%2 => food
+%2 => chemicals
+% => conditionconfusion
 
 ~ condition
 do ResetSound()
@@ -45,6 +84,32 @@ do ChangeSound(sfxName)
 {{npcName}}: Huepigment Tintinitus.
 => END
 
+~ highlevels
+do ResetSound()
+You: Why is your {{objectName}} {{colourName}}?
+do ChangeSound(sfxName)
+{{npcName}}: I had too many [[jalapeños|beets|food additives]].
+=> END
+
+~ food
+do ResetSound()
+You: Why is your {{objectName}} {{colourName}}?
+do ChangeSound(sfxName)
+{{npcName}}: I have high [[sodium|potassium|chloride|iron]] levels, it's natural.
+=> END
+
+~ chemicals
+do ResetSound()
+You: Why is your {{objectName}} {{colourName}}?
+do ChangeSound(sfxName)
+{{npcName}}: It's all these chemicals they put in the food now. Nothing is natural and the organic stuff is expensive as hell. 
+do ResetSound()
+You: What food exactly?
+do ChangeSound(sfxName)
+{{npcName}}: [[Frozen pizza|Sushi|Tajine||Bastilla||Frozen tacos||Raw berries||Vegetable soup]].
+
+=> END
+
 ~ conditionconfusion
 do ResetSound()
 You: Why is your {{objectName}} {{colourName}}?
@@ -52,10 +117,17 @@ do ChangeSound(sfxName)
 => confusion
 => END
 		
+
+
+
+
+		
 ~ flipped
 %2 => automobile
 %2 => twisted
-
+%2 => yoga
+%2 => climb
+% => flippedconfusion
 
 ~ automobile
 do ResetSound()
@@ -75,6 +147,20 @@ do ChangeSound(sfxName)
 {{npcName}}: I fell and twisted it earlier, you have doctors in there right? They should be able to help me with it
 => END
 
+~ yoga
+do ResetSound()
+You: What's wrong with your {{objectName}}?
+do ChangeSound(sfxName)
+{{npcName}}: Uh, intense yoga session. You have yoga programs inside right? I sure hope so.
+=> END
+
+~ climb
+do ResetSound()
+You: What's wrong with your {{objectName}}?
+do ChangeSound(sfxName)
+{{npcName}}: The climb here was treacherous, I mean have you seen how deep the snow is?
+=> END
+
 ~ flippedconfusion
 do ResetSound()
 You: What's wrong with your {{objectName}}?
@@ -82,9 +168,16 @@ do ChangeSound(sfxName)
 => confusion
 => END
 
+
+
+
+
 ~ duplicated
 %2 => donation
 %2 => disorder
+%2 => born
+%2 => experiment
+% => duplicatedconfusion
 
 ~ disorder
 do ResetSound()
@@ -102,6 +195,20 @@ do ResetSound()
 You: Why do you have an extra {{objectName}}?
 do ChangeSound(sfxName)
 % {{npcName}}: I donated one to my [[brother|mum|sister|dad|grandpa|grandma|uncle|aunt]].
+=> END
+
+~ born
+do ResetSound()
+You: Why do you have an extra {{objectName}}?
+do ChangeSound(sfxName)
+% {{npcName}}: I was born like this.
+=> END
+
+~ experiment
+do ResetSound()
+You: Why do you have an extra {{objectName}}?
+do ChangeSound(sfxName)
+% {{npcName}}: Oh that? Ehh, nothing to worry about. My doctors said it's pretty rare but completely harmless!
 => END
 
 ~ duplicatedconfusion

@@ -2,6 +2,38 @@ import "res://Dialogue/Interrogations/General Responses.dialogue" as snippets
 
 ~ start
 
+
+
+% => gratitude
+% => normal
+% => excited
+
+~ gratitude
 do ResetSound()
-{{npcName}}: Hello. My name is {{npcName}}.
+Hello. My name is {{npcName}}.
+{{npcName}}: Thank you for this, really. It's a miracle you guys exist. I was told there would be a scan?
+do ChangeSound("normalTW")
+You: Yes. Please stay still.
+=> END
+
+~ normal
+do ResetSound()
+Hello. I'm {{npcName}}.
+{{npcName}}: Uh, is this the right place? 
+do ChangeSound("normalTW")
+You: Yes. Please stay still.
+=> END
+
+~ excited
+do ResetSound()
+Hi! Oh gosh, it's true! There is still hope for humanity after all.
+do ChangeSound("normalTW")
+You: What's your name?
+Oh yes, sorry, it's {{npcName}}.
+do ResetSound()
+You: Please stay still while the scan is in process {{npcName}}.
+=> END
+
+
+
 => END
