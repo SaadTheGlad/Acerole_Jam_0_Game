@@ -1,6 +1,7 @@
-[gd_scene load_steps=163 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=164 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
+[ext_resource type="Script" path="res://Scripts/SFXManager.cs" id="1_5d1p8"]
 [ext_resource type="Script" path="res://Scripts/InfractionManager.cs" id="1_dvhbd"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
 [ext_resource type="Script" path="res://Scripts/JudgingManager.cs" id="1_oafhd"]
@@ -552,6 +553,9 @@ _data = {
 }
 
 [node name="Main" type="Node2D"]
+
+[node name="SFXManager" type="Node" parent="."]
+script = ExtResource("1_5d1p8")
 
 [node name="ShiftManager" type="Node" parent="." node_paths=PackedStringArray("winPlayer", "scoreLabel", "handler")]
 script = ExtResource("1_pmo76")
@@ -1156,22 +1160,34 @@ libraries = {
 }
 
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Deny/MarginContainer/TextureButton" to="JudgingManager" method="FallGuy"]
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Deny/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Interrogate/MarginContainer/TextureButton" to="JudgingManager" method="Interrogate"]
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Interrogate/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Pass/MarginContainer/TextureButton" to="JudgingManager" method="PassThrough"]
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Pass/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="CutsceneManager" method="PersonCome"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="SystemsManager" method="Ring"]
 [connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="X-Ray Manager" method="StartScan"]
+[connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="SFXManager" method="PlayButton"]
 [connection signal="input_event" from="WorkingArea/FakeHandbook/Area2D" to="WorkingArea/FakeHandbook" method="OnArea2DInputEvent"]
 [connection signal="input_event" from="WorkingArea/RealHandbook/Area2D" to="WorkingArea/RealHandbook" method="OnArea2DInputEvent"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]
+[connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="SFXManager" method="PlayButton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="X-Ray Manager" method="ScanOrgans"]
+[connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="SFXManager" method="PlayButton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button2" to="X-Ray Manager" method="ClearObjects"]
+[connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button2" to="SFXManager" method="PlayButton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="X-Ray Manager" method="CloseScanScreen"]
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="JudgingManager" method="SelectAnomaly"]
+[connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="SFXManager" method="PlayButton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="X-Ray Manager" method="CloseScanScreen"]
+[connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="SFXManager" method="PlayButton"]
 [connection signal="pressed" from="PinkSlipHolder/PinkSlip/PanelContainer2/MarginContainer/TextureButton" to="InfractionManager" method="Restart"]
+[connection signal="pressed" from="PinkSlipHolder/PinkSlip/PanelContainer2/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
 [connection signal="pressed" from="PinkSlipHolder/WinScreen/PanelContainer2/MarginContainer/TextureButton" to="ShiftManager" method="NextDay"]
+[connection signal="pressed" from="PinkSlipHolder/WinScreen/PanelContainer2/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
 [connection signal="pressed" from="Killscreen/PanelContainer/MarginContainer/TextureButton" to="InfractionManager" method="Restart"]
+[connection signal="pressed" from="Killscreen/PanelContainer/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
 
 [editable path="WorkingArea/Wall/PeopleCounter"]
 [editable path="WorkingArea/Wall/InfractionCounter"]

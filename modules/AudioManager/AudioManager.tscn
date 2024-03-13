@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1lwo60pp5m84"]
+[gd_scene load_steps=20 format=3 uid="uid://c1lwo60pp5m84"]
 
 [ext_resource type="Script" path="res://modules/AudioManager/AudioManager.cs" id="1_tbsdu"]
 [ext_resource type="AudioStream" uid="uid://b2x81mdlcf1sv" path="res://Audio/SFX/TypeWriter Effects/Deep.wav" id="2_vws3s"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://bcbisiy3gn2ho" path="res://Audio/SFX/TypeWriter Effects/Normal.wav" id="7_jms2t"]
 [ext_resource type="AudioStream" uid="uid://dbkrwjnx1acan" path="res://Audio/SFX/Kill Sequence.wav" id="7_ngv2q"]
 [ext_resource type="AudioStream" uid="uid://c7xelm0eq65c3" path="res://Audio/SFX/TypeWriter Effects/High.wav" id="9_1ngli"]
+[ext_resource type="AudioStream" uid="uid://dx4qb7r2is7ph" path="res://Audio/SFX/Click.wav" id="10_qh6a5"]
+[ext_resource type="AudioStream" uid="uid://blnm28r3vyg51" path="res://Audio/SFX/Incorrect.wav" id="11_wgdyx"]
 
 [sub_resource type="Resource" id="Resource_75yct"]
 script = ExtResource("3_srrfb")
@@ -59,6 +61,22 @@ volume = 0.0
 pitch = 1.0
 bus = 2
 
+[sub_resource type="Resource" id="Resource_37cwj"]
+script = ExtResource("3_srrfb")
+name = "click"
+AudioStream = ExtResource("10_qh6a5")
+volume = -12.0
+pitch = 0.4
+bus = 2
+
+[sub_resource type="Resource" id="Resource_vvqdf"]
+script = ExtResource("3_srrfb")
+name = "incorrect"
+AudioStream = ExtResource("11_wgdyx")
+volume = -12.0
+pitch = 1.0
+bus = 2
+
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_tbsdu")
-sounds = Array[Object]([SubResource("Resource_75yct"), SubResource("Resource_17cy2"), SubResource("Resource_0r4nj"), SubResource("Resource_n7v4s"), SubResource("Resource_78iqg")])
+sounds = Array[Object]([SubResource("Resource_75yct"), SubResource("Resource_17cy2"), SubResource("Resource_0r4nj"), SubResource("Resource_n7v4s"), SubResource("Resource_78iqg"), SubResource("Resource_37cwj"), SubResource("Resource_vvqdf")])

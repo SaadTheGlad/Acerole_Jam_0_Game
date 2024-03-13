@@ -11,9 +11,11 @@ Boss: Damn it, they've got here already. Alright, just... discard that. Throw it
 - How do I know you're the real one?
 	Boss: Have a look at the handbook it gave you. It's just gibberish.
 	Boss: Alright. Good luck. And remember, if you do your job well, in a while we can all have a fresh start.
+	Boss: Oh and uh, don't forget to lock up properly after your shift is done.
 	do ImposterBye(0.5)
 	=> END
 - OK
 	Boss: Alright. Good luck. And remember, if you do your job well, in a while we can all have a fresh start.
+	Boss: Oh and uh, don't forget to lock up properly after your shift is done.
 	do ImposterBye(0.5)
 	=> END

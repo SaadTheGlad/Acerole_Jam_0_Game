@@ -8,21 +8,40 @@ public partial class InfractionManager : Node
     [Export] public AnimationPlayer player;
     [Export] public DialogueHandler handler;
 
-
+    bool canPress = true;
 
     public override void _EnterTree()
     {
         SignalsManager.Instance.IncreaseInfraction += IncreaseInfraction;
+        SignalsManager.Instance.NPCHasPassed += CanPress;
     }
 
     public override void _ExitTree()
     {
         SignalsManager.Instance.IncreaseInfraction -= IncreaseInfraction;
+        SignalsManager.Instance.NPCHasPassed -= CanPress;
+
 
     }
+
+    async void CanPress()
+    {
+        await ToSignal(GetTree().CreateTimer(2f), SceneTreeTimer.SignalName.Timeout);
+        canPress = true;
+
+    }
+
+
+
     async public void IncreaseInfraction()
     {
-        numOfInfractions++;
+        if(canPress)
+        {
+            canPress = false;
+            numOfInfractions++;
+            AudioManager.Instance.Play("incorrect");
+        }
+
         if (numOfInfractions == 3)
         {
 

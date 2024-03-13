@@ -44,7 +44,7 @@ public partial class ShiftManager : Node
 
         }
 
-        //play ring sound
+        AudioManager.Instance.Play("ring");
         scoreLabel.Text = "\r\n[center][font_size={40}]A total of " + localCounter + " people have been admitted into the bunker.";
         winPlayer.Play("Open");
     }
