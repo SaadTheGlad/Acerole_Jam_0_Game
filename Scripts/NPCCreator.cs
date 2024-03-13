@@ -49,14 +49,14 @@ public partial class NPCCreator : Node
 
         SignalsManager.Instance.NPCHasPassed += CreateNPC;
         SignalsManager.Instance.NPCHasPassed += SelectRandomName;
-        SignalsManager.Instance.ChangeOut += CreateNPC;
+        SignalsManager.Instance.ChangeOut += ModifyNPC;
     }
 
     public override void _ExitTree()
     {
         SignalsManager.Instance.NPCHasPassed -= CreateNPC;
         SignalsManager.Instance.NPCHasPassed -= SelectRandomName;
-        SignalsManager.Instance.ChangeOut += CreateNPC;
+        SignalsManager.Instance.ChangeOut += ModifyNPC;
 
     }
 
@@ -276,6 +276,217 @@ public partial class NPCCreator : Node
 
             }
         }
+
+
+    }
+
+    void ModifyNPC()
+    {
+        bool switchedGender = !manOrWoman;
+
+        float randomNumber = random.RandiRange(0, 100);
+
+        if(switchedGender)
+        {
+            Color skinColour = GetRandomColour(skinColours);
+            Color hairColour = GetRandomColour(hairColours);
+            BodyType bodyType = GetRandomBodyType(m_bodyTypes);
+
+            foreach (var node in Outward.GetChildren())
+            {
+
+                if (node is Sprite2D sprite)
+                {
+                    if (sprite.IsInGroup("Skin"))
+                    {
+                        sprite.SelfModulate = skinColour;
+                    }
+
+                    switch (sprite.Name)
+                    {
+                        case "Head":
+                            sprite.Texture = GetRandomTexture(m_heads);
+                            break;
+
+                        case "Nose":
+                            sprite.Texture = GetRandomTexture(m_noses);
+                            break;
+
+                        case "Ears":
+                            sprite.Texture = GetRandomTexture(m_ears);
+                            break;
+                        case "Hair":
+                            sprite.Texture = GetRandomTexture(m_hairstyles);
+                            sprite.SelfModulate = hairColour;
+                            break;
+                        case "Lips":
+                            sprite.Texture = GetRandomTexture(m_lips);
+                            sprite.SelfModulate = GetRandomColour(lipColours);
+                            break;
+                        case "TShirt":
+                            sprite.SelfModulate = GetRandomColour(shirtColours);
+                            sprite.Texture = bodyType.tshirt;
+                            break;
+                        case "Body":
+                            sprite.Texture = bodyType.body;
+                            break;
+                        case "Mustache":
+                            sprite.Texture = GetRandomTexture(mustaches);
+                            sprite.SelfModulate = hairColour;
+                            break;
+                    }
+
+
+
+                }
+                else if (node is Node2D)
+                {
+                    //We're in the eye
+                    Eyes randomEye = GetRandomEye(m_eyes);
+
+                    foreach (var secondaryNode in node.GetChildren())
+                    {
+                        if (secondaryNode.Name == "Iris")
+                        {
+                            foreach (Sprite2D spriteSecondary in secondaryNode.GetChildren())
+                            {
+                                if (spriteSecondary.Name == "Colour")
+                                {
+                                    spriteSecondary.Texture = randomEye.irisColour;
+                                    spriteSecondary.SelfModulate = GetRandomColour(eyeColours);
+                                }
+
+                                if (spriteSecondary.Name == "Ink")
+                                {
+                                    spriteSecondary.Texture = randomEye.irisInk;
+                                }
+                            }
+                        }
+
+                        if (secondaryNode.Name == "Sclera")
+                        {
+                            Sprite2D scleraSprite = (Sprite2D)secondaryNode;
+                            scleraSprite.Texture = randomEye.sclera;
+
+                            var eyebrowNode = secondaryNode.GetChild(0);
+                            Sprite2D eyebrowsSprite = (Sprite2D)eyebrowNode;
+                            eyebrowsSprite.Texture = randomEye.eyebrows;
+                            eyebrowsSprite.SelfModulate = hairColour;
+
+                        }
+
+                        if (secondaryNode.Name == "Highlights")
+                        {
+                            Sprite2D highlightSprite = (Sprite2D)secondaryNode;
+                            highlightSprite.Texture = randomEye.highlights;
+                        }
+                    }
+
+                }
+
+            }
+        }
+        else
+        {
+
+            Color skinColour = GetRandomColour(skinColours);
+            Color hairColour = GetRandomColour(hairColours);
+            BodyType bodyType = GetRandomBodyType(f_bodyTypes);
+
+            foreach (var node in Outward.GetChildren())
+            {
+
+                if (node is Sprite2D sprite)
+                {
+                    if (sprite.IsInGroup("Skin"))
+                    {
+                        sprite.SelfModulate = skinColour;
+                    }
+
+                    switch (sprite.Name)
+                    {
+                        case "Head":
+                            sprite.Texture = GetRandomTexture(f_heads);
+                            break;
+
+                        case "Nose":
+                            sprite.Texture = GetRandomTexture(f_noses);
+                            break;
+
+                        case "Ears":
+                            sprite.Texture = GetRandomTexture(f_ears);
+                            break;
+                        case "Hair":
+                            sprite.Texture = GetRandomTexture(f_hairstyles);
+                            sprite.SelfModulate = hairColour;
+                            break;
+                        case "Lips":
+                            sprite.Texture = GetRandomTexture(f_lips);
+                            sprite.SelfModulate = GetRandomColour(lipColours);
+                            break;
+                        case "TShirt":
+                            sprite.SelfModulate = GetRandomColour(shirtColours);
+                            sprite.Texture = bodyType.tshirt;
+                            break;
+                        case "Body":
+                            sprite.Texture = bodyType.body;
+                            break;
+                        case "Mustache":
+                            sprite.Texture = null;
+                            break;
+                    }
+
+
+
+                }
+                else if (node is Node2D)
+                {
+                    //We're in the eye
+                    Eyes randomEye = GetRandomEye(f_eyes);
+
+                    foreach (var secondaryNode in node.GetChildren())
+                    {
+                        if (secondaryNode.Name == "Iris")
+                        {
+                            foreach (Sprite2D spriteSecondary in secondaryNode.GetChildren())
+                            {
+                                if (spriteSecondary.Name == "Colour")
+                                {
+                                    spriteSecondary.Texture = randomEye.irisColour;
+                                    spriteSecondary.SelfModulate = GetRandomColour(eyeColours);
+                                }
+
+                                if (spriteSecondary.Name == "Ink")
+                                {
+                                    spriteSecondary.Texture = randomEye.irisInk;
+                                }
+                            }
+                        }
+
+                        if (secondaryNode.Name == "Sclera")
+                        {
+                            Sprite2D scleraSprite = (Sprite2D)secondaryNode;
+                            scleraSprite.Texture = randomEye.sclera;
+
+                            var eyebrowNode = secondaryNode.GetChild(0);
+                            Sprite2D eyebrowsSprite = (Sprite2D)eyebrowNode;
+                            eyebrowsSprite.Texture = randomEye.eyebrows;
+                            eyebrowsSprite.SelfModulate = hairColour;
+
+                        }
+
+                        if (secondaryNode.Name == "Highlights")
+                        {
+                            Sprite2D highlightSprite = (Sprite2D)secondaryNode;
+                            highlightSprite.Texture = randomEye.highlights;
+                        }
+                    }
+
+                }
+            }
+          
+        }
+
 
 
     }

@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgi4pk4vb2jtl"]
+
+[ext_resource type="Script" path="res://Scripts/Handbook.cs" id="1_lumko"]
+[ext_resource type="FontFile" uid="uid://cbvftgk122w8p" path="res://Fonts/Renogare-Regular.otf" id="2_hrymq"]
+[ext_resource type="PackedScene" uid="uid://b5i0kuwjktb8p" path="res://Prefabs/Button.tscn" id="3_lge06"]
+[ext_resource type="Texture2D" uid="uid://b2p0yg8d3vkeb" path="res://Images/UI/Buttons/arrow-refresh-reload-icon-29.png" id="4_x0pjh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yooi"]
+bg_color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uynh"]
+bg_color = Color(0.129412, 0.117647, 0.203922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xe6b"]
+bg_color = Color(0.984314, 0.360784, 0.396078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i063"]
+bg_color = Color(0.984314, 0.360784, 0.396078, 1)
+
+[node name="PinkSlip" type="Node2D"]
+script = ExtResource("1_lumko")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -1240.0
+offset_top = -728.0
+offset_right = 1302.0
+offset_bottom = 729.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yooi")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = -432.0
+offset_top = -386.0
+offset_right = 423.0
+offset_bottom = 193.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2uynh")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hrymq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0xe6b")
+tab_alignment = 1
+
+[node name="Termination Letter" type="TabBar" parent="PanelContainer/MarginContainer/TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/TabContainer/Termination Letter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/TabContainer/Termination Letter/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i063")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/TabContainer/Termination Letter/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/TabContainer/Termination Letter/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("2_hrymq")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center][font_size={60}]You are fired[/font_size][/center]
+
+
+[center][font_size={40}]You have committed too many infractions and are hereby discharged without pay. [/font_size][center]
+
+[center][font_size={40}]A disciplinary hearing is scheduled for you in a week's time."
+
+[node name="PanelContainer2" parent="." instance=ExtResource("3_lge06")]
+offset_left = -124.0
+offset_top = 291.0
+offset_right = 306.0
+offset_bottom = 721.0
+scale = Vector2(0.552773, 0.552773)
+
+[node name="TextureButton" parent="PanelContainer2/MarginContainer" index="0"]
+self_modulate = Color(0.529412, 0.352941, 0.631373, 1)
+
+[node name="TextureRect" parent="PanelContainer2/MarginContainer" index="1"]
+texture = ExtResource("4_x0pjh")
+
+[editable path="PanelContainer2"]

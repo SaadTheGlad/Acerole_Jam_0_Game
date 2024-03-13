@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=157 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/InfractionManager.cs" id="1_dvhbd"]
@@ -120,6 +120,10 @@
 [ext_resource type="Resource" uid="uid://dnjtkutf00c72" path="res://Dialogue/Cutscene/Real.dialogue" id="114_tlioa"]
 [ext_resource type="Texture2D" uid="uid://dm3b71apw2jsu" path="res://Images/UI/Little Objects/Normal.png" id="115_vcrck"]
 [ext_resource type="PackedScene" uid="uid://bvcllgamamfhw" path="res://Prefabs/Handbooks/RealHandbook.tscn" id="117_0mcy8"]
+[ext_resource type="PackedScene" uid="uid://bgi4pk4vb2jtl" path="res://Prefabs/PinkSlip.tscn" id="121_hkdqw"]
+[ext_resource type="Script" path="res://Scripts/FadeIn.cs" id="122_18cra"]
+[ext_resource type="Texture2D" uid="uid://bu3mfkrl5msgu" path="res://Images/UI/Buttons/arrow.png" id="123_514hf"]
+[ext_resource type="Texture2D" uid="uid://dqgiwf2xbtjt" path="res://Images/UI/Buttons/arrowshadow.png" id="124_yxe3r"]
 
 [sub_resource type="Curve" id="Curve_cguf4"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -232,31 +236,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_7nfgk"]
-resource_name = "Open"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(45, -0.25, 0, 0.25, 0, -96, -0.8, -3, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
 [sub_resource type="Animation" id="Animation_cgbkc"]
 resource_name = "Close"
 tracks/0/type = "bezier"
@@ -279,6 +258,31 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-96, -0.8, -3, 0.25, 0, 45, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_7nfgk"]
+resource_name = "Open"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(45, -0.25, 0, 0.25, 0, -96, -0.8, -3, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
@@ -423,11 +427,101 @@ _data = {
 "RiseUp": SubResource("Animation_or78j")
 }
 
+[sub_resource type="Animation" id="Animation_1unky"]
+resource_name = "Open"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1295, -0.25, 0, 0.7, -0.5, 0.5, -1.4, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.9)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uveii"]
+_data = {
+"Open": SubResource("Animation_1unky")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3i3c"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ljmth"]
+resource_name = "FadeIn"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Destroy"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smn2a"]
+_data = {
+"FadeIn": SubResource("Animation_ljmth")
+}
+
+[sub_resource type="Animation" id="Animation_gmkeo"]
+resource_name = "FadeIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_emuft"]
+_data = {
+"FadeIn": SubResource("Animation_gmkeo")
+}
+
 [node name="Main" type="Node2D"]
 
-[node name="InfractionManager" type="Node" parent="." node_paths=PackedStringArray("infractionLabel")]
+[node name="InfractionManager" type="Node" parent="." node_paths=PackedStringArray("infractionLabel", "player")]
 script = ExtResource("1_dvhbd")
 infractionLabel = NodePath("../WorkingArea/Wall/InfractionCounter/PanelContainer/MarginContainer/PanelContainer/MarginContainer/Label")
+player = NodePath("../PinkSlipHolder/PinkSlip/AnimationPlayer")
 
 [node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal", "imposter", "real", "controller", "fakeHandbook", "realHandbook")]
 script = ExtResource("1_xa843")
@@ -446,7 +540,7 @@ fadingSpeed = 1.0
 script = ExtResource("1_k6ho4")
 npcCreator = NodePath("../NPCCreator")
 signal = NodePath("../Player/DialogueNPCSignal")
-probabilityOfGeneralAbberation = 50.0
+probabilityOfGeneralAbberation = 100.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -506,14 +600,17 @@ curve = SubResource("Curve_itk1r")
 npcSignal = NodePath("../Player/DialogueNPCSignal")
 judge = NodePath("../JudgingManager")
 
-[node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "signal", "controller", "xRayManager")]
+[node name="JudgingManager" type="Node" parent="." node_paths=PackedStringArray("judgingPlayer", "killScreenPlayer", "signal", "controller", "xRayManager", "killScreen", "handler")]
 script = ExtResource("1_oafhd")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
+killScreenPlayer = NodePath("../Killscreen/AnimationPlayer")
 signal = NodePath("../Player/DialogueNPCSignal")
 controller = NodePath("../NPCController")
 fallingSpeed = 1.0
 curve = SubResource("Curve_4fejt")
 xRayManager = NodePath("../X-Ray Manager")
+killScreen = NodePath("../Killscreen")
+handler = NodePath("../DialogueHandler")
 
 [node name="DialogueHandler" parent="." node_paths=PackedStringArray("encounteredNPCSignalHolder") instance=ExtResource("3_m45lx")]
 encounteredNPCSignalHolder = NodePath("../Player/DialogueNPCSignal")
@@ -915,6 +1012,93 @@ sfxName = &"creepyTW"
 z_index = 100
 position = Vector2(960, 0)
 
+[node name="PinkSlipHolder" type="Node2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="PinkSlip" parent="PinkSlipHolder" instance=ExtResource("121_hkdqw")]
+z_index = 100
+position = Vector2(0, 1295)
+
+[node name="Panel" parent="PinkSlipHolder/PinkSlip" index="0"]
+self_modulate = Color(0.498039, 0.376471, 0.568627, 1)
+
+[node name="PanelContainer" parent="PinkSlipHolder/PinkSlip" index="1"]
+offset_top = -427.5
+offset_bottom = 151.5
+
+[node name="PanelContainer2" parent="PinkSlipHolder/PinkSlip" index="2"]
+self_modulate = Color(0.984314, 0.360784, 0.396078, 1)
+offset_top = 227.5
+offset_bottom = 657.5
+
+[node name="TextureRect" parent="PinkSlipHolder/PinkSlip/PanelContainer2/MarginContainer" index="1"]
+self_modulate = Color(0.643137, 0.529412, 0.709804, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PinkSlipHolder/PinkSlip"]
+libraries = {
+"": SubResource("AnimationLibrary_uveii")
+}
+
+[node name="FadeIn" type="Node2D" parent="."]
+position = Vector2(960, 540)
+script = ExtResource("122_18cra")
+
+[node name="Panel" type="Panel" parent="FadeIn"]
+self_modulate = Color(0, 0, 0, 1)
+z_index = 1000
+offset_left = -1392.0
+offset_top = -846.0
+offset_right = 1501.0
+offset_bottom = 848.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h3i3c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeIn"]
+libraries = {
+"": SubResource("AnimationLibrary_smn2a")
+}
+autoplay = "FadeIn"
+
+[node name="Killscreen" type="Node2D" parent="."]
+visible = false
+z_index = 1000
+position = Vector2(960, 540)
+scale = Vector2(0.685175, 0.685175)
+script = ExtResource("122_18cra")
+
+[node name="Panel" type="Panel" parent="Killscreen"]
+self_modulate = Color(0, 0, 0, 1)
+z_index = 1000
+offset_left = -1392.0
+offset_top = -846.0
+offset_right = 1501.0
+offset_bottom = 848.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h3i3c")
+
+[node name="PanelContainer" parent="Killscreen" instance=ExtResource("102_p74r8")]
+modulate = Color(1, 1, 1, 0)
+z_index = 1000
+offset_left = -201.0
+offset_top = -217.0
+offset_right = 149.0
+offset_bottom = 133.0
+scale = Vector2(0.407091, 0.407091)
+pivot_offset = Vector2(218, 232)
+
+[node name="TextureButton" parent="Killscreen/PanelContainer/MarginContainer" index="0"]
+self_modulate = Color(0.984314, 0.360784, 0.396078, 1)
+texture_normal = ExtResource("123_514hf")
+texture_pressed = ExtResource("123_514hf")
+texture_hover = ExtResource("124_yxe3r")
+
+[node name="TextureRect" parent="Killscreen/PanelContainer/MarginContainer" index="1"]
+visible = false
+texture = ExtResource("123_514hf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Killscreen"]
+libraries = {
+"": SubResource("AnimationLibrary_emuft")
+}
+
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Deny/MarginContainer/TextureButton" to="JudgingManager" method="FallGuy"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Interrogate/MarginContainer/TextureButton" to="JudgingManager" method="Interrogate"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Pass/MarginContainer/TextureButton" to="JudgingManager" method="PassThrough"]
@@ -929,6 +1113,8 @@ position = Vector2(960, 0)
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="X-Ray Manager" method="CloseScanScreen"]
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="JudgingManager" method="SelectAnomaly"]
 [connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="X-Ray Manager" method="CloseScanScreen"]
+[connection signal="pressed" from="PinkSlipHolder/PinkSlip/PanelContainer2/MarginContainer/TextureButton" to="InfractionManager" method="Restart"]
+[connection signal="pressed" from="Killscreen/PanelContainer/MarginContainer/TextureButton" to="InfractionManager" method="Restart"]
 
 [editable path="WorkingArea/Wall/PeopleCounter"]
 [editable path="WorkingArea/Wall/InfractionCounter"]
@@ -938,3 +1124,6 @@ position = Vector2(960, 0)
 [editable path="Screen X-Ray/Main"]
 [editable path="Screen X-Ray/Main/MaleColoured"]
 [editable path="Screen X-Ray/Main/FemaleColoured"]
+[editable path="PinkSlipHolder/PinkSlip"]
+[editable path="PinkSlipHolder/PinkSlip/PanelContainer2"]
+[editable path="Killscreen/PanelContainer"]

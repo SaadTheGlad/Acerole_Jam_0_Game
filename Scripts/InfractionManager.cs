@@ -5,6 +5,10 @@ public partial class InfractionManager : Node
 {
     public int numOfInfractions;
     [Export] public Label infractionLabel;
+    [Export] public AnimationPlayer player;
+
+
+
 
     public override void _EnterTree()
     {
@@ -16,15 +20,21 @@ public partial class InfractionManager : Node
         SignalsManager.Instance.IncreaseInfraction -= IncreaseInfraction;
 
     }
-    public void IncreaseInfraction()
+    async public void IncreaseInfraction()
     {
         numOfInfractions++;
         if (numOfInfractions == 3)
         {
-            GD.Print("Lost");
-            // do fired thing
+            await ToSignal(GetTree().CreateTimer(1f), SceneTreeTimer.SignalName.Timeout);
+            player.Play("Open");
+
         }
         infractionLabel.Text = "Total\ninfractions:\n" + numOfInfractions + "/3";
 
+    }
+
+    public void Restart()
+    {
+        GetTree().ReloadCurrentScene();
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1lwo60pp5m84"]
+[gd_scene load_steps=13 format=3 uid="uid://c1lwo60pp5m84"]
 
 [ext_resource type="Script" path="res://modules/AudioManager/AudioManager.cs" id="1_tbsdu"]
 [ext_resource type="AudioStream" uid="uid://dae3wvhqalcd2" path="res://Audio/SFX/CreepyTypeWriter.wav" id="2_iavlr"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://b6uivkrsi65n4" path="res://Audio/SFX/Rings/bell_rings_01.wav" id="4_rh3xv"]
 [ext_resource type="AudioStream" uid="uid://cwlqfvrpn35l8" path="res://Audio/SFX/Rings/bell_rings_02.wav" id="5_gbiou"]
 [ext_resource type="AudioStream" uid="uid://bjnxl07nswqdg" path="res://Audio/SFX/Rings/bell_rings_03.wav" id="6_7k1e5"]
+[ext_resource type="AudioStream" uid="uid://dbkrwjnx1acan" path="res://Audio/SFX/Kill Sequence.wav" id="7_ngv2q"]
 
 [sub_resource type="Resource" id="Resource_75yct"]
 script = ExtResource("3_srrfb")
@@ -40,6 +41,14 @@ volume = 0.0
 pitch = 1.0
 bus = 0
 
+[sub_resource type="Resource" id="Resource_n7v4s"]
+script = ExtResource("3_srrfb")
+name = "kill"
+AudioStream = ExtResource("7_ngv2q")
+volume = 0.0
+pitch = 1.0
+bus = 2
+
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_tbsdu")
-sounds = Array[Object]([SubResource("Resource_75yct"), SubResource("Resource_17cy2"), SubResource("Resource_0r4nj")])
+sounds = Array[Object]([SubResource("Resource_75yct"), SubResource("Resource_17cy2"), SubResource("Resource_0r4nj"), SubResource("Resource_n7v4s")])

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dbkrwjnx1acan"
+path="res://.godot/imported/Kill Sequence.wav-4a345724923daca75fb5e2665d5d3d80.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Kill Sequence.wav"
+dest_files=["res://.godot/imported/Kill Sequence.wav-4a345724923daca75fb5e2665d5d3d80.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -103,12 +103,13 @@ public partial class XRayManager : Node
 
     public override void _Process(double delta)
     {
-        //GD.Print(signal.isTalking);
+        //GD.Print(canStartScan);
     }
 
     public void EnableRolling() => canRoll = true;
     public void RollAbberation()
     {
+
         if(canRoll)
         {
             float randomGeneralValue = random.RandiRange(0, 100);
@@ -217,7 +218,7 @@ public partial class XRayManager : Node
     }
     public void ChangeOut()
     {
-        if(physiqueAbberation)
+        if(physiqueAbberation && isDG)
         {
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ChangeOut);
         }

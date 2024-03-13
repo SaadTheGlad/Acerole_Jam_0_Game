@@ -104,7 +104,7 @@ public partial class CutsceneManager : Node
 
                 if(playedReal)
                 {
-                    GD.Print("error");
+                    //GD.Print("error");
                     calledPerson = true;
                     controller.canRing = true;
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.NPCHasPassed);

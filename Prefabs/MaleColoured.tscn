@@ -397,7 +397,6 @@ texture = ExtResource("51_b7a53")
 offset = Vector2(61.3725, -945.059)
 
 [node name="Organs" type="Node2D" parent="."]
-visible = false
 position = Vector2(-405.115, -1064.87)
 
 [node name="Heart" type="Node2D" parent="Organs" groups=["Avoid"]]

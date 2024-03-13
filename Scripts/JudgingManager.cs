@@ -6,11 +6,14 @@ public partial class JudgingManager : Node
 {
     [ExportCategory("Other")]
     [Export] public AnimationPlayer judgingPlayer;
+    [Export] public AnimationPlayer killScreenPlayer;
     [Export] public DialogueNPCSignal signal;
     [Export] public NPCController controller;
     [Export] public float fallingSpeed;
     [Export] public Curve curve;
     [Export] XRayManager xRayManager;
+    [Export] public Node2D killScreen;
+    [Export] public DialogueHandler handler;
 
     bool canFall = true;
     public bool canClick = true;
@@ -39,6 +42,8 @@ public partial class JudgingManager : Node
 
     async private void FallGuy()
     {
+        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisposedOf);
+
         if (!DialogueData.Instance.isAnomaly)
         {
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.IncreaseInfraction);
@@ -74,7 +79,7 @@ public partial class JudgingManager : Node
                     NPC.GlobalPosition = controller.startingPos;
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.NPCHasPassed);
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
-                    SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisposedOf);
+                    
                     ResetStuff();
                     signal.isTalking = false;
                     controller.canRing = true;
@@ -99,24 +104,46 @@ public partial class JudgingManager : Node
     {
         if(canClick)
         {
-            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.CameIn);
             SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.Interrogate);
         }
     }
 
     void PassThrough()
     {
-        GD.Print("Was anomaly: " + DialogueData.Instance.isAnomaly);
-        //kill
-        signal.isTalking = false;
+        if(!signal.isTalking)
+        {
+            GD.Print("Was anomaly: " + DialogueData.Instance.isAnomaly);
+            if (DialogueData.Instance.isAnomaly)
+            {
+                Kill();
+            }
 
 
-        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.CameIn);
-        canClick = false;
-        ResetStuff();
-        controller.Admit();
-        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
-        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
+            signal.isTalking = false;
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.CameIn);
+
+            canClick = false;
+            ResetStuff();
+            controller.Admit();
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.ResetScan);
+        }
+
+    }
+
+    async void Kill()
+    {
+        await ToSignal(GetTree().CreateTimer(3f), SceneTreeTimer.SignalName.Timeout);
+        AudioManager.Instance.Play("kill");
+        await ToSignal(GetTree().CreateTimer(1.081f), SceneTreeTimer.SignalName.Timeout);
+        killScreen.Visible = true;
+        CanvasLayer balloon = handler.GetChild(0) as CanvasLayer;
+        balloon.Visible = false;
+        await ToSignal(GetTree().CreateTimer(3f), SceneTreeTimer.SignalName.Timeout);
+        killScreenPlayer.Play("FadeIn");
+
+
+
     }
 
     void ResetStuff()
