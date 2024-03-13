@@ -75,6 +75,7 @@ public partial class NPCCreator : Node
         {
             //male
             manOrWoman = true;
+            npcHolder.sfxName = "deepTW";
 
             Color skinColour = GetRandomColour(skinColours);
             Color hairColour = GetRandomColour(hairColours);
@@ -178,6 +179,8 @@ public partial class NPCCreator : Node
         else if(randomNumber >= 50f)
         {
             manOrWoman = false;
+            npcHolder.sfxName = "highTW";
+
 
             Color skinColour = GetRandomColour(skinColours);
             Color hairColour = GetRandomColour(hairColours);
@@ -288,6 +291,9 @@ public partial class NPCCreator : Node
 
         if(switchedGender)
         {
+            DialogueData.Instance.sfxName = "deepTW";
+
+
             Color skinColour = GetRandomColour(skinColours);
             Color hairColour = GetRandomColour(hairColours);
             BodyType bodyType = GetRandomBodyType(m_bodyTypes);
@@ -388,6 +394,9 @@ public partial class NPCCreator : Node
         }
         else
         {
+            DialogueData.Instance.sfxName = "highTW";
+
+
 
             Color skinColour = GetRandomColour(skinColours);
             Color hairColour = GetRandomColour(hairColours);

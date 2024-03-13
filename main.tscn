@@ -1,4 +1,4 @@
-[gd_scene load_steps=161 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=163 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/InfractionManager.cs" id="1_dvhbd"]
@@ -121,7 +121,9 @@
 [ext_resource type="Resource" uid="uid://dnjtkutf00c72" path="res://Dialogue/Cutscene/Real.dialogue" id="114_tlioa"]
 [ext_resource type="Texture2D" uid="uid://dm3b71apw2jsu" path="res://Images/UI/Little Objects/Normal.png" id="115_vcrck"]
 [ext_resource type="PackedScene" uid="uid://bvcllgamamfhw" path="res://Prefabs/Handbooks/RealHandbook.tscn" id="117_0mcy8"]
+[ext_resource type="FontFile" uid="uid://cbvftgk122w8p" path="res://Fonts/Renogare-Regular.otf" id="119_58pcu"]
 [ext_resource type="PackedScene" uid="uid://bgi4pk4vb2jtl" path="res://Prefabs/PinkSlip.tscn" id="121_hkdqw"]
+[ext_resource type="FontFile" uid="uid://bvrdf1akbv46l" path="res://Fonts/nevis.ttf" id="122_2rhrw"]
 [ext_resource type="Script" path="res://Scripts/FadeIn.cs" id="122_18cra"]
 [ext_resource type="PackedScene" uid="uid://b4ow7ww0yw2q5" path="res://Prefabs/WinScreen.tscn" id="122_qkeys"]
 [ext_resource type="Texture2D" uid="uid://bu3mfkrl5msgu" path="res://Images/UI/Buttons/arrow.png" id="123_514hf"]
@@ -669,8 +671,9 @@ player = NodePath("..")
 [node name="DialogueHolder" parent="Player" instance=ExtResource("13_13vh2")]
 characterName = &"You"
 dialogue = ExtResource("40_dt8n8")
-sfxName = &"creepyTW"
-baseSpeed = 0.1
+font = ExtResource("119_58pcu")
+sfxName = &"normalTW"
+baseSpeed = 0.12
 
 [node name="WorkingArea" type="Node2D" parent="."]
 texture_filter = 1
@@ -1031,7 +1034,8 @@ position = Vector2(30, -242)
 
 [node name="DialogueHolder" parent="NPC" instance=ExtResource("13_13vh2")]
 dialogue = ExtResource("15_i1ce5")
-sfxName = &"ring"
+font = ExtResource("119_58pcu")
+sfxName = &"deepTW"
 
 [node name="ImposterGhost" type="Node2D" parent="."]
 
@@ -1039,7 +1043,8 @@ sfxName = &"ring"
 script = ExtResource("112_jbj27")
 characterName = &"Boss"
 dialogue = ExtResource("113_jmuyj")
-sfxName = &"creepyTW"
+font = ExtResource("122_2rhrw")
+sfxName = &"deepTW"
 
 [node name="RealGhost" type="Node2D" parent="."]
 
@@ -1047,7 +1052,8 @@ sfxName = &"creepyTW"
 script = ExtResource("112_jbj27")
 characterName = &"Boss"
 dialogue = ExtResource("114_tlioa")
-sfxName = &"creepyTW"
+font = ExtResource("119_58pcu")
+sfxName = &"deepTW"
 
 [node name="Handbook SpawnPoint" type="Node2D" parent="."]
 z_index = 100
