@@ -363,7 +363,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_cedn0"]
 resource_name = "LowerDown"
-length = 1.7
+length = 1.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -383,7 +383,7 @@ tracks/1/path = NodePath("../../X-Ray Manager")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.7),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -540,7 +540,7 @@ fadingSpeed = 1.0
 script = ExtResource("1_k6ho4")
 npcCreator = NodePath("../NPCCreator")
 signal = NodePath("../Player/DialogueNPCSignal")
-probabilityOfGeneralAbberation = 50.0
+probabilityOfGeneralAbberation = 100.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -861,12 +861,12 @@ self_modulate = Color(0, 0, 0, 1)
 
 [node name="Scan Organs Button2" parent="Screen X-Ray/Main" instance=ExtResource("86_vsxkr")]
 modulate = Color(0.262745, 0.470588, 1, 1)
-offset_left = 396.0
+offset_left = 574.0
 offset_top = 103.0
 offset_right = 876.0
-offset_bottom = 239.0
-theme_override_font_sizes/font_size = 51
-text = "Show Covered"
+offset_bottom = 166.0
+theme_override_font_sizes/font_size = 35
+text = "Reveal Kidneys"
 icon = null
 
 [node name="Select Anomaly" parent="Screen X-Ray/Main" instance=ExtResource("86_vsxkr")]
@@ -1040,6 +1040,7 @@ libraries = {
 }
 
 [node name="FadeIn" type="Node2D" parent="."]
+visible = false
 position = Vector2(960, 540)
 script = ExtResource("122_18cra")
 

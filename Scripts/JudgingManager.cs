@@ -137,8 +137,10 @@ public partial class JudgingManager : Node
         AudioManager.Instance.Play("kill");
         await ToSignal(GetTree().CreateTimer(1.081f), SceneTreeTimer.SignalName.Timeout);
         killScreen.Visible = true;
-        CanvasLayer balloon = handler.GetChild(0) as CanvasLayer;
-        balloon.Visible = false;
+
+        Node balloon = handler.GetChild(0);
+        balloon.QueueFree();
+
         await ToSignal(GetTree().CreateTimer(3f), SceneTreeTimer.SignalName.Timeout);
         killScreenPlayer.Play("FadeIn");
 

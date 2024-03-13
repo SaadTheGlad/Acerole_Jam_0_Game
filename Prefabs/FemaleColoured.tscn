@@ -406,12 +406,12 @@ position = Vector2(-405.115, -1064.87)
 
 [node name="Heart" type="Node2D" parent="Organs" groups=["Avoid"]]
 
-[node name="Colour" type="Sprite2D" parent="Organs/Heart" groups=["Avoid"]]
+[node name="Heart" type="Sprite2D" parent="Organs/Heart" groups=["Avoid"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("52_0unr1")
 
-[node name="Ink" type="Sprite2D" parent="Organs/Heart" groups=["Avoid"]]
+[node name="Heart2" type="Sprite2D" parent="Organs/Heart" groups=["Avoid"]]
 position = Vector2(402.221, 1663.86)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("53_dg46q")
@@ -455,14 +455,14 @@ offset = Vector2(43.0276, 329.91)
 
 [node name="Lungs" type="Node2D" parent="Organs"]
 
-[node name="Lungs" type="Sprite2D" parent="Organs/Lungs"]
+[node name="Lung" type="Sprite2D" parent="Organs/Lungs"]
 self_modulate = Color(0.823529, 0.321569, 0.317647, 1)
 position = Vector2(171.545, 305.766)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("59_2h2ub")
 offset = Vector2(79.7173, 469.331)
 
-[node name="Lungs2" type="Sprite2D" parent="Organs/Lungs"]
+[node name="Lung2" type="Sprite2D" parent="Organs/Lungs"]
 self_modulate = Color(0.823529, 0.321569, 0.317647, 1)
 position = Vector2(617.452, 289.841)
 scale = Vector2(2.89368, 2.89368)

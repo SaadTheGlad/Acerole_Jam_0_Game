@@ -38,6 +38,7 @@ public partial class XRayManager : Node
 
     [Export] public Sprite2D[] hideables;
     Godot.Collections.Dictionary<string, Color> originalColours = new Godot.Collections.Dictionary<string, Color>();
+    Godot.Collections.Dictionary<string, Color> originalTwistedColours = new Godot.Collections.Dictionary<string, Color>();
 
     private Godot.Collections.Array<Sprite2D> skeletonArrayPublic = new Godot.Collections.Array<Sprite2D>();
     private Godot.Collections.Array<Sprite2D> skeletonArray;
@@ -172,9 +173,14 @@ public partial class XRayManager : Node
         hasScannedSkeleton = false;
 
         EnableObjects();
-        
+
+        originalTwistedColours.Clear();
+
+
+
+
         //Reset bones and organs colours
-        foreach(Sprite2D b in skeletonArrayPublic)
+        foreach (Sprite2D b in skeletonArrayPublic)
         {
             b.SelfModulate = normalBoneColour;
         }
@@ -200,12 +206,19 @@ public partial class XRayManager : Node
             n.QueueFree();
         }
 
+        organsArrayPublic.Clear();
+        organsArray.Clear();
+        skeletonArrayPublic.Clear();
+        skeletonArray.Clear();
+
+
     }
     public void EnableScan() => canStartScan = true;
     public void DisableScan() => canStartScan = false;
     public void StartScan()
     {
-        if(canStartScan && !signal.isTalking)
+
+        if (canStartScan && !signal.isTalking)
         {
             helperPlayer.Play("LowerDown");
             if(judgingPlayer.AssignedAnimation == "Open")
@@ -244,13 +257,32 @@ public partial class XRayManager : Node
             {
                 if(currentSelectedBone != null)
                 {
-                    currentSelectedBone.SelfModulate = normalBoneColour;
+                    if (originalTwistedColours.ContainsKey(currentSelectedBone.Name) && originalTwistedColours.Count != 0)
+                    {
+                        currentSelectedBone.SelfModulate = originalTwistedColours[currentSelectedBone.Name];
+                    }
+                    else
+                    {
+                        currentSelectedBone.SelfModulate = normalBoneColour;
+
+                    }
+
                 }
 
                 if(currentSelectedOrgan != null && nameAndOrganDictionary.Count != 0)
                 {
 
-                    currentSelectedOrgan.SelfModulate = nameAndOrganDictionary[currentSelectedOrgan.Name];
+
+                    if (originalTwistedColours.ContainsKey(currentSelectedOrgan.Name) && originalTwistedColours.Count != 0)
+                    {
+                        currentSelectedOrgan.SelfModulate = originalTwistedColours[currentSelectedOrgan.Name];
+
+                    }
+                    else
+                    {
+                        currentSelectedOrgan.SelfModulate = nameAndOrganDictionary[currentSelectedOrgan.Name];
+                    }
+
 
                 }
 
@@ -503,16 +535,6 @@ public partial class XRayManager : Node
     }
     public void ScanOrgans()
     {
-        if(organsArrayPublic != null)
-        {
-            organsArrayPublic.Clear();
-
-        }
-        if(organsArray!= null)
-        {
-            organsArray.Clear();
-
-        }
 
         if (npcCreator.manOrWoman)
         {
@@ -667,7 +689,8 @@ public partial class XRayManager : Node
             return current;
 
         }
-        else if (randomValue < 50f)
+        /*else */
+        if (randomValue <= 50f)
         {
             //Make colourable
             while (array[randomIndex].IsInGroup("Avoid"))
@@ -735,6 +758,9 @@ public partial class XRayManager : Node
     {
         int randomIndex = random.RandiRange(0, weirdColours.Length - 1);
         current.SelfModulate = weirdColours[randomIndex].colour;
+
+        originalTwistedColours.Add(current.Name, current.SelfModulate);
+
         SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.SendColour, weirdColours[randomIndex].colourName);
         offColourOrganName = current.Name;
     }
@@ -771,46 +797,49 @@ public partial class XRayManager : Node
     bool visible = true;
     void ClearObjects()
     {
-        visible = !visible;
 
-        Color transparent = new Color(0f, 0f, 0f, 0f);
-
-        foreach (Sprite2D sprite in hideables)
+        if(!visible)
         {
-            //Populates the dictionary
-            if (!originalColours.ContainsKey(sprite.Name))
-            {
-                originalColours.Add(sprite.Name, sprite.SelfModulate);
-            }
-        }
+            visible = true;
 
-        if(visible)
-        {
             foreach(Sprite2D sprite in hideables)
             {
                 sprite.Visible = true;
-                sprite.SelfModulate = originalColours[sprite.Name];
+                sprite.GlobalPosition = new Vector2(sprite.GlobalPosition.X + 1000f, sprite.GlobalPosition.Y);
             }
         }
         else
         {
+            visible = false;
+
             foreach(Sprite2D sprite in hideables)
             {
                 sprite.Visible = false;
-                sprite.SelfModulate = transparent;
-                
+                sprite.GlobalPosition = new Vector2(sprite.GlobalPosition.X - 1000f, sprite.GlobalPosition.Y);
+
+
             }
         }
 
     }
     void EnableObjects()
     {
-        foreach (Sprite2D sprite in hideables)
+        if(!visible)
         {
-            sprite.Visible = true;
-            if(originalColours.ContainsKey(sprite.Name))
-                sprite.SelfModulate = originalColours[sprite.Name];
+            GD.Print("returned");
+
+            foreach (Sprite2D sprite in hideables)
+            {
+                sprite.Visible = true;
+                sprite.GlobalPosition = new Vector2(sprite.GlobalPosition.X + 1000f, sprite.GlobalPosition.Y);
+            }
+
+            visible = true;
         }
+
+        
+
+
 
     }
 
