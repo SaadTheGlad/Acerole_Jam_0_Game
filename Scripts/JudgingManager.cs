@@ -138,8 +138,12 @@ public partial class JudgingManager : Node
         await ToSignal(GetTree().CreateTimer(1.081f), SceneTreeTimer.SignalName.Timeout);
         killScreen.Visible = true;
 
-        Node balloon = handler.GetChild(0);
-        balloon.QueueFree();
+        if(handler.GetChild(0) != null)
+        {
+            Node balloon = handler.GetChild(0);
+            balloon.QueueFree();
+
+        }
 
         await ToSignal(GetTree().CreateTimer(3f), SceneTreeTimer.SignalName.Timeout);
         killScreenPlayer.Play("FadeIn");

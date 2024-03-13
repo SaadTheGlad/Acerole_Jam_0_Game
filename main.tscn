@@ -1,10 +1,11 @@
-[gd_scene load_steps=157 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=161 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/InfractionManager.cs" id="1_dvhbd"]
 [ext_resource type="Script" path="res://Scripts/XRayManager.cs" id="1_k6ho4"]
 [ext_resource type="Script" path="res://Scripts/JudgingManager.cs" id="1_oafhd"]
 [ext_resource type="Script" path="res://Scripts/NPCCreator.cs" id="1_olf47"]
+[ext_resource type="Script" path="res://Scripts/ShiftManager.cs" id="1_pmo76"]
 [ext_resource type="Script" path="res://Scripts/SystemsManager.cs" id="1_wulak"]
 [ext_resource type="Script" path="res://Scripts/CutsceneManager.cs" id="1_xa843"]
 [ext_resource type="Texture2D" uid="uid://c3rud0nehsh34" path="res://Images/UI/Main/Wall.PNG" id="2_4kdnl"]
@@ -122,6 +123,7 @@
 [ext_resource type="PackedScene" uid="uid://bvcllgamamfhw" path="res://Prefabs/Handbooks/RealHandbook.tscn" id="117_0mcy8"]
 [ext_resource type="PackedScene" uid="uid://bgi4pk4vb2jtl" path="res://Prefabs/PinkSlip.tscn" id="121_hkdqw"]
 [ext_resource type="Script" path="res://Scripts/FadeIn.cs" id="122_18cra"]
+[ext_resource type="PackedScene" uid="uid://b4ow7ww0yw2q5" path="res://Prefabs/WinScreen.tscn" id="122_qkeys"]
 [ext_resource type="Texture2D" uid="uid://bu3mfkrl5msgu" path="res://Images/UI/Buttons/arrow.png" id="123_514hf"]
 [ext_resource type="Texture2D" uid="uid://dqgiwf2xbtjt" path="res://Images/UI/Buttons/arrowshadow.png" id="124_yxe3r"]
 
@@ -458,6 +460,37 @@ _data = {
 "Open": SubResource("Animation_1unky")
 }
 
+[sub_resource type="Animation" id="Animation_larvj"]
+resource_name = "Open"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1295, -0.25, 0, 0.675, 2.5, 0.5, -1.25, 1, 0.25, 0),
+"times": PackedFloat32Array(0, 1.9)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yw5n"]
+_data = {
+"Open": SubResource("Animation_larvj")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3i3c"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -518,6 +551,12 @@ _data = {
 
 [node name="Main" type="Node2D"]
 
+[node name="ShiftManager" type="Node" parent="." node_paths=PackedStringArray("winPlayer", "scoreLabel")]
+script = ExtResource("1_pmo76")
+timeInMinutes = 5.0
+winPlayer = NodePath("../PinkSlipHolder/WinScreen/AnimationPlayer")
+scoreLabel = NodePath("../PinkSlipHolder/WinScreen/PanelContainer/MarginContainer/TabContainer/Notice/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/People counter")
+
 [node name="InfractionManager" type="Node" parent="." node_paths=PackedStringArray("infractionLabel", "player")]
 script = ExtResource("1_dvhbd")
 infractionLabel = NodePath("../WorkingArea/Wall/InfractionCounter/PanelContainer/MarginContainer/PanelContainer/MarginContainer/Label")
@@ -540,7 +579,7 @@ fadingSpeed = 1.0
 script = ExtResource("1_k6ho4")
 npcCreator = NodePath("../NPCCreator")
 signal = NodePath("../Player/DialogueNPCSignal")
-probabilityOfGeneralAbberation = 100.0
+probabilityOfGeneralAbberation = 50.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -1039,8 +1078,16 @@ libraries = {
 "": SubResource("AnimationLibrary_uveii")
 }
 
+[node name="WinScreen" parent="PinkSlipHolder" instance=ExtResource("122_qkeys")]
+z_index = 100
+position = Vector2(0, 1295)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PinkSlipHolder/WinScreen"]
+libraries = {
+"": SubResource("AnimationLibrary_2yw5n")
+}
+
 [node name="FadeIn" type="Node2D" parent="."]
-visible = false
 position = Vector2(960, 540)
 script = ExtResource("122_18cra")
 
@@ -1115,6 +1162,7 @@ libraries = {
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="JudgingManager" method="SelectAnomaly"]
 [connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="X-Ray Manager" method="CloseScanScreen"]
 [connection signal="pressed" from="PinkSlipHolder/PinkSlip/PanelContainer2/MarginContainer/TextureButton" to="InfractionManager" method="Restart"]
+[connection signal="pressed" from="PinkSlipHolder/WinScreen/PanelContainer2/MarginContainer/TextureButton" to="ShiftManager" method="NextDay"]
 [connection signal="pressed" from="Killscreen/PanelContainer/MarginContainer/TextureButton" to="InfractionManager" method="Restart"]
 
 [editable path="WorkingArea/Wall/PeopleCounter"]
@@ -1127,4 +1175,6 @@ libraries = {
 [editable path="Screen X-Ray/Main/FemaleColoured"]
 [editable path="PinkSlipHolder/PinkSlip"]
 [editable path="PinkSlipHolder/PinkSlip/PanelContainer2"]
+[editable path="PinkSlipHolder/WinScreen"]
+[editable path="PinkSlipHolder/WinScreen/PanelContainer2"]
 [editable path="Killscreen/PanelContainer"]

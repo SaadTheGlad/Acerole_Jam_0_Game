@@ -11,7 +11,7 @@ if isAnomaly
 			=> snippets/discolouration
 		elif isDuplicated
 			=> snippets/duplicated	
-		else
+		else 
 			You dumb, something broke
 	elif hasSelectedObject
 		do ResetSound()

@@ -6,6 +6,8 @@ public partial class DialogueData : Node
 {
     public static DialogueData Instance { get; private set; }
 
+    public static int currentDay = 12;
+
     public string objectName = "PLACEHOLDER OBJECT NAME";
     public string colourName = "PLACEHOLDER COLOUR";
     public string npcName = "PLACEHOLDER NPC NAME";

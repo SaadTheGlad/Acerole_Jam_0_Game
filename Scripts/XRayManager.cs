@@ -206,10 +206,14 @@ public partial class XRayManager : Node
             n.QueueFree();
         }
 
-        organsArrayPublic.Clear();
-        organsArray.Clear();
-        skeletonArrayPublic.Clear();
-        skeletonArray.Clear();
+        if(organsArrayPublic  != null || organsArrayPublic.Count != 0) 
+            organsArrayPublic.Clear();
+        if(organsArray != null || organsArray.Count != 0)
+            organsArray.Clear();
+        if(skeletonArrayPublic != null || skeletonArrayPublic.Count != 0)
+            skeletonArrayPublic.Clear();
+        if(skeletonArray != null || skeletonArray.Count != 0)
+            skeletonArray.Clear();
 
 
     }
@@ -675,9 +679,9 @@ public partial class XRayManager : Node
     {
 
         float randomValue = random.RandiRange(0, 100);
-        if (randomValue <= 25f)
+        if (randomValue < 25f)
         {
-            //Make missing
+            ////Make missing
             while (array[randomIndex].IsInGroup("Avoid"))
             {
                 randomIndex = RandomSelectionOrgans();
@@ -689,10 +693,9 @@ public partial class XRayManager : Node
             return current;
 
         }
-        /*else */
-        if (randomValue <= 50f)
+        else if (randomValue < 40f)
         {
-            //Make colourable
+            ////Make colourable
             while (array[randomIndex].IsInGroup("Avoid"))
             {
                 randomIndex = RandomSelectionOrgans();
@@ -703,7 +706,7 @@ public partial class XRayManager : Node
             ReColour(current);
             return current;
         }
-        else if (randomValue < 75f)
+        else if (randomValue < 85f)
         {
             //transform thing
             while (array[randomIndex].IsInGroup("Avoid") || array[randomIndex].IsInGroup("NoRotate"))
@@ -717,7 +720,7 @@ public partial class XRayManager : Node
         }
         else if (randomValue <= 100f)
         {
-            //Duplicate
+            ////Duplicate
             while (array[randomIndex].IsInGroup("Avoid") || array[randomIndex].IsInGroup("Ribs"))
             {
                 randomIndex = RandomSelectionOrgans();

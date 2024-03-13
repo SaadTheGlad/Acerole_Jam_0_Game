@@ -2,17 +2,25 @@
 % {{npcName}}: What are you talking about?
 % {{npcName}}: Excuse me? I don't quite follow.
 % {{npcName}}: I... I don't understand.
+% {{npcName}}: What do you mean, it's perfectly fine?
 => END
 
 ~ missing
 do ResetSound()
 You: Where is your {{objectName}}?
 do ChangeSound(sfxName)
-% {{npcName}}: I lost it in an accident.
-% {{npcName}}: I don't need it anymore.
+%2 {{npcName}}: I lost it in an accident.
+%2 {{npcName}}: I don't need it anymore.
+%2 => donation
+% => confusion
 => END
 
 ~ discolouration
+
+%2 => condition
+% => confusion
+
+~ condition
 do ResetSound()
 You: Why is your {{objectName}} {{colourName}}?
 do ChangeSound(sfxName)
@@ -25,6 +33,13 @@ do ChangeSound(sfxName)
 
 		
 ~ flipped
+
+%2 => automobile
+%2 => twisted
+% => confusion
+
+
+~ automobile
 do ResetSound()
 You: What's wrong with your {{objectName}}?
 do ChangeSound(sfxName)
@@ -34,12 +49,21 @@ You: A full 180 degrees?
 do ChangeSound(sfxName)
 {{npcName}}: Yes, the doctors were amazed I survived.
 => END
+
+~ twisted
+do ResetSound()
+You: What's wrong with your {{objectName}}?
 do ChangeSound(sfxName)
-% {{npcName}}: I fell and twisted it earlier, you have doctors in there right? They should be able to help me with it
+{{npcName}}: I fell and twisted it earlier, you have doctors in there right? They should be able to help me with it
 => END
 
 
 ~ duplicated
+
+%2 => disorder
+% => confusion
+
+~ disorder
 do ResetSound()
 You: Why do you have an extra {{objectName}}?
 do ChangeSound(sfxName)
@@ -49,7 +73,11 @@ You: What is it called?
 do ChangeSound(sfxName)
 {{npcName}}: Additicus Organum.
 => END
+
+~ donation
+do ResetSound()
+You: Why do you have an extra {{objectName}}?
 do ChangeSound(sfxName)
-% {{npcName}}: I donated one to my [[brother | mum | sister | dad | grandpa | grandma | uncle | aunt]].
+% {{npcName}}: I donated one to my [[brother| mum| sister| dad| grandpa| grandma| uncle| aunt]].
 => END
 	
