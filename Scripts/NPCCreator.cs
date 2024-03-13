@@ -37,8 +37,7 @@ public partial class NPCCreator : Node
     [Export] public string[] maleFirstNames;
     [Export] public string[] femaleFirstNames;
     [ExportGroup("Last Names")]
-    [Export] public string[] maleLastNames;
-    [Export] public string[] femaleLastNames;
+    [Export] public string[] lastNames;
 
     RandomNumberGenerator random = new RandomNumberGenerator();
 
@@ -505,15 +504,15 @@ public partial class NPCCreator : Node
         if(manOrWoman)
         {
             int randomFirstIndex = random.RandiRange(0, maleFirstNames.Length - 1);
-            int randomLastIndex = random.RandiRange(0, maleLastNames.Length - 1);
-            npcHolder.Name = maleFirstNames[randomFirstIndex] + " " + maleLastNames[randomLastIndex];
+            int randomLastIndex = random.RandiRange(0, lastNames.Length - 1);
+            npcHolder.Name = maleFirstNames[randomFirstIndex] + " " + lastNames[randomLastIndex];
             GD.Print("Man");
         }
         else
         {
             int randomFirstIndex = random.RandiRange(0, femaleFirstNames.Length - 1);
-            int randomLastIndex = random.RandiRange(0, femaleLastNames.Length - 1);
-            npcHolder.Name = femaleFirstNames[randomFirstIndex] + " " + femaleLastNames[randomLastIndex];
+            int randomLastIndex = random.RandiRange(0, lastNames.Length - 1);
+            npcHolder.Name = femaleFirstNames[randomFirstIndex] + " " + lastNames[randomLastIndex];
             GD.Print("Female");
 
         }

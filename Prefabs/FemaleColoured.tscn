@@ -514,15 +514,15 @@ position = Vector2(-375.223, -1727.36)
 
 [node name="Ovary2" type="Sprite2D" parent="Organs/Female Reproductive/Ovaries"]
 self_modulate = Color(0.980392, 0.886275, 0.792157, 1)
-position = Vector2(312.98, 1721.87)
+position = Vector2(448.45, 1725.53)
 texture = ExtResource("68_00tjh")
-offset = Vector2(70.396, 66.9614)
+offset = Vector2(-65.0738, 63.3015)
 
 [node name="Ovary" type="Sprite2D" parent="Organs/Female Reproductive/Ovaries"]
 self_modulate = Color(0.980392, 0.886275, 0.792157, 1)
-position = Vector2(453.942, 1721.87)
+position = Vector2(312.98, 1723.7)
 texture = ExtResource("69_7thk2")
-offset = Vector2(-70.5658, 66.9614)
+offset = Vector2(70.3962, 65.1322)
 
 [node name="Fallopian Tubes" type="Sprite2D" parent="Organs/Female Reproductive"]
 self_modulate = Color(1, 0.482353, 0.447059, 1)

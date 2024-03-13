@@ -1,4 +1,4 @@
-[gd_scene load_steps=164 format=3 uid="uid://bburjqwqg71by"]
+[gd_scene load_steps=166 format=3 uid="uid://bburjqwqg71by"]
 
 [ext_resource type="Script" path="res://Scripts/NPCController.cs" id="1_0cfmg"]
 [ext_resource type="Script" path="res://Scripts/SFXManager.cs" id="1_5d1p8"]
@@ -148,6 +148,16 @@ colour = Color(1, 0, 1, 1)
 script = ExtResource("2_firhl")
 colourName = "green"
 colour = Color(0, 0.639216, 0, 1)
+
+[sub_resource type="Resource" id="Resource_e43pl"]
+script = ExtResource("2_firhl")
+colourName = "blue"
+colour = Color(0.25098, 0.34902, 0.815686, 1)
+
+[sub_resource type="Resource" id="Resource_iqhy2"]
+script = ExtResource("2_firhl")
+colourName = "purple"
+colour = Color(0.796078, 0.231373, 1, 1)
 
 [sub_resource type="Resource" id="Resource_6hvw1"]
 script = ExtResource("6_buml1")
@@ -587,7 +597,7 @@ fadingSpeed = 1.0
 script = ExtResource("1_k6ho4")
 npcCreator = NodePath("../NPCCreator")
 signal = NodePath("../Player/DialogueNPCSignal")
-probabilityOfGeneralAbberation = 50.0
+probabilityOfGeneralAbberation = 100.0
 helperPlayer = NodePath("../BG X-Ray/Main/AnimationPlayer")
 scanScreenPlayer = NodePath("../Screen X-Ray/Main/AnimationPlayer")
 judgingPlayer = NodePath("../WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/AnimationPlayer")
@@ -600,7 +610,7 @@ veryTranslucentColour = Color(0, 0, 0, 0.00392157)
 highlightColour = Color(1, 0, 0, 1)
 normalBoneColour = Color(1, 1, 1, 1)
 organsHighLightColour = Color(0, 0, 0, 1)
-weirdColours = Array[Object]([SubResource("Resource_d37rt"), SubResource("Resource_fjpe2"), SubResource("Resource_ohq0c")])
+weirdColours = Array[Object]([SubResource("Resource_d37rt"), SubResource("Resource_fjpe2"), SubResource("Resource_ohq0c"), SubResource("Resource_e43pl"), SubResource("Resource_iqhy2")])
 selectAnomalyButton = NodePath("../Screen X-Ray/Main/Select Anomaly")
 hideables = [NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Stomach"), NodePath("../Screen X-Ray/Main/MaleColoured/Organs/Liver"), NodePath("../Screen X-Ray/Main/FemaleColoured/Organs/Liver")]
 
@@ -634,10 +644,9 @@ f_ears = Array[Texture2D]([ExtResource("53_r468a"), ExtResource("54_efyv3"), Ext
 f_hairstyles = Array[Texture2D]([ExtResource("57_nyg2h"), ExtResource("58_igmf5"), ExtResource("59_ql2yf")])
 f_lips = Array[Texture2D]([ExtResource("60_dnp3d"), ExtResource("61_m61pq"), ExtResource("62_rs7co")])
 f_eyes = Array[Object]([SubResource("Resource_fxwcg"), SubResource("Resource_tt7lr"), SubResource("Resource_kw5em")])
-maleFirstNames = PackedStringArray("Saad", "Mohammed", "Abdullah", "Omar", "Hassan")
-femaleFirstNames = PackedStringArray("Amelie", "Sara", "Lina", "Zakia", "Zahra")
-maleLastNames = PackedStringArray("Abdullah", "Jeremiah", "Fox", "Johnson", "Doe")
-femaleLastNames = PackedStringArray("Rose", "Faust", "Warda", "Tanner", "Smith")
+maleFirstNames = PackedStringArray("Saad", "Mohammed", "Abdullah", "Omar", "Hassan", "Faisal", "Taha", "Yahya", "Jack", "Ned", "Ennis", "Oliver", "Henry", "Dipper", "Bojack", "Walter", "Rick", "Yassir")
+femaleFirstNames = PackedStringArray("Lina", "Zakia", "Zahra", "Fatima", "Maryam", "Aisha", "Reem", "Nadia", "Skyler", "Mabel", "Amelie", "Sara", "Evelyn", "Jane", "Catelyn", "Abigail", "Judith", "Malak")
+lastNames = PackedStringArray("Al Ghoul", "Saykouk", "Khouzami", "Agedash", "Gej", "Remmach", "Hadir", "Omari", "Mokrim", "Grimes", "White", "Mare", "Martinez", "Murphy", "Clampitt", "Twist", "Del Mar", "Miller")
 
 [node name="NPCController" type="Node" parent="." node_paths=PackedStringArray("NPC", "npcSignal", "judge")]
 script = ExtResource("1_0cfmg")
@@ -1106,10 +1115,10 @@ script = ExtResource("122_18cra")
 [node name="Panel" type="Panel" parent="FadeIn"]
 self_modulate = Color(0, 0, 0, 1)
 z_index = 1000
-offset_left = -1392.0
-offset_top = -846.0
-offset_right = 1501.0
-offset_bottom = 848.0
+offset_left = -2924.0
+offset_top = -1759.0
+offset_right = 3033.0
+offset_bottom = 1761.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_h3i3c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FadeIn"]
@@ -1128,10 +1137,10 @@ script = ExtResource("122_18cra")
 [node name="Panel" type="Panel" parent="Killscreen"]
 self_modulate = Color(0, 0, 0, 1)
 z_index = 1000
-offset_left = -1392.0
-offset_top = -846.0
-offset_right = 1501.0
-offset_bottom = 848.0
+offset_left = -3821.0
+offset_top = -2249.0
+offset_right = 3931.0
+offset_bottom = 2250.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_h3i3c")
 
 [node name="PanelContainer" parent="Killscreen" instance=ExtResource("102_p74r8")]
@@ -1159,35 +1168,35 @@ libraries = {
 "": SubResource("AnimationLibrary_emuft")
 }
 
-[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Deny/MarginContainer/TextureButton" to="JudgingManager" method="FallGuy"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Deny/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
-[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Interrogate/MarginContainer/TextureButton" to="JudgingManager" method="Interrogate"]
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Deny/MarginContainer/TextureButton" to="JudgingManager" method="FallGuy"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Interrogate/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
-[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Pass/MarginContainer/TextureButton" to="JudgingManager" method="PassThrough"]
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Interrogate/MarginContainer/TextureButton" to="JudgingManager" method="Interrogate"]
 [connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Pass/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
+[connection signal="pressed" from="WorkingArea/Buttons/FinishButtonsHolder/FinishButtons/HBoxContainer/Pass/MarginContainer/TextureButton" to="JudgingManager" method="PassThrough"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="CutsceneManager" method="PersonCome"]
 [connection signal="pressed" from="WorkingArea/Buttons/Ring Button" to="SystemsManager" method="Ring"]
-[connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="X-Ray Manager" method="StartScan"]
 [connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="SFXManager" method="PlayButton"]
+[connection signal="pressed" from="WorkingArea/Buttons/Scan Button" to="X-Ray Manager" method="StartScan"]
 [connection signal="input_event" from="WorkingArea/FakeHandbook/Area2D" to="WorkingArea/FakeHandbook" method="OnArea2DInputEvent"]
 [connection signal="input_event" from="WorkingArea/RealHandbook/Area2D" to="WorkingArea/RealHandbook" method="OnArea2DInputEvent"]
-[connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="SFXManager" method="PlayButton"]
-[connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="X-Ray Manager" method="ScanOrgans"]
+[connection signal="pressed" from="Screen X-Ray/Main/Scan Skeleton Button" to="X-Ray Manager" method="ScanSkeleton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="SFXManager" method="PlayButton"]
-[connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button2" to="X-Ray Manager" method="ClearObjects"]
+[connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button" to="X-Ray Manager" method="ScanOrgans"]
 [connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button2" to="SFXManager" method="PlayButton"]
+[connection signal="pressed" from="Screen X-Ray/Main/Scan Organs Button2" to="X-Ray Manager" method="ClearObjects"]
+[connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="SFXManager" method="PlayButton"]
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="X-Ray Manager" method="CloseScanScreen"]
 [connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="JudgingManager" method="SelectAnomaly"]
-[connection signal="pressed" from="Screen X-Ray/Main/Select Anomaly" to="SFXManager" method="PlayButton"]
-[connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="X-Ray Manager" method="CloseScanScreen"]
 [connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="SFXManager" method="PlayButton"]
-[connection signal="pressed" from="PinkSlipHolder/PinkSlip/PanelContainer2/MarginContainer/TextureButton" to="InfractionManager" method="Restart"]
+[connection signal="pressed" from="Screen X-Ray/Main/Close Scan Area Button" to="X-Ray Manager" method="CloseScanScreen"]
 [connection signal="pressed" from="PinkSlipHolder/PinkSlip/PanelContainer2/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
-[connection signal="pressed" from="PinkSlipHolder/WinScreen/PanelContainer2/MarginContainer/TextureButton" to="ShiftManager" method="NextDay"]
+[connection signal="pressed" from="PinkSlipHolder/PinkSlip/PanelContainer2/MarginContainer/TextureButton" to="InfractionManager" method="Restart"]
 [connection signal="pressed" from="PinkSlipHolder/WinScreen/PanelContainer2/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
-[connection signal="pressed" from="Killscreen/PanelContainer/MarginContainer/TextureButton" to="InfractionManager" method="Restart"]
+[connection signal="pressed" from="PinkSlipHolder/WinScreen/PanelContainer2/MarginContainer/TextureButton" to="ShiftManager" method="NextDay"]
 [connection signal="pressed" from="Killscreen/PanelContainer/MarginContainer/TextureButton" to="SFXManager" method="PlayButton"]
+[connection signal="pressed" from="Killscreen/PanelContainer/MarginContainer/TextureButton" to="InfractionManager" method="Restart"]
 
 [editable path="WorkingArea/Wall/PeopleCounter"]
 [editable path="WorkingArea/Wall/InfractionCounter"]

@@ -6,19 +6,33 @@
 => END
 
 ~ missing
+%2 => accident
+%2 => noneed
+% => accidentconfusion
+
+~ accident
 do ResetSound()
 You: Where is your {{objectName}}?
 do ChangeSound(sfxName)
-%2 {{npcName}}: I lost it in an accident.
-%2 {{npcName}}: I don't need it anymore.
-%2 => donation
-% => confusion
+{{npcName}}: I lost it in an accident.
+=> END
+
+~ noneed
+do ResetSound()
+You: Where is your {{objectName}}?
+do ChangeSound(sfxName)
+{{npcName}}: I don't need it anymore.
+=> END
+
+~ accidentconfusion
+do ResetSound()
+You: Where is your {{objectName}}?
+do ChangeSound(sfxName)
+=> confusion
 => END
 
 ~ discolouration
-
 %2 => condition
-% => confusion
 
 ~ condition
 do ResetSound()
@@ -31,12 +45,16 @@ do ChangeSound(sfxName)
 {{npcName}}: Huepigment Tintinitus.
 => END
 
+~ conditionconfusion
+do ResetSound()
+You: Why is your {{objectName}} {{colourName}}?
+do ChangeSound(sfxName)
+=> confusion
+=> END
 		
 ~ flipped
-
 %2 => automobile
 %2 => twisted
-% => confusion
 
 
 ~ automobile
@@ -57,11 +75,16 @@ do ChangeSound(sfxName)
 {{npcName}}: I fell and twisted it earlier, you have doctors in there right? They should be able to help me with it
 => END
 
+~ flippedconfusion
+do ResetSound()
+You: What's wrong with your {{objectName}}?
+do ChangeSound(sfxName)
+=> confusion
+=> END
 
 ~ duplicated
-
+%2 => donation
 %2 => disorder
-% => confusion
 
 ~ disorder
 do ResetSound()
@@ -78,6 +101,14 @@ do ChangeSound(sfxName)
 do ResetSound()
 You: Why do you have an extra {{objectName}}?
 do ChangeSound(sfxName)
-% {{npcName}}: I donated one to my [[brother| mum| sister| dad| grandpa| grandma| uncle| aunt]].
+% {{npcName}}: I donated one to my [[brother|mum|sister|dad|grandpa|grandma|uncle|aunt]].
 => END
+
+~ duplicatedconfusion
+do ResetSound()
+You: Why do you have an extra {{objectName}}?
+do ChangeSound(sfxName)
+=> confusion
+=> END
+
 	
