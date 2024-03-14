@@ -114,7 +114,7 @@ do ChangeSound(sfxName)
 do ResetSound()
 You: What food exactly?
 do ChangeSound(sfxName)
-{{npcName}}: [[Frozen pizza|Sushi|Tajine|Bastilla|Frozen tacos|Raw berries|Vegetable soup]].
+{{npcName}}: [[Frozen pizza|Raw meat|Sushi|Tajine|Bastilla|Frozen tacos|Raw berries|Vegetable soup]].
 
 => END
 
@@ -135,13 +135,15 @@ do ChangeSound(sfxName)
 %2 => twisted
 %2 => yoga
 %2 => climb
+%2 => choice
+%2 => gadget
 % => flippedconfusion
 
 ~ automobile
 do ResetSound()
 You: What's wrong with your {{objectName}}?
 do ChangeSound(sfxName)
-% {{npcName}}: It got twisted in an automobile accident.
+{{npcName}}: It got twisted in an automobile accident.
 do ResetSound()
 You: A full 180 degrees?
 do ChangeSound(sfxName)
@@ -169,6 +171,24 @@ do ChangeSound(sfxName)
 {{npcName}}: The climb here was treacherous, I mean have you seen how deep the snow is?
 => END
 
+~ choice
+do ResetSound()
+You: What's wrong with your {{objectName}}?
+do ChangeSound(sfxName)
+{{npcName}}: Are you talking about the flipping? Well if so, please stop, that's none of your business.
+=> END
+
+~ gadget
+do ResetSound()
+You: What's wrong with your {{objectName}}?
+do ChangeSound(sfxName)
+{{npcName}}: Just a side effect of this new medication I'm on, perfectly normal. Nothing to worry about.
+do ResetSound()
+You: What's the name of the medication?
+do ChangeSound(sfxName)
+{{npcName}}: [[Tshaklib|Yadoor|Hawel]].
+=> END
+
 ~ flippedconfusion
 do ResetSound()
 You: What's wrong with your {{objectName}}?
@@ -185,38 +205,46 @@ do ChangeSound(sfxName)
 %2 => born
 %2 => experiment
 %2 => tumour
+%2 => creatures
 % => duplicatedconfusion
 
 ~ disorder
 do ResetSound()
 You: Why do you have an extra {{objectName}}?
 do ChangeSound(sfxName)
-% {{npcName}}: It's a rare disorder.
+{{npcName}}: It's a rare disorder.
 do ResetSound()
 You: What is it called?
 do ChangeSound(sfxName)
-{{npcName}}: Additicus Organum.
+{{npcName}}: [[Additicus Organum|Bezaf Aliya Syndrome|Ado Zaed]].
 => END
 
 ~ born
 do ResetSound()
 You: Why do you have an extra {{objectName}}?
 do ChangeSound(sfxName)
-% {{npcName}}: I was born like this.
+{{npcName}}: [[I was like this since birth|I was born like this]].
 => END
 
 ~ experiment
 do ResetSound()
 You: Why do you have an extra {{objectName}}?
 do ChangeSound(sfxName)
-% {{npcName}}: Oh that? Ehh, nothing to worry about. My doctors said it's pretty rare but completely harmless!
+{{npcName}}: Oh that? Ehh, nothing to worry about. My doctors said it's pretty rare but completely harmless!
 => END
 
 ~ tumour
 do ResetSound()
 You: Why do you have an extra {{objectName}}?
 do ChangeSound(sfxName)
-% {{npcName}}: It's a cancerous tumour. I'm undergoing treatment, should be cured soon.
+{{npcName}}: It's a cancerous tumour. I'm undergoing treatment, should be cured soon.
+=> END
+
+~ creatures
+do ResetSound()
+You: Why do you have an extra {{objectName}}?
+do ChangeSound(sfxName)
+{{npcName}}: One of those... things stuck one on me. I was told I could get it removed here.
 => END
 
 ~ duplicatedconfusion
