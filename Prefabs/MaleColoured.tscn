@@ -246,7 +246,7 @@ scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("27_m2bx5")
 offset = Vector2(-208.297, 410.627)
 
-[node name="Fore Arm" type="Sprite2D" parent="Skeleton/Left"]
+[node name="ForeArm" type="Sprite2D" parent="Skeleton/Left"]
 position = Vector2(1036.82, 1330.29)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("28_vgx71")
@@ -264,7 +264,7 @@ scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("30_l5k8m")
 offset = Vector2(-105.566, -214.933)
 
-[node name="Knee" type="Sprite2D" parent="Skeleton/Left" groups=["NoRotate"]]
+[node name="Knee" type="Sprite2D" parent="Skeleton/Left" groups=["NoDuplicate", "NoRotate"]]
 position = Vector2(638.685, 2991.83)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("31_ec2hd")
@@ -352,7 +352,7 @@ scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("44_34ap3")
 offset = Vector2(105.4, -216.767)
 
-[node name="Knee" type="Sprite2D" parent="Skeleton/Right" groups=["NoRotate"]]
+[node name="Knee" type="Sprite2D" parent="Skeleton/Right" groups=["NoDuplicate", "NoRotate"]]
 position = Vector2(160.928, 2986.52)
 scale = Vector2(2.89368, 2.89368)
 texture = ExtResource("45_ip4g3")

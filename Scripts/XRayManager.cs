@@ -66,7 +66,8 @@ public partial class XRayManager : Node
     Vector2 OUTOFSCREENPOS = new Vector2(-405.115f, 4878.437f);
 
     Godot.Collections.Dictionary<string, Color> nameAndOrganDictionary = new Godot.Collections.Dictionary<string, Color>();
-    private List<Sprite2D> duplicateObjects = new List<Sprite2D>();
+    //private List<Sprite2D> duplicateObjects = new List<Sprite2D>();
+    Sprite2D currentDuplicatedObject;
 
     bool isDG;
     bool canRoll = true;
@@ -203,20 +204,34 @@ public partial class XRayManager : Node
         }
 
         //Removes the duplicate objects
-        foreach (Sprite2D n in duplicateObjects)
-        {
-            duplicateObjects.Remove(n);
-            n.QueueFree();
-        }
 
-        if(organsArrayPublic  != null || organsArrayPublic.Count != 0) 
+        //foreach (Sprite2D n in duplicateObjects)
+        //{
+        //    duplicateObjects.Remove(n);
+        //    n.QueueFree();
+        //}
+
+        currentDuplicatedObject.QueueFree();
+
+        if(organsArrayPublic  != null || organsArrayPublic.Count != 0)
+        {
             organsArrayPublic.Clear();
-        if(organsArray != null || organsArray.Count != 0)
-            organsArray.Clear();
-        if(skeletonArrayPublic != null || skeletonArrayPublic.Count != 0)
+        }
+        //if (organsArray != null)
+        //{
+        //    if (organsArray.Count != 0)
+        //    {
+        //        organsArray.Clear();
+        //    }
+        //}
+        if (skeletonArrayPublic != null || skeletonArrayPublic.Count != 0)
+        {
             skeletonArrayPublic.Clear();
-        if(skeletonArray != null || skeletonArray.Count != 0)
+        }
+        if (skeletonArray != null || skeletonArray.Count != 0)
+        {
             skeletonArray.Clear();
+        }
 
 
     }
@@ -726,7 +741,7 @@ public partial class XRayManager : Node
         else if (randomValue <= 100f)
         {
             ////Duplicate
-            while (array[randomIndex].IsInGroup("Avoid") || array[randomIndex].IsInGroup("Ribs"))
+            while (array[randomIndex].IsInGroup("Avoid") || array[randomIndex].IsInGroup("Ribs") || array[randomIndex].IsInGroup("NoDuplicate"))
             {
                 randomIndex = RandomSelectionOrgans();
             }
@@ -758,9 +773,9 @@ public partial class XRayManager : Node
     void AddObject(Sprite2D current)
     {
         Sprite2D duplicatedObject = (Sprite2D)current.Duplicate();
-        duplicateObjects.Add(duplicatedObject);
-        current.GetParent().AddChild(duplicatedObject);
-        AlterTransformOfObject(duplicatedObject, random.RandiRange(30, 120));
+        currentDuplicatedObject = duplicatedObject;
+        current.GetParent().AddChild(currentDuplicatedObject);
+        AlterTransformOfObject(currentDuplicatedObject, random.RandiRange(30, 120));
     }
     void ReColour(Sprite2D current)
     {

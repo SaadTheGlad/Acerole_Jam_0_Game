@@ -5,7 +5,7 @@ Boss: However I would still like to reiterate, one small mishap, and it's not on
 Boss: I won't hold you up anymore now, here is the handbook. You'll use it as a reference for what's right and what's an anomaly, don't lose it.
 do EnableRealHandbook()
 Boss: ...
-Boss: What? Is that another handbook? Ohh god. What did he look like?
+Boss: What? Is that another handbook? Ohh god. What did it look like?
 - Like you
 Boss: Damn it, they've got here already. Alright, just... discard that. Throw it away and make sure you don't confuse it with the one I gave you.
 - How do I know you're the real one?
