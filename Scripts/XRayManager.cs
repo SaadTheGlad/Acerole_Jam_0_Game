@@ -210,10 +210,14 @@ public partial class XRayManager : Node
         //    duplicateObjects.Remove(n);
         //    n.QueueFree();
         //}
+        
+        if(currentDuplicatedObject != null)
+        {
+            currentDuplicatedObject.GlobalPosition = new Vector2(5000f, 5000f);
 
-        currentDuplicatedObject.QueueFree();
+        }
 
-        if(organsArrayPublic  != null || organsArrayPublic.Count != 0)
+        if (organsArrayPublic  != null || organsArrayPublic.Count != 0)
         {
             organsArrayPublic.Clear();
         }
@@ -228,10 +232,10 @@ public partial class XRayManager : Node
         {
             skeletonArrayPublic.Clear();
         }
-        if (skeletonArray != null || skeletonArray.Count != 0)
-        {
-            skeletonArray.Clear();
-        }
+        //if (skeletonArray != null || skeletonArray.Count != 0)
+        //{
+        //    skeletonArray.Clear();
+        //}
 
 
     }
@@ -546,7 +550,7 @@ public partial class XRayManager : Node
         if (skeletonOrOrgan && isDG && !physiqueAbberation)
         {
             int randomIndex = RandomSelectionSkeleton();
-            Sprite2D current = Abberate(randomIndex, skeletonArrayPublic);
+            Sprite2D current = AbberateSkeleton(randomIndex, skeletonArrayPublic);
 
             currentSkeletonIndex = randomIndex;
             anomalyBone = current;
@@ -684,7 +688,7 @@ public partial class XRayManager : Node
         if (!skeletonOrOrgan && isDG && !physiqueAbberation)
         {
             int randomIndex = RandomSelectionOrgans();
-            Sprite2D current = Abberate(randomIndex, organsArrayPublic);
+            Sprite2D current = AbberateOrgan(randomIndex, organsArrayPublic);
 
             currentOrgansIndex = randomIndex;
             anomalyOrgan = current;
@@ -693,7 +697,7 @@ public partial class XRayManager : Node
         }
 
     }
-    Sprite2D Abberate(int randomIndex, Godot.Collections.Array<Sprite2D> array)
+    Sprite2D AbberateOrgan(int randomIndex, Godot.Collections.Array<Sprite2D> array)
     {
 
 
@@ -762,6 +766,79 @@ public partial class XRayManager : Node
 
 
     }
+    Sprite2D AbberateSkeleton(int randomIndex, Godot.Collections.Array<Sprite2D> array)
+    {
+
+
+        float randomValue = random.RandiRange(0, 100);
+
+        if (randomValue < 25f)
+        {
+            ////Make missing
+            while (array[randomIndex].IsInGroup("Avoid"))
+            {
+                randomIndex = RandomSelectionSkeleton();
+            }
+
+            Sprite2D current = array[randomIndex];
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeMissing);
+            MakeMissing(current);
+            return current;
+
+        }
+        else if (randomValue < 40f)
+        {
+            ////Make colourable
+            while (array[randomIndex].IsInGroup("Avoid"))
+            {
+                randomIndex = RandomSelectionSkeleton();
+            }
+
+            Sprite2D current = array[randomIndex];
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeDiscoloured);
+            ReColour(current);
+            return current;
+        }
+        else if (randomValue < 85f)
+        {
+            //transform thing
+            while (array[randomIndex].IsInGroup("Avoid") || array[randomIndex].IsInGroup("NoRotate"))
+            {
+                randomIndex = RandomSelectionSkeleton();
+            }
+            Sprite2D current = array[randomIndex];
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeRotated);
+            AlterTransformOfObject(current, 180f);
+            return current;
+        }
+        else if (randomValue <= 100f)
+        {
+            ////Duplicate
+            while (array[randomIndex].IsInGroup("Avoid") || array[randomIndex].IsInGroup("Ribs") || array[randomIndex].IsInGroup("NoDuplicate"))
+            {
+                randomIndex = RandomSelectionSkeleton();
+            }
+
+            Sprite2D current = array[randomIndex];
+            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.MakeDuplicated);
+            AddObject(current);
+            return current;
+
+        }
+        else
+        {
+            Sprite2D current = array[randomIndex];
+            GD.Print("something went seriously wrong");
+            return current;
+        }
+
+
+
+    }
+
+
+
+
     void MakeMissing(Sprite2D current)
     {
         current.SelfModulate = veryTranslucentColour;

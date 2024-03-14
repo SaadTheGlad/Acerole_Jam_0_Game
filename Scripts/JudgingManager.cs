@@ -44,10 +44,7 @@ public partial class JudgingManager : Node
     {
         SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.DisposedOf);
 
-        if (!DialogueData.Instance.isAnomaly)
-        {
-            SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.IncreaseInfraction);
-        }
+
 
         canClick = false;
 
@@ -79,7 +76,12 @@ public partial class JudgingManager : Node
                     NPC.GlobalPosition = controller.startingPos;
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.NPCHasPassed);
                     SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.EnableNPC);
-                    
+
+                    if (!DialogueData.Instance.isAnomaly)
+                    {
+                        SignalsManager.Instance.EmitSignal(SignalsManager.SignalName.IncreaseInfraction);
+                    }
+
                     ResetStuff();
                     signal.isTalking = false;
                     controller.canRing = true;

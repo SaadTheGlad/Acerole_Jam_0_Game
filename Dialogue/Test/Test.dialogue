@@ -122,7 +122,6 @@ You: Yes it is.
 do ResetSound()
 % {{npcName}}: Ok, ok good. Please continue.
 % {{npcName}}: Alright, no reason for it to not be I guess...
-
 => END
 
 

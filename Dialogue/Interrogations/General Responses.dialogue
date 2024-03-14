@@ -79,6 +79,7 @@ do ChangeSound(sfxName)
 %2 => highlevels
 %2 => food
 %2 => chemicals
+%2 => normalcolour
 % => conditionconfusion
 
 ~ condition
@@ -115,7 +116,13 @@ do ResetSound()
 You: What food exactly?
 do ChangeSound(sfxName)
 {{npcName}}: [[Frozen pizza|Raw meat|Sushi|Tajine|Bastilla|Frozen tacos|Raw berries|Vegetable soup]].
+=> END
 
+~ normalcolour
+do ResetSound()
+You: Why is your {{objectName}} {{colourName}}?
+do ChangeSound(sfxName)
+{{npcName}}: What do you mean? That's a perfectly healthy colour.
 => END
 
 ~ conditionconfusion
@@ -223,7 +230,7 @@ do ChangeSound(sfxName)
 do ResetSound()
 You: Why do you have an extra {{objectName}}?
 do ChangeSound(sfxName)
-{{npcName}}: [[I was like this since birth|I was born like this]].
+{{npcName}}: [[It was like that since birth|I was born like that]].
 => END
 
 ~ experiment
