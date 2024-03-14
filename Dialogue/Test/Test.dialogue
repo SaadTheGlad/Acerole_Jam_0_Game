@@ -10,6 +10,8 @@ import "res://Dialogue/Interrogations/General Responses.dialogue" as snippets
 % => snow
 % => generous
 % => cold
+% => hurry
+% => terrified
 
 ~ gratitude
 do ResetSound()
@@ -17,7 +19,8 @@ Hello. My name is {{npcName}}.
 {{npcName}}: Thank you for this, really. It's a miracle you guys exist. I was told there would be a scan?
 do ChangeSound("normalTW")
 You: Yes. [[Please stay still|Please don't move|Please remain stationary]].
-=> END
+% => safetycheck
+%3 => END
 
 ~ normal
 do ResetSound()
@@ -25,46 +28,103 @@ Hello. I'm {{npcName}}.
 {{npcName}}: This is the right place, yeah?
 do ChangeSound("normalTW")
 You: Yes. [[Please stay still|Please don't move|Please remain stationary]].
-=> END
+% => safetycheck
+%3 => END
 
 ~ excited
 do ResetSound()
 Hi! Oh gosh, it's true! There is still hope for humanity after all.
 do ChangeSound("normalTW")
-You: What's your name?
+You: [[What's|What is]] your name?
 do ResetSound()
 Oh yes, sorry, it's {{npcName}}.
 do ChangeSound("normalTW")
 You: [[Please stay still|Please don't move|Please remain stationary]] while the scan is in progress {{npcName}}.
-=> END
+% => safetycheck
+%3 => END
 
 ~ snow
 do ResetSound()
 Hi, hello. Why did you have to build it all the way out here? Practically impossible to walk on that snow.
 do ChangeSound("normalTW")
-You: What's your name?
+You: [[What's|What is]] your name?
 do ResetSound()
 Rude. Uh, {{npcName}}.
 do ChangeSound("normalTW")
 You: [[Please stay still|Please don't move|Please remain stationary]] while the scan is in progress {{npcName}}.
-=> END
+% => safetycheck
+%3 => END
 
 ~ generous
 do ResetSound()
 Good evening. I was told you only required submission to a scan, is that so?
 do ChangeSound("normalTW")
-You: Yes, that is correct. What is your name?
+You: Yes, that is correct. [[What's|What is]] your name?
 do ResetSound()
 {{npcName}}. Huh, thought for sure there would be some payment involved. You're doing god's work here. Thank you.
 do ChangeSound("normalTW")
 You: [[Please stay still|Please don't move|Please remain stationary]] while the scan is in progress {{npcName}}.
-=> END
+% => safetycheck
+%3 => END
 
 ~ cold
 do ResetSound()
 Good evening. My name is {{npcName}}.
 do ChangeSound("normalTW")
-You: Yes. [[Please stay still|Please don't move|Please remain stationary]].
+You: Good evening. [[Please stay still|Please don't move|Please remain stationary]].
+% => safetycheck
+% => END
+
+~ hurry
+do ResetSound()
+Hey, listen man, I know you're all about extreme security here but I need to get inside, stat. I don't like it out here. It's not right.
+do ChangeSound("normalTW")
+You: Please remain calm and submit to the scan.
+do ResetSound()
+Fucking hell, alright. Just... make this quick. Please.
+do ChangeSound("normalTW")
+You: Name?
+do ResetSound()
+Uh, name? Yeah, uh, {{npcName}}.
+do ChangeSound("normalTW")
+You: [[Please stay still|Please don't move|Please remain stationary]] while the scan is in progress.
+% => safetycheck
+%3 => END
+
+~ terrified
+do ResetSound()
+Is this it? Oh thank the heavens. What do I need to do?
+do ChangeSound("normalTW")
+You: Good evening, [[please stay still|please don't move|please remain stationary]] for the scan.
+do ResetSound()
+Scan, yes, that was mentioned.
+Oh god you don't know the hell I've been through.
+do ChangeSound("normalTW")
+You: Please, the sooner you cooperate the sooner you'll be safe inside.
+do ResetSound()
+Yes, alright, sorry.
+do ChangeSound("normalTW")
+You: Name?
+do ResetSound()
+{{npcName}}.
+do ChangeSound("normalTW")
+You: {{npcName}}, [[please stay still|please don't move|please remain stationary]] while the scan is in progress.
+% => safetycheck
+%3 => END
+
+
+~ safetycheck
+do ResetSound()
+% {{npcName}}: Uh, I just wanna ask before you start, this is safe right? 
+% {{npcName}}: You're sure this thing is safe right? I don't wanna end up like them somehow.
+do ChangeSound("normalTW")
+You: Yes it is.
+do ResetSound()
+% {{npcName}}: Ok, ok good. Please continue.
+% {{npcName}}: Alright, no reason for it to not be I guess...
+
+=> END
+
 
 
 => END

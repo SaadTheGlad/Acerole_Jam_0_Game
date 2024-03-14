@@ -20,7 +20,7 @@ if isAnomaly
 		=> snippets/confusion
 	else
 		do ResetSound()
-		You: You're free to go.
+		You: You're free to go. Welcome to The Haven, you're in safe hands.
 elif hasSelectedObject
 	do ResetSound()
 	You: Why is your {{objectName}} like that?
@@ -28,5 +28,5 @@ elif hasSelectedObject
 	=> snippets/confusion
 else
 	do ResetSound()
-	You: You're free to go.
+	You: You're free to go. Welcome to The Haven, you're in safe hands.
 => END

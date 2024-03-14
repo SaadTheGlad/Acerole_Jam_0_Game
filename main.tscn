@@ -915,6 +915,8 @@ icon = null
 
 [node name="Bg" parent="Screen X-Ray/Main" index="3"]
 self_modulate = Color(0, 0, 0, 1)
+position = Vector2(340, 0)
+scale = Vector2(1.35417, 1)
 
 [node name="Scan Organs Button2" parent="Screen X-Ray/Main" instance=ExtResource("86_vsxkr")]
 modulate = Color(0.262745, 0.470588, 1, 1)
